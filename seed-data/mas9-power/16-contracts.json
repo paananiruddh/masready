@@ -1,0 +1,14 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "description": "Fictional service and maintenance contracts. All values, parties, and dates are entirely fictional.",
+  "contracts": [
+    { "contract_id": "CON-2023-001", "vendor_id": "VND-001", "description": "Transformer maintenance and emergency response contract", "value_aud": 480000, "start_date": "2023-07-01", "end_date": "2026-06-30", "status": "ACTIVE", "type": "MAINTENANCE" },
+    { "contract_id": "CON-2023-002", "vendor_id": "VND-003", "description": "SCADA software maintenance and annual health check", "value_aud": 95000, "start_date": "2023-01-01", "end_date": "2025-12-31", "status": "ACTIVE", "type": "SOFTWARE_SUPPORT" },
+    { "contract_id": "CON-2024-001", "vendor_id": "VND-006", "description": "Smart meter deployment and comms management — Phase 3", "value_aud": 2100000, "start_date": "2024-03-01", "end_date": "2025-09-30", "status": "ACTIVE", "type": "CAPITAL" },
+    { "contract_id": "CON-2024-002", "vendor_id": "VND-007", "description": "Field services panel rate agreement", "value_aud": 220000, "start_date": "2024-07-01", "end_date": "2026-06-30", "status": "ACTIVE", "type": "SERVICES" },
+    { "contract_id": "CON-2022-001", "vendor_id": "VND-002", "description": "Distribution equipment supply agreement (expired)", "value_aud": 340000, "start_date": "2022-01-01", "end_date": "2024-12-31", "status": "EXPIRED", "type": "SUPPLY" }
+  ],
+  "total": 5,
+  "pfm_enabled": false,
+  "pfm_note": "PFM Contract Mobilisation module is disabled for this demo tenant — contracts are view-only"
+}

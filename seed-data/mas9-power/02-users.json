@@ -1,0 +1,92 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "description": "Fictional user accounts for the MAS9 Power demo tenant",
+  "users": [
+    {
+      "user_id": "U001",
+      "username": "a.thornton",
+      "display_name": "Alex Thornton",
+      "email": "a.thornton@mas9power.demo",
+      "role_id": "ROLE_ADMIN",
+      "department": "IT Operations",
+      "site_id": "SITE_HQ",
+      "status": "active",
+      "last_login": "2025-11-01T08:42:00Z",
+      "apppoint_type": "base"
+    },
+    {
+      "user_id": "U002",
+      "username": "m.chen",
+      "display_name": "Morgan Chen",
+      "email": "m.chen@mas9power.demo",
+      "role_id": "ROLE_DELIVERY_LEAD",
+      "department": "Delivery",
+      "site_id": "SITE_HQ",
+      "status": "active",
+      "last_login": "2025-11-01T09:15:00Z",
+      "apppoint_type": "base"
+    },
+    {
+      "user_id": "U003",
+      "username": "r.okafor",
+      "display_name": "Riley Okafor",
+      "email": "r.okafor@mas9power.demo",
+      "role_id": "ROLE_DELIVERY_LEAD",
+      "department": "Delivery",
+      "site_id": "SITE_NORTH",
+      "status": "active",
+      "last_login": "2025-10-31T14:20:00Z",
+      "apppoint_type": "base"
+    },
+    {
+      "user_id": "U004",
+      "username": "j.patel",
+      "display_name": "Jordan Patel",
+      "email": "j.patel@mas9power.demo",
+      "role_id": "ROLE_ASSET_MANAGER",
+      "department": "Asset Management",
+      "site_id": "SITE_WEST",
+      "status": "active",
+      "last_login": "2025-11-01T07:55:00Z",
+      "apppoint_type": "base"
+    },
+    {
+      "user_id": "U005",
+      "username": "s.kowalski",
+      "display_name": "Sam Kowalski",
+      "email": "s.kowalski@mas9power.demo",
+      "role_id": "ROLE_SCHEDULER",
+      "department": "Operations",
+      "site_id": "SITE_NORTH",
+      "status": "active",
+      "last_login": "2025-10-30T16:10:00Z",
+      "apppoint_type": "limited"
+    },
+    {
+      "user_id": "U006",
+      "username": "t.nguyen",
+      "display_name": "Taylor Nguyen",
+      "email": "t.nguyen@mas9power.demo",
+      "role_id": "ROLE_FIELD_TECH",
+      "department": "Field Operations",
+      "site_id": "SITE_WEST",
+      "status": "active",
+      "last_login": "2025-11-01T06:30:00Z",
+      "apppoint_type": "mobile"
+    },
+    {
+      "user_id": "U007",
+      "username": "c.ibrahim",
+      "display_name": "Casey Ibrahim",
+      "email": "c.ibrahim@mas9power.demo",
+      "role_id": "ROLE_FINANCE",
+      "department": "Finance",
+      "site_id": "SITE_HQ",
+      "status": "active",
+      "last_login": "2025-10-29T11:00:00Z",
+      "apppoint_type": "base"
+    }
+  ],
+  "total_users": 7,
+  "active_users": 7
+}

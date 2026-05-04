@@ -1,0 +1,11 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "pm_schedules": [
+    { "pm_id": "PM-SS-Q", "name": "Substation Quarterly Inspection", "frequency": "quarterly", "asset_class": "Substations", "job_plan_id": "JP-SS-001", "site_ids": ["SITE_NORTH", "SITE_WEST", "SITE_SOUTH"], "last_run": "2025-08-15", "next_due": "2025-11-15", "active": true },
+    { "pm_id": "PM-TR-A", "name": "Transformer Annual Thermal Imaging", "frequency": "annual", "asset_class": "Transformers", "job_plan_id": "JP-TR-001", "site_ids": ["SITE_NORTH", "SITE_WEST", "SITE_SOUTH"], "last_run": "2024-11-10", "next_due": "2025-11-10", "active": true },
+    { "pm_id": "PM-TL-S", "name": "Transmission Line 6-Monthly Patrol", "frequency": "6-monthly", "asset_class": "Transmission Lines", "job_plan_id": "JP-TL-001", "site_ids": ["SITE_WEST"], "last_run": "2025-05-02", "next_due": "2025-11-02", "active": true },
+    { "pm_id": "PM-SM-A", "name": "Smart Meter Annual Comms Audit", "frequency": "annual", "asset_class": "Smart Meters", "job_plan_id": "JP-SM-001", "site_ids": ["SITE_WEST", "SITE_SOUTH"], "last_run": "2024-11-20", "next_due": "2025-11-20", "active": true },
+    { "pm_id": "PM-CS-Q", "name": "Control System Quarterly Health Check", "frequency": "quarterly", "asset_class": "Control Systems", "job_plan_id": "JP-CS-001", "site_ids": ["SITE_SOUTH", "SITE_HQ"], "last_run": "2025-08-01", "next_due": "2025-11-01", "active": true }
+  ],
+  "total": 5
+}

@@ -1,0 +1,12 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "asset_class": "Substations",
+  "assets": [
+    { "asset_id": "SS-001", "description": "132kV/33kV Substation Alpha Primary", "location_id": "LOC_NORTH_SS1", "site_id": "SITE_NORTH", "status": "OPERATING", "install_date": "2008-03-12", "criticality": "HIGH", "manufacturer": "Fictional Power Co", "model": "FPC-132-A" },
+    { "asset_id": "SS-002", "description": "132kV/33kV Substation Beta Primary", "location_id": "LOC_NORTH_SS2", "site_id": "SITE_NORTH", "status": "OPERATING", "install_date": "2010-07-22", "criticality": "HIGH", "manufacturer": "Fictional Power Co", "model": "FPC-132-B" },
+    { "asset_id": "SS-003", "description": "33kV/11kV Distribution Substation West-1", "location_id": "LOC_WEST_TL1", "site_id": "SITE_WEST", "status": "OPERATING", "install_date": "2012-11-05", "criticality": "MEDIUM", "manufacturer": "Demo Electric Ltd", "model": "DEL-33-W" },
+    { "asset_id": "SS-004", "description": "33kV/11kV Distribution Substation South-1", "location_id": "LOC_SOUTH_SM2", "site_id": "SITE_SOUTH", "status": "LIMITED", "install_date": "2007-05-18", "criticality": "HIGH", "manufacturer": "Fictional Power Co", "model": "FPC-33-S" },
+    { "asset_id": "SS-005", "description": "11kV Switching Substation North-3", "location_id": "LOC_NORTH_SS1", "site_id": "SITE_NORTH", "status": "OPERATING", "install_date": "2015-02-28", "criticality": "MEDIUM", "manufacturer": "Demo Electric Ltd", "model": "DEL-11-SW" }
+  ],
+  "total": 5
+}

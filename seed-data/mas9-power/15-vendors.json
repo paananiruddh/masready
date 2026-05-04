@@ -1,0 +1,14 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "description": "Fictional vendor and supplier list for the MAS9 Power demo tenant",
+  "vendors": [
+    { "vendor_id": "VND-001", "name": "Fictional Power Co Pty Ltd", "category": "OEM — Transformers & Substations", "country": "AU", "preferred": true, "active": true },
+    { "vendor_id": "VND-002", "name": "Demo Electric Ltd", "category": "OEM — Distribution Equipment", "country": "AU", "preferred": true, "active": true },
+    { "vendor_id": "VND-003", "name": "Fictional Controls Inc", "category": "OEM — SCADA Systems", "country": "US", "preferred": true, "active": true },
+    { "vendor_id": "VND-004", "name": "Demo Automation Ltd", "category": "OEM — RTU & Protection", "country": "AU", "preferred": false, "active": true },
+    { "vendor_id": "VND-005", "name": "Fictional Energy Systems Pty Ltd", "category": "Software — EMS/ADMS", "country": "AU", "preferred": true, "active": true },
+    { "vendor_id": "VND-006", "name": "Demo Metering Solutions", "category": "Smart Meters & AMI", "country": "AU", "preferred": true, "active": true },
+    { "vendor_id": "VND-007", "name": "Fictional Field Services Co", "category": "Field Maintenance Services", "country": "AU", "preferred": false, "active": true }
+  ],
+  "total": 7
+}

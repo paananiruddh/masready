@@ -1,0 +1,63 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "description": "Role definitions and permission scopes for the MAS9 Power demo tenant",
+  "roles": [
+    {
+      "role_id": "ROLE_ADMIN",
+      "label": "Admin",
+      "description": "Full system administration, trust boundary management, audit log access",
+      "permissions": ["system_config", "user_management", "feature_flags", "audit_log", "integration_settings", "trust_center"],
+      "masready_modules": ["all"],
+      "maximo_security_groups": ["MAXADMIN", "PLUSSUPADMIN"]
+    },
+    {
+      "role_id": "ROLE_DELIVERY_LEAD",
+      "label": "Delivery Lead",
+      "description": "Delivery intelligence, requirements, patch impact analysis, skill coverage",
+      "permissions": ["intelligence_dashboard", "requirements_upload", "patch_impact", "skill_coverage", "reports"],
+      "masready_modules": ["delivery_intelligence", "patch_impact", "skill_coverage", "requirement_intake"],
+      "maximo_security_groups": ["PLUSPPROD", "PLUSPREQMGR"]
+    },
+    {
+      "role_id": "ROLE_ASSET_MANAGER",
+      "label": "Asset Manager",
+      "description": "Maximo fingerprint, asset register, customisation inventory",
+      "permissions": ["maximo_fingerprint", "asset_register", "customisation_inventory"],
+      "masready_modules": ["maximo_fingerprint"],
+      "maximo_security_groups": ["MAXASSETMGR", "PLUSSASSET"]
+    },
+    {
+      "role_id": "ROLE_SCHEDULER",
+      "label": "Scheduler",
+      "description": "Preventive maintenance scheduling, job plan management",
+      "permissions": ["pm_schedule", "job_plans", "work_order_view"],
+      "masready_modules": ["delivery_intelligence"],
+      "maximo_security_groups": ["PLUSSCHED"]
+    },
+    {
+      "role_id": "ROLE_FIELD_TECH",
+      "label": "Field Tech",
+      "description": "Work order execution, asset inspection, mobile access",
+      "permissions": ["work_order_execute", "asset_view", "inventory_consume"],
+      "masready_modules": [],
+      "maximo_security_groups": ["PLUSSFIELD", "PLUSSMOBILE"]
+    },
+    {
+      "role_id": "ROLE_FINANCE",
+      "label": "Finance",
+      "description": "License planning, AppPoint trend analysis, contract review",
+      "permissions": ["license_planning", "apppoint_analytics", "contract_view"],
+      "masready_modules": ["license_planning"],
+      "maximo_security_groups": ["PLUSSFINANCE"]
+    },
+    {
+      "role_id": "ROLE_AUDITOR",
+      "label": "Auditor",
+      "description": "Immutable audit log review, trust confirmation, export",
+      "permissions": ["audit_log_readonly", "trust_center_readonly", "report_export"],
+      "masready_modules": ["trust_center", "audit_trail"],
+      "maximo_security_groups": ["PLUSSAUDIT"]
+    }
+  ],
+  "total_roles": 7
+}

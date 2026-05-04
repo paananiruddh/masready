@@ -1,0 +1,13 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "asset_class": "Smart Meters",
+  "note": "Smart meter assets are represented as groups/batches for demo purposes, not individual unit IDs",
+  "meter_batches": [
+    { "batch_id": "SM-WEST-001", "location_id": "LOC_WEST_SM1", "site_id": "SITE_WEST", "description": "Residential Smart Meter Zone W1 — Batch 2021", "unit_count": 4820, "protocol": "DLMS/COSEM", "install_year": 2021, "status": "OPERATING", "comms_type": "RF Mesh" },
+    { "batch_id": "SM-WEST-002", "location_id": "LOC_WEST_SM1", "site_id": "SITE_WEST", "description": "Commercial Smart Meter Zone W1 — Batch 2022", "unit_count": 312, "protocol": "DLMS/COSEM", "install_year": 2022, "status": "OPERATING", "comms_type": "4G LTE" },
+    { "batch_id": "SM-SOUTH-001", "location_id": "LOC_SOUTH_SM2", "site_id": "SITE_SOUTH", "description": "Residential Smart Meter Zone S1 — Batch 2020", "unit_count": 6240, "protocol": "DLMS/COSEM", "install_year": 2020, "status": "OPERATING", "comms_type": "RF Mesh" },
+    { "batch_id": "SM-SOUTH-002", "location_id": "LOC_SOUTH_SM2", "site_id": "SITE_SOUTH", "description": "Industrial Smart Meter Zone S1 — Batch 2023", "unit_count": 89, "protocol": "IEC 62056", "install_year": 2023, "status": "OPERATING", "comms_type": "Fibre" }
+  ],
+  "total_batches": 4,
+  "total_units": 11461
+}

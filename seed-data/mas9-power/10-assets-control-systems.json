@@ -1,0 +1,12 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "asset_class": "Control Systems",
+  "assets": [
+    { "asset_id": "CS-001", "description": "SCADA Master Station — Primary", "location_id": "LOC_SOUTH_CS1", "site_id": "SITE_SOUTH", "type": "SCADA", "vendor": "Fictional Controls Inc", "model": "FCI-SCADA-9", "status": "OPERATING", "install_date": "2016-09-01", "criticality": "CRITICAL" },
+    { "asset_id": "CS-002", "description": "SCADA Master Station — Hot Standby", "location_id": "LOC_SOUTH_CS1", "site_id": "SITE_SOUTH", "type": "SCADA", "vendor": "Fictional Controls Inc", "model": "FCI-SCADA-9", "status": "STANDBY", "install_date": "2016-09-01", "criticality": "CRITICAL" },
+    { "asset_id": "CS-003", "description": "Remote Terminal Unit North Substation Alpha", "location_id": "LOC_NORTH_SS1", "site_id": "SITE_NORTH", "type": "RTU", "vendor": "Demo Automation Ltd", "model": "DAL-RTU-4", "status": "OPERATING", "install_date": "2018-03-14", "criticality": "HIGH" },
+    { "asset_id": "CS-004", "description": "Remote Terminal Unit North Substation Beta", "location_id": "LOC_NORTH_SS2", "site_id": "SITE_NORTH", "type": "RTU", "vendor": "Demo Automation Ltd", "model": "DAL-RTU-4", "status": "OPERATING", "install_date": "2018-03-14", "criticality": "HIGH" },
+    { "asset_id": "CS-005", "description": "Energy Management System Server", "location_id": "LOC_HQ_SR1", "site_id": "SITE_HQ", "type": "EMS", "vendor": "Fictional Energy Systems", "model": "FES-EMS-3", "status": "OPERATING", "install_date": "2020-01-07", "criticality": "CRITICAL" }
+  ],
+  "total": 5
+}

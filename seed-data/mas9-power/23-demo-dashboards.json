@@ -1,0 +1,81 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "description": "Dashboard card and chart definitions for the MAS9 Power demo tenant. These definitions describe the charts shown on the MASReady Media/Charts page.",
+  "dashboards": [
+    {
+      "dashboard_id": "DASH-INTELLIGENCE",
+      "title": "Delivery Intelligence Dashboard",
+      "cards": [
+        { "card_id": "CARD-SCORE", "type": "score_gauge", "title": "Intelligence Score", "value": 87, "max": 100, "color": "accent" },
+        { "card_id": "CARD-TRUST", "type": "badge", "title": "Trust Boundary", "value": "REVIEW ONLY", "color": "green" },
+        { "card_id": "CARD-PATCH", "type": "count", "title": "Patch Impacts", "value": 7, "color": "destructive" },
+        { "card_id": "CARD-SKILL", "type": "percentage", "title": "Skill Coverage", "value": 82, "color": "primary" },
+        { "card_id": "CARD-MUTATIONS", "type": "count", "title": "Mutations", "value": 0, "color": "green" }
+      ]
+    },
+    {
+      "dashboard_id": "DASH-LICENSE",
+      "title": "License & AppPoint Planning",
+      "charts": [
+        {
+          "chart_id": "CHART-APPPOINTS-TREND",
+          "type": "line",
+          "title": "AppPoint Utilisation (12 months)",
+          "x_axis": "month",
+          "series": ["apppoints_used", "entitled"],
+          "data_ref": "21-license-usage.json > monthly_trend"
+        },
+        {
+          "chart_id": "CHART-USER-ROLES",
+          "type": "pie",
+          "title": "Named User Role Distribution",
+          "data": [
+            { "name": "Admin", "value": 5 },
+            { "name": "Delivery", "value": 12 },
+            { "name": "Asset Mgr", "value": 18 },
+            { "name": "Scheduler", "value": 15 },
+            { "name": "Field Tech", "value": 31 },
+            { "name": "Finance", "value": 8 },
+            { "name": "Auditor", "value": 5 }
+          ]
+        }
+      ]
+    },
+    {
+      "dashboard_id": "DASH-ASSETS",
+      "title": "Asset Register Overview",
+      "charts": [
+        {
+          "chart_id": "CHART-ASSET-CLASS",
+          "type": "bar",
+          "title": "Asset Count by Class",
+          "data": [
+            { "name": "Substations", "value": 42 },
+            { "name": "Transformers", "value": 67 },
+            { "name": "Transmission", "value": 28 },
+            { "name": "Smart Meters", "value": 156 },
+            { "name": "Control Sys", "value": 19 },
+            { "name": "Vehicles", "value": 34 }
+          ]
+        }
+      ]
+    },
+    {
+      "dashboard_id": "DASH-PATCH",
+      "title": "Patch Impact Analysis",
+      "charts": [
+        {
+          "chart_id": "CHART-PATCH-SEVERITY",
+          "type": "bar",
+          "title": "Patch Impact by Severity",
+          "data": [
+            { "name": "Critical", "value": 0, "fill": "#ef4444" },
+            { "name": "High", "value": 2, "fill": "#f97316" },
+            { "name": "Medium", "value": 3, "fill": "#eab308" },
+            { "name": "Low", "value": 2, "fill": "#3b82f6" }
+          ]
+        }
+      ]
+    }
+  ]
+}
