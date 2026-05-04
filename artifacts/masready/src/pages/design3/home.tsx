@@ -61,6 +61,7 @@ export default function Design3Home() {
             </div>
             <div className="text-3xl font-bold">{DEMO_METRICS.patchImpacts}</div>
             <div className="text-xs opacity-70 mt-1 uppercase">Impacted Items</div>
+            <div className="text-[10px] text-[#ffb800]/40 mt-2 uppercase tracking-wider border-t border-[#ffb800]/10 pt-2">MAS9 Power Demo Tenant</div>
           </div>
           
           <div className="border border-[#00ff88]/30 bg-[#001a0d] p-4 text-[#00ff88]">
@@ -70,6 +71,7 @@ export default function Design3Home() {
             </div>
             <div className="text-3xl font-bold">{DEMO_METRICS.utilisation}%</div>
             <div className="text-xs opacity-70 mt-1 uppercase">Peak Utilisation</div>
+            <div className="text-[10px] text-[#00ff88]/40 mt-2 uppercase tracking-wider border-t border-[#00ff88]/10 pt-2">MAS9 Power Demo Tenant</div>
           </div>
         </div>
       </section>

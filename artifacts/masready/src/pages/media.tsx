@@ -1,5 +1,4 @@
-import { DEMO_METRICS } from "@/lib/constants";
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, RadialBarChart, RadialBar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer, Cell } from "recharts";
+import { LineChart, Line, BarChart, Bar, PieChart, Pie, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer, Cell } from "recharts";
 
 const COLORS = ['#3b82f6', '#06b6d4', '#f59e0b', '#10b981', '#8b5cf6'];
 

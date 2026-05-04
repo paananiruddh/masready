@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { Shield, ArrowRight, Activity, FileText, Fingerprint, Lock, Box, Users, AlertCircle } from "lucide-react";
-import { DEMO_METRICS } from "@/lib/constants";
+import { Shield, ArrowRight, Activity, FileText, Fingerprint, Lock, Box, Users } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
 function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
@@ -213,19 +212,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Metric Strip ── */}
+      {/* ── Capability Strip ── */}
       <section className="border-y border-white/10 bg-card/50 backdrop-blur-sm py-8">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6 text-center">
             {[
-              { label: "Seed Files", value: DEMO_METRICS.seedFiles },
-              { label: "SVG Charts", value: DEMO_METRICS.svgCharts },
-              { label: "Diagrams", value: DEMO_METRICS.diagrams },
-              { label: "Customisations", value: DEMO_METRICS.customisationsScanned },
-              { label: "Patch Impacts", value: DEMO_METRICS.patchImpacts },
-              { label: "AppPoint Trend", value: 12, suffix: "mo" },
-              { label: "Named Users", value: DEMO_METRICS.namedUsers },
-              { label: "Mutations", value: 0 },
+              { label: "Modules", value: 6, suffix: "" },
+              { label: "Read-only", value: 100, suffix: "%" },
+              { label: "Mutations", value: 0, suffix: "" },
+              { label: "Roles supported", value: 5, suffix: "" },
+              { label: "Demo walkthrough", value: 12, suffix: "min" },
+              { label: "Trust boundaries", value: 4, suffix: "" },
+              { label: "Design variants", value: 3, suffix: "" },
+              { label: "Prod risk", value: 0, suffix: "" },
             ].map((stat, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 10 }}
