@@ -1,0 +1,8 @@
+/* Design 3 — Command Center overrides */
+:root {
+  --bg: #050a0f;
+  --panel: #0a1520;
+  --brand: #00ff88;
+  --brand2: #00d4ff;
+}
+body { font-family: "Courier New", Courier, monospace; }

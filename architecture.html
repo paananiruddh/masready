@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Architecture | Maximo Delivery Automation Workbench</title><meta name="description" content="Architecture diagrams for the MAS9 Power demo: evidence flow, safety model, patch impact flow, license reporting flow, and media generation."/>
+<meta name="google-site-verification" content="REPLACE_WITH_GOOGLE_SEARCH_CONSOLE_TOKEN"/>
+<link rel="canonical" href="https://masready.com.au/architecture.html"/>
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+<meta property="og:type" content="website"/><meta property="og:title" content="Architecture | Maximo Delivery Automation Workbench"/><meta property="og:description" content="Architecture diagrams for the MAS9 Power demo: evidence flow, safety model, patch impact flow, license reporting flow, and media generation."/><meta property="og:url" content="https://masready.com.au/architecture.html"/><meta property="og:image" content="https://masready.com.au/assets/og/masready-og.svg"/>
+<meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Architecture | Maximo Delivery Automation Workbench"/><meta name="twitter:description" content="Architecture diagrams for the MAS9 Power demo: evidence flow, safety model, patch impact flow, license reporting flow, and media generation."/><meta name="twitter:image" content="https://masready.com.au/assets/og/masready-og.svg"/>
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"/><link rel="manifest" href="manifest.webmanifest"/>
+<link rel="stylesheet" href="assets/css/site.css"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "Software Compare Review", "url": "https://github.com/softwarecomparereview", "sameAs": ["https://github.com/softwarecomparereview"]}, {"@type": "SoftwareApplication", "name": "Maximo Delivery Automation Workbench", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "Evidence-backed IBM Maximo delivery automation for MAS 9 teams \u2014 delivery intelligence, patch impact, environment fingerprinting, license usage planning, trust boundaries, and offline skill packs.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "WebPage", "name": "Architecture | Maximo Delivery Automation Workbench", "description": "Architecture diagrams for the MAS9 Power demo: evidence flow, safety model, patch impact flow, license reporting flow, and media generation.", "url": "https://masready.com.au/architecture.html", "isPartOf": {"@type": "WebSite", "name": "Maximo Delivery Automation Workbench", "url": "https://masready.com.au"}}]}</script>
+</head><body><a class="skip" href="#main">Skip to content</a><header class="nav"><div class="nav-inner"><a class="brand" href="index.html"><span class="logo">M</span><span>Maximo Delivery<br/><span class="muted" style="font-weight:650;font-size:12px">Automation Workbench</span></span></a><button class="mobile-toggle" data-mobile-toggle aria-label="Toggle navigation">Menu</button><nav class="nav-links" aria-label="Main navigation"><a href="index.html" class="">Home</a><a href="mas9-power.html" class="">MAS9 Power</a><a href="features.html" class="">Features</a><a href="trust.html" class="">Trust</a><a href="architecture.html" class="active">Architecture</a><a href="media.html" class="">Media</a><a href="demo-walkthrough.html" class="">Walkthrough</a><a href="launch.html" class="">Launch</a><a href="contact.html" class="">Contact</a></nav></div></header><main id="main"><section class="hero"><div class="container"><span class="eyebrow">Architecture</span><h1 class="h1">Evidence flows in. Review-ready delivery intelligence comes out.</h1><p class="lead">Architecture source diagrams are included as Mermaid files and rendered here as readable source blocks for GitHub Pages compatibility.</p></div></section><section class="section"><div class="container grid grid-2"><article class="card"><h3>Architecture Overview</h3><pre class="diagram">graph LR
+  CC[Customer Config
+MAS9_POWER
+customer_hosted | jira_only] --&gt; SD[Demo Seed Data
+23 seed files]
+  SD --&gt; ES[Evidence Services
+Jira read-only
+Maximo fingerprint]
+  ES --&gt; SK[Local Skill Packs
+Offline Maximo knowledge]
+  SK --&gt; DI[Delivery Intelligence]
+  DI --&gt; OUT[Reports, Wiki, Media]</pre></article><article class="card"><h3>Evidence Flow</h3><pre class="diagram">flowchart TD
+  R[Requirements] --&gt; E[Evidence Store]
+  S[Scan JSON] --&gt; E
+  P[Patch Notes] --&gt; E
+  E --&gt; G[Review-only Generation]
+  G --&gt; A[Audit Trail]
+  G --&gt; D[Delivery Intelligence]</pre></article><article class="card"><h3>License Reporting Flow</h3><pre class="diagram">flowchart LR
+  U[User Model] --&gt; A[AppPoint Planning]
+  A --&gt; I[Inactive User Signals]
+  A --&gt; M[Mobile Pool Review]
+  A --&gt; O[Optimisation Recommendations]
+  O --&gt; W[Disclaimer: Planning only]</pre></article><article class="card"><h3>Patch Impact Flow</h3><pre class="diagram">flowchart LR
+  FP[Fix Pack 9.1.2] --&gt; M[Impact Matcher]
+  C[46 Customisations] --&gt; M
+  M --&gt; R[Risk Matrix]
+  R --&gt; T[UAT Retest Plan]
+  R --&gt; D[Deployment Readiness]</pre></article><article class="card"><h3>Safety Model</h3><pre class="diagram">flowchart TD
+  RO[Review-only Outputs] --&gt; NO[No SQL Execution]
+  RO --&gt; NM[No Maximo Mutation]
+  RO --&gt; NJ[No Jira Mutation]
+  RO --&gt; DA[Data Boundary]
+  DA --&gt; AU[Audit Events]
+  DA --&gt; TR[Trust Center]</pre></article><article class="card"><h3>Media Generation Flow</h3><pre class="diagram">flowchart LR
+  Seed[Seed Data] --&gt; Charts[SVG Charts]
+  App[Running App] --&gt; Shots[Playwright Screenshots]
+  App --&gt; Video[Walkthrough Video]
+  Charts --&gt; Site[Marketing Site]
+  Shots --&gt; Review[Manual Review]
+  Video --&gt; Review
+  Review --&gt; Site</pre></article></div></section></main><footer class="footer"><div class="container"><div><div class="brand"><span class="logo">M</span><span>Maximo Delivery Automation Workbench</span></div><p class="muted">Evidence-backed IBM Maximo delivery automation. MAS9 Power is a fictional demo tenant built from seeded data.</p><p class="muted">© <span data-year></span> Software Compare Review. GitHub Pages-ready static site.</p></div><div><div class="footer-links"><a href="index.html">Home</a><a href="mas9-power.html">MAS9 Power</a><a href="features.html">Features</a><a href="trust.html">Trust</a><a href="architecture.html">Architecture</a><a href="media.html">Media</a><a href="demo-walkthrough.html">Walkthrough</a><a href="launch.html">Launch</a><a href="contact.html">Contact</a><a href="sitemap.xml">Sitemap</a><a href="robots.txt">Robots</a></div><p class="disclaimer" style="margin-top:18px">License usage planning is for visibility only. It is not legal, contractual, IBM-certified, or compliance advice.</p></div></div></footer><script src="assets/js/site.js"></script></body></html>

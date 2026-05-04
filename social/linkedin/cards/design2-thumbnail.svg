@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="628" viewBox="0 0 1200 628">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#080d16"/>
+      <stop offset="100%" style="stop-color:#0c1220"/>
+    </linearGradient>
+    <linearGradient id="pink" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ec4899"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+    <linearGradient id="blue2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="628" fill="url(#bg2)"/>
+
+  <!-- Top accent -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#pink)"/>
+
+  <!-- LEFT: Social feed cards -->
+  <!-- Card 1 — main post -->
+  <rect x="60" y="72" width="480" height="150" rx="10" fill="#111827" stroke="#ec4899" stroke-opacity="0.25" stroke-width="1"/>
+  <circle cx="90" cy="102" r="16" fill="#1d2d44"/>
+  <text x="90" y="107" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#ec4899" text-anchor="middle">M</text>
+  <text x="118" y="99" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#ffffff">MASReady</text>
+  <text x="118" y="115" font-family="Inter, sans-serif" font-size="11" fill="#6b7280">Maximo Delivery Workbench · Just now</text>
+  <text x="76" y="148" font-family="Inter, sans-serif" font-size="13" fill="#e5e7eb">Most Maximo delivery still depends on tribal</text>
+  <text x="76" y="165" font-family="Inter, sans-serif" font-size="13" fill="#e5e7eb">knowledge and someone named Dave. 🧵</text>
+
+  <!-- Engagement row -->
+  <rect x="76" y="188" width="48" height="24" rx="12" fill="#1f2937"/>
+  <text x="100" y="204" font-family="Inter, sans-serif" font-size="11" fill="#ec4899" text-anchor="middle">♥ 247</text>
+  <rect x="134" y="188" width="60" height="24" rx="12" fill="#1f2937"/>
+  <text x="164" y="204" font-family="Inter, sans-serif" font-size="11" fill="#60a5fa" text-anchor="middle">↩ 89</text>
+  <rect x="204" y="188" width="60" height="24" rx="12" fill="#1f2937"/>
+  <text x="234" y="204" font-family="Inter, sans-serif" font-size="11" fill="#a3e635" text-anchor="middle">↑ 412</text>
+
+  <!-- Card 2 — metric tile -->
+  <rect x="60" y="238" width="225" height="110" rx="10" fill="#111827" stroke="#a855f7" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="80" y="264" font-family="Inter, sans-serif" font-size="11" fill="#a855f7" opacity="0.8">PATCH IMPACT</text>
+  <text x="80" y="298" font-family="Inter, sans-serif" font-size="40" font-weight="800" fill="#ffffff">7</text>
+  <text x="120" y="298" font-family="Inter, sans-serif" font-size="13" fill="#6b7280"> items</text>
+  <text x="80" y="330" font-family="Inter, sans-serif" font-size="11" fill="#6b7280">0 critical · 2 high · 3 medium</text>
+
+  <!-- Card 3 — metric tile -->
+  <rect x="296" y="238" width="244" height="110" rx="10" fill="#111827" stroke="#06b6d4" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="316" y="264" font-family="Inter, sans-serif" font-size="11" fill="#06b6d4" opacity="0.8">APPPOINTS</text>
+  <text x="316" y="298" font-family="Inter, sans-serif" font-size="40" font-weight="800" fill="#ffffff">77%</text>
+  <text x="316" y="330" font-family="Inter, sans-serif" font-size="11" fill="#6b7280">1847 / 2400 entitled</text>
+
+  <!-- Card 4 — quote card -->
+  <rect x="60" y="364" width="480" height="96" rx="10" fill="#111827" stroke="#a855f7" stroke-opacity="0.2" stroke-width="1"/>
+  <rect x="60" y="364" width="4" height="96" rx="2" fill="url(#pink)"/>
+  <text x="82" y="394" font-family="Inter, sans-serif" font-size="13" font-style="italic" fill="#d1d5db">"Review-ready outputs, not uncontrolled</text>
+  <text x="82" y="412" font-family="Inter, sans-serif" font-size="13" font-style="italic" fill="#d1d5db">production changes."</text>
+  <text x="82" y="440" font-family="Inter, sans-serif" font-size="11" fill="#6b7280">— Maximo Delivery Automation Workbench</text>
+
+  <!-- Card 5 — trust pills -->
+  <rect x="60" y="474" width="480" height="56" rx="10" fill="#111827" stroke="#a3e635" stroke-opacity="0.2" stroke-width="1"/>
+  <text x="80" y="499" font-family="Inter, sans-serif" font-size="11" fill="#a3e635">✓ No SQL</text>
+  <text x="150" y="499" font-family="Inter, sans-serif" font-size="11" fill="#a3e635">✓ No Mutations</text>
+  <text x="262" y="499" font-family="Inter, sans-serif" font-size="11" fill="#a3e635">✓ Review-only</text>
+  <text x="366" y="499" font-family="Inter, sans-serif" font-size="11" fill="#a3e635">✓ Demo fixtures only</text>
+  <text x="80" y="518" font-family="Inter, sans-serif" font-size="10" fill="#374151">Static guided simulation — no real customer systems connected</text>
+
+  <!-- RIGHT: copy -->
+  <text x="600" y="140" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#ec4899" letter-spacing="3">DESIGN 2</text>
+  <text x="600" y="198" font-family="Inter, sans-serif" font-size="50" font-weight="800" fill="#ffffff">Viral</text>
+  <text x="600" y="256" font-family="Inter, sans-serif" font-size="50" font-weight="800" fill="url(#pink)">Product</text>
+  <text x="600" y="314" font-family="Inter, sans-serif" font-size="50" font-weight="800" fill="url(#pink)">Launch</text>
+
+  <text x="600" y="360" font-family="Inter, sans-serif" font-size="17" fill="#9ca3af">Social-feed energy, launch cards,</text>
+  <text x="600" y="382" font-family="Inter, sans-serif" font-size="17" fill="#9ca3af">and shareable proof points.</text>
+
+  <!-- Audience pills -->
+  <rect x="600" y="410" width="130" height="30" rx="15" fill="#1f0a2e" stroke="#a855f7" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="665" y="430" font-family="Inter, sans-serif" font-size="12" fill="#d8b4fe" text-anchor="middle">LinkedIn Audience</text>
+  <rect x="742" y="410" width="120" height="30" rx="15" fill="#0a1f2e" stroke="#06b6d4" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="802" y="430" font-family="Inter, sans-serif" font-size="12" fill="#7dd3fc" text-anchor="middle">Practitioners</text>
+
+  <!-- Divider -->
+  <rect x="600" y="458" width="540" height="1" fill="#ffffff" fill-opacity="0.06"/>
+
+  <text x="600" y="494" font-family="Inter, sans-serif" font-size="14" fill="#374151">Maximo Delivery Automation Workbench</text>
+  <text x="600" y="516" font-family="Inter, sans-serif" font-size="13" fill="#ec4899">softwarecomparereview.github.io/masready/design2/</text>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="590" width="1200" height="38" fill="#060a12"/>
+  <text x="60" y="613" font-family="Inter, sans-serif" font-size="13" fill="#374151">Powered by OverPayingforAI.com</text>
+  <text x="1140" y="613" font-family="Inter, sans-serif" font-size="13" fill="#374151" text-anchor="end">masready.com.au</text>
+</svg>

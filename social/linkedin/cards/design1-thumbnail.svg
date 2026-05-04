@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="628" viewBox="0 0 1200 628">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f1a2e"/>
+      <stop offset="100%" style="stop-color:#1a2d4a"/>
+    </linearGradient>
+    <linearGradient id="accent1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#60a5fa"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="628" fill="url(#bg1)"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="209" x2="1200" y2="209" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="0" y1="418" x2="1200" y2="418" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="628" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="800" y1="0" x2="800" y2="628" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accent1)"/>
+
+  <!-- Left panel — dashboard mock -->
+  <rect x="60" y="80" width="460" height="468" rx="12" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+
+  <!-- Nav bar mock -->
+  <rect x="60" y="80" width="460" height="44" rx="12" fill="#ffffff" fill-opacity="0.06"/>
+  <circle cx="92" cy="102" r="6" fill="#3b82f6" fill-opacity="0.7"/>
+  <rect x="110" y="97" width="60" height="10" rx="5" fill="#ffffff" fill-opacity="0.5"/>
+  <rect x="340" y="97" width="40" height="10" rx="5" fill="#ffffff" fill-opacity="0.2"/>
+  <rect x="392" y="97" width="40" height="10" rx="5" fill="#ffffff" fill-opacity="0.2"/>
+  <rect x="444" y="97" width="40" height="10" rx="5" fill="#ffffff" fill-opacity="0.2"/>
+  <!-- Clamp nav to panel -->
+  <rect x="480" y="80" width="40" height="44" rx="0" fill="#0f1a2e" fill-opacity="0.8"/>
+  <rect x="480" y="80" width="40" height="44" rx="12" fill="#0f1a2e" fill-opacity="0.8"/>
+
+  <!-- Metric tiles -->
+  <rect x="80" y="148" width="130" height="80" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="96" y="172" font-family="Inter, sans-serif" font-size="11" fill="#93c5fd" opacity="0.8">CUSTOMISATIONS</text>
+  <text x="96" y="204" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="#ffffff">46</text>
+
+  <rect x="226" y="148" width="130" height="80" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="242" y="172" font-family="Inter, sans-serif" font-size="11" fill="#93c5fd" opacity="0.8">PATCH IMPACTS</text>
+  <text x="242" y="204" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="#f59e0b">7</text>
+
+  <rect x="372" y="148" width="128" height="80" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="388" y="172" font-family="Inter, sans-serif" font-size="11" fill="#93c5fd" opacity="0.8">READINESS</text>
+  <text x="388" y="204" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="#34d399">87</text>
+
+  <!-- Bar chart mock -->
+  <rect x="80" y="252" width="420" height="120" rx="8" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+  <text x="96" y="275" font-family="Inter, sans-serif" font-size="11" fill="#93c5fd" opacity="0.6">AppPoint Utilisation — 12-month trend</text>
+  <rect x="96" y="290" width="30" height="65" rx="3" fill="#3b82f6" fill-opacity="0.5"/>
+  <rect x="136" y="275" width="30" height="80" rx="3" fill="#3b82f6" fill-opacity="0.55"/>
+  <rect x="176" y="282" width="30" height="73" rx="3" fill="#3b82f6" fill-opacity="0.6"/>
+  <rect x="216" y="270" width="30" height="85" rx="3" fill="#3b82f6" fill-opacity="0.65"/>
+  <rect x="256" y="265" width="30" height="90" rx="3" fill="#3b82f6" fill-opacity="0.7"/>
+  <rect x="296" y="260" width="30" height="95" rx="3" fill="#3b82f6" fill-opacity="0.75"/>
+  <rect x="336" y="255" width="30" height="100" rx="3" fill="#3b82f6" fill-opacity="0.8"/>
+  <rect x="376" y="248" width="30" height="107" rx="3" fill="#3b82f6" fill-opacity="0.9"/>
+  <rect x="416" y="243" width="44" height="112" rx="3" fill="#3b82f6"/>
+
+  <!-- Trust badges -->
+  <rect x="80" y="394" width="128" height="36" rx="6" fill="#064e3b" stroke="#34d399" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="96" y="417" font-family="Inter, sans-serif" font-size="11" fill="#34d399">✓ No SQL Execution</text>
+
+  <rect x="220" y="394" width="130" height="36" rx="6" fill="#064e3b" stroke="#34d399" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="236" y="417" font-family="Inter, sans-serif" font-size="11" fill="#34d399">✓ No Mutations</text>
+
+  <rect x="362" y="394" width="138" height="36" rx="6" fill="#064e3b" stroke="#34d399" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="378" y="417" font-family="Inter, sans-serif" font-size="11" fill="#34d399">✓ Review-only</text>
+
+  <!-- Divider -->
+  <rect x="80" y="452" width="420" height="1" fill="#ffffff" fill-opacity="0.08"/>
+  <text x="96" y="474" font-family="Inter, sans-serif" font-size="10" fill="#64748b">MAS9 Power — fictional demo data only</text>
+
+  <!-- Right panel — copy -->
+  <text x="580" y="148" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#3b82f6" letter-spacing="3">DESIGN 1</text>
+  <text x="580" y="198" font-family="Inter, sans-serif" font-size="52" font-weight="800" fill="#ffffff">Executive</text>
+  <text x="580" y="258" font-family="Inter, sans-serif" font-size="52" font-weight="800" fill="#3b82f6">SaaS</text>
+
+  <text x="580" y="310" font-family="Inter, sans-serif" font-size="18" fill="#94a3b8">Boardroom-ready trust, architecture,</text>
+  <text x="580" y="335" font-family="Inter, sans-serif" font-size="18" fill="#94a3b8">and delivery intelligence.</text>
+
+  <!-- Pill tags -->
+  <rect x="580" y="368" width="110" height="30" rx="15" fill="#1e3a5f" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="635" y="388" font-family="Inter, sans-serif" font-size="12" fill="#93c5fd" text-anchor="middle">For CIOs</text>
+
+  <rect x="702" y="368" width="160" height="30" rx="15" fill="#1e3a5f" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="782" y="388" font-family="Inter, sans-serif" font-size="12" fill="#93c5fd" text-anchor="middle">Delivery Managers</text>
+
+  <rect x="874" y="368" width="180" height="30" rx="15" fill="#1e3a5f" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="964" y="388" font-family="Inter, sans-serif" font-size="12" fill="#93c5fd" text-anchor="middle">Enterprise Architects</text>
+
+  <!-- Divider -->
+  <rect x="580" y="420" width="540" height="1" fill="#ffffff" fill-opacity="0.08"/>
+
+  <!-- URL / branding -->
+  <text x="580" y="460" font-family="Inter, sans-serif" font-size="14" fill="#475569">Maximo Delivery Automation Workbench</text>
+  <text x="580" y="484" font-family="Inter, sans-serif" font-size="13" fill="#3b82f6">softwarecomparereview.github.io/masready/</text>
+
+  <!-- Bottom branding bar -->
+  <rect x="0" y="590" width="1200" height="38" fill="#0a1628"/>
+  <text x="60" y="613" font-family="Inter, sans-serif" font-size="13" fill="#475569">Powered by OverPayingforAI.com</text>
+  <text x="1140" y="613" font-family="Inter, sans-serif" font-size="13" fill="#475569" text-anchor="end">masready.com.au</text>
+</svg>

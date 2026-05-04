@@ -1,0 +1,22 @@
+export const DEMO_METRICS = {
+  seedFiles: 23,
+  svgCharts: 8,
+  diagrams: 6,
+  customisationsScanned: 46,
+  patchImpacts: 7,
+  namedUsers: 94,
+  activeUsers: 71,
+  inactiveUsers: 23,
+  appPointsUsed: 1847,
+  appPointsEntitled: 2400,
+  utilisation: 77,
+  peakUtilisation: 84,
+  mobilePoolPeak: 89,
+  criticalImpacts: 0,
+  highImpacts: 2,
+  mediumImpacts: 3,
+  lowImpacts: 2,
+  skillCoverage: 82,
+  demoUsers: 7,
+  walkthroughMinutes: 12
+};

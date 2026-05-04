@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="628" viewBox="0 0 1200 628">
+  <defs>
+    <linearGradient id="trustbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#041a0e"/>
+      <stop offset="100%" style="stop-color:#0a2818"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#34d399"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="628" fill="url(#trustbg)"/>
+  <rect x="0" y="0" width="1200" height="4" fill="url(#green)"/>
+
+  <!-- Title -->
+  <text x="60" y="72" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#34d399" letter-spacing="3">SAFETY MODEL</text>
+  <text x="60" y="128" font-family="Inter, sans-serif" font-size="46" font-weight="800" fill="#ffffff">Review-only.</text>
+  <text x="60" y="180" font-family="Inter, sans-serif" font-size="46" font-weight="800" fill="#34d399">Zero mutations.</text>
+
+  <text x="60" y="226" font-family="Inter, sans-serif" font-size="17" fill="#4b7a60">Your Maximo environment stays exactly as you left it.</text>
+
+  <!-- 6 trust checks in 2 columns -->
+  <!-- Col 1 -->
+  <rect x="60" y="264" width="530" height="68" rx="8" fill="#052a14" stroke="#10b981" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="100" y="294" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#34d399">✓</text>
+  <text x="136" y="289" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">No SQL execution</text>
+  <text x="136" y="312" font-family="Inter, sans-serif" font-size="13" fill="#4b7a60">All Maximo reads use the documented REST API only</text>
+
+  <rect x="60" y="344" width="530" height="68" rx="8" fill="#052a14" stroke="#10b981" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="100" y="374" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#34d399">✓</text>
+  <text x="136" y="369" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">No Maximo mutation</text>
+  <text x="136" y="392" font-family="Inter, sans-serif" font-size="13" fill="#4b7a60">No object creation, modification, or deletion</text>
+
+  <rect x="60" y="424" width="530" height="68" rx="8" fill="#052a14" stroke="#10b981" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="100" y="454" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#34d399">✓</text>
+  <text x="136" y="449" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">No Jira mutation</text>
+  <text x="136" y="472" font-family="Inter, sans-serif" font-size="13" fill="#4b7a60">Read-only / jira_only — no comments, status, or field writes</text>
+
+  <rect x="60" y="504" width="530" height="58" rx="8" fill="#052a14" stroke="#10b981" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="100" y="530" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#34d399">✓</text>
+  <text x="136" y="530" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">RBAC is the real security boundary</text>
+  <text x="136" y="550" font-family="Inter, sans-serif" font-size="13" fill="#4b7a60">Host/subdomain routing is branding/context only</text>
+
+  <!-- Col 2 -->
+  <rect x="610" y="264" width="530" height="68" rx="8" fill="#052a14" stroke="#10b981" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="650" y="294" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#34d399">✓</text>
+  <text x="686" y="289" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">No Azure DevOps mutation</text>
+  <text x="686" y="312" font-family="Inter, sans-serif" font-size="13" fill="#4b7a60">Read-only — no pipeline triggers or work item writes</text>
+
+  <rect x="610" y="344" width="530" height="68" rx="8" fill="#052a14" stroke="#10b981" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="650" y="374" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#34d399">✓</text>
+  <text x="686" y="369" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">Review-only output</text>
+  <text x="686" y="392" font-family="Inter, sans-serif" font-size="13" fill="#4b7a60">Your team decides what gets actioned — always</text>
+
+  <rect x="610" y="424" width="530" height="68" rx="8" fill="#052a14" stroke="#10b981" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="650" y="454" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#34d399">✓</text>
+  <text x="686" y="449" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">Backend-only secrets</text>
+  <text x="686" y="472" font-family="Inter, sans-serif" font-size="13" fill="#4b7a60">No API keys or credentials in the frontend, ever</text>
+
+  <rect x="610" y="504" width="530" height="58" rx="8" fill="#052a14" stroke="#10b981" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="650" y="530" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#34d399">✓</text>
+  <text x="686" y="530" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">Demo fixtures are demo-only</text>
+  <text x="686" y="550" font-family="Inter, sans-serif" font-size="13" fill="#4b7a60">Real customers choose a data boundary model</text>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="590" width="1200" height="38" fill="#020f07"/>
+  <text x="60" y="613" font-family="Inter, sans-serif" font-size="13" fill="#1a3a2a">Powered by OverPayingforAI.com</text>
+  <text x="1140" y="613" font-family="Inter, sans-serif" font-size="13" fill="#1a3a2a" text-anchor="end">softwarecomparereview.github.io/masready/trust</text>
+</svg>

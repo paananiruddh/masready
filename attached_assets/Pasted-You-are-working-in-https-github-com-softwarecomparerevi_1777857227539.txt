@@ -1,0 +1,401 @@
+You are working in:
+
+https://github.com/softwarecomparereview/masready
+
+Task:
+Create a LinkedIn launch/social kit for the Maximo Delivery Automation Workbench website.
+
+Do not change the product architecture.
+Do not invent unsupported claims.
+Do not claim “world first”.
+Do not imply demo seed data is used for real customer deployments.
+Do not publish secrets, trace files, fake credentials, or internal-only screenshots.
+
+Product positioning to use:
+
+“A locally running, Maximo-specific skilled bot architecture built around curated offline skill packs, customer data-mode boundaries, and evidence-based delivery workflows.”
+
+Main product name:
+
+Maximo Delivery Automation Workbench
+
+MAS9 Power is only one fictional showcase scenario, not the product name.
+
+============================================================
+GOAL
+============================================================
+
+Create a polished LinkedIn launch post and supporting social assets that explain:
+
+1. What the product does
+2. Why it matters for Maximo teams
+3. The architecture
+4. Zero-trust / review-only / data-boundary principles
+5. Customer data models
+6. Three website design variants
+7. Poll page link so people can vote
+8. Roadmap: more skills, more insights, more customer-specific intelligence
+
+The final output should be suitable for posting on LinkedIn by the founder.
+
+Tone:
+- human
+- smart
+- slightly witty
+- founder-led
+- credible
+- not corporate brochure
+- not overhyped
+- enterprise-safe
+- clear enough for Maximo people and AI/product people
+
+============================================================
+FILES TO CREATE
+============================================================
+
+Create:
+
+social/linkedin/README.md
+social/linkedin/maximo-delivery-workbench-launch-post.md
+social/linkedin/short-linkedin-post.md
+social/linkedin/linkedin-poll-copy.md
+social/linkedin/comment-replies.md
+social/linkedin/architecture-summary.md
+social/linkedin/roadmap-snippet.md
+social/linkedin/hashtags.md
+
+Create image/card assets if possible:
+
+social/linkedin/cards/design1-thumbnail.svg
+social/linkedin/cards/design2-thumbnail.svg
+social/linkedin/cards/design3-thumbnail.svg
+social/linkedin/cards/product-architecture-card.svg
+social/linkedin/cards/zero-trust-card.svg
+social/linkedin/cards/roadmap-card.svg
+
+If image generation is not available, create polished SVG cards manually.
+
+============================================================
+LINKEDIN POST REQUIREMENTS
+============================================================
+
+Create a main LinkedIn post around this theme:
+
+“I’ve been building a locally skilled Maximo Delivery Automation Workbench.”
+
+Core message:
+This is not a generic chatbot wrapper. It is a locally running, Maximo-specific skilled bot architecture built around curated offline skill packs, customer data-mode boundaries, and evidence-based delivery workflows.
+
+Explain what it does:
+
+- Reads customer/version context
+- Understands Maximo version differences such as MAS 9 vs Maximo 7.6.x
+- Uses curated offline skill packs
+- Uses approved evidence such as requirements, environment fingerprints, patch/iFix information, skill coverage, and customer configuration
+- Produces review-ready outputs
+- Supports demo/customer scenarios such as:
+  - MAS 9 Energy & Utilities
+  - Maximo 7.6.x Upgrade Readiness
+  - MAS 9 Contract Mobilisation
+- Keeps real customer data out of the public marketing site
+- Supports data boundary models:
+  - static public simulator/demo fixtures
+  - no-store / zero-retention runtime
+  - customer-hosted
+  - BYO storage
+  - Azure-hosted customer subdomains
+  - controlled managed demo workspace
+
+Architecture principles to mention:
+
+- Local skill-pack-first
+- No generic LLM provider dependency as the core architecture
+- Evidence-based generation
+- Review-only output
+- No SQL execution
+- No Maximo mutation
+- No Jira mutation
+- No Azure DevOps mutation
+- RBAC/customer access remains the security boundary
+- Host/subdomain routing is branding/default context only, not authorization
+- Backend-only secrets
+- Customer data-mode boundaries
+- Demo fixtures are demo-only
+
+Roadmap to mention:
+
+- More Maximo skills
+- More industry-specific demo scenarios
+- More evidence-based insights
+- More patch/iFix impact intelligence
+- More skill quality scoring
+- More customer-derived benchmark scenarios
+- More Azure-hosted customer subdomain demos
+- More controlled learning from approved customer evidence
+
+============================================================
+MAIN POST STRUCTURE
+============================================================
+
+Write the main LinkedIn post with this structure:
+
+1. Hook
+Example:
+“Most Maximo delivery work still depends on tribal knowledge, screenshots, old scripts, and someone named Dave who knows why that automation script exists.”
+
+2. Product intro
+Introduce Maximo Delivery Automation Workbench.
+
+3. Architecture line
+Use:
+“A locally running, Maximo-specific skilled bot architecture built around curated offline skill packs, customer data-mode boundaries, and evidence-based delivery workflows.”
+
+4. What it does
+Use bullets, but not too many.
+
+5. What makes it different
+Mention:
+- not generic chatbot theatre
+- not uncontrolled automation
+- review-ready outputs
+- evidence-backed
+- customer data boundary aware
+
+6. Zero-trust / safety model
+Mention:
+- no SQL execution
+- no Maximo mutation
+- no Jira/ADO mutation
+- review-only
+- RBAC remains real security boundary
+
+7. Design poll CTA
+Mention:
+“I’m testing three public website directions and would love feedback.”
+
+Include:
+- Design 1: Executive SaaS
+- Design 2: Viral Product Launch
+- Design 3: Command Center Simulator
+
+Link:
+https://softwarecomparereview.github.io/masready/compare.html
+
+8. Poll CTA
+Ask:
+“Which design makes you want to click and explore?”
+
+9. Roadmap
+Mention more skills, more insights, more industry scenarios, more customer-specific Azure-hosted demos.
+
+10. Closing
+Founder-style, humble but confident.
+
+============================================================
+LINKEDIN POLL COPY
+============================================================
+
+Create LinkedIn poll copy:
+
+Poll question:
+Which design direction should I use for the Maximo Delivery Automation Workbench site?
+
+Options:
+1. Executive SaaS
+2. Viral Product Launch
+3. Command Center Simulator
+4. Mix all three
+
+Post text above poll:
+“I’m testing three design directions for a Maximo Delivery Automation Workbench — a locally running, Maximo-specific skilled bot architecture built around curated offline skill packs, customer data-mode boundaries, and evidence-based delivery workflows.
+
+The product is aimed at turning Maximo delivery from tribal knowledge into governed, evidence-backed execution.
+
+Which design makes you want to click and explore?”
+
+Include link:
+https://softwarecomparereview.github.io/masready/compare.html
+
+============================================================
+THUMBNAILS / DESIGN CARDS
+============================================================
+
+Create three thumbnail cards.
+
+Design 1 card:
+Title:
+Design 1 — Executive SaaS
+
+Subtitle:
+Boardroom-ready trust, architecture, and delivery intelligence.
+
+Visual:
+Clean enterprise dashboard, trust badges, calm layout.
+
+Design 2 card:
+Title:
+Design 2 — Viral Product Launch
+
+Subtitle:
+Social-feed energy, launch cards, and shareable proof points.
+
+Visual:
+Launch feed, animated metrics, quote cards.
+
+Design 3 card:
+Title:
+Design 3 — Command Center Simulator
+
+Subtitle:
+Interactive scenario cockpit for MAS 9, Maximo 7.6, and mobilisation flows.
+
+Visual:
+Dark cockpit, progress rail, evidence stream, readiness meter.
+
+Also create a combined card:
+Title:
+Which design should win?
+
+Subtitle:
+Executive SaaS vs Viral Launch vs Command Center Simulator
+
+CTA:
+Vote on the poll page.
+
+Link:
+https://softwarecomparereview.github.io/masready/compare.html
+
+============================================================
+ARCHITECTURE SUMMARY
+============================================================
+
+Create a concise architecture explanation file:
+
+social/linkedin/architecture-summary.md
+
+Include:
+
+Public marketing:
+- GitHub Pages
+- static simulator
+- fictional demo fixtures only
+- no real customer systems connected
+
+Customer demos:
+- Azure App Service
+- subdomains such as pfm-demo.masready.com.au, bom-demo.masready.com.au, mas9power.masready.com.au
+- host maps to default branding/customer context only
+- auth/RBAC remains security boundary
+
+Data models:
+- no-store / zero-retention
+- customer-hosted
+- BYO storage
+- Azure-hosted customer subdomain
+- managed demo workspace
+
+Core engine:
+- local skill packs
+- Maximo-specific knowledge
+- evidence-based workflows
+- review-ready outputs
+
+============================================================
+COMMENT REPLIES
+============================================================
+
+Create suggested replies to likely LinkedIn comments:
+
+1. “Is this just another chatbot?”
+Answer:
+No — the direction is deliberately Maximo-specific and skill-pack-first, not a generic chatbot wrapper.
+
+2. “Does it connect to live Maximo?”
+Answer:
+The public simulator does not. Customer-specific Azure-hosted demos can be configured with approved integrations and data boundaries.
+
+3. “Does it make changes in production?”
+Answer:
+No. The current model is review-only: no SQL execution, no Maximo mutation, no Jira/ADO mutation.
+
+4. “How is customer data handled?”
+Answer:
+Demo fixtures are demo-only. Real customers choose a data model: no-store, customer-hosted, BYO storage, Azure-hosted customer subdomain, or controlled managed demo workspace.
+
+5. “Why local skill packs?”
+Answer:
+Because Maximo delivery depends on domain-specific patterns, version context, customisation evidence, and governance — not just generic text generation.
+
+6. “What is next?”
+Answer:
+More Maximo skills, more industry scenarios, skill-quality scoring, patch/iFix insights, customer-derived benchmarks, and more Azure-hosted customer demos.
+
+============================================================
+HASHTAGS
+============================================================
+
+Create hashtags file with primary and secondary tags.
+
+Primary:
+#Maximo
+#IBMMaximo
+#MAS9
+#EnterpriseAI
+#AssetManagement
+#AIOps
+#DigitalTransformation
+
+Secondary:
+#FieldService
+#Utilities
+#FacilitiesManagement
+#GovTech
+#DevOps
+#SoftwareArchitecture
+#ZeroTrust
+#Automation
+#AIProduct
+
+Do not overdo hashtags in the main post. Suggest 5–8 max.
+
+============================================================
+VALIDATION
+============================================================
+
+Before final:
+- Confirm all social files exist.
+- Confirm all SVG thumbnail cards exist.
+- Confirm poll page link is correct.
+- Confirm no “world first” claim exists.
+- Confirm no misleading seed data wording exists.
+- Confirm no real customer data/secrets/credentials are included.
+- Confirm license planning disclaimer exists where mentioned.
+
+If scripts/check-site.js exists, update it to optionally check social assets, but do not break existing validation.
+
+Run:
+node scripts/check-site.js
+
+if available.
+
+============================================================
+FINAL RESPONSE
+============================================================
+
+Final response must include:
+1. Files created
+2. Main LinkedIn post location
+3. Poll copy location
+4. Thumbnail/card assets created
+5. Suggested LinkedIn poll options
+6. Validation result
+7. Reminder that final live link is:
+   https://softwarecomparereview.github.io/masready/compare.html
+
+Commit message:
+Add LinkedIn launch kit and design poll assets
+
+Do not ask questions.
+Do not create GitHub issues.
+Do not claim world first.
+Proceed with best effort.

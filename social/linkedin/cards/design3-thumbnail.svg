@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="628" viewBox="0 0 1200 628">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#020609"/>
+      <stop offset="100%" style="stop-color:#050a0f"/>
+    </linearGradient>
+    <linearGradient id="neon" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ff88"/>
+      <stop offset="100%" style="stop-color:#00d4ff"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="628" fill="url(#bg3)"/>
+
+  <!-- Scanline texture -->
+  <rect width="1200" height="628" fill="url(#bg3)" opacity="0.7"/>
+  <line x1="0" y1="100" x2="1200" y2="100" stroke="#00ff88" stroke-opacity="0.03" stroke-width="1"/>
+  <line x1="0" y1="200" x2="1200" y2="200" stroke="#00ff88" stroke-opacity="0.03" stroke-width="1"/>
+  <line x1="0" y1="300" x2="1200" y2="300" stroke="#00ff88" stroke-opacity="0.03" stroke-width="1"/>
+  <line x1="0" y1="400" x2="1200" y2="400" stroke="#00ff88" stroke-opacity="0.03" stroke-width="1"/>
+  <line x1="0" y1="500" x2="1200" y2="500" stroke="#00ff88" stroke-opacity="0.03" stroke-width="1"/>
+
+  <!-- Top accent -->
+  <rect x="0" y="0" width="1200" height="3" fill="url(#neon)" filter="url(#glow)"/>
+
+  <!-- LEFT: cockpit panel -->
+  <rect x="60" y="72" width="470" height="490" rx="8" fill="#000000" fill-opacity="0.6" stroke="#00ff88" stroke-opacity="0.2" stroke-width="1"/>
+
+  <!-- Panel header -->
+  <rect x="60" y="72" width="470" height="36" rx="8" fill="#00ff88" fill-opacity="0.06"/>
+  <text x="80" y="95" font-family="Courier New, monospace" font-size="11" fill="#00ff88" opacity="0.8">MAXIMO_WORKBENCH_v9.2.4</text>
+  <circle cx="498" cy="90" r="5" fill="#00ff88" opacity="0.8"/>
+  <circle cx="514" cy="90" r="5" fill="#00ff88" opacity="0.4"/>
+
+  <!-- Progress rail -->
+  <text x="80" y="132" font-family="Courier New, monospace" font-size="10" fill="#00ff88" opacity="0.5">PIPELINE_STAGES</text>
+  <!-- Stage pills -->
+  <rect x="80" y="140" width="66" height="22" rx="11" fill="#00ff88" fill-opacity="0.15" stroke="#00ff88" stroke-opacity="0.6" stroke-width="1"/>
+  <text x="113" y="155" font-family="Courier New, monospace" font-size="9" fill="#00ff88" text-anchor="middle">01 CTX ✓</text>
+
+  <rect x="156" y="140" width="66" height="22" rx="11" fill="#00ff88" fill-opacity="0.15" stroke="#00ff88" stroke-opacity="0.6" stroke-width="1"/>
+  <text x="189" y="155" font-family="Courier New, monospace" font-size="9" fill="#00ff88" text-anchor="middle">02 INGEST ✓</text>
+
+  <rect x="232" y="140" width="66" height="22" rx="11" fill="#00ff88" fill-opacity="0.15" stroke="#00ff88" stroke-opacity="0.6" stroke-width="1"/>
+  <text x="265" y="155" font-family="Courier New, monospace" font-size="9" fill="#00ff88" text-anchor="middle">03 FPRINT ✓</text>
+
+  <rect x="308" y="140" width="66" height="22" rx="11" fill="#00d4ff" fill-opacity="0.2" stroke="#00d4ff" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="341" y="155" font-family="Courier New, monospace" font-size="9" fill="#00d4ff" text-anchor="middle">04 SKILL ▶</text>
+
+  <rect x="384" y="140" width="66" height="22" rx="11" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
+  <text x="417" y="155" font-family="Courier New, monospace" font-size="9" fill="#4b5563" text-anchor="middle">05 ANLYS</text>
+
+  <!-- Event stream -->
+  <rect x="80" y="178" width="430" height="220" rx="6" fill="#000000" fill-opacity="0.8" stroke="#00ff88" stroke-opacity="0.1" stroke-width="1"/>
+  <text x="96" y="198" font-family="Courier New, monospace" font-size="10" fill="#00ff88" opacity="0.4">// SYSTEM_LOG</text>
+  <text x="96" y="218" font-family="Courier New, monospace" font-size="10" fill="#4b5563">[✓] loading scenario: MAS9_POWER</text>
+  <text x="96" y="234" font-family="Courier New, monospace" font-size="10" fill="#4b5563">[✓] data_mode: customer_hosted_demo_fixture</text>
+  <text x="96" y="250" font-family="Courier New, monospace" font-size="10" fill="#4b5563">[✓] evidence intake: 23 fixture files</text>
+  <text x="96" y="266" font-family="Courier New, monospace" font-size="10" fill="#4b5563">[✓] customisations_scanned: 46</text>
+  <text x="96" y="282" font-family="Courier New, monospace" font-size="10" fill="#4b5563">[✓] patch_impacts_found: 7</text>
+  <text x="96" y="298" font-family="Courier New, monospace" font-size="10" fill="#4b5563">[✓] no_sql_execution: TRUE</text>
+  <text x="96" y="314" font-family="Courier New, monospace" font-size="10" fill="#4b5563">[✓] no_maximo_mutation: TRUE</text>
+  <text x="96" y="330" font-family="Courier New, monospace" font-size="10" fill="#00d4ff">[▶] matching skill packs...</text>
+  <text x="96" y="346" font-family="Courier New, monospace" font-size="10" fill="#00d4ff" opacity="0.6">   automation_scripts: LOADED</text>
+  <text x="96" y="362" font-family="Courier New, monospace" font-size="10" fill="#00d4ff" opacity="0.6">   patch_impact: LOADED</text>
+  <text x="96" y="378" font-family="Courier New, monospace" font-size="10" fill="#00d4ff" opacity="0.4">   license_planning: LOADED_</text>
+
+  <!-- Readiness meter -->
+  <rect x="80" y="415" width="430" height="90" rx="6" fill="#000000" fill-opacity="0.5" stroke="#00ff88" stroke-opacity="0.15" stroke-width="1"/>
+  <text x="96" y="438" font-family="Courier New, monospace" font-size="10" fill="#00ff88" opacity="0.5">READINESS_SCORE</text>
+  <!-- Score bar -->
+  <rect x="96" y="448" width="380" height="10" rx="5" fill="#00ff88" fill-opacity="0.08"/>
+  <rect x="96" y="448" width="330" height="10" rx="5" fill="url(#neon)" filter="url(#glow)"/>
+  <text x="96" y="482" font-family="Courier New, monospace" font-size="22" font-weight="700" fill="#00ff88" filter="url(#glow)">87</text>
+  <text x="132" y="482" font-family="Courier New, monospace" font-size="14" fill="#00ff88" opacity="0.5">/ 100</text>
+  <text x="280" y="478" font-family="Courier New, monospace" font-size="10" fill="#00ff88" opacity="0.5">MAS9 Power — demo fixture</text>
+
+  <!-- Status row -->
+  <text x="80" y="528" font-family="Courier New, monospace" font-size="10" fill="#4b5563">DB_CONN: ISOLATED  ·  MUTATION_LOCK: ON  ·  OUTPUT_MODE: REVIEW_ONLY</text>
+  <text x="80" y="548" font-family="Courier New, monospace" font-size="10" fill="#4b5563">Static guided simulation — no real customer systems connected</text>
+
+  <!-- RIGHT: copy -->
+  <text x="596" y="140" font-family="Courier New, monospace" font-size="12" fill="#00ff88" letter-spacing="3">DESIGN_3</text>
+  <text x="596" y="200" font-family="Inter, sans-serif" font-size="50" font-weight="800" fill="#ffffff">Command</text>
+  <text x="596" y="258" font-family="Inter, sans-serif" font-size="50" font-weight="800" fill="#00ff88" filter="url(#glow)">Center</text>
+
+  <text x="596" y="308" font-family="Inter, sans-serif" font-size="17" fill="#4b6a5a">Interactive scenario cockpit for</text>
+  <text x="596" y="330" font-family="Inter, sans-serif" font-size="17" fill="#4b6a5a">MAS 9, Maximo 7.6, and mobilisation.</text>
+
+  <!-- Audience pills -->
+  <rect x="596" y="358" width="120" height="28" rx="14" fill="#00ff88" fill-opacity="0.08" stroke="#00ff88" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="656" y="376" font-family="Courier New, monospace" font-size="10" fill="#00ff88" text-anchor="middle">TECHNICIANS</text>
+
+  <rect x="728" y="358" width="120" height="28" rx="14" fill="#00d4ff" fill-opacity="0.08" stroke="#00d4ff" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="788" y="376" font-family="Courier New, monospace" font-size="10" fill="#00d4ff" text-anchor="middle">ARCHITECTS</text>
+
+  <rect x="860" y="358" width="100" height="28" rx="14" fill="#ffb800" fill-opacity="0.08" stroke="#ffb800" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="910" y="376" font-family="Courier New, monospace" font-size="10" fill="#ffb800" text-anchor="middle">AUDITORS</text>
+
+  <!-- Divider -->
+  <rect x="596" y="404" width="544" height="1" fill="#00ff88" fill-opacity="0.1"/>
+
+  <text x="596" y="440" font-family="Courier New, monospace" font-size="12" fill="#1a3a2a">Maximo Delivery Automation Workbench</text>
+  <text x="596" y="462" font-family="Courier New, monospace" font-size="12" fill="#00ff88" opacity="0.6">softwarecomparereview.github.io/masready/design3/</text>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="590" width="1200" height="38" fill="#020609"/>
+  <text x="60" y="613" font-family="Courier New, monospace" font-size="12" fill="#1a3a2a">Powered by OverPayingforAI.com</text>
+  <text x="1140" y="613" font-family="Courier New, monospace" font-size="12" fill="#1a3a2a" text-anchor="end">masready.com.au</text>
+</svg>
