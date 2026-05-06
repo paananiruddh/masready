@@ -30,6 +30,20 @@ We ARE building:
 - human-reviewed learning systems
 - replayable engineering memory
 
+## Support link
+
+Use this real supporter link for all supporter / donation / coffee buttons:
+
+https://buymeacoffee.com/overpayingforai
+
+Button text options:
+- Become a $10 Founding Supporter
+- Support the build
+- Buy MADD a coffee
+- Fund the Foundry
+
+Do not use placeholder supporter links now that the real link is available.
+
 ## Required pages
 
 Create:
@@ -80,8 +94,8 @@ Subtitle:
 Fund the build. Help train the diagnostic engine. Get the Foundry Pack.
 
 CTA buttons:
-- Become a $10 Founding Supporter
-- Get the Prompt Pack
+- Become a $10 Founding Supporter → https://buymeacoffee.com/overpayingforai
+- Get the Prompt Pack → /madd-foundry-pack/
 
 ### Day 1 honesty section
 
@@ -127,7 +141,8 @@ Advise removing:
 
 ### Supporter wall preview
 
-Include placeholder supporters.
+Include placeholder supporters and a CTA linking to:
+https://buymeacoffee.com/overpayingforai
 
 ### OverpayingForAI expansion
 
@@ -159,6 +174,10 @@ Include prompts for:
 - license analysis
 - root cause solution packs
 
+Add a footer CTA:
+If this helped, support the MADD Foundry:
+https://buymeacoffee.com/overpayingforai
+
 ## OverpayingForAI Arena page
 
 Explain future AI competitions:
@@ -166,6 +185,10 @@ Prompt → AI contestants → independent outputs → scoring → human review �
 
 Include concept:
 AI does not replace judgement. AI makes judgement visible.
+
+Add CTA:
+Support the first Arena experiment:
+https://buymeacoffee.com/overpayingforai
 
 ## After completion
 
