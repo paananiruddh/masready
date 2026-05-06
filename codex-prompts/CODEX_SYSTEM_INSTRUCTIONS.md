@@ -10,6 +10,26 @@ https://github.com/paananiruddh/masready
 
 Do not assume upstream repositories control the public deployment.
 
+## Delivery mode
+
+Default delivery mode for this repository is **direct-to-main**.
+
+Do not create pull requests unless the user explicitly asks for a PR.
+Do not stop after planning.
+Do not ask the user to run routine commands.
+Do not ask for confirmation for low-risk static-site work already described in the active prompt.
+
+For approved prompt work:
+
+1. Read the instructions.
+2. Make the required changes.
+3. Commit directly to `main`.
+4. Push to `main`.
+5. Update project memory / prompt status.
+6. Report only the commit SHA, files changed, and public URLs to verify.
+
+The user wants this site to build and deploy through GitHub Pages from `main` with minimum manual handling.
+
 ## Product context
 
 MADD = Maximo Assistant for Deep Diagnosis.
@@ -118,6 +138,8 @@ Next action:
 ```text
 project-memory/MADD_PUBLIC_STORY_EVENTS.json
 ```
+
+4. Commit and push all completed work directly to `main` unless the user explicitly asked for a PR.
 
 ## Long-term goal
 
