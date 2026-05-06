@@ -1,0 +1,54 @@
+name: MADD Prompt Queue
+
+on:
+  push:
+    paths:
+      - 'codex-prompts/active/**'
+      - 'project-memory/**'
+      - '.github/workflows/prompt-queue.yml'
+
+jobs:
+  madd-memory-sync:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create feedback directories
+        run: |
+          mkdir -p codex-feedback/history
+          mkdir -p project-memory
+
+      - name: Generate latest queue snapshot
+        run: |
+          echo '# Prompt Queue Snapshot' > codex-feedback/latest.md
+          echo '' >> codex-feedback/latest.md
+          echo 'Generated automatically by GitHub Actions.' >> codex-feedback/latest.md
+          echo '' >> codex-feedback/latest.md
+          echo '## Active prompts' >> codex-feedback/latest.md
+          ls -1 codex-prompts/active >> codex-feedback/latest.md || true
+          echo '' >> codex-feedback/latest.md
+          echo '## Current UTC time' >> codex-feedback/latest.md
+          date -u >> codex-feedback/latest.md
+
+      - name: Append decision log entry
+        run: |
+          touch project-memory/MADD_DECISION_LOG.md
+          echo '' >> project-memory/MADD_DECISION_LOG.md
+          echo '## Automated prompt queue refresh' >> project-memory/MADD_DECISION_LOG.md
+          echo '' >> project-memory/MADD_DECISION_LOG.md
+          echo '- Actor: GitHub Actions' >> project-memory/MADD_DECISION_LOG.md
+          echo '- Purpose: Refresh prompt queue memory snapshot' >> project-memory/MADD_DECISION_LOG.md
+          echo '- Time (UTC):' $(date -u) >> project-memory/MADD_DECISION_LOG.md
+
+      - name: Commit queue updates
+        run: |
+          git config user.name 'madd-arena-bot'
+          git config user.email 'actions@github.com'
+          git add codex-feedback project-memory
+          git diff --cached --quiet || git commit -m 'Update MADD prompt queue snapshot'
+          git push
