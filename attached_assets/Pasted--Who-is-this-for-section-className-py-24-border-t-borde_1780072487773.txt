@@ -1,0 +1,77 @@
+{/* Who is this for */}
+<section className="py-24 border-t border-white/5">
+  <div className="text-center mb-12">
+    <h2 className="text-3xl md:text-4xl font-bold mb-4">Built for your team</h2>
+    <p className="text-muted-foreground max-w-2xl mx-auto">
+      Each role in a Maximo delivery programme has a different question. MASReady answers all of them from one platform.
+    </p>
+  </div>
+  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+    {[
+      {
+        role: "Delivery Manager",
+        question: "Is this upgrade ready to go live?",
+        answer: "Delivery Intelligence dashboard — one confidence score, every risk surfaced.",
+        href: "/mas9-power",
+        color: "text-primary",
+        border: "border-primary/20",
+        bg: "bg-primary/5",
+      },
+      {
+        role: "Maximo Administrator",
+        question: "What customisations will break on this patch?",
+        answer: "Patch Impact Analysis — 46 customisations cross-referenced against the fix pack manifest.",
+        href: "/features",
+        color: "text-orange-400",
+        border: "border-orange-400/20",
+        bg: "bg-orange-400/5",
+      },
+      {
+        role: "Finance / Licence Planner",
+        question: "Are we over-entitled or approaching overage?",
+        answer: "AppPoint Planning — 12-month trend, inactive users, mobile pool headroom.",
+        href: "/features",
+        color: "text-yellow-400",
+        border: "border-yellow-400/20",
+        bg: "bg-yellow-400/5",
+      },
+      {
+        role: "Security / Governance",
+        question: "What does this tool actually do to our data?",
+        answer: "Trust Center — read-only posture, zero mutations, full audit trail, data boundary proof.",
+        href: "/trust",
+        color: "text-green-400",
+        border: "border-green-400/20",
+        bg: "bg-green-400/5",
+      },
+      {
+        role: "Solution Architect",
+        question: "What is in our Maximo environment right now?",
+        answer: "Environment Fingerprint — scripts, objects, workflows, domains across DEV/TEST/UAT/PROD.",
+        href: "/architecture",
+        color: "text-violet-400",
+        border: "border-violet-400/20",
+        bg: "bg-violet-400/5",
+      },
+      {
+        role: "Executive Sponsor",
+        question: "What is the business case for this tool?",
+        answer: "The MAS9 Power demo story — fictional infrastructure tenant, full upgrade readiness walkthrough.",
+        href: "/mas9-power",
+        color: "text-accent",
+        border: "border-accent/20",
+        bg: "bg-accent/5",
+      },
+    ].map((item, i) => (
+      <a
+        key={i}
+        href={item.href}
+        className={`rounded-xl border ${item.border} ${item.bg} p-6 block hover:border-opacity-60 transition-colors`}
+      >
+        <div className={`text-xs font-bold uppercase tracking-wider mb-2 ${item.color}`}>{item.role}</div>
+        <div className="font-semibold text-white mb-2 text-sm">"{item.question}"</div>
+        <div className="text-muted-foreground text-xs leading-relaxed">{item.answer}</div>
+      </a>
+    ))}
+  </div>
+</section>
