@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MADD | Maximo Assistant for Deep Diagnosis</title>
+  <meta name="description" content="MADD by MASReady is an evidence-first Maximo Assistant for Deep Diagnosis: runtime evidence, offline skill packs, stack trace analysis, human approval, and optional LLM synthesis." />
+  <link rel="canonical" href="https://masready.com.au/madd.html" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="MADD | Maximo Assistant for Deep Diagnosis" />
+  <meta property="og:description" content="Not another chatbot. MADD is an evidence-first Maximo diagnostic assistant built with runtime evidence, skill packs, approval gates, and cost-aware AI orchestration." />
+  <meta property="og:url" content="https://masready.com.au/madd.html" />
+  <meta property="og:image" content="https://masready.com.au/assets/og/masready-og.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MADD | Maximo Assistant for Deep Diagnosis" />
+  <meta name="twitter:description" content="Evidence-first diagnosis for IBM Maximo. Skill packs first, runtime evidence next, LLMs only when they earn their keep." />
+  <meta name="twitter:image" content="https://masready.com.au/assets/og/masready-og.svg" />
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "MADD - Maximo Assistant for Deep Diagnosis",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Evidence-first Maximo diagnostic assistant using offline skill packs, runtime evidence, stack trace analysis, human approval workflows, and optional LLM synthesis.",
+        "url": "https://masready.com.au/madd.html"
+      },
+      {
+        "@type": "WebPage",
+        "name": "MADD | Maximo Assistant for Deep Diagnosis",
+        "description": "The public announcement and build story for MADD by MASReady.",
+        "url": "https://masready.com.au/madd.html",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "MASReady",
+          "url": "https://masready.com.au"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="logo">M</span>
+        <span>MASReady<br /><span class="muted" style="font-weight:650;font-size:12px">Maximo Delivery Automation</span></span>
+      </a>
+      <button class="mobile-toggle" data-mobile-toggle aria-label="Toggle navigation">Menu</button>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="mas9-power.html">MAS9 Power</a>
+        <a href="features.html">Features</a>
+        <a href="trust.html">Trust</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="madd.html" class="active">MADD</a>
+        <a href="demo-walkthrough.html">Walkthrough</a>
+        <a href="launch.html">Launch</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <span class="eyebrow">Public build announcement</span>
+        <h1 class="h1">MADD — Maximo Assistant for Deep Diagnosis.</h1>
+        <p class="lead">Not another chatbot. MADD is being built as an evidence-first diagnostic assistant for IBM Maximo: skill packs first, runtime evidence next, deep diagnostics where needed, and LLMs only when they actually earn their keep.</p>
+        <div class="actions" style="margin-top:24px">
+          <a class="btn primary" href="#announcement">Read the announcement</a>
+          <a class="btn" href="#story">Follow the build story</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="announcement">
+      <div class="container grid grid-2">
+        <article class="card">
+          <span class="eyebrow">Announcement</span>
+          <h2>We are building MADD in public.</h2>
+          <p>MADD stands for <strong>Maximo Assistant for Deep Diagnosis</strong>. It is a new MASReady capability designed to help Maximo teams move from vague troubleshooting to evidence-backed diagnosis.</p>
+          <p>The ambition is simple: when Maximo breaks, the assistant should not merely produce a confident paragraph. It should inspect the right evidence, explain the likely root cause, generate safe validation checks, and prepare a solution pack that humans can review and approve.</p>
+          <p>This begins with Automation Script Root Cause Mode and will expand into escalation, cron, integration, security, environment drift, patch impact, migration readiness, and deep stack trace diagnostics.</p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow">Why it matters</span>
+          <h2>Enterprise AI should not be “LLM on every click.”</h2>
+          <p>Many enterprise AI tools send every question to a large language model, even when the answer could come from approved product knowledge, local skill packs, or live system evidence.</p>
+          <p>MADD takes a different path. It is designed to use curated Maximo skill packs, customer-approved runtime evidence, environment fingerprints, BMX error parsing, psdi stack trace analysis, and human approval workflows before reaching for optional LLM synthesis.</p>
+          <p>That makes MADD both a MASReady product capability and a practical OverpayingForAI use case: use expensive AI only where it adds value, not as the default answer to every problem.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <span class="eyebrow">How MADD works</span>
+          <h2>Evidence-first diagnosis, human-approved action.</h2>
+          <p class="muted">The first version is deliberately safe: read-only evidence, no automatic Maximo mutation, and no external LLM call by default.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card">
+            <h3>1. Understand the question</h3>
+            <p>MADD classifies the issue: automation script error, escalation troubleshooting, cron task behaviour, integration failure, security access issue, patch impact, or migration risk.</p>
+          </article>
+          <article class="card">
+            <h3>2. Plan the evidence</h3>
+            <p>The assistant decides which Maximo evidence is needed: AUTOSCRIPT, SCRIPTLAUNCHPOINT, MAXOBJECT, MAXATTRIBUTE, CRONTASKINSTANCE, ESCALATION, object structures, logs, or scan data.</p>
+          </article>
+          <article class="card">
+            <h3>3. Fetch read-only data</h3>
+            <p>Where authorised, MADD uses customer-configured read-only APIs to fetch the minimum necessary evidence into memory. Demo tenants can fall back to seeded evidence.</p>
+          </article>
+          <article class="card">
+            <h3>4. Diagnose deeply</h3>
+            <p>It parses BMX errors, psdi stack traces, launch point timing, MBO lifecycle clues, environment differences, and known Maximo patterns to identify likely root causes.</p>
+          </article>
+          <article class="card">
+            <h3>5. Generate a solution pack</h3>
+            <p>The output includes technical analysis, read-only validation SQL, recommended steps, test plan, risks, assumptions, rollback notes, and an approval checklist.</p>
+          </article>
+          <article class="card">
+            <h3>6. Require human approval</h3>
+            <p>MADD does not change production. It prepares reviewable guidance. Humans approve, reject, or promote learnings into customer knowledge packs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <div class="container grid grid-2">
+        <article class="card">
+          <span class="eyebrow">The build story</span>
+          <h2>AI building AI, with humans keeping the keys.</h2>
+          <p>The MADD journey is also becoming a public build diary. The control centre will record key events: ideas, decisions, tool choices, coding-agent prompts, review outcomes, lessons learned, and cost-aware AI notes.</p>
+          <p>The story is intentionally nerdy. It is about humans and AI building a Maximo diagnostic assistant together, while leaving a trail future humans — and probably future bots — can understand.</p>
+          <p>The point is not to pretend AI magically built everything. The point is to show the actual operating model: consensus, routing, prompts, guardrails, human approvals, and evidence.</p>
+        </article>
+
+        <article class="card">
+          <span class="eyebrow">MADD Control Centre</span>
+          <h2>The orchestration layer.</h2>
+          <p>The planned MADD Control Centre will act as the command centre for the build. A task is described once, converted into a project-memory-backed brief, evaluated by OpenAI and Claude, then routed to the most suitable coding tool.</p>
+          <p>If the models agree, the system recommends the tool. If they disagree, a human decides. Tools with proper API, CLI, MCP, GitHub, or headless support can be dispatched directly. Tools without reliable automation use honest manual handoff.</p>
+          <p>Every major decision can become part of the redacted public story, without exposing customer data, credentials, or raw private logs.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <span class="eyebrow">Maturity roadmap</span>
+          <h2>How MADD grows from useful to difficult to ignore.</h2>
+        </div>
+        <div class="grid grid-3">
+          <article class="card">
+            <h3>Phase 1 — Automation Script Root Cause</h3>
+            <p>Analyse BMXAA7837E, psdi.mbo stack traces, launch point configuration, MBO lifecycle issues, and DEV/TEST differences. Produce safe solution packs.</p>
+          </article>
+          <article class="card">
+            <h3>Phase 2 — Escalation & Cron Diagnosis</h3>
+            <p>Inspect escalation state, reference points, cron task instances, schedules, where clauses, and environment differences to explain why scheduled logic is not firing.</p>
+          </article>
+          <article class="card">
+            <h3>Phase 3 — License & Access Optimisation</h3>
+            <p>Use MAXUSER, GROUPUSER, MAXGROUP, APPLICATIONAUTH, LOGINTRACKING, and usage signals to support planning and optimisation, not legal compliance claims.</p>
+          </article>
+          <article class="card">
+            <h3>Phase 4 — Integration & Object Structure Diagnosis</h3>
+            <p>Trace MIF, REST, OSLC, endpoints, external systems, publish channels, enterprise services, and object structure issues with evidence-backed recommendations.</p>
+          </article>
+          <article class="card">
+            <h3>Phase 5 — Patch/iFix Impact</h3>
+            <p>Compare IBM release notes against customer fingerprints and customisations to identify likely impact areas, retest scope, and implementation risks.</p>
+          </article>
+          <article class="card">
+            <h3>Phase 6 — Deep Class Intelligence</h3>
+            <p>Where authorised, inspect class metadata and relevant runtime behaviour in memory. Summarise diagnostic implications without storing or redistributing proprietary source.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid grid-2">
+        <article class="card">
+          <span class="eyebrow">For Maximo teams</span>
+          <h2>What MADD should eventually feel like.</h2>
+          <p>Ask: <em>“Why is this work order status automation script failing in TEST but not DEV?”</em></p>
+          <p>MADD should inspect relevant evidence, compare configuration, parse the stack trace, identify likely MBO lifecycle issues, generate validation checks, and give you a testable plan — not a hand-wavy answer.</p>
+        </article>
+        <article class="card">
+          <span class="eyebrow">For AI builders</span>
+          <h2>The OverpayingForAI lesson.</h2>
+          <p>The future is not one massive model answering every click. The better pattern is an orchestrated bench: deterministic skills, runtime evidence, model consensus, tool-specific execution, human approval, and public learning.</p>
+          <p>Use AI where it adds leverage. Do not pay it to remember things your system already knows.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div>
+        <div class="brand"><span class="logo">M</span><span>MASReady</span></div>
+        <p class="muted">MADD is being built as an evidence-first Maximo diagnostic assistant. Demo claims are based on seeded/demo capability until live customer configuration is connected and approved.</p>
+        <p class="muted">© <span data-year></span> MASReady — Maximo Delivery Automation Workbench.</p>
+      </div>
+      <div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="mas9-power.html">MAS9 Power</a>
+          <a href="features.html">Features</a>
+          <a href="trust.html">Trust</a>
+          <a href="architecture.html">Architecture</a>
+          <a href="madd.html">MADD</a>
+          <a href="demo-walkthrough.html">Walkthrough</a>
+          <a href="launch.html">Launch</a>
+          <a href="contact.html">Contact</a>
+          <a href="sitemap.xml">Sitemap</a>
+        </div>
+        <p class="disclaimer" style="margin-top:18px">MADD outputs are reviewable guidance only. They are not automatic production changes, legal advice, IBM certification, or a substitute for customer governance.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
