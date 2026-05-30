@@ -1,0 +1,72 @@
+Please confirm whether all local MASReady changes have been pushed to GitHub.
+
+Do not modify files.
+Do not reset.
+Do not rebase.
+Do not merge.
+Do not push until you report the status.
+
+Run these checks and report clearly:
+
+1. Current repo and branch:
+
+   * `git remote -v`
+   * `git branch --show-current`
+   * `git status -sb`
+
+2. Check whether a rebase/merge is still in progress:
+
+   * `test -d .git/rebase-merge && echo "REBASE_MERGE_IN_PROGRESS"`
+   * `test -d .git/rebase-apply && echo "REBASE_APPLY_IN_PROGRESS"`
+   * `test -f .git/MERGE_HEAD && echo "MERGE_IN_PROGRESS"`
+
+3. Fetch latest remote:
+
+   * `git fetch origin main`
+
+4. Show current local and remote commit:
+
+   * `git rev-parse HEAD`
+   * `git rev-parse origin/main`
+   * `git log -1 --pretty=format:'LOCAL HEAD: %h | %aI | %an | %s' HEAD`
+   * `git log -1 --pretty=format:'REMOTE MAIN: %h | %aI | %an | %s' origin/main`
+
+5. Show local commits not pushed:
+
+   * `git log --oneline --decorate origin/main..HEAD`
+
+6. Show remote commits not in local:
+
+   * `git log --oneline --decorate HEAD..origin/main`
+
+7. Show file differences between local and remote:
+
+   * `git diff --name-status origin/main...HEAD`
+
+8. If backup branch exists, compare it too:
+
+   * `git branch --list backup-before-rebase`
+   * `git log --oneline origin/main..backup-before-rebase`
+   * `git diff --name-status origin/main...backup-before-rebase`
+
+9. Specifically confirm whether these expected work items are on remote main:
+
+   * audit/API authentication security change
+   * skill coverage terminology correction
+   * removal of people/team/HR skill wording
+   * removal/anonymisation of BOM/PFM/Programmed/Transurban/customer references
+   * demo-data banners or fictional data labels
+   * any latest MASReady launch/page cleanup
+
+Final answer format:
+
+* Rebase/merge in progress? Yes/No
+* Local branch ahead of origin/main? Yes/No
+* Local branch behind origin/main? Yes/No
+* Number of local unpushed commits
+* Number of remote commits not pulled locally
+* List of local unpushed commits
+* List of changed files not on remote
+* Are all changes pushed? Yes/No
+* If No, exact safe next command recommended
+* Do not execute the next command without my confirmation
