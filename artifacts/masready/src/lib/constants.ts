@@ -16,6 +16,7 @@ export const DEMO_METRICS = {
   highImpacts: 2,
   mediumImpacts: 3,
   lowImpacts: 2,
+  // base bot skill-pack coverage; NOT an HR/people measure
   skillCoverage: 82,
   demoUsers: 7,
   walkthroughMinutes: 12

@@ -63,7 +63,7 @@ export default function Design2Home() {
             
             <div className="mt-1 text-[15px] leading-normal whitespace-pre-wrap text-[#e7e9ea]">
               <p className="font-bold text-xl mb-2">Maximo delivery intelligence, without the chaos.</p>
-              <p>Evidence-backed delivery automation for IBM Maximo teams. Combining requirements, environment fingerprints, patch impact, license planning, skill coverage, and trust boundaries into one review-ready workbench.</p>
+              <p>Evidence-backed delivery automation for IBM Maximo teams. Combining requirements, environment fingerprints, patch impact, license planning, bot skill-pack coverage, and trust boundaries into one review-ready workbench.</p>
             </div>
 
             <div className="mt-3 rounded-2xl border border-[#2a3650] overflow-hidden flex flex-col sm:flex-row divide-y sm:divide-y-0 sm:divide-x divide-[#2f3336]">

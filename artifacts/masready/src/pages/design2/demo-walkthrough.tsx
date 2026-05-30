@@ -22,7 +22,7 @@ const STEPS = [
     tag: "Intelligence",
     tagColor: "#fe2c55",
     proves: "Unified confidence score across all delivery dimensions. Shows top-level delivery posture at a glance before diving into any specific module.",
-    detail: "Score: 87/100. The dashboard aggregates patch impact, skill coverage, license health, and requirement completeness into a single delivery confidence metric. No external calls made."
+    detail: "Score: 87/100. The dashboard aggregates patch impact, bot skill-pack coverage, license health, and requirement completeness into a single delivery confidence metric. No external calls made."
   },
   {
     num: "03",
@@ -92,13 +92,13 @@ const STEPS = [
   },
   {
     num: "09",
-    title: "Skill Coverage",
+    title: "Bot Skill-Pack Coverage",
     route: "/skills",
     role: "Delivery Lead",
     duration: "1 min",
     tag: "Skills",
     tagColor: "#fcb045",
-    proves: "82% overall skill coverage against delivery requirements. Gap areas identified for remediation before go-live.",
+    proves: "82% bot skill-pack coverage across Maximo delivery domains (system-defined — base packs). Gap areas identified for remediation before go-live.",
     detail: "Coverage breakdown: Requirements 91%, Maximo Core 87%, Integration 74%, Mobile 68%, Reporting 79%. Gaps in Integration and Mobile are flagged for skill-pack assignment."
   },
   {
@@ -109,8 +109,8 @@ const STEPS = [
     duration: "30 sec",
     tag: "Flags",
     tagColor: "#833ab4",
-    proves: "PFM contract mobilisation is disabled at the feature flag level for MAS9 Power. The route exists but the feature is gated off — demonstrating per-tenant feature control.",
-    detail: "Feature flag: pfm_contract_mobilisation = disabled. The page renders a disabled state with a clear explanation. This proves the customer feature flag system works as intended."
+    proves: "Contract mobilisation module is disabled at the feature flag level for MAS9 Power. The route exists but the feature is gated off — demonstrating per-tenant feature control.",
+    detail: "Feature flag: contract_mobilisation = disabled. The page renders a disabled state with a clear explanation. This proves the customer feature flag system works as intended."
   },
   {
     num: "11",

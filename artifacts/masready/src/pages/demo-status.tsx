@@ -1,6 +1,7 @@
 import { DEMO_METRICS } from "@/lib/constants";
 import { CheckCircle2, XCircle, AlertCircle, Shield } from "lucide-react";
 import { Link } from "wouter";
+import { DemoBanner } from "@/components/DemoBanner";
 
 const WALKTHROUGH_ROUTES = [
   { scene: "S01", name: "Login + Customer Switch", route: "/", status: "ready" },
@@ -12,13 +13,15 @@ const WALKTHROUGH_ROUTES = [
   { scene: "S07", name: "Patch Impact", route: "/patch-impact", status: "ready" },
   { scene: "S08", name: "License Report", route: "/license-report", status: "ready" },
   { scene: "S09", name: "Skill Packs", route: "/skills", status: "ready" },
-  { scene: "S10", name: "PFM (disabled)", route: null, status: "gated" },
+  { scene: "S10", name: "Contract Mobilisation (disabled)", route: null, status: "gated" },
   { scene: "S11", name: "Audit Log", route: "/audit", status: "auth-required" },
   { scene: "S12", name: "Help Center", route: "/help", status: "ready" },
 ] as const;
 
 export default function DemoStatus() {
   return (
+    <div className="min-h-screen">
+    <DemoBanner variant="seed-data" />
     <div className="container mx-auto px-4 py-16 max-w-3xl">
       <div className="mb-8">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium mb-4">
@@ -26,7 +29,7 @@ export default function DemoStatus() {
         </div>
         <h1 className="text-4xl font-bold mb-3">Demo Status</h1>
         <p className="text-muted-foreground">
-          MAS9 Power fictional tenant — Maximo 7.6.1.3 → MAS 9 readiness scenario.
+          Fictional tenant — Maximo 7.6.1.3 → MAS 9.x upgrade planning scenario.
           All data is seeded demo data. No live Maximo connection active.
         </p>
       </div>
@@ -38,7 +41,7 @@ export default function DemoStatus() {
         </h2>
         <div className="grid grid-cols-2 gap-3 text-sm">
           {[
-            { label: "Tenant", value: "MAS9 Power" },
+            { label: "Tenant", value: "Fictional tenant — Maximo 7.6.1.3 → MAS 9.x upgrade planning scenario" },
             { label: "Data mode", value: "demo_seed" },
             { label: "Current platform", value: "Maximo 7.6.1.3" },
             { label: "Target platform", value: "IBM MAS Manage 9.x" },
@@ -85,6 +88,7 @@ export default function DemoStatus() {
           ← Back to demo home
         </Link>
       </div>
+    </div>
     </div>
   );
 }

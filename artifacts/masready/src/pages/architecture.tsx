@@ -66,11 +66,11 @@ const PIPELINE = [
       "Covers: automation scripts, relationships, workflow, escalation, integration framework, patch impact, license planning, mobilisation",
       "Each pack is version-locked to a specific Maximo / MAS version to prevent drift",
       "Skill coverage engine maps installed packs against delivery requirement gaps",
-      "82% overall skill coverage in the MAS9 Power demo: Requirements 91%, Maximo Core 87%, Integration 74%, Mobile 68%, Reporting 79%",
+      "82% bot skill-pack coverage across Maximo delivery domains (system-defined — base packs): Requirements 91%, Maximo Core 87%, Integration 74%, Mobile 68%, Reporting 79%",
       "Skill packs are curated and reviewed — no auto-generated or unvalidated content",
       "Gap report identifies which packs are missing before delivery begins",
     ],
-    example: "82% coverage · 8 pack domains · gap report auto-generated against requirement set"
+    example: "82% bot skill-pack coverage · 8 pack domains · gap report auto-generated against requirement set"
   },
   {
     label: "Delivery Engine",
@@ -78,17 +78,17 @@ const PIPELINE = [
     color: "text-green-400",
     bg: "bg-green-400/10",
     border: "border-green-400/20",
-    summary: "The core analysis layer — cross-references fingerprint, patch content, license data, and skill coverage to produce a unified delivery confidence score.",
+    summary: "The core analysis layer — cross-references fingerprint, patch content, license data, and bot skill-pack coverage to produce a unified delivery confidence score.",
     details: [
       "Patch / iFix impact engine: cross-references patch content against 46 scanned customisations — 7 impacted items found",
       "Severity distribution: 0 Critical · 2 High · 3 Medium · 2 Low",
       "License usage planner: 12-month AppPoint trend — 1847 used / 2400 entitled (77% utilisation, 84% peak)",
       "Named user analysis: 94 users — 71 active, 23 inactive. Mobile pool at 89% peak",
-      "Delivery confidence score (87/100) aggregates patch impact, license health, skill coverage, and requirement completeness",
+      "Delivery confidence score (87/100) aggregates patch impact, license health, bot skill-pack coverage, and requirement completeness",
       "All computations run locally — no cloud processing, no data exfiltration",
       "Audit trail captures every engine run with timestamp, user role, and input digest",
     ],
-    example: "Score 87/100 · 7 patch impacts · 77% AppPoint utilisation · 82% skill coverage"
+    example: "Score 87/100 · 7 patch impacts · 77% AppPoint utilisation · 82% bot skill-pack coverage"
   },
   {
     label: "Reports & Media",

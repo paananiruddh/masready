@@ -27,7 +27,7 @@ function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
 
 const SCENARIOS = [
   { label: "Patch Impact", value: "7 items found", color: "text-destructive", dot: "bg-destructive" },
-  { label: "Skill Coverage", value: "82% mapped", color: "text-primary", dot: "bg-primary" },
+  { label: "Bot Skill-Pack Coverage", value: "82% mapped", color: "text-primary", dot: "bg-primary" },
   { label: "AppPoints", value: "77% utilised", color: "text-accent", dot: "bg-accent" },
   { label: "Trust Boundary", value: "REVIEW ONLY", color: "text-green-400", dot: "bg-green-400" },
 ];
@@ -173,7 +173,7 @@ export default function Home() {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="text-lg text-muted-foreground mb-8 leading-relaxed"
               >
-                Evidence-backed delivery automation for IBM Maximo teams — combining requirements, environment fingerprints, patch impact, license planning, skill coverage, and trust boundaries into one review-ready workbench.
+                Evidence-backed delivery automation for IBM Maximo teams — combining requirements, environment fingerprints, patch impact, license planning, bot skill-pack coverage, and trust boundaries into one review-ready workbench.
               </motion.p>
 
               <motion.div
@@ -316,8 +316,8 @@ export default function Home() {
             {[
               {
                 role: "Delivery Manager",
-                question: "Is this upgrade ready to go live?",
-                answer: "Delivery Intelligence dashboard — one confidence score, every risk surfaced.",
+                question: "How confident am I in this delivery? What evidence do I have?",
+                answer: "MASReady aggregates bot-generated delivery intelligence into a single review-ready view — so you can walk into a steering committee with evidence, not estimates.",
                 href: "/mas9-power",
                 color: "text-primary",
                 border: "border-primary/20",
@@ -325,44 +325,44 @@ export default function Home() {
               },
               {
                 role: "Maximo Administrator",
-                question: "What customisations will break on this patch?",
-                answer: "Patch Impact Analysis — 46 customisations cross-referenced against the fix pack manifest.",
+                question: "Which parts of the Maximo configuration have we actually validated?",
+                answer: "MASReady maps installed bot skill packs against your Maximo configuration fingerprint, showing exactly what has been assessed and what hasn't.",
                 href: "/features",
                 color: "text-orange-400",
                 border: "border-orange-400/20",
                 bg: "bg-orange-400/5",
               },
               {
-                role: "Finance / Licence Planner",
-                question: "Are we over-entitled or approaching overage?",
-                answer: "AppPoint Planning — 12-month trend, inactive users, mobile pool headroom.",
+                role: "Solution Architect",
+                question: "Where are the integration gaps between our current Maximo and the MAS 9 target?",
+                answer: "MASReady's layered skill-pack model cross-references your as-is configuration against the upgrade target, surfacing gaps the bot has evidence for and flagging what still needs assessment.",
                 href: "/features",
                 color: "text-yellow-400",
                 border: "border-yellow-400/20",
                 bg: "bg-yellow-400/5",
               },
               {
-                role: "Security / Governance",
-                question: "What does this tool actually do to our data?",
-                answer: "Trust Center — read-only posture, zero mutations, full audit trail, data boundary proof.",
+                role: "Security / Governance Lead",
+                question: "Can I prove that no unapproved data left the customer boundary?",
+                answer: "MASReady's zero-trust governance log records every evidence ingestion event, approval action, and export — providing an auditable chain of custody.",
                 href: "/trust",
                 color: "text-green-400",
                 border: "border-green-400/20",
                 bg: "bg-green-400/5",
               },
               {
-                role: "Solution Architect",
-                question: "What is in our Maximo environment right now?",
-                answer: "Environment Fingerprint — scripts, objects, workflows, domains across DEV/TEST/UAT/PROD.",
+                role: "Business Analyst",
+                question: "What Maximo functional areas are covered by the current delivery scope?",
+                answer: "MASReady skill-pack coverage maps directly to Maximo functional domains — so scope decisions are grounded in what the bot has actually assessed.",
                 href: "/architecture",
                 color: "text-violet-400",
                 border: "border-violet-400/20",
                 bg: "bg-violet-400/5",
               },
               {
-                role: "Executive Sponsor",
-                question: "What is the business case for this tool?",
-                answer: "The MAS9 Power demo story — fictional infrastructure tenant, full upgrade readiness walkthrough.",
+                role: "IT Asset Manager",
+                question: "What is our licence exposure going into the MAS 9 upgrade?",
+                answer: "MASReady's licence planning view surfaces Maximo licence consumption patterns from available evidence — for planning purposes, not IBM-certified advice.",
                 href: "/mas9-power",
                 color: "text-accent",
                 border: "border-accent/20",

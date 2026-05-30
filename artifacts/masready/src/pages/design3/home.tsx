@@ -48,7 +48,7 @@ export default function Design3Home() {
             <div><span className="text-[#00ff88]">[{new Date().toISOString().split('T')[1].slice(0,-1)}]</span> [INFO] Booting engine... OK</div>
             <div><span className="text-[#00ff88]">[{new Date().toISOString().split('T')[1].slice(0,-1)}]</span> [INFO] Loading demo fixtures... 23 files found</div>
             <div><span className="text-[#00ff88]">[{new Date().toISOString().split('T')[1].slice(0,-1)}]</span> [WARN] Environment scan indicates 46 customisations</div>
-            <div><span className="text-[#00ff88]">[{new Date().toISOString().split('T')[1].slice(0,-1)}]</span> [INFO] Matching skill packs: 82% coverage achieved</div>
+            <div><span className="text-[#00ff88]">[{new Date().toISOString().split('T')[1].slice(0,-1)}]</span> [INFO] Matching skill packs: 82% bot skill-pack coverage across Maximo delivery domains (base packs)</div>
             <div className="text-[#00d4ff] mt-4">_ AWAITING COMMAND _</div>
           </div>
         </div>

@@ -2,12 +2,13 @@ import { DEMO_METRICS } from "@/lib/constants";
 import { motion } from "framer-motion";
 import { Server, Shield, Database, LayoutGrid, CheckCircle2, XCircle } from "lucide-react";
 import { DemoBanner } from "@/components/DemoBanner";
+import React from "react";
 
 export default function MAS9Power() {
   return (
     <div className="container mx-auto px-4 py-24 min-h-screen">
       <div className="max-w-4xl mx-auto">
-        <DemoBanner />
+        <DemoBanner variant="seed-data" />
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium mb-6">
             Demo Tenant
@@ -62,7 +63,7 @@ export default function MAS9Power() {
                 { label: "License tracking/planning", active: true },
                 { label: "Patch impact analysis", active: true },
                 { label: "Delivery intelligence", active: true },
-                { label: "PFM contract mobilisation", active: false },
+                { label: "Contract mobilisation module", active: false },
                 { label: "Premium actions", active: false },
                 { label: "SQL execution", active: false },
               ].map((flag, i) => (

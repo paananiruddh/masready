@@ -1,28 +1,47 @@
+import React from 'react';
+
+type DemoBannerVariant = 'seed-data' | 'planning';
+
 interface DemoBannerProps {
-  variant?: "seed" | "planning";
-  className?: string;
+  variant: DemoBannerVariant;
 }
 
-export function DemoBanner({ variant = "seed", className = "" }: DemoBannerProps) {
-  if (variant === "planning") {
-    return (
-      <div className={`flex items-center gap-3 px-4 py-2.5 rounded-lg border border-yellow-500/30 bg-yellow-500/10 text-yellow-300 text-sm font-medium mb-6 ${className}`}>
-        <span className="flex-shrink-0 text-yellow-400">⚠</span>
-        <span>
-          <strong>Planning visibility only.</strong> Figures shown are fictional demo data.
-          Not legal, contractual, IBM-certified, or compliance advice.
-        </span>
-      </div>
-    );
-  }
+const MESSAGES: Record<DemoBannerVariant, string> = {
+  'seed-data':
+    'DEMO DATA — All values are fictional and for demonstration only. ' +
+    'No real customer, operational, or system data is used.',
+  planning:
+    'PLANNING VISIBILITY ONLY — Licence figures are for planning purposes only. ' +
+    'Not IBM-certified or contractual advice.',
+};
 
+const STYLES: Record<DemoBannerVariant, React.CSSProperties> = {
+  'seed-data': {
+    backgroundColor: '#1d4ed8',
+    color: '#ffffff',
+    padding: '8px 16px',
+    textAlign: 'center',
+    fontSize: '0.875rem',
+    fontWeight: 600,
+    letterSpacing: '0.01em',
+    width: '100%',
+  },
+  planning: {
+    backgroundColor: '#d97706',
+    color: '#ffffff',
+    padding: '8px 16px',
+    textAlign: 'center',
+    fontSize: '0.875rem',
+    fontWeight: 600,
+    letterSpacing: '0.01em',
+    width: '100%',
+  },
+};
+
+export function DemoBanner({ variant }: DemoBannerProps) {
   return (
-    <div className={`flex items-center gap-3 px-4 py-2.5 rounded-lg border border-blue-500/30 bg-blue-500/10 text-blue-300 text-sm font-medium mb-6 ${className}`}>
-      <span className="flex-shrink-0 text-blue-400">ℹ</span>
-      <span>
-        <strong>Demo data — MAS9 Power fictional tenant.</strong> All figures are seeded demo data,
-        not connected to any real Maximo environment.
-      </span>
+    <div style={STYLES[variant]} role="status" aria-live="polite">
+      {MESSAGES[variant]}
     </div>
   );
 }

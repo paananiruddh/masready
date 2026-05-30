@@ -188,7 +188,7 @@ export default function SimulatorPanel({ variant = "standalone" }: { variant?: "
           addEvent("7 impacted items found");
           addEvent("0 critical · 2 high · 3 medium · 2 low");
           addEvent("AppPoints: 1847/2400 (77%)");
-          addEvent("Skill coverage: 82%");
+          addEvent("Bot skill-pack coverage: 82% across Maximo delivery domains (system-defined — base packs)");
         } else if (scenario?.id === "legacy-upgrade") {
           addEvent("11 impacted objects");
           addEvent("3 high risk");

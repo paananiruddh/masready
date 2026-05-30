@@ -7,7 +7,7 @@ const FEATURES = [
   { title: "PATCH_IMPACT", icon: Crosshair, desc: "Cross-reference patch/iFix content against your environment fingerprint for targeted risk assessment." },
   { title: "LICENSE_PLANNING", icon: PieChart, desc: "AppPoint trends, named user tracking, and mobile pool analysis for capacity visibility." },
   { title: "OFFLINE_SKILL_PACKS", icon: PackageCheck, desc: "Downloadable, air-gapped, self-contained skill modules for secure environments." },
-  { title: "SKILL_COVERAGE", icon: Target, desc: "Map available delivery team skills against specific requirement gaps." },
+  { title: "BOT_SKILL_PACK_COVERAGE", icon: Target, desc: "Map installed bot skill packs against Maximo delivery domains — showing what has been assessed and what hasn't." },
   { title: "TRUST_CENTER", icon: ShieldCheck, desc: "Audit-first, read-only design with comprehensive immutable trace capture." },
   { title: "AUDIT_TRAIL", icon: History, desc: "Immutable cryptographic log of all workbench activity for compliance." },
   { title: "CONTROLLED_LEARNING", icon: BookOpen, desc: "Curated, version-locked training paths aligned to actual environment needs." },

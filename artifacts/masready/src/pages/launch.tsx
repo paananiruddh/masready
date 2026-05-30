@@ -27,8 +27,8 @@ export default function Launch() {
               <tr className="border-b border-white/10 bg-background/50">
                 <th className="p-4 font-semibold text-muted-foreground">Feature</th>
                 <th className="p-4 font-bold text-primary text-center">MASReady</th>
-                <th className="p-4 font-semibold text-muted-foreground text-center">Generic PFM</th>
-                <th className="p-4 font-semibold text-muted-foreground text-center">Generic BOM</th>
+                <th className="p-4 font-semibold text-muted-foreground text-center">Generic Project Finance Tool</th>
+                <th className="p-4 font-semibold text-muted-foreground text-center">Generic Reporting Tool</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
@@ -38,7 +38,7 @@ export default function Launch() {
                 "Delivery Intelligence",
                 "Read-Only Safety",
                 "Customisation Scan",
-                "Skill Coverage",
+                "Bot Skill-Pack Coverage",
                 "Audit Trail",
                 "Multi-Tenant"
               ].map((feature, i) => (
