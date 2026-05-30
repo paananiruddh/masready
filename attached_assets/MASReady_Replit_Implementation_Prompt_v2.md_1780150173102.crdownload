@@ -1,0 +1,771 @@
+# MASReady Replit Implementation Prompt — Version 2
+# Repository: paananiruddh/masready
+# Date: May 2026
+
+---
+
+> **INSTRUCTIONS FOR USE:** Copy this entire file and paste it directly into the Replit AI agent prompt field. Do not modify any section headings, file paths, or constant names before pasting. The agent must execute all parts in order.
+
+---
+
+## PRE-FLIGHT SAFETY CHECK (DO THIS FIRST — STOP IF ANY CHECK FAILS)
+
+Before making any changes to any file, perform every one of the following checks. If **any single check fails**, stop immediately and report which check failed and why. Do not proceed.
+
+1. **Repo URL check** — Confirm the repository URL is exactly: `https://github.com/paananiruddh/masready`. Do not operate on `softwarecomparereview/masready` or any other fork.
+2. **Branch check** — Confirm the active branch is `main`. Do not operate on any other branch without explicit user instruction.
+3. **CNAME check** — Confirm the `CNAME` file at the repo root reads exactly: `masready.com.au`. This repository powers the public marketing site at masready.com.au. The CNAME file must not be altered.
+4. **Live demo app separation check** — Confirm that `mas9power.masready.com.au` is a **separate, private Replit deployment** (`replit.com/@aniruddhpan/Maximo-Bro-Bot`). Do not edit that app in this session. Changes to the private live app are out of scope here and must be applied separately.
+5. **Skill-packs directory check** — Confirm `workspace/system/skill-packs/` exists in the repository. **DO NOT RENAME THIS DIRECTORY.** It is the runtime skill module registry. Renaming it will break the live platform.
+6. **Knowledge-base directory check** — Confirm `workspace/system/maximo-knowledge-base/` exists in the repository. **DO NOT RENAME THIS DIRECTORY.** It is the static Markdown knowledge base. Renaming it will break the live platform.
+7. **Single-repo guard** — Confirm you will only edit files inside `paananiruddh/masready` during this session. Do not open, read, or write to any other repository.
+8. **No live API overclaiming** — Do not introduce or restore any copy, UI label, tooltip, schema.org claim, or comment that asserts a live API integration exists unless the corresponding implementation is present and tested in this repository.
+
+---
+
+## PRODUCT STORY CONSTRAINT
+
+> **"The product story is: curated Maximo bot skill packs plus customer-approved evidence produce review-ready delivery intelligence under zero-trust governance. Do NOT rewrite any copy to imply AI replaces the Maximo team."**
+
+Every piece of copy you write or modify must be consistent with this constraint. When in doubt, prefer language that positions MASReady as a **workbench that augments the Maximo delivery team**, not a replacement for it.
+
+---
+
+## PART 1: SKILL COVERAGE CORRECTION — LAYERED BOT MODEL
+
+### 1.1 — Remove all HR/people/team skill wording
+
+Search every file in the repository for the phrases listed below. Remove or replace each occurrence per the rules in sections 1.2 and 1.3. The files where these phrases are most likely to appear are:
+
+- `artifacts/masready/src/pages/features.tsx`
+- `artifacts/masready/src/pages/mas9-power.tsx`
+- `artifacts/masready/src/pages/home.tsx`
+- `artifacts/masready/src/pages/demo-walkthrough.tsx`
+- Any other `.tsx`, `.ts`, `.html`, or `.md` file returned by a case-insensitive search for "skill coverage"
+
+Phrases to remove entirely (zero occurrences permitted in any public-facing file after this change):
+
+- "team skills"
+- "people skills" (when adjacent to skill coverage metrics)
+- "resource gap" (when adjacent to skill coverage metrics)
+- "contractor uplift" (when adjacent to skill coverage metrics)
+- Any sentence that reads as though "82% skill coverage" measures human staffing, team capability, or headcount adequacy
+
+### 1.2 — Exact before/after copy replacements
+
+Apply these substitutions wherever the original text appears, including in JSX strings, template literals, HTML attribute values, and comments:
+
+| Before | After |
+|---|---|
+| `82% skill coverage` | `82% bot skill-pack coverage across Maximo delivery domains (system-defined — base packs)` |
+| `skill coverage` (standalone label or heading) | `Bot Skill-Pack Coverage` |
+| `team skills` | *(remove entirely — do not substitute)* |
+| `people skills` (adjacent to coverage metric) | *(remove entirely — do not substitute)* |
+| `resource gap` (adjacent to coverage metric) | *(remove entirely — do not substitute)* |
+| `contractor uplift` (adjacent to coverage metric) | *(remove entirely — do not substitute)* |
+
+### 1.3 — Update /skills page description
+
+Locate the description string rendered on the `/skills` page (likely in `artifacts/masready/src/pages/skills.tsx` or the corresponding route component). Replace the existing description with:
+
+```
+Shows which Maximo bot skill packs are installed, active, blocked, disabled,
+version-compatible, customer-specific, or feature-gated for this tenant.
+Coverage is measured across Maximo technical, functional, integration, upgrade,
+testing, governance, and customer-specific domains.
+```
+
+### 1.4 — Add 5-layer model explanation to /skills page
+
+Add a collapsible or static section to the `/skills` page (or a `SkillLayerModel` component imported by that page) that explains the five-layer architecture. The rendered text must be:
+
+---
+
+**How Skill Packs Are Organised**
+
+MASReady uses a five-layer model to separate static knowledge from customer-specific evidence:
+
+| Layer | Type | Key | Description |
+|---|---|---|---|
+| Layer 1 | Base Maximo Knowledge Skill Packs | `base_maximo_skill_pack` | Ships with MASReady core. Offline-capable. No customer data required. |
+| Layer 2 | Customer Evidence Packs | `customer_evidence_pack` | Approved evidence inputs. Customer approval mandatory before ingestion. |
+| Layer 3 | Customer-Specific Skill Pack Overlays | `customer_skill_overlay` | Generated from customer evidence. Deployed inside the customer boundary only. |
+| Layer 4 | Runtime Product Skills | `runtime_product_skill` | Generate review-ready outputs from available evidence at runtime. |
+| Layer 5 | Future Skills | `future_skill_pack` | Roadmap only — not yet available. |
+
+---
+
+This table must be visible without authentication (it describes the system model, not customer data). Do not gate it behind any auth check.
+
+### 1.5 — Update DEMO_METRICS constant
+
+Open `artifacts/masready/src/lib/constants.ts`. Locate the `DEMO_METRICS` constant. Find the `skillCoverage` property. Add a comment on the same line or the line immediately above:
+
+```typescript
+// base bot skill-pack coverage; NOT an HR/people measure
+skillCoverage: 82,
+```
+
+Do not change the numeric value. Do not rename the property. Only add the comment.
+
+---
+
+## PART 2: CUSTOMER REFERENCE HYGIENE
+
+### 2.1 — Remove or anonymise customer-identifiable references
+
+Search every file in the public repository for the following strings. For each match found, apply the replacement rules in section 2.2. Zero occurrences of these strings are permitted in any public-facing file after this change.
+
+Strings to remove or anonymise:
+
+- `PFM` — when used as a customer name, product feature label, or tenant reference (not as a generic acronym unrelated to a customer)
+- `BOM` — when referring to Bureau of Meteorology as a customer or tenant
+- `Bureau of Meteorology` — full name, any case
+- `Programmed` — as a company name or employer reference
+- `CITRYROADS` — exact string, any case
+- `aniruddh.panvalkar@programmed.com.au`
+- `vinit@` — any email containing this prefix
+- `cam@` — any email containing this prefix
+- `sushmita@` — any email containing this prefix
+- `ryan@bom.gov.au`
+- Any `@bom.gov.au` email domain
+- Any `@programmed.com.au` email domain
+- Real road names, tunnel names, bridge names, or tolling-point names that identify an actual customer's asset network
+- Real site names or depot names that identify an actual customer's operational locations
+- IPv4 or IPv6 addresses in any demo data, seed data, or fixture file
+
+### 2.2 — Generic infrastructure replacement labels
+
+When replacing customer-identifiable asset names, site names, or process names, use labels from this approved list. Choose the label that best matches the original context:
+
+- `roadside technology asset`
+- `tunnel services asset`
+- `civil structure asset`
+- `tolling interface`
+- `field maintenance workflow`
+- `incident response process`
+- `preventive maintenance route`
+- `integration endpoint`
+- `asset corridor`
+- `maintenance zone`
+- `demo-tenant` (for tenant IDs)
+- `demo-user@masready.example` (for email addresses)
+- `192.0.2.x` (RFC 5737 documentation range, for IP addresses)
+
+### 2.3 — Seed data files to review
+
+Review every file in `seed-data/mas9-power/`. For each file, perform a full-text search for every string listed in section 2.1. Replace any match found using the labels in section 2.2.
+
+The files expected in this directory (verify each exists and check it):
+
+1. `seed-data/mas9-power/assets.json`
+2. `seed-data/mas9-power/work-orders.json`
+3. `seed-data/mas9-power/locations.json`
+4. `seed-data/mas9-power/persons.json`
+5. `seed-data/mas9-power/labour.json`
+6. `seed-data/mas9-power/inventory.json`
+7. `seed-data/mas9-power/po.json`
+8. `seed-data/mas9-power/pr.json`
+9. `seed-data/mas9-power/invoice.json`
+10. `seed-data/mas9-power/contracts.json`
+11. `seed-data/mas9-power/vendors.json`
+12. `seed-data/mas9-power/classifications.json`
+13. `seed-data/mas9-power/failure-codes.json`
+14. `seed-data/mas9-power/routes.json`
+15. `seed-data/mas9-power/pm-records.json`
+16. `seed-data/mas9-power/meters.json`
+17. `seed-data/mas9-power/domains.json`
+18. `seed-data/mas9-power/groups.json`
+19. `seed-data/mas9-power/users.json`
+20. `seed-data/mas9-power/sites.json`
+21. `seed-data/mas9-power/organzations.json`
+22. `seed-data/mas9-power/integration-channels.json`
+23. `seed-data/mas9-power/audit-events.json`
+
+If a file listed here does not exist, note it in your change report but do not create it. If additional files exist in that directory beyond this list, check them as well.
+
+### 2.4 — Transurban retention rule
+
+The name `Transurban` may be retained **only** in files that are:
+- Explicitly named or marked as private Transurban proposal documents
+- Located in a directory that is not served by the public marketing site
+
+`Transurban` must not appear in any public marketing copy, demo data, seed data, or UI component. If `Transurban` appears in a file that does not meet both conditions above, replace it with `Major Infrastructure Operator (anonymised)`.
+
+---
+
+## PART 3: DEMO-DATA BANNERS
+
+### 3.1 — Create DemoBanner component
+
+Create a new file at `artifacts/masready/src/components/DemoBanner.tsx` with the following implementation:
+
+```typescript
+import React from 'react';
+
+type DemoBannerVariant = 'seed-data' | 'planning';
+
+interface DemoBannerProps {
+  variant: DemoBannerVariant;
+}
+
+const MESSAGES: Record<DemoBannerVariant, string> = {
+  'seed-data':
+    'DEMO DATA — All values are fictional and for demonstration only. ' +
+    'No real customer, operational, or system data is used.',
+  planning:
+    'PLANNING VISIBILITY ONLY — Licence figures are for planning purposes only. ' +
+    'Not IBM-certified or contractual advice.',
+};
+
+const STYLES: Record<DemoBannerVariant, React.CSSProperties> = {
+  'seed-data': {
+    backgroundColor: '#1d4ed8',
+    color: '#ffffff',
+    padding: '8px 16px',
+    textAlign: 'center',
+    fontSize: '0.875rem',
+    fontWeight: 600,
+    letterSpacing: '0.01em',
+    width: '100%',
+  },
+  planning: {
+    backgroundColor: '#d97706',
+    color: '#ffffff',
+    padding: '8px 16px',
+    textAlign: 'center',
+    fontSize: '0.875rem',
+    fontWeight: 600,
+    letterSpacing: '0.01em',
+    width: '100%',
+  },
+};
+
+export function DemoBanner({ variant }: DemoBannerProps) {
+  return (
+    <div style={STYLES[variant]} role="status" aria-live="polite">
+      {MESSAGES[variant]}
+    </div>
+  );
+}
+
+export default DemoBanner;
+```
+
+Do not use Tailwind class names for this component — use inline styles so it renders correctly regardless of whether the Tailwind build has processed the class.
+
+### 3.2 — Apply blue DemoBanner to seeded-data pages
+
+Import `DemoBanner` and render `<DemoBanner variant="seed-data" />` as the **first child inside the page root element** (before any heading or content) on these routes:
+
+- `artifacts/masready/src/pages/mas9-power.tsx` → route `/mas9-power`
+- `artifacts/masready/src/pages/maximo-inventory.tsx` → route `/maximo-inventory`
+- `artifacts/masready/src/pages/patch-impact.tsx` → route `/patch-impact`
+- `artifacts/masready/src/pages/license-report.tsx` → route `/license-report`
+- `artifacts/masready/src/pages/delivery-intelligence.tsx` → route `/delivery-intelligence`
+- `artifacts/masready/src/pages/drift.tsx` → route `/drift`
+- `artifacts/masready/src/pages/skills.tsx` → route `/skills` (banner applies to seeded demo values only, not the system-defined base pack list — add a note in the banner or below it: "System-defined skill pack metadata above is not demo data.")
+- `artifacts/masready/src/pages/simulator.tsx` → route `/simulator`
+
+### 3.3 — Apply amber DemoBanner to /license-report
+
+On `artifacts/masready/src/pages/license-report.tsx`, add **both** banners — blue first, then amber, in that order:
+
+```tsx
+<DemoBanner variant="seed-data" />
+<DemoBanner variant="planning" />
+```
+
+---
+
+## PART 4: ROUTE FIXES
+
+### 4.1 — Fix broken routes in demo-walkthrough.html
+
+Open `demo-walkthrough.html`. Find every `href`, `data-href`, `data-route`, or anchor reference matching the following stale routes and replace them:
+
+| Broken route | Correct route |
+|---|---|
+| `/demo-status` | `/demo-status` *(create this page — see 4.2)* |
+| `/requirement-uploads` | `/req-uploads` |
+| `/maximo-fingerprint` | `/maximo-inventory` |
+| `/license-reporting` | `/license-report` |
+
+After replacement, verify that every route referenced in `demo-walkthrough.html` corresponds to an actual page component registered in the router. List any that remain unresolved in your change report.
+
+### 4.2 — Create /demo-status page
+
+Create `artifacts/masready/src/pages/demo-status.tsx`. This page must:
+
+- Display `<DemoBanner variant="seed-data" />` at the top
+- Show the **current demo tenant profile**: "Fictional tenant — Maximo 7.6.1.3 → MAS 9.x upgrade planning scenario"
+- Show **seed data summary counts** (read from `DEMO_METRICS` in `artifacts/masready/src/lib/constants.ts` — do not hardcode values inline)
+- Show **12-scene walkthrough status** — a numbered list of the 12 demo walkthrough scenes with their route, title, and a status indicator (use a static list; do not fetch from an external API)
+- List **routes that require authentication** with a note: "Auth required — sign in to view"
+- Include a `<DemoBanner variant="seed-data" />` reminder at the bottom of the page as well
+
+Register this page in the router alongside the other page routes.
+
+### 4.3 — Fix architecture.html
+
+Open `architecture.html`. Make the following changes:
+
+1. **Add Mermaid.js CDN** — Insert the following `<script>` tag in the `<head>` section, immediately before the closing `</head>` tag:
+   ```html
+   <script type="module">
+     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+     mermaid.initialize({ startOnLoad: true });
+   </script>
+   ```
+
+2. **Replace diagram containers** — Replace every instance of:
+   ```html
+   <pre class="diagram">
+   ```
+   with:
+   ```html
+   <pre class="mermaid">
+   ```
+   Do not change the diagram content inside the `<pre>` tags at this step — only change the class attribute.
+
+3. **Replace hardcoded tenant reference in diagrams** — Inside every `<pre class="mermaid">` block, replace every occurrence of the string `MAS9_POWER` with `{{tenant_id}}`. This ensures no real tenant ID is hard-coded in a public-facing file. Add an HTML comment before the first diagram block:
+   ```html
+   <!-- tenant_id is injected at runtime; MAS9_POWER is a demo placeholder only -->
+   ```
+
+---
+
+## PART 5: SECURITY FIXES (Public Repo Stubs)
+
+> **Important:** The fixes in this section are **stubs for the public repository only**. The real, enforced security fix must be applied separately to the private live application at `replit.com/@aniruddhpan/Maximo-Bro-Bot`. This prompt does not touch that deployment. See Part 10, item 1 for the full risk statement.
+
+### 5.1 — Create requireAuth middleware stub
+
+Create `artifacts/api-server/src/middlewares/requireAuth.ts` with the following content:
+
+```typescript
+import { Request, Response, NextFunction } from 'express';
+
+/**
+ * requirePlatformAdmin
+ *
+ * Middleware stub for the public repository.
+ * Returns HTTP 401 if no valid platform-admin session token is present in the
+ * request headers or session store.
+ *
+ * REAL P0 FIX: The production implementation of this middleware must be applied
+ * to the live application at replit.com/@aniruddhpan/Maximo-Bro-Bot separately
+ * from this public repo deployment. This stub enforces the correct interface so
+ * that the router wiring is production-ready when deployed.
+ */
+export function requirePlatformAdmin(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void {
+  const token =
+    req.headers['x-platform-admin-token'] ||
+    (req.session as Record<string, unknown> | undefined)?.adminToken;
+
+  if (!token) {
+    res.status(401).json({
+      error: 'Unauthorized',
+      message: 'Platform admin authentication required.',
+    });
+    return;
+  }
+
+  // In the live app, validate token against the session store here.
+  // In this public stub, any non-empty token value passes for local development only.
+  next();
+}
+```
+
+Do not add the actual token validation logic in the public repo. The comment in the file must make the stub nature explicit.
+
+### 5.2 — Gate /api/audit route
+
+Open `artifacts/api-server/src/routes/index.ts`. Find the route handler for `/api/audit`. Apply `requirePlatformAdmin` as the first middleware argument before the existing handler:
+
+```typescript
+// REAL P0 FIX: Apply this middleware to the live app /api/audit route
+// at replit.com/@aniruddhpan/Maximo-Bro-Bot as a matter of urgency.
+// Unauthenticated access to audit logs exposes real PII and tenant data.
+router.get('/api/audit', requirePlatformAdmin, auditHandler);
+```
+
+Import `requirePlatformAdmin` from `../middlewares/requireAuth` at the top of the file.
+
+If the audit route uses `router.use` or is registered differently, apply the same middleware pattern in the appropriate location. Document the exact change made in your change report.
+
+### 5.3 — Gate /api/customers list behind platform-admin auth
+
+Create `artifacts/api-server/src/routes/customers.ts` with the following content:
+
+```typescript
+import { Router } from 'express';
+import { requirePlatformAdmin } from '../middlewares/requireAuth';
+
+const router = Router();
+
+/**
+ * GET /api/customers
+ *
+ * Returns the list of registered tenants.
+ * GATED: Platform admin authentication required.
+ * Unauthenticated tenant enumeration is a P0 security issue.
+ *
+ * REAL P0 FIX: The live implementation at replit.com/@aniruddhpan/Maximo-Bro-Bot
+ * must also gate this endpoint before this stub is considered resolved.
+ */
+router.get('/api/customers', requirePlatformAdmin, (req, res) => {
+  // In production: return tenant list from the platform database.
+  // In the public repo stub: return an empty list to prevent enumeration.
+  res.json({ customers: [], note: 'Stub — live data available in authenticated admin console only.' });
+});
+
+export default router;
+```
+
+Additionally, locate any route or handler for `/api/domain-context`. Modify it so that it returns **only the current tenant context** for the authenticated request — not a list of all tenants. Add a comment:
+
+```typescript
+// /api/domain-context returns single-tenant context only.
+// It must NOT enumerate all tenants. Tenant list is restricted to /api/customers (admin-gated).
+```
+
+Register the `customers` router in the main Express app entry point.
+
+---
+
+## PART 6: COPY AND CONTENT FIXES
+
+### 6.1 — Standardise brand naming across all static HTML files
+
+Open each of the 10 static HTML files in the repository root and in the `artifacts/` directory. For each file, replace:
+
+| Replace | With |
+|---|---|
+| `Software Compare Review` | `MASReady — Maximo Delivery Automation Workbench` |
+| `Maximo Bro Bot` (in any title, heading, meta tag, or footer) | `MASReady — Maximo Delivery Automation Workbench` |
+
+Apply replacements in: `<title>`, `<meta name="application-name">`, `<meta property="og:site_name">`, `<h1>`, `<h2>`, `<footer>`, schema.org `"name"` fields, and any visible heading or label.
+
+Do not rename the Replit project or any file — only change the visible copy strings.
+
+### 6.2 — Update scenario labelling
+
+On `artifacts/masready/src/pages/mas9-power.tsx` and any other page that displays the upgrade scenario label, find any text that implies the customer is **currently running MAS 9** and replace it with the correct planning-stage framing:
+
+| Before | After |
+|---|---|
+| "Currently on MAS 9" | "Currently running Maximo 7.6.1.3 → Planning for MAS 9.x upgrade" |
+| "Live on MAS 9" | "Currently running Maximo 7.6.1.3 → Planning for MAS 9.x upgrade" |
+| "MAS 9 environment" (as a current state) | "Planned MAS 9.x target environment" |
+| "Upgraded to MAS 9" | "Upgrade target: MAS 9.x (planning stage)" |
+
+### 6.3 — Fix Google Search Console token
+
+In all 10 static HTML files, find:
+
+```
+REPLACE_WITH_GOOGLE_SEARCH_CONSOLE_TOKEN
+```
+
+Replace with:
+
+```
+bQVxkYSSkx4lEeF_SR7dpgW3XisUnvywslkSK-GghnI
+```
+
+This value must appear in the `content` attribute of:
+
+```html
+<meta name="google-site-verification" content="bQVxkYSSkx4lEeF_SR7dpgW3XisUnvywslkSK-GghnI" />
+```
+
+Verify the tag is present in the `<head>` of every static HTML file. Add it if it is missing.
+
+### 6.4 — Fix demo walkthrough copy for broken steps
+
+Open `demo-walkthrough.html` and `artifacts/masready/src/pages/demo-walkthrough.tsx`. Find the steps listed below and apply the copy corrections:
+
+**Delivery Intelligence step:**
+- Change the route reference from any broken path to `/delivery-intelligence`
+- Ensure the step description says: "Review bot-generated delivery intelligence reports — evidence-backed, not AI-speculative."
+
+**Trust Center step:**
+- Change the description to: "Review the zero-trust governance log. All evidence ingestion events, approval actions, and export events are recorded here."
+
+**Integration Settings step:**
+- Change the description to: "Configure third-party integrations. Note: Jira is currently Unconfigured — required environment variables are not set. IBM Maximo API connection depends on tenant API mode configuration."
+
+**Fingerprint step (Maximo Inventory):**
+- Change any reference to `/maximo-fingerprint` to `/maximo-inventory`
+- Change the step label from "Maximo Fingerprint" to "Maximo Inventory & Fingerprint"
+- Change the description to: "Review the detected Maximo configuration fingerprint — version, installed products, and configuration baseline."
+
+### 6.5 — Add persona section to home.tsx
+
+In `artifacts/masready/src/pages/home.tsx`, add a new section with the heading **"Built for your team"** after the existing feature highlights and before the footer/CTA section. The section must include one card or list entry for each of the following six roles:
+
+---
+
+**Delivery Manager**
+*"How confident am I in this delivery? What evidence do I have?"*
+MASReady aggregates bot-generated delivery intelligence into a single review-ready view — so you can walk into a steering committee with evidence, not estimates.
+
+---
+
+**Maximo Administrator**
+*"Which parts of the Maximo configuration have we actually validated?"*
+MASReady maps installed bot skill packs against your Maximo configuration fingerprint, showing exactly what has been assessed and what hasn't.
+
+---
+
+**Solution Architect**
+*"Where are the integration gaps between our current Maximo and the MAS 9 target?"*
+MASReady's layered skill-pack model cross-references your as-is configuration against the upgrade target, surfacing gaps the bot has evidence for and flagging what still needs assessment.
+
+---
+
+**Security / Governance Lead**
+*"Can I prove that no unapproved data left the customer boundary?"*
+MASReady's zero-trust governance log records every evidence ingestion event, approval action, and export — providing an auditable chain of custody.
+
+---
+
+**Business Analyst**
+*"What Maximo functional areas are covered by the current delivery scope?"*
+MASReady skill-pack coverage maps directly to Maximo functional domains — so scope decisions are grounded in what the bot has actually assessed.
+
+---
+
+**IT Asset Manager**
+*"What is our licence exposure going into the MAS 9 upgrade?"*
+MASReady's licence planning view surfaces Maximo licence consumption patterns from available evidence — for planning purposes, not IBM-certified advice.
+
+---
+
+Each card must use bot-capability framing, not people-skills framing. Do not use phrases like "your team's skill level" or "staff capability" in this section.
+
+### 6.6 — Add "Two paths in. Same intelligence out." to features.tsx
+
+In `artifacts/masready/src/pages/features.tsx`, add a new section with the heading **"Two paths in. Same intelligence out."** Place it in a logical position within the page (after the core feature list, before any pricing or CTA section).
+
+The section content must be:
+
+---
+
+**API Mode**
+MASReady connects directly to the IBM Maximo API using tenant credentials. Bot skill packs query live Maximo data to generate review-ready outputs in real time. Requires Maximo API access and configured environment variables.
+
+**Extract Mode**
+For environments where live API access is not available or approved, MASReady accepts structured data extracts. The same bot skill packs run against the extract, producing equivalent review-ready outputs. No live Maximo connection required.
+
+Both modes produce the same delivery intelligence outputs. The difference is the data path — not the quality of the assessment.
+
+---
+
+Do not claim that both modes are currently fully implemented in the live application unless you can verify that in the codebase. If only one mode is implemented, say: "API Mode is available today. Extract Mode is on the roadmap."
+
+---
+
+## PART 7: SEO AND METADATA
+
+Apply the following changes to all 10 static HTML files in the repository:
+
+### Title format
+
+Change every `<title>` tag to follow this format:
+
+```
+MASReady — [Page Name] | Maximo Delivery Automation Workbench
+```
+
+Where `[Page Name]` is the specific name of that page (e.g., "Features", "Architecture", "Demo Walkthrough", "Skills", "Licence Report", "Home"). The home page title should be:
+
+```
+MASReady — Maximo Delivery Automation Workbench
+```
+
+(No page name qualifier for the root index page.)
+
+### Author meta tag
+
+Ensure every static HTML file has:
+
+```html
+<meta name="author" content="MASReady" />
+```
+
+Add it if it is missing. Replace any other author value.
+
+### Schema.org JSON-LD
+
+In every static HTML file that contains a `<script type="application/ld+json">` block, find the `"name"` field within `"@type": "Organization"` and replace its value with `"MASReady"`. Replace the `"url"` field with `"https://masready.com.au"`. Replace any placeholder organisation names.
+
+Example of the corrected block:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "MASReady",
+  "url": "https://masready.com.au",
+  "description": "Maximo Delivery Automation Workbench — curated bot skill packs and customer-approved evidence for review-ready delivery intelligence."
+}
+```
+
+---
+
+## PART 8: ACCEPTANCE CRITERIA
+
+The implementation is complete only when every criterion below is met. Each criterion is a **hard pass/fail** — no partial credit.
+
+| # | Criterion | Pass Condition |
+|---|---|---|
+| 1 | Skill Coverage framing | The phrase "Skill Coverage" appears nowhere in a people, HR, or team-staffing context in any public-facing file. |
+| 2 | Bot skill-pack framing | Every occurrence of "skill coverage" as a metric uses the approved bot skill-pack framing from section 1.2. |
+| 3 | 5-layer model | The five-layer model table from section 1.4 is rendered on the `/skills` page or an imported component. |
+| 4 | Customer reference removal | PFM, BOM, Bureau of Meteorology, Programmed, CITRYROADS, and all real customer emails are absent from all public files. |
+| 5 | Asset/site name removal | Real road names, tunnel names, asset names, and site names are absent from all demo and seed data files. |
+| 6 | DemoBanner on seeded pages | `<DemoBanner variant="seed-data" />` renders as the first visible element on every page listed in section 3.2. |
+| 7 | Amber licence banner | `<DemoBanner variant="planning" />` renders on `/license-report` in addition to the blue banner. |
+| 8 | Audit route auth | `/api/audit` is behind `requirePlatformAdmin` in the public repo router. The P0 comment referencing the live app is present. |
+| 9 | Customer list auth | `/api/customers` list is behind `requirePlatformAdmin`. `/api/domain-context` returns single-tenant context only. |
+| 10 | Broken routes fixed | Every route referenced in `demo-walkthrough.html` resolves to an existing page component. |
+| 11 | Mermaid diagrams | `architecture.html` loads the Mermaid.js CDN and all `<pre class="diagram">` blocks have been changed to `<pre class="mermaid">`. |
+| 12 | Google Search Console token | The correct verification token is present in the `<head>` of all 10 static HTML files. |
+| 13 | Brand naming | `Software Compare Review` and `Maximo Bro Bot` appear nowhere in any title, heading, footer, or meta tag. All replaced with `MASReady — Maximo Delivery Automation Workbench`. |
+| 14 | Upgrade scenario labelling | No page implies the customer is currently running MAS 9. All scenario labels read "Maximo 7.6.1.3 → MAS 9.x upgrade path". |
+| 15 | Licence planning disclaimer | Licence figures are labelled "planning visibility only" and explicitly disclaimed as non-IBM-certified. |
+| 16 | Regression test framing | Any reference to automated regression test generation says "roadmap" or "planned", not "available today", unless verified in the codebase. |
+| 17 | TypeScript typecheck | `pnpm run typecheck` exits with zero errors. |
+| 18 | Production build | `pnpm run build` exits with zero errors and zero warnings that would block deployment. |
+
+---
+
+## PART 9: MANUAL QA CHECKLIST (POST-IMPLEMENTATION)
+
+After all automated checks pass, perform these manual QA steps. Record pass or fail for each.
+
+1. **`/` (Home)** — Open `https://masready.com.au`. Confirm the page title reads "MASReady — Maximo Delivery Automation Workbench". Confirm "Built for your team" section is visible with all six role cards. Confirm no reference to "Software Compare Review" or "Maximo Bro Bot" in any visible text.
+
+2. **`/features`** — Open `/features`. Confirm "Two paths in. Same intelligence out." section is present. Confirm "API Mode" and "Extract Mode" are described. Confirm no people-skills framing adjacent to any coverage metric.
+
+3. **`/skills`** — Open `/skills`. Confirm blue DemoBanner is the first visible element (for seeded values). Confirm the five-layer model table is present. Confirm the page description matches the text from section 1.3 exactly.
+
+4. **`/mas9-power`** — Open `/mas9-power`. Confirm blue DemoBanner is the first visible element. Confirm the upgrade scenario label reads "Currently running Maximo 7.6.1.3 → Planning for MAS 9.x upgrade". Confirm no "PFM", "BOM", "Programmed", or "CITRYROADS" strings are visible.
+
+5. **`/license-report`** — Open `/license-report`. Confirm the blue DemoBanner appears first, followed immediately by the amber DemoBanner. Confirm both banners are visible before any chart or data table.
+
+6. **`/delivery-intelligence`** — Open `/delivery-intelligence`. Confirm blue DemoBanner is present. Confirm no claim of live AI generation without an implementation.
+
+7. **`/maximo-inventory`** — Open `/maximo-inventory`. Confirm blue DemoBanner is present. Confirm no reference to `/maximo-fingerprint` in any link or label on the page.
+
+8. **`/demo-status`** — Open `/demo-status`. Confirm the page loads without error. Confirm the demo tenant profile reads "Fictional tenant — Maximo 7.6.1.3 → MAS 9.x upgrade planning scenario". Confirm the 12-scene walkthrough list is present.
+
+9. **`demo-walkthrough.html`** — Open the file in a browser. Click through every navigation link. Confirm no link navigates to `/requirement-uploads`, `/maximo-fingerprint`, or `/license-reporting`. Confirm all links resolve to real routes.
+
+10. **`architecture.html`** — Open the file in a browser. Confirm Mermaid diagrams render as actual diagrams (not raw text). Confirm no `MAS9_POWER` string is visible in any rendered diagram. Confirm no `<pre class="diagram">` elements remain in the DOM.
+
+11. **`/drift`** — Open `/drift`. Confirm blue DemoBanner is present. Confirm no real customer asset names are visible in demo data.
+
+12. **`/patch-impact`** — Open `/patch-impact`. Confirm blue DemoBanner is present.
+
+13. **`/simulator`** — Open `/simulator`. Confirm blue DemoBanner is present.
+
+14. **API security — `/api/audit`** — Make an unauthenticated GET request to `/api/audit` (using `curl` or browser dev tools). Confirm the response is HTTP 401 with `{"error":"Unauthorized"}`. Confirm the response does not contain any audit log entries.
+
+15. **API security — `/api/customers`** — Make an unauthenticated GET request to `/api/customers`. Confirm the response is HTTP 401. Confirm no tenant names or IDs are returned.
+
+16. **API security — `/api/domain-context`** — Make an authenticated request for one tenant. Confirm the response contains context for only that tenant, not a list of all tenants.
+
+17. **Seed data hygiene** — Open `seed-data/mas9-power/users.json` and `seed-data/mas9-power/audit-events.json` in a text editor. Confirm no real email addresses, real IP addresses, or customer-identifiable strings are present.
+
+18. **Google Search Console** — Open the `<head>` source of `index.html` (or the root static HTML file). Confirm the meta tag `<meta name="google-site-verification" content="bQVxkYSSkx4lEeF_SR7dpgW3XisUnvywslkSK-GghnI" />` is present.
+
+19. **Brand naming in static HTML** — Open `demo-walkthrough.html` and `architecture.html` in a text editor. Search for `Software Compare Review` and `Maximo Bro Bot`. Confirm zero results.
+
+20. **TypeScript build** — In the Replit shell, run `pnpm run typecheck && pnpm run build`. Confirm both commands exit with code 0. Confirm no TypeScript errors are printed. Confirm the build output directory is populated.
+
+---
+
+## PART 10: REMAINING RISKS AND UNRESOLVED ITEMS
+
+The following items are **not resolved by this prompt**. They require separate action on the private live application or are blocked pending external input. Record these in your post-implementation report.
+
+1. **P0 — Live app auth gap (CRITICAL):** The `requirePlatformAdmin` middleware created in section 5.1 is a public-repo stub only. The unauthenticated `/api/audit` and `/api/customers` endpoints on the **live private app** at `replit.com/@aniruddhpan/Maximo-Bro-Bot` remain exposed until that deployment is separately patched. This is the highest-priority unresolved security issue.
+
+2. **P0 — Real PII in live audit log:** Until the live app is patched, the `/api/audit` endpoint on `mas9power.masready.com.au` exposes real user activity, real tenant identifiers, and potentially real PII. This cannot be fixed by changes to the public repo.
+
+3. **P1 — Real customer tenants visible in live platform-admin view:** Bureau of Meteorology, and any other real customer tenants, remain visible in the live platform-admin tenant list until the private app is patched and live data is sanitised or migrated.
+
+4. **P2 — "Assetize" internal brand in live app audit log messages:** Audit log messages in the live app may reference the internal brand name. These must be updated in the private app deployment separately.
+
+5. **P2 — "Maximo Bro Bot" title in live app UI:** The live application at `mas9power.masready.com.au` may still display "Maximo Bro Bot" in the browser title, navigation, or footer. This requires a separate deployment update to the private Replit app.
+
+6. **P2 — `aseeti-theme` localStorage key in live app:** The live app uses a localStorage key that may expose an internal brand codename. This requires a migration in the private app (with a localStorage key migration to avoid breaking existing sessions).
+
+7. **P3 — Mermaid diagram syntax validation:** After replacing `<pre class="diagram">` with `<pre class="mermaid">`, each diagram's content must be validated against Mermaid syntax. Invalid syntax will cause diagrams to fail silently. Validate each diagram manually in the Mermaid Live Editor (`https://mermaid.live`) after replacement.
+
+8. **P3 — Customer evidence ingestion pipeline (Layer 2/3) not yet built:** The five-layer model documented in section 1.4 describes Layer 2 (Customer Evidence Packs) and Layer 3 (Customer-Specific Skill Pack Overlays) as functional layers. The ingestion pipeline that accepts, approves, and deploys these layers is not yet present in either the public repo or the private live app.
+
+9. **P3 — Evidence pack generator routes exist but generator code is absent:** Route stubs for evidence pack generation exist in the codebase, but the generator implementation is not visible in the public repo. These routes should return `501 Not Implemented` until the generator is built.
+
+10. **P4 — Report and runbook generation is roadmap:** Any UI element or copy that implies automated runbook or report generation is available today should be updated to say "planned" or "roadmap". The routes exist; the generator is future work.
+
+---
+
+## PART 11: FILES EXPECTED TO CHANGE
+
+The following files are expected to be created or modified by this implementation. Record any additional files changed in your post-implementation report.
+
+**New files (created):**
+
+| File | Purpose |
+|---|---|
+| `artifacts/masready/src/components/DemoBanner.tsx` | New DemoBanner component (blue/amber variants) |
+| `artifacts/masready/src/pages/demo-status.tsx` | New /demo-status page |
+| `artifacts/api-server/src/middlewares/requireAuth.ts` | New requirePlatformAdmin middleware stub |
+| `artifacts/api-server/src/routes/customers.ts` | New gated /api/customers route |
+
+**Modified files (existing):**
+
+| File | Change summary |
+|---|---|
+| `artifacts/masready/src/pages/features.tsx` | Remove people-skills framing; add "Two paths in." section |
+| `artifacts/masready/src/pages/mas9-power.tsx` | Remove customer refs; fix scenario label; add DemoBanner |
+| `artifacts/masready/src/pages/home.tsx` | Remove people-skills framing; add persona section |
+| `artifacts/masready/src/pages/demo-walkthrough.tsx` | Fix step copy for broken routes |
+| `artifacts/masready/src/pages/skills.tsx` | Update description; add 5-layer model; add DemoBanner |
+| `artifacts/masready/src/pages/maximo-inventory.tsx` | Add DemoBanner; remove customer refs |
+| `artifacts/masready/src/pages/patch-impact.tsx` | Add DemoBanner; remove customer refs |
+| `artifacts/masready/src/pages/license-report.tsx` | Add both DemoBanners; remove customer refs |
+| `artifacts/masready/src/pages/delivery-intelligence.tsx` | Add DemoBanner; fix route reference |
+| `artifacts/masready/src/pages/drift.tsx` | Add DemoBanner; remove customer refs |
+| `artifacts/masready/src/pages/simulator.tsx` | Add DemoBanner |
+| `artifacts/masready/src/lib/constants.ts` | Add comment to skillCoverage in DEMO_METRICS |
+| `artifacts/api-server/src/routes/index.ts` | Gate /api/audit with requirePlatformAdmin |
+| `demo-walkthrough.html` | Fix broken route hrefs; fix step copy; fix brand naming |
+| `architecture.html` | Add Mermaid CDN; replace diagram class; remove MAS9_POWER tenant ref |
+| `seed-data/mas9-power/*.json` (up to 23 files) | Remove customer-identifiable references |
+| All 10 static HTML files | Fix brand naming; fix title format; fix author meta; fix schema.org; set Google Search Console token |
+
+---
+
+## FINAL INSTRUCTION
+
+After all parts are implemented:
+
+```
+Run pnpm run typecheck && pnpm run build. If any errors, fix them before completing. Report all changed files and any unresolved items.
+```
+
+Include in your final report:
+- A complete list of every file changed, with a one-line description of what changed
+- Any acceptance criteria from Part 8 that could not be met, with the reason
+- Any unresolved items from Part 10 that were partially addressed by this implementation
+- Any files in `seed-data/mas9-power/` that were found to contain customer-identifiable references (list the string found and the replacement made)
+- Confirmation that `workspace/system/skill-packs/` and `workspace/system/maximo-knowledge-base/` were not renamed or deleted
