@@ -40,6 +40,7 @@ import Design3Contact from "@/pages/design3/contact";
 import Simulator from "@/pages/simulator";
 import Compare from "@/pages/compare";
 import DemoStatus from "@/pages/demo-status";
+import DataModes from "@/pages/data-modes";
 import Skills from "@/pages/skills";
 import MaximoInventory from "@/pages/maximo-inventory";
 import PatchImpact from "@/pages/patch-impact";
@@ -101,6 +102,7 @@ function Design1Router() {
         <Route path="/simulator" component={Simulator} />
         <Route path="/compare" component={Compare} />
         <Route path="/demo-status" component={DemoStatus} />
+        <Route path="/data-modes" component={DataModes} />
         <Route path="/skills" component={Skills} />
         <Route path="/maximo-inventory" component={MaximoInventory} />
         <Route path="/patch-impact" component={PatchImpact} />

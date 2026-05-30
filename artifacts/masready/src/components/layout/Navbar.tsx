@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/mas9-power", label: "MAS9 Power Demo" },
   { href: "/features", label: "Features" },
+  { href: "/data-modes", label: "Data Modes" },
   { href: "/trust", label: "Trust Center" },
   { href: "/architecture", label: "Architecture" },
   { href: "/media", label: "Media" },
