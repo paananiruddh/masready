@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="author" content="MASReady"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="google-site-verification" content="bQVxkYSSkx4lEeF_SR7dpgW3XisUnvywslkSK-GghnI"/>
+  <title>Data Modes | Maximo Delivery Automation Workbench</title>
+  <meta name="description" content="Choose the data handling model that fits your security, infrastructure, and retention requirements — Customer Hosted, Assetize Managed, BYO Storage, or Zero Retention."/>
+  <link rel="canonical" href="https://masready.com.au/data-modes.html"/>
+  <meta property="og:title" content="Data Modes | Maximo Delivery Automation Workbench"/>
+  <meta property="og:description" content="Choose the data handling model that fits your security, infrastructure, and retention requirements."/>
+  <meta property="og:url" content="https://masready.com.au/data-modes.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://masready.com.au/assets/og/masready-og.svg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Data Modes | Maximo Delivery Automation Workbench"/>
+  <meta name="twitter:description" content="Choose the data handling model that fits your security, infrastructure, and retention requirements."/>
+  <meta name="twitter:image" content="https://masready.com.au/assets/og/masready-og.svg"/>
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg"/>
+  <link rel="manifest" href="manifest.webmanifest"/>
+  <link rel="stylesheet" href="assets/css/site.css"/>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="nav-inner container">
+    <a class="brand" href="index.html"><span class="logo">M</span><span>Maximo Delivery<br/><span class="muted" style="font-weight:650;font-size:12px">Automation Workbench</span></span></a>
+    <button class="mobile-toggle" data-mobile-toggle aria-label="Toggle navigation">Menu</button>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="mas9-power.html">MAS9 Power</a>
+      <a href="features.html">Features</a>
+      <a href="data-modes.html" class="active">Data Modes</a>
+      <a href="trust.html">Trust</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="media.html">Media</a>
+      <a href="demo-walkthrough.html">Walkthrough</a>
+      <a href="launch.html">Launch</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Platform configuration</span>
+      <h1 class="h1">Choose the data model that fits your environment.</h1>
+      <p class="lead">Every deployment is different. MASReady supports four data handling models so your team can match security, infrastructure, and retention requirements without compromise.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid two">
+        <article class="card">
+          <div class="feature-icon">🏢</div>
+          <h2 class="h3">Customer Hosted</h2>
+          <p>Customer controls the full deployment environment. All platform components run within customer-owned infrastructure. Data never leaves the customer's perimeter.</p>
+          <p class="muted"><strong>Maximum control. Zero external dependency.</strong></p>
+        </article>
+
+        <article class="card">
+          <div class="feature-icon">☁️</div>
+          <h2 class="h3">Assetize Managed</h2>
+          <p>Assetize hosts and manages the platform on behalf of the customer. Governed data retention policies apply. Suitable for teams that prefer managed infrastructure without internal ops overhead.</p>
+          <p class="muted"><strong>Managed hosting with governed retention boundaries.</strong></p>
+        </article>
+
+        <article class="card">
+          <div class="feature-icon">🪣</div>
+          <h2 class="h3">BYO Storage</h2>
+          <p>Customer brings their own S3-compatible storage bucket. Assetize writes artefacts exclusively to the customer-owned bucket. No data stored in Assetize-managed storage.</p>
+          <p class="muted"><strong>Your bucket, your keys, your terms.</strong></p>
+        </article>
+
+        <article class="card" style="position:relative">
+          <span class="badge" style="position:absolute;top:20px;right:20px">Zero Retention</span>
+          <div class="feature-icon">🔒</div>
+          <h2 class="h3">Zero Retention <span class="badge" style="position:static;vertical-align:middle;margin-left:6px">Runtime Module</span></h2>
+          <p>No data is stored by Assetize at any point. All processing occurs in-memory only. Customer data is never written to disk, logged, or persisted across sessions.</p>
+          <p class="muted"><strong>In-memory only. No persistence. No exceptions.</strong></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <h2 class="h2" style="margin-bottom:8px">Mode comparison</h2>
+      <p class="muted" style="margin-bottom:0">At a glance — data residency, retention, and operational responsibilities across all four modes.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table" aria-label="Data mode comparison">
+          <thead>
+            <tr>
+              <th scope="col">Capability</th>
+              <th scope="col">Customer Hosted</th>
+              <th scope="col">Assetize Managed</th>
+              <th scope="col">BYO Storage</th>
+              <th scope="col">Zero Retention</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Data stays in customer environment</td>
+              <td><span class="check" aria-label="Yes">✔</span></td>
+              <td><span class="cross" aria-label="No">✘</span></td>
+              <td><span class="check" aria-label="Yes">✔</span></td>
+              <td><span class="check" aria-label="Yes">✔</span></td>
+            </tr>
+            <tr>
+              <td>Assetize manages infrastructure</td>
+              <td><span class="cross" aria-label="No">✘</span></td>
+              <td><span class="check" aria-label="Yes">✔</span></td>
+              <td><span class="partial" aria-label="Partial">~</span></td>
+              <td><span class="cross" aria-label="No">✘</span></td>
+            </tr>
+            <tr>
+              <td>Customer controls storage bucket</td>
+              <td><span class="check" aria-label="Yes">✔</span></td>
+              <td><span class="cross" aria-label="No">✘</span></td>
+              <td><span class="check" aria-label="Yes">✔</span></td>
+              <td><span class="partial" aria-label="N/A">—</span></td>
+            </tr>
+            <tr>
+              <td>Data persisted to disk</td>
+              <td><span class="check" aria-label="Yes">✔</span></td>
+              <td><span class="check" aria-label="Yes">✔</span></td>
+              <td><span class="check" aria-label="Yes">✔</span></td>
+              <td><span class="cross" aria-label="No">✘</span></td>
+            </tr>
+            <tr>
+              <td>Governed retention policy</td>
+              <td>Customer-defined</td>
+              <td>Assetize policy</td>
+              <td>Customer-defined</td>
+              <td>None — no persistence</td>
+            </tr>
+            <tr>
+              <td>Suitable for air-gapped / high-security</td>
+              <td><span class="check" aria-label="Yes">✔</span></td>
+              <td><span class="cross" aria-label="No">✘</span></td>
+              <td><span class="partial" aria-label="Partial">~</span></td>
+              <td><span class="check" aria-label="Yes">✔</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top:16px;font-size:13px">✔ Yes &nbsp;&nbsp; ✘ No &nbsp;&nbsp; ~ Partial / depends on configuration &nbsp;&nbsp; — Not applicable</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="card" style="text-align:center;padding:48px 32px">
+        <h2 class="h2" style="margin-bottom:12px">Not sure which mode fits your team?</h2>
+        <p class="muted" style="max-width:520px;margin:0 auto 28px">Talk through your security, infrastructure, and retention requirements with us. We'll help you map the right model to your delivery context.</p>
+        <a href="contact.html" class="btn primary">Get in touch</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div>
+      <div class="brand"><span class="logo">M</span><span>Maximo Delivery Automation Workbench</span></div>
+      <p class="muted">Evidence-backed IBM Maximo delivery automation. MAS9 Power is a fictional demo tenant built from seeded data.</p>
+      <p class="muted">© <span data-year></span> MASReady — Maximo Delivery Automation Workbench.</p>
+    </div>
+    <div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="mas9-power.html">MAS9 Power</a>
+        <a href="features.html">Features</a>
+        <a href="data-modes.html">Data Modes</a>
+        <a href="trust.html">Trust</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="media.html">Media</a>
+        <a href="demo-walkthrough.html">Walkthrough</a>
+        <a href="launch.html">Launch</a>
+        <a href="contact.html">Contact</a>
+        <a href="sitemap.xml">Sitemap</a>
+        <a href="robots.txt">Robots</a>
+      </div>
+      <p class="disclaimer" style="margin-top:18px">License usage planning is for visibility only. It is not legal, contractual, IBM-certified, or compliance advice.</p>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

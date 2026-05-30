@@ -1,0 +1,129 @@
+You are updating the existing website for masready.com.au.
+
+Goal:
+1. Add a new website section for “Data Modes” (or create a dedicated page if the current layout makes that cleaner).
+2. Make the contact form fully functional using Brevo.
+3. Keep the current branding, typography, spacing, and layout style already used on the website.
+4. Do not break existing content, SEO structure, responsiveness, or navigation.
+
+Website context:
+MASReady is positioned as a Maximo delivery automation / readiness platform, so the new content should fit naturally within the product/platform story. Add the Data Modes section near product capabilities, deployment/platform details, or architecture-related content. If the existing page is already long, create a dedicated page called “Data Modes” and add it to the main navigation. The public site positioning supports adding this as product/platform information rather than a blog post. [Source context for intent only]
+
+New content to add:
+Section title: Data Modes
+Section intro:
+Choose the data handling model that fits your security, infrastructure, and retention requirements.
+
+Create 4 cards or panels with concise explanatory copy:
+1. Customer Hosted
+   Customer controls the deployment environment. Data retained in customer-owned infrastructure.
+
+2. Assetize Managed
+   Assetize hosts and manages the platform on behalf of the customer. Governed data retention.
+
+3. BYO Storage
+   Customer brings their own S3-compatible storage. Assetize writes to customer-owned bucket only.
+
+4. Zero Retention (Runtime Module)
+   No data is stored by Assetize. All processing is in-memory only. Customer data is never persisted to disk.
+
+UI requirements:
+- Match existing site design system exactly.
+- Use a responsive card layout on desktop and stacked cards on mobile.
+- Add a short comparison row/table beneath the cards if it improves clarity.
+- Optional label/badge for “Zero Retention”.
+- Keep copy enterprise-grade, concise, and readable.
+- Use semantic HTML and accessible headings.
+
+Navigation decision:
+- First inspect the current site structure.
+- If there is already a Product / Platform / Features page, add Data Modes there.
+- If there is no clear place, create a dedicated page at /data-modes and link it from the header and footer.
+- If a dedicated page is created, also add a short teaser section on the homepage with a link to that page.
+
+Contact form requirements:
+Make the current contact form fully functional using Brevo.
+
+Implementation rules:
+- Do NOT expose Brevo credentials in frontend JavaScript.
+- Create a secure backend endpoint in the Replit app to handle form submission.
+- Use environment variables for all secrets.
+- Validate required fields server-side.
+- Add spam protection: honeypot field minimum, and rate limiting if practical.
+- Return clear success and error messages in the UI.
+- Keep the existing visual design of the form.
+
+Preferred backend behavior:
+When a user submits the form:
+1. Save/send the enquiry details to the business email using Brevo transactional email.
+2. Optionally add or update the sender as a Brevo contact for follow-up.
+
+Use Brevo correctly:
+- If using SMTP, use Brevo SMTP relay settings and credentials from environment variables.
+- Brevo SMTP relay host is smtp-relay.brevo.com. Use SMTP credentials generated in Brevo SMTP/API settings. Ports supported include 587 or 2525 for non-encrypted relay and 465 for SSL/TLS. Use an SMTP key, not a general API key, for SMTP relay. 
+- If using the API for transactional mail, use the Brevo API key in server-side headers only.
+- If adding contacts via API, pass the api-key in headers and create/update the contact in Brevo server-side.
+
+Recommended stack:
+- If the current project is static only, convert minimally to a small Node/Express or Replit-compatible server app without changing the frontend structure more than necessary.
+- Keep all existing HTML/CSS/JS unless changes are required for the new section and form wiring.
+
+Environment variables to expect:
+BREVO_SMTP_HOST=smtp-relay.brevo.com
+BREVO_SMTP_PORT=587
+BREVO_SMTP_USER=your-brevo-login-email
+BREVO_SMTP_PASS=your-brevo-smtp-key
+BREVO_API_KEY=your-brevo-api-key
+CONTACT_TO_EMAIL=hello@masready.com.au
+CONTACT_FROM_EMAIL=no-reply@masready.com.au
+
+Form fields to support:
+- Name
+- Company
+- Email
+- Phone
+- Message
+
+Email behavior:
+- Send a notification email to CONTACT_TO_EMAIL with all submitted details.
+- Use CONTACT_FROM_EMAIL as the sender if required by implementation.
+- Set reply-to as the visitor’s email.
+- Subject example: New MASReady enquiry from {{name}} / {{company}}
+
+Brevo contact behavior:
+- Add the sender to Brevo contacts if email is provided.
+- Update existing contact rather than failing on duplicate.
+- Include attributes when available, for example FIRSTNAME/COMPANY/PHONE if the account already has matching attributes configured.
+- Do not fail the whole submission if contact sync fails; log it separately.
+
+Frontend behavior:
+- Intercept form submit with JavaScript.
+- Submit to backend endpoint with fetch/AJAX.
+- Disable submit button while sending.
+- Show inline success message on success.
+- Show inline error message on failure.
+- Preserve accessibility and keyboard behavior.
+
+Security and reliability:
+- Sanitize input.
+- Validate email format.
+- Ignore honeypot-filled submissions.
+- Add basic logging for failed submissions.
+- Do not commit secrets into the repo.
+- Document required env vars in a README or .env.example.
+
+Deliverables:
+1. Updated website with the new Data Modes section/page.
+2. Working contact form integrated with Brevo.
+3. Clean, production-ready code.
+4. Brief README note explaining:
+   - where the Data Modes section/page was added,
+   - which endpoint handles the form,
+   - which env vars must be set,
+   - how to test the form.
+
+After implementation, output:
+- which file(s) were changed,
+- whether Data Modes was added to an existing page or a new page,
+- the form endpoint path,
+- any Brevo setup steps still required in the dashboard.
