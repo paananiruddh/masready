@@ -1,0 +1,15 @@
+# Maximo Delivery Automation Workbench
+
+Public static marketing site for the Maximo Delivery Automation Workbench and MAS9 Power fictional demo tenant.
+
+Primary pages:
+- https://softwarecomparereview.github.io/masready/
+- https://softwarecomparereview.github.io/masready/mas9-power.html
+- https://softwarecomparereview.github.io/masready/features.html
+- https://softwarecomparereview.github.io/masready/trust.html
+- https://softwarecomparereview.github.io/masready/architecture.html
+
+Safety notes:
+- MAS9 Power data is fictional and seeded for demonstration.
+- License usage planning is not legal/compliance advice.
+- Product posture is review-only: no SQL execution, no Maximo mutation, no Jira mutation.

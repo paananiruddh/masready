@@ -1,0 +1,15 @@
+{
+  "name": "Maximo Delivery Automation Workbench",
+  "short_name": "MASReady",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#62e6ff",
+  "icons": [
+    {
+      "src": "assets/icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "description": "Sub-locations within sites for the MAS9 Power demo tenant",
+  "locations": [
+    { "location_id": "LOC_NORTH_SS1", "site_id": "SITE_NORTH", "name": "Substation Alpha", "type": "substation", "parent_location": null },
+    { "location_id": "LOC_NORTH_SS2", "site_id": "SITE_NORTH", "name": "Substation Beta", "type": "substation", "parent_location": null },
+    { "location_id": "LOC_NORTH_TR1", "site_id": "SITE_NORTH", "name": "Transformer Bay 1", "type": "transformer_bay", "parent_location": "LOC_NORTH_SS1" },
+    { "location_id": "LOC_NORTH_TR2", "site_id": "SITE_NORTH", "name": "Transformer Bay 2", "type": "transformer_bay", "parent_location": "LOC_NORTH_SS2" },
+    { "location_id": "LOC_WEST_TL1", "site_id": "SITE_WEST", "name": "Transmission Corridor A", "type": "transmission", "parent_location": null },
+    { "location_id": "LOC_WEST_TL2", "site_id": "SITE_WEST", "name": "Transmission Corridor B", "type": "transmission", "parent_location": null },
+    { "location_id": "LOC_WEST_SM1", "site_id": "SITE_WEST", "name": "Smart Meter Zone W1", "type": "meter_zone", "parent_location": null },
+    { "location_id": "LOC_SOUTH_CS1", "site_id": "SITE_SOUTH", "name": "SCADA Control Room", "type": "control_system", "parent_location": null },
+    { "location_id": "LOC_SOUTH_SM2", "site_id": "SITE_SOUTH", "name": "Smart Meter Zone S1", "type": "meter_zone", "parent_location": null },
+    { "location_id": "LOC_DEPOT_WH1", "site_id": "SITE_DEPOT", "name": "Warehouse A", "type": "warehouse", "parent_location": null },
+    { "location_id": "LOC_DEPOT_WH2", "site_id": "SITE_DEPOT", "name": "Warehouse B", "type": "warehouse", "parent_location": null },
+    { "location_id": "LOC_HQ_SR1", "site_id": "SITE_HQ", "name": "Server Room", "type": "it_room", "parent_location": null }
+  ]
+}

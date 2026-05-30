@@ -1,0 +1,2 @@
+Created for Software Compare Review / masready.
+Source story: AssetizeMaximoBroBot MAS9_POWER demo tenant commit c671e33b9f28ab0c698d2b66d35a4ff47404c79d.

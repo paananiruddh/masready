@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="628" viewBox="0 0 1200 628">
+  <defs>
+    <linearGradient id="archbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1b2e"/>
+      <stop offset="100%" style="stop-color:#152540"/>
+    </linearGradient>
+    <linearGradient id="archaccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="628" fill="url(#archbg)"/>
+  <rect x="0" y="0" width="1200" height="4" fill="url(#archaccent)"/>
+
+  <!-- Title -->
+  <text x="60" y="72" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#3b82f6" letter-spacing="3">ARCHITECTURE</text>
+  <text x="60" y="120" font-family="Inter, sans-serif" font-size="42" font-weight="800" fill="#ffffff">How the Workbench</text>
+  <text x="60" y="168" font-family="Inter, sans-serif" font-size="42" font-weight="800" fill="#3b82f6">is Built</text>
+
+  <!-- Pipeline boxes -->
+  <!-- Box 1 -->
+  <rect x="60" y="210" width="160" height="80" rx="8" fill="#1e3a5f" stroke="#3b82f6" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="140" y="244" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#93c5fd" text-anchor="middle">CUSTOMER</text>
+  <text x="140" y="260" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#93c5fd" text-anchor="middle">CONFIG</text>
+  <text x="140" y="278" font-family="Inter, sans-serif" font-size="10" fill="#4b6a8a" text-anchor="middle">data mode · flags</text>
+
+  <text x="232" y="256" font-family="Inter, sans-serif" font-size="18" fill="#3b82f6" text-anchor="middle">→</text>
+
+  <!-- Box 2 -->
+  <rect x="248" y="210" width="160" height="80" rx="8" fill="#1e3a5f" stroke="#06b6d4" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="328" y="244" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#67e8f9" text-anchor="middle">SEED DATA</text>
+  <text x="328" y="278" font-family="Inter, sans-serif" font-size="10" fill="#4b6a8a" text-anchor="middle">23 fixture files</text>
+
+  <text x="420" y="256" font-family="Inter, sans-serif" font-size="18" fill="#3b82f6" text-anchor="middle">→</text>
+
+  <!-- Box 3 -->
+  <rect x="436" y="210" width="160" height="80" rx="8" fill="#1e3a5f" stroke="#8b5cf6" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="516" y="244" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#c4b5fd" text-anchor="middle">EVIDENCE</text>
+  <text x="516" y="260" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#c4b5fd" text-anchor="middle">SERVICES</text>
+  <text x="516" y="278" font-family="Inter, sans-serif" font-size="10" fill="#4b6a8a" text-anchor="middle">read-only · 0 mutations</text>
+
+  <text x="608" y="256" font-family="Inter, sans-serif" font-size="18" fill="#3b82f6" text-anchor="middle">→</text>
+
+  <!-- Box 4 -->
+  <rect x="624" y="210" width="160" height="80" rx="8" fill="#1e3a5f" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="704" y="244" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#fcd34d" text-anchor="middle">SKILL</text>
+  <text x="704" y="260" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#fcd34d" text-anchor="middle">PACKS</text>
+  <text x="704" y="278" font-family="Inter, sans-serif" font-size="10" fill="#4b6a8a" text-anchor="middle">offline · 82% coverage</text>
+
+  <text x="796" y="256" font-family="Inter, sans-serif" font-size="18" fill="#3b82f6" text-anchor="middle">→</text>
+
+  <!-- Box 5 -->
+  <rect x="812" y="210" width="160" height="80" rx="8" fill="#1e3a5f" stroke="#34d399" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="892" y="244" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#6ee7b7" text-anchor="middle">DELIVERY</text>
+  <text x="892" y="260" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#6ee7b7" text-anchor="middle">ENGINE</text>
+  <text x="892" y="278" font-family="Inter, sans-serif" font-size="10" fill="#4b6a8a" text-anchor="middle">score 87 · no SQL</text>
+
+  <text x="984" y="256" font-family="Inter, sans-serif" font-size="18" fill="#3b82f6" text-anchor="middle">→</text>
+
+  <!-- Box 6 -->
+  <rect x="1000" y="210" width="160" height="80" rx="8" fill="#1e3a5f" stroke="#f43f5e" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="1080" y="244" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#fda4af" text-anchor="middle">REPORTS</text>
+  <text x="1080" y="260" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#fda4af" text-anchor="middle">&amp; MEDIA</text>
+  <text x="1080" y="278" font-family="Inter, sans-serif" font-size="10" fill="#4b6a8a" text-anchor="middle">8 charts · 0 write-backs</text>
+
+  <!-- Bottom: key principles -->
+  <rect x="60" y="330" width="520" height="200" rx="10" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+  <text x="80" y="360" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#64748b" letter-spacing="2">SAFETY MODEL</text>
+  <text x="80" y="390" font-family="Inter, sans-serif" font-size="14" fill="#cbd5e1">✓  No SQL execution</text>
+  <text x="80" y="414" font-family="Inter, sans-serif" font-size="14" fill="#cbd5e1">✓  No Maximo mutation</text>
+  <text x="80" y="438" font-family="Inter, sans-serif" font-size="14" fill="#cbd5e1">✓  No Jira mutation</text>
+  <text x="80" y="462" font-family="Inter, sans-serif" font-size="14" fill="#cbd5e1">✓  No Azure DevOps mutation</text>
+  <text x="80" y="486" font-family="Inter, sans-serif" font-size="14" fill="#cbd5e1">✓  Review-only output</text>
+  <text x="80" y="510" font-family="Inter, sans-serif" font-size="14" fill="#cbd5e1">✓  Demo fixtures are demo-only</text>
+
+  <rect x="620" y="330" width="520" height="200" rx="10" fill="#ffffff" fill-opacity="0.03" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+  <text x="640" y="360" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#64748b" letter-spacing="2">POSITIONING</text>
+  <text x="640" y="392" font-family="Inter, sans-serif" font-size="13" fill="#94a3b8">A locally running, Maximo-specific</text>
+  <text x="640" y="412" font-family="Inter, sans-serif" font-size="13" fill="#94a3b8">skilled bot architecture built around</text>
+  <text x="640" y="432" font-family="Inter, sans-serif" font-size="13" fill="#94a3b8">curated offline skill packs, customer</text>
+  <text x="640" y="452" font-family="Inter, sans-serif" font-size="13" fill="#94a3b8">data-mode boundaries, and</text>
+  <text x="640" y="472" font-family="Inter, sans-serif" font-size="13" fill="#94a3b8">evidence-based delivery workflows.</text>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="590" width="1200" height="38" fill="#0a1220"/>
+  <text x="60" y="613" font-family="Inter, sans-serif" font-size="13" fill="#334155">Powered by OverPayingforAI.com</text>
+  <text x="1140" y="613" font-family="Inter, sans-serif" font-size="13" fill="#334155" text-anchor="end">softwarecomparereview.github.io/masready/</text>
+</svg>

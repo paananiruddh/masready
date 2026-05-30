@@ -1,0 +1,12 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "asset_class": "Transformers",
+  "assets": [
+    { "asset_id": "TR-001", "description": "Power Transformer 132/33kV 60MVA Unit 1", "location_id": "LOC_NORTH_TR1", "site_id": "SITE_NORTH", "status": "OPERATING", "install_date": "2008-03-12", "criticality": "HIGH", "rated_mva": 60 },
+    { "asset_id": "TR-002", "description": "Power Transformer 132/33kV 60MVA Unit 2", "location_id": "LOC_NORTH_TR2", "site_id": "SITE_NORTH", "status": "OPERATING", "install_date": "2010-07-22", "criticality": "HIGH", "rated_mva": 60 },
+    { "asset_id": "TR-003", "description": "Distribution Transformer 33/11kV 20MVA West", "location_id": "LOC_WEST_TL1", "site_id": "SITE_WEST", "status": "OPERATING", "install_date": "2013-04-10", "criticality": "MEDIUM", "rated_mva": 20 },
+    { "asset_id": "TR-004", "description": "Distribution Transformer 33/11kV 20MVA South", "location_id": "LOC_SOUTH_SM2", "site_id": "SITE_SOUTH", "status": "NEEDS_MAINTENANCE", "install_date": "2009-09-01", "criticality": "HIGH", "rated_mva": 20 },
+    { "asset_id": "TR-005", "description": "Step-down Transformer 11/0.4kV 1MVA Depot", "location_id": "LOC_DEPOT_WH1", "site_id": "SITE_DEPOT", "status": "OPERATING", "install_date": "2018-06-14", "criticality": "LOW", "rated_mva": 1 }
+  ],
+  "total": 5
+}

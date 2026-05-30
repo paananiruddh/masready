@@ -1,0 +1,47 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "description": "IBM MAS AppPoint license usage data for the MAS9 Power demo tenant. All figures are fictional.",
+  "license_type": "IBM MAS AppPoints",
+  "entitled_apppoints": 2400,
+  "current_month": "2025-11",
+  "current_usage": {
+    "apppoints_used": 1847,
+    "utilisation_pct": 77,
+    "peak_utilisation_pct": 84,
+    "peak_date": "2025-10-15"
+  },
+  "named_users": {
+    "total_named_users": 94,
+    "active_users_30d": 71,
+    "inactive_users_30d": 23,
+    "by_apppoint_type": {
+      "base_users": 61,
+      "limited_users": 18,
+      "mobile_pool_users": 15
+    }
+  },
+  "mobile_pool": {
+    "pool_apppoints": 300,
+    "peak_concurrent_mobile": 12,
+    "peak_utilisation_pct": 89,
+    "peak_date": "2025-10-14"
+  },
+  "monthly_trend": [
+    { "month": "2024-12", "apppoints_used": 1600, "entitled": 2400 },
+    { "month": "2025-01", "apppoints_used": 1650, "entitled": 2400 },
+    { "month": "2025-02", "apppoints_used": 1620, "entitled": 2400 },
+    { "month": "2025-03", "apppoints_used": 1700, "entitled": 2400 },
+    { "month": "2025-04", "apppoints_used": 1750, "entitled": 2400 },
+    { "month": "2025-05", "apppoints_used": 1780, "entitled": 2400 },
+    { "month": "2025-06", "apppoints_used": 1800, "entitled": 2400 },
+    { "month": "2025-07", "apppoints_used": 1820, "entitled": 2400 },
+    { "month": "2025-08", "apppoints_used": 1810, "entitled": 2400 },
+    { "month": "2025-09", "apppoints_used": 1830, "entitled": 2400 },
+    { "month": "2025-10", "apppoints_used": 1820, "entitled": 2400 },
+    { "month": "2025-11", "apppoints_used": 1847, "entitled": 2400 }
+  ],
+  "renewal_date": "2026-06-30",
+  "headroom_apppoints": 553,
+  "headroom_pct": 23,
+  "planning_flag": "REVIEW_ONLY — no licence changes will be made via MASReady"
+}

@@ -1,0 +1,311 @@
+You are continuing work on the MASReady / Maximo Agentic AI Assistance project.
+
+IMPORTANT:
+The project keeps losing context, so your first job is to rebuild durable project memory inside the repository before making feature changes.
+
+Do not rely on chat history alone.
+Inspect the current repository first.
+Do not delete or overwrite working code unless clearly obsolete.
+Preserve the existing visual style of the website.
+
+============================================================
+TASK 1 — REBUILD PROJECT MEMORY
+============================================================
+
+Create or refresh a durable project memory system under:
+
+/project-memory
+
+The project memory must be treated as the source of truth for all future work.
+
+Create the following files if they do not already exist:
+
+1. /project-memory/AGENT_START_HERE.md
+2. /project-memory/CURRENT_STATE.md
+3. /project-memory/PRODUCT_OVERVIEW.md
+4. /project-memory/ARCHITECTURE.md
+5. /project-memory/CUSTOMER_TENANT_MODEL.md
+6. /project-memory/SEED_DATA_MODEL.md
+7. /project-memory/WEBSITE_CONTENT_MODEL.md
+8. /project-memory/DEPLOYMENT_MODEL.md
+9. /project-memory/ROADMAP.md
+10. /project-memory/DECISIONS.md
+11. /project-memory/CHANGELOG.md
+12. /project-memory/TODO_NEXT.md
+
+AGENT_START_HERE.md must clearly instruct every future coding agent to:
+- Read all files in /project-memory before starting.
+- Update project memory after every meaningful change.
+- Keep screenshots, diagrams, seed data, wiki pages, and website content consistent.
+- Never mix fictional demo seed data with live customer data.
+- Treat demo tenants and real customer tenants differently.
+- Commit changes with a clear summary.
+
+CURRENT_STATE.md must summarise the current product as:
+
+MASReady is a Maximo-focused SaaS/demo platform for environment discovery, customer onboarding, change tracking, patch impact analysis, license planning, mobilisation automation, documentation, and AI-assisted Maximo skills.
+
+It includes:
+- A marketing/documentation website.
+- Demo tenant support.
+- Customer-specific subdomain model.
+- Fictional seed data for demos.
+- Maximo environment discovery capability.
+- License reporting/planning capability.
+- Patch/hotfix impact analysis concept.
+- Role-based demo views.
+- Screenshots and visual assets intended for website/wiki use.
+- Future support for live customer data discovery where explicitly configured.
+
+The memory must also capture:
+
+Domain/deployment model:
+- Main website: masready.com.au
+- Website/static documentation can be hosted via GitHub Pages.
+- Customer demo/live instances should run as subdomains pointing to Azure.
+- Example customer/demo subdomains may include demo tenants, but do not expose real customer data publicly.
+- Azure is the preferred runtime target for customer instances.
+
+Customer/demo tenant model:
+- MAS9 Power is the fictional Energy & Utilities demo tenant.
+- MAS9 Power must be demo-safe and fictional.
+- Demo data must never imply it is real customer data.
+- BOM and PFM-style demos may exist as scenarios, but real customer/live data must be guarded and never seeded publicly.
+- PFM live data work is separate from fictional demo data and must use explicit safety gates.
+
+============================================================
+TASK 2 — DOCUMENT SEED DATA MODEL
+============================================================
+
+Create or update:
+
+/project-memory/SEED_DATA_MODEL.md
+
+It must document the Seed Data stage shown on the website.
+
+Content to include:
+
+Title:
+Seed Data
+
+Purpose:
+The seed data provides a fictional, repeatable demo tenant environment for MASReady. It allows the website, simulator, charts, reports, screenshots, wiki pages, patch impact examples, and license planning outputs to run without exposing any real customer information.
+
+Current demo tenant:
+MAS9 Power
+
+Seed data design:
+- 23 structured JSON seed files.
+- Fictional Energy & Utilities organisation.
+- Fictional users, assets, work orders, integrations, customisations, licenses, and reports.
+- Version-locked per demo tenant.
+- Updates must be explicit, auditable, and documented.
+- Seed data should support screenshots, charts, dashboards, patch impact analysis, and license planning examples.
+
+Demo user roles:
+- Admin
+- Delivery Lead
+- Asset Manager
+- Scheduler
+- Field Tech
+- Finance
+- Auditor
+
+Energy & Utilities asset classes:
+- Substations
+- Transformers
+- Transmission lines
+- Smart meters
+- Control systems
+
+Safety rules:
+- All seed data must be fictional.
+- Do not include real customer names, real emails, real assets, real site IDs, real work orders, or real operational data.
+- Any customer-specific live data connector must be separate from demo seed data.
+- Live customer discovery must be opt-in, guarded, and clearly labelled.
+
+============================================================
+TASK 3 — ADD / VERIFY SEED DATA FILES
+============================================================
+
+Inspect the repo for an existing seed data folder.
+
+If one exists, improve it without breaking existing imports.
+
+If one does not exist, create:
+
+/seed-data/mas9-power
+
+Add 23 structured JSON files representing a fictional Energy & Utilities demo tenant.
+
+Use clear naming such as:
+
+01-tenant-profile.json
+02-users.json
+03-roles.json
+04-sites.json
+05-locations.json
+06-assets-substations.json
+07-assets-transformers.json
+08-assets-transmission-lines.json
+09-assets-smart-meters.json
+10-assets-control-systems.json
+11-work-orders.json
+12-preventive-maintenance.json
+13-job-plans.json
+14-inventory.json
+15-vendors.json
+16-contracts.json
+17-integrations.json
+18-customisations.json
+19-automation-scripts.json
+20-security-groups.json
+21-license-usage.json
+22-patch-impact-scenarios.json
+23-demo-dashboards.json
+
+Each file must contain realistic but fictional JSON.
+
+Make the data coherent:
+- Users should map to roles.
+- Work orders should reference assets and sites.
+- Assets should reference locations.
+- License usage should map to roles/user personas.
+- Patch impact scenarios should reference fictional applications, automation scripts, integrations, and security groups.
+- Demo dashboards should define charts/cards that the website can later consume.
+
+Add:
+
+/seed-data/mas9-power/README.md
+
+The README must explain:
+- What each file does.
+- How the files are intended to support the demo.
+- That all data is fictional.
+- How future agents should extend the seed data safely.
+
+============================================================
+TASK 4 — UPDATE WEBSITE WITH SEED DATA SECTION
+============================================================
+
+Update the website to include a polished Seed Data stage/card matching the style of the existing site and the provided screenshot.
+
+The card/section should display:
+
+STAGE 2
+Seed Data
+
+Short description:
+23 structured JSON seed files defining the fictional demo tenant environment, users, assets, and work orders.
+
+Checklist bullets:
+- 23 seed data files covering users, assets, work orders, customisations, and integrations
+- All data is fictional — no real customer, site, or asset information is present
+- Seed data drives the simulator, charts, patch impact analysis, and license planning outputs
+- 7 demo user roles seeded: Admin, Delivery Lead, Asset Manager, Scheduler, Field Tech, Finance, Auditor
+- Energy & Utilities asset classes: substations, transformers, transmission lines, smart meters, control systems
+- Seed data is version-locked per demo tenant — updates are explicit and auditable
+
+Footer badge/callout:
+MAS9 Power -> 23 files · 7 users · 5 asset classes · fictional MAS9 Power energy tenant
+
+Visual requirements:
+- Match existing dark theme.
+- Use the same rounded card style as other stages.
+- Use cyan/blue accents.
+- Use a database icon or equivalent.
+- Make it responsive.
+- Keep spacing clean.
+- Do not make it look like a random pasted block.
+- Ensure the section appears in the correct stage sequence.
+
+If the site uses React components, create a reusable component if appropriate.
+If the site uses static HTML/CSS, update the matching HTML/CSS cleanly.
+If the site has a data-driven stage array, add this as a new stage object rather than hardcoding duplicate UI.
+
+============================================================
+TASK 5 — WEBSITE COPY CONSISTENCY
+============================================================
+
+Search the website copy for inconsistent naming.
+
+Ensure the fictional demo tenant is consistently named:
+
+MAS9 Power
+
+Do not use:
+- MAS9Power
+- MAS 9 Power
+- Mag9 Power
+- MAS9 energy tenant unless used as a lowercase descriptive phrase only
+
+The customer-facing label should be:
+MAS9 Power
+
+============================================================
+TASK 6 — PROJECT MEMORY UPDATE AFTER CHANGE
+============================================================
+
+After implementing changes, update:
+
+/project-memory/CHANGELOG.md
+
+Add:
+- Date
+- Summary of files changed
+- Seed data stage added/updated
+- Seed data files added/verified
+- Website updated
+- Any tests/builds run
+- Any known issues
+
+Update:
+
+/project-memory/TODO_NEXT.md
+
+Include sensible next tasks such as:
+- Add Playwright screenshot capture for Seed Data card.
+- Generate website/wiki screenshots from seeded demo dashboards.
+- Add seed-data validation script.
+- Add demo reset command.
+- Add Azure subdomain deployment notes.
+- Add customer onboarding wizard screenshots.
+
+============================================================
+TASK 7 — VALIDATION
+============================================================
+
+Run available checks.
+
+Depending on project stack, run the relevant commands such as:
+- npm install if needed
+- npm run build
+- npm run lint
+- npm test
+- npm run typecheck
+
+If commands fail because of environment limitations, document that clearly in the final summary and in project-memory/CHANGELOG.md.
+
+Also inspect the website locally/build output where possible and confirm:
+- Seed Data section renders.
+- No broken imports.
+- No obvious visual regression.
+- No real customer data appears in seed files.
+
+============================================================
+FINAL RESPONSE REQUIRED
+============================================================
+
+When done, provide:
+
+1. Summary of what changed.
+2. Files created.
+3. Files modified.
+4. Seed data count confirmation.
+5. Website section confirmation.
+6. Commands run and results.
+7. Any known issues.
+8. Recommended next prompt.
+
+Do not stop after only creating documentation.
+Actually update the website and seed data.

@@ -1,0 +1,13 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "work_orders": [
+    { "wo_id": "WO-2025-0441", "type": "CM", "description": "Investigate abnormal temperature readings on TR-004", "asset_id": "TR-004", "site_id": "SITE_SOUTH", "location_id": "LOC_SOUTH_SM2", "status": "INPRG", "priority": 1, "assigned_to": "U006", "reported_by": "U004", "reported_date": "2025-10-28", "target_finish": "2025-11-05" },
+    { "wo_id": "WO-2025-0442", "type": "PM", "description": "Quarterly inspection — Substation Alpha switchgear", "asset_id": "SS-001", "site_id": "SITE_NORTH", "location_id": "LOC_NORTH_SS1", "status": "WAPPR", "priority": 2, "assigned_to": "U006", "reported_by": "U005", "reported_date": "2025-10-29", "target_finish": "2025-11-10" },
+    { "wo_id": "WO-2025-0443", "type": "PM", "description": "Annual thermal imaging — TR-001 and TR-002", "asset_id": "TR-001", "site_id": "SITE_NORTH", "location_id": "LOC_NORTH_TR1", "status": "WAPPR", "priority": 2, "assigned_to": "U006", "reported_by": "U005", "reported_date": "2025-10-30", "target_finish": "2025-11-15" },
+    { "wo_id": "WO-2025-0444", "type": "CM", "description": "Repair damaged insulator on TL-004 rural spur", "asset_id": "TL-004", "site_id": "SITE_WEST", "location_id": "LOC_WEST_TL2", "status": "INPRG", "priority": 1, "assigned_to": "U006", "reported_by": "U004", "reported_date": "2025-10-31", "target_finish": "2025-11-03" },
+    { "wo_id": "WO-2025-0445", "type": "INSP", "description": "SCADA RTU firmware update check — CS-003", "asset_id": "CS-003", "site_id": "SITE_NORTH", "location_id": "LOC_NORTH_SS1", "status": "WSCH", "priority": 3, "assigned_to": null, "reported_by": "U001", "reported_date": "2025-11-01", "target_finish": "2025-11-20" },
+    { "wo_id": "WO-2025-0446", "type": "PM", "description": "Smart meter comms audit Zone W1", "asset_id": null, "site_id": "SITE_WEST", "location_id": "LOC_WEST_SM1", "status": "WAPPR", "priority": 3, "assigned_to": "U006", "reported_by": "U005", "reported_date": "2025-11-01", "target_finish": "2025-11-25" }
+  ],
+  "total": 6,
+  "status_legend": { "CM": "Corrective Maintenance", "PM": "Preventive Maintenance", "INSP": "Inspection", "INPRG": "In Progress", "WAPPR": "Waiting Approval", "WSCH": "Waiting to be Scheduled" }
+}

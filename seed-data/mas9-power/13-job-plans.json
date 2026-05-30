@@ -1,0 +1,11 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "job_plans": [
+    { "jp_id": "JP-SS-001", "name": "Substation Quarterly Inspection Checklist", "description": "Visual inspection, switchgear check, relay testing, grounding verification", "tasks": ["Visual inspection of all panels", "Switchgear operation test", "Protection relay calibration check", "Grounding continuity test", "Thermal imaging of bus bars"], "estimated_hours": 8, "skill_requirements": ["ELEC_HV", "SAFETY_ELEC"] },
+    { "jp_id": "JP-TR-001", "name": "Transformer Annual Thermal Imaging", "description": "Thermal camera survey, oil sampling, DGA analysis", "tasks": ["Full thermal camera sweep", "Oil sample extraction", "DGA lab submission", "Report to asset manager"], "estimated_hours": 4, "skill_requirements": ["ELEC_HV", "THERMAL_IMAGING"] },
+    { "jp_id": "JP-TL-001", "name": "Transmission Line 6-Monthly Aerial Patrol", "description": "Drone or helicopter patrol of overhead lines", "tasks": ["Plan patrol route", "Drone/helicopter inspection", "Photo documentation", "Defect report submission"], "estimated_hours": 6, "skill_requirements": ["AERIAL_SURVEY", "ASSET_INSPECTION"] },
+    { "jp_id": "JP-SM-001", "name": "Smart Meter Communications Audit", "description": "Verify comms connectivity, firmware version, data accuracy", "tasks": ["Pull comms success rate report", "Identify offline units", "Firmware version audit", "Submit findings to IT"], "estimated_hours": 3, "skill_requirements": ["METERING", "IT_NETWORK"] },
+    { "jp_id": "JP-CS-001", "name": "Control System Quarterly Health Check", "description": "SCADA/RTU health, redundancy test, software patching", "tasks": ["SCADA failover test", "RTU telemetry verification", "Software patch review", "Cybersecurity log review"], "estimated_hours": 6, "skill_requirements": ["SCADA", "CYBERSECURITY"] }
+  ],
+  "total": 5
+}

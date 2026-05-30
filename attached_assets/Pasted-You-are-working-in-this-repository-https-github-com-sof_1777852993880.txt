@@ -1,0 +1,640 @@
+You are working in this repository:
+
+https://github.com/softwarecomparereview/masready
+
+The live GitHub Pages site is:
+
+https://softwarecomparereview.github.io/masready/
+
+The current site looks bad and images/assets are not displaying. Fix it properly.
+
+Important context:
+The product/site should lead with:
+
+Maximo Delivery Automation Workbench
+
+MAS9 Power is only the showcase/demo tenant, not the product name.
+
+Source material must come from this commit in the original project:
+
+https://github.com/softwarecomparereview/AssetizeMaximoBroBot/commit/c671e33b9f28ab0c698d2b66d35a4ff47404c79d
+
+Use that commit as the content/media source of truth for:
+- README data
+- wiki docs
+- MAS9_POWER docs
+- generated SVG charts
+- Mermaid diagrams
+- media manifest
+- literature docs
+- screenshot/video specs
+- launch announcement
+
+Target:
+Create a beautiful, modern, viral-but-professional GitHub Pages static website.
+
+It should feel like a polished enterprise SaaS launch page mixed with the engagement style of LinkedIn, X, Facebook product posts, and modern AI product pages.
+
+Do not make it look like a boring markdown dump.
+Do not make it look like a student HTML page.
+Do not make it look like an energy company website.
+Do not make MAS9 Power the product brand.
+Do not leave broken images.
+Do not leave broken CSS/JS paths.
+
+============================================================
+FIRST: AUDIT CURRENT BROKEN SITE
+============================================================
+
+Before rebuilding, inspect the current masready repo.
+
+Check:
+- index.html
+- all HTML pages
+- assets/css/site.css
+- assets/js/site.js
+- assets/charts/*
+- assets/og/*
+- assets/icons/*
+- sitemap.xml
+- robots.txt
+- GitHub Pages workflow
+- any missing referenced files
+
+Create an implementation note at the top of the final summary:
+
+1. What was broken
+2. Which assets were missing
+3. Which paths were wrong
+4. What was rebuilt
+5. How GitHub Pages pathing was fixed
+
+Critical:
+GitHub Pages site is served under:
+
+/masready/
+
+Therefore asset paths must work from:
+https://softwarecomparereview.github.io/masready/
+
+Use one safe approach consistently:
+- either relative paths like ./assets/...
+- or absolute GitHub Pages paths like /masready/assets/...
+
+Do not mix broken path strategies.
+
+============================================================
+SOURCE CONTENT TO PULL FROM ORIGINAL REPO
+============================================================
+
+From softwarecomparereview/AssetizeMaximoBroBot at commit:
+
+c671e33b9f28ab0c698d2b66d35a4ff47404c79d
+
+Read and extract content from:
+
+- README.md
+- docs/wiki/Functionality-and-Configuration.md
+- docs/wiki/MAS9_POWER-Functionality-and-Configuration.md
+- docs/wiki/announcements/MAS9_POWER-Demo-Announcement.md
+- workspace/demo/website-assets/MAS9_POWER/README.md
+- workspace/demo/website-assets/MAS9_POWER/manifest/media-manifest.json
+- workspace/demo/media/MAS9_POWER/charts/*.svg
+- workspace/demo/website-assets/MAS9_POWER/diagrams/*.mmd
+- workspace/demo/media/MAS9_POWER/literature/*
+- workspace/demo/seed-data/MAS9_POWER/*.json
+
+Required facts to use:
+- Product: Maximo Delivery Automation Workbench
+- Demo tenant: MAS9 Power
+- Industry: Energy and Utilities
+- Platform: IBM Maximo Application Suite Manage 9.x
+- Data mode: customer_hosted
+- Jira integration: read-only / jira_only
+- License tracking/planning: enabled
+- Patch impact: enabled
+- PFM contract mobilisation: disabled
+- Premium actions: disabled
+- 23 seed data files
+- 8 SVG charts generated
+- 6 Mermaid diagrams created
+- 7 demo users
+- 12-minute walkthrough storyboard
+- 46 customisations scanned
+- 7 impacted items
+- 0 critical, 2 high, 3 medium, 2 low
+- 12-month AppPoint trend
+- 1847 estimated used / 2400 entitled
+- 77% utilisation
+- 84% peak
+- 94 named users
+- 71 active / 23 inactive
+- mobile pool 89% peak utilisation
+- no SQL execution
+- no Maximo mutation
+- no Jira mutation
+- no Azure DevOps mutation
+- review-only outputs
+- all MAS9 Power data is fictional
+
+License disclaimer:
+License usage planning is for planning and visibility only. It is not legal, contractual, IBM-certified, or compliance advice.
+
+============================================================
+REBUILD REQUIREMENT
+============================================================
+
+Rebuild the site as a static GitHub Pages site.
+
+Preferred:
+- plain static HTML/CSS/JS
+- no heavy framework required
+- must deploy cleanly on GitHub Pages
+- must work under /masready/
+- no build step required if possible
+
+If using a generator/framework, it must still output static files correctly for GitHub Pages.
+
+Required files:
+- index.html
+- mas9-power.html
+- features.html
+- trust.html
+- architecture.html
+- media.html
+- demo-walkthrough.html
+- launch.html
+- contact.html
+- assets/css/site.css
+- assets/js/site.js
+- assets/charts/*.svg
+- assets/diagrams/*.mmd
+- assets/og/masready-og.svg
+- assets/icons/favicon.svg
+- sitemap.xml
+- robots.txt
+- llms.txt
+- manifest.webmanifest
+- .nojekyll
+- README.md
+- docs/GITHUB_PAGES_SETUP.md
+- docs/GOOGLE_SEARCH_CONSOLE.md
+- docs/CUSTOMER_SUBDOMAINS_ON_AZURE.md
+
+============================================================
+DESIGN QUALITY BAR
+============================================================
+
+The current site is too flat. Make it significantly better.
+
+Design direction:
+- premium SaaS
+- modern AI platform
+- Maximo enterprise delivery
+- dark navy/slate base
+- electric blue / cyan / amber accents
+- glass cards
+- soft gradients
+- clean typography
+- strong visual hierarchy
+- big hero
+- sticky nav
+- responsive mobile layout
+- beautiful chart cards
+- launch/feed-style sections
+- shareable metric tiles
+- credible enterprise tone
+
+The site should feel like:
+- a high-quality SaaS landing page
+- a LinkedIn product launch post turned into a website
+- a modern AI tooling product page
+- a serious enterprise Maximo platform
+
+Not:
+- default HTML
+- plain markdown
+- table dump
+- cheap Bootstrap look
+- dark wall of text
+- energy company brochure
+
+Use:
+- strong hero visual mock dashboard
+- animated gradient or glowing background
+- stat cards
+- feature cards
+- timeline cards
+- launch feed cards
+- product proof cards
+- disclaimer cards
+- trust badges
+- media gallery
+- comparison table
+- architecture cards
+
+============================================================
+PAGE DETAILS
+============================================================
+
+1. Home page: index.html
+
+Hero:
+Headline:
+Maximo delivery intelligence, without the chaos.
+
+Subheadline:
+Evidence-backed delivery automation for IBM Maximo teams — combining requirements, environment fingerprints, patch impact, license planning, skill coverage, and trust boundaries into one review-ready workbench.
+
+CTA:
+- Explore MAS9 Power
+- See Trust Model
+
+Hero visual:
+Create a beautiful fake dashboard mockup using CSS/HTML:
+- delivery intelligence score
+- patch impact count
+- AppPoint trend
+- skill coverage
+- trust boundary
+- review-only badge
+
+Metric strip:
+- 23 seed data files
+- 8 generated SVG charts
+- 6 diagrams
+- 46 customisations scanned
+- 7 patch impacts
+- 12-month AppPoint trend
+- 94 named users
+- 0 production mutations
+
+Sections:
+- What the workbench does
+- MAS9 Power demo spotlight
+- Evidence-based Maximo delivery
+- Offline local skill-pack first
+- Safety model
+- Chart preview
+- CTA
+
+2. MAS9 Power page: mas9-power.html
+
+Show MAS9 Power as demo story.
+
+Sections:
+- fictional customer overview
+- MAS 9 profile
+- enabled/disabled features
+- energy/utilities assets
+- Jira-only evidence
+- patch impact
+- license planning
+- outage readiness
+- skill coverage
+- demo user roles without exposing login credentials as primary content
+- safety reminders
+
+3. Features page: features.html
+
+Feature cards:
+- Delivery Intelligence
+- Requirement Upload Intake
+- Maximo Environment Fingerprint
+- Patch/iFix Impact
+- License Usage Planning
+- Offline Skill Packs
+- Skill Coverage
+- Trust Center
+- Audit Trail
+- Controlled Learning
+- Data Boundary
+- Customer Feature Flags
+
+4. Trust page: trust.html
+
+Must be excellent.
+
+Sections:
+- Review-only by design
+- No SQL execution
+- No Maximo mutation
+- No Jira mutation
+- No Azure DevOps mutation
+- Data mode awareness
+- Zero-retention compatible design
+- Backend-only secrets
+- Fictional demo data
+- License disclaimer
+- Trace files are internal-only
+- What is safe to publish vs internal only
+
+5. Architecture page: architecture.html
+
+Show:
+- Customer config
+- Seed data
+- Evidence services
+- Skill packs
+- Delivery intelligence
+- Reports/media
+- Customer-hosted data model
+- Azure customer subdomain plan
+
+Use Mermaid source as styled cards, and if possible render using Mermaid CDN.
+If using Mermaid CDN, make it optional and graceful. If blocked, show code card.
+
+6. Media page: media.html
+
+Fix images here.
+
+Display all 8 SVG charts as actual visible images:
+- license-apppoints-trend.svg
+- user-role-distribution.svg
+- asset-class-distribution.svg
+- patch-impact-risk.svg
+- skill-coverage-summary.svg
+- generation-run-status.svg
+- work-risk-summary.svg
+- outage-readiness-score.svg
+
+Each must use correct asset path and show visible fallback text.
+
+Also show:
+- 6 Mermaid diagrams
+- screenshot pending cards
+- video pending card
+- warning: traces are internal only
+
+7. Walkthrough page: demo-walkthrough.html
+
+Create a beautiful 12-step timeline:
+- Login + Customer Switch
+- Delivery Intelligence
+- Trust Center
+- Integration Settings
+- Requirement Uploads
+- Maximo Fingerprint
+- Patch Impact
+- License Usage Planning
+- Skill Coverage
+- No Contract Mobilisation
+- Audit Log
+- Help Center
+
+Each scene:
+- route
+- role
+- duration
+- what it proves
+
+8. Launch page: launch.html
+
+Make it viral/social style:
+- launch announcement
+- “What’s new”
+- “Why it matters”
+- “What to demo first”
+- quote cards
+- comparison table against PFM_DEMO and BOM_DEMO
+- safety reminders
+
+9. Contact page: contact.html
+
+Static lead page:
+- Request walkthrough
+- Ask for Maximo readiness assessment
+- Contact placeholder
+- no external CRM
+- mailto configurable in one JS/data place
+
+============================================================
+ASSET REQUIREMENTS
+============================================================
+
+Fix image issue permanently.
+
+Copy or recreate the SVG charts into:
+
+assets/charts/
+
+Required files:
+- license-apppoints-trend.svg
+- user-role-distribution.svg
+- asset-class-distribution.svg
+- patch-impact-risk.svg
+- skill-coverage-summary.svg
+- generation-run-status.svg
+- work-risk-summary.svg
+- outage-readiness-score.svg
+
+If original files cannot be copied from the source repo, recreate simple beautiful SVG chart placeholders using the same titles and fictional demo metrics.
+
+But do not leave broken image references.
+
+Create:
+- assets/og/masready-og.svg
+- assets/icons/favicon.svg
+
+All SVGs must render on GitHub Pages.
+
+After creating files, verify every image reference in HTML points to an existing file.
+
+Use a script if helpful:
+- scripts/check-assets.js
+
+The script should scan HTML for src/href asset references and report missing files.
+
+Run it before final.
+
+============================================================
+SEO REQUIREMENTS
+============================================================
+
+Make site SEO-compliant and Google Search Console ready.
+
+Add to every page:
+- unique title
+- unique meta description
+- canonical URL
+- Open Graph title
+- Open Graph description
+- Open Graph image
+- Twitter card metadata
+- robots meta
+
+Canonical base:
+https://softwarecomparereview.github.io/masready/
+
+Add:
+- sitemap.xml with all pages
+- robots.txt referencing sitemap
+- llms.txt
+- humans.txt optional
+- manifest.webmanifest
+- structured data JSON-LD
+
+Structured data:
+- Organization
+- WebSite
+- SoftwareApplication
+- BreadcrumbList where useful
+- FAQPage on trust/features if useful
+
+Google Search Console:
+- Add placeholder meta tag:
+  google-site-verification = REPLACE_WITH_GOOGLE_SEARCH_CONSOLE_TOKEN
+- Add docs/GOOGLE_SEARCH_CONSOLE.md explaining how to replace token
+- Add placeholder verification file:
+  googleREPLACE_WITH_TOKEN.html
+- Explain this must be renamed after Search Console gives token
+
+Best SERP practices:
+- clear H1 only once per page
+- descriptive H2s
+- internal links between pages
+- image alt text
+- sitemap and robots
+- compressed/lightweight assets
+- no broken links
+- no noindex
+- accessible contrast
+- fast static pages
+- descriptive filenames
+- schema markup
+
+============================================================
+GITHUB PAGES REQUIREMENTS
+============================================================
+
+Create:
+- .nojekyll
+- .github/workflows/pages.yml
+
+GitHub Actions workflow:
+- deploy static files from repo root
+- no complex build unless needed
+- publish to GitHub Pages
+
+The site must work at:
+https://softwarecomparereview.github.io/masready/
+
+No broken CSS.
+No broken JS.
+No broken images.
+No absolute root paths that break under /masready/.
+
+============================================================
+AZURE CUSTOMER SUBDOMAINS
+============================================================
+
+Customer subdomains will be hosted on Azure.
+
+Create docs:
+docs/CUSTOMER_SUBDOMAINS_ON_AZURE.md
+
+Explain architecture:
+- main marketing site: GitHub Pages
+- customer-specific demo/app subdomains: Azure Static Web Apps or Azure App Service
+- DNS provider: GoDaddy
+- examples:
+  - masready.com -> GitHub Pages or future main domain
+  - www.masready.com -> GitHub Pages
+  - mas9power.masready.com -> Azure Static Web App
+  - customer-a.masready.com -> Azure
+  - customer-b.masready.com -> Azure
+
+Explain DNS:
+- GitHub Pages main site uses CNAME/A records depending custom domain
+- Azure customer subdomain uses CNAME to Azure default hostname
+- TXT validation records for Azure custom domain
+- HTTPS managed certificate in Azure
+- no customer data on GitHub Pages
+- customer-specific apps/assets stay on Azure
+
+============================================================
+CONTENT SAFETY
+============================================================
+
+Do not publish:
+- Playwright trace zip files
+- raw DOM traces
+- real secrets
+- fake local URLs
+- unreviewed screenshots showing localhost/debug panels
+- raw config secrets
+- internal-only notes
+- raw credentials
+
+Allowed:
+- fictional demo metrics
+- generated SVG charts
+- architecture diagrams
+- public docs
+- public disclaimers
+- synthetic MAS9 Power story
+
+Use disclaimers clearly:
+- MAS9 Power is fictional
+- License planning is not compliance advice
+- Review-only outputs
+- No production mutations
+
+============================================================
+VALIDATION
+============================================================
+
+Before final:
+1. Confirm site files exist.
+2. Confirm assets/css/site.css exists.
+3. Confirm assets/js/site.js exists.
+4. Confirm all chart SVGs exist.
+5. Confirm every HTML img src points to an existing file.
+6. Confirm every stylesheet/script path points to an existing file.
+7. Confirm sitemap includes all pages.
+8. Confirm robots references sitemap.
+9. Confirm no trace zip files exist in public repo.
+10. Confirm no obvious secrets/tokens are committed.
+11. Confirm GitHub Pages workflow exists.
+12. Confirm site works under /masready/.
+
+Add a validation script:
+scripts/check-site.js
+
+It should:
+- scan all HTML files
+- collect src/href references to local assets
+- check files exist
+- check sitemap includes HTML pages
+- report missing assets
+- fail non-zero on missing assets
+
+Run:
+node scripts/check-site.js
+
+Final response must include validation output.
+
+============================================================
+FINAL OUTPUT
+============================================================
+
+Commit everything to main.
+
+Commit message:
+Redesign MASReady GitHub Pages site with fixed assets and SEO
+
+Final summary must include:
+- what was broken
+- what was redesigned
+- pages created/updated
+- assets fixed/copied/recreated
+- SEO/Search Console readiness
+- GitHub Pages workflow
+- Azure customer subdomain docs
+- validation result
+- live URL to check after GitHub Pages deploys
+
+Do not ask me questions.
+Do not leave placeholders for missing images except screenshots/video that are explicitly pending review.
+Do not leave broken image references.
+Proceed with best effort.

@@ -1,0 +1,15 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "description": "Spare parts and materials inventory for the MAS9 Power demo tenant",
+  "inventory_items": [
+    { "item_id": "INV-001", "description": "HV Fuse Link 132kV 100A", "storeroom": "LOC_DEPOT_WH1", "quantity_on_hand": 24, "unit_cost": 280.00, "reorder_point": 10, "item_class": "ELECTRICAL" },
+    { "item_id": "INV-002", "description": "Transformer Oil (IEC 60296 Grade) 200L Drum", "storeroom": "LOC_DEPOT_WH1", "quantity_on_hand": 8, "unit_cost": 1240.00, "reorder_point": 4, "item_class": "CONSUMABLE" },
+    { "item_id": "INV-003", "description": "Overhead Conductor ACSR Drake 795kcmil — 500m Reel", "storeroom": "LOC_DEPOT_WH2", "quantity_on_hand": 3, "unit_cost": 8500.00, "reorder_point": 1, "item_class": "CONDUCTOR" },
+    { "item_id": "INV-004", "description": "Porcelain Strain Insulator 132kV", "storeroom": "LOC_DEPOT_WH2", "quantity_on_hand": 48, "unit_cost": 95.00, "reorder_point": 20, "item_class": "INSULATOR" },
+    { "item_id": "INV-005", "description": "Smart Meter Replacement Unit (RF Mesh, DLMS)", "storeroom": "LOC_DEPOT_WH1", "quantity_on_hand": 200, "unit_cost": 185.00, "reorder_point": 50, "item_class": "METER" },
+    { "item_id": "INV-006", "description": "RTU I/O Module Spare Card", "storeroom": "LOC_HQ_SR1", "quantity_on_hand": 4, "unit_cost": 2200.00, "reorder_point": 2, "item_class": "ELECTRONICS" },
+    { "item_id": "INV-007", "description": "Safety Gloves Class 4 (HV rated) — Pair", "storeroom": "LOC_DEPOT_WH1", "quantity_on_hand": 30, "unit_cost": 145.00, "reorder_point": 12, "item_class": "PPE" }
+  ],
+  "total_items": 7,
+  "total_inventory_value_aud": 312480.00
+}

@@ -1,0 +1,18 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "description": "Maximo security groups configured in the MAS9 Power demo tenant",
+  "security_groups": [
+    { "group_id": "MAXADMIN", "name": "Maximo Administrators", "description": "Full system admin access", "member_user_ids": ["U001"], "custom_sig_options": ["ENERGYAUDIT_VIEW"] },
+    { "group_id": "PLUSSUPADMIN", "name": "MAS Support Admin", "description": "Technical support administration", "member_user_ids": ["U001"], "custom_sig_options": [] },
+    { "group_id": "PLUSPPROD", "name": "Project/Delivery Production", "description": "Delivery lead project access with extended reporting", "member_user_ids": ["U002", "U003"], "custom_sig_options": ["REPORT_EXTENDED"] },
+    { "group_id": "PLUSPREQMGR", "name": "Requirement Manager", "description": "Requirement intake and management", "member_user_ids": ["U002", "U003"], "custom_sig_options": [] },
+    { "group_id": "MAXASSETMGR", "name": "Asset Manager", "description": "Asset register and fingerprint access", "member_user_ids": ["U004"], "custom_sig_options": [] },
+    { "group_id": "PLUSSASSET", "name": "Asset Standard Access", "description": "Asset view and update", "member_user_ids": ["U004", "U006"], "custom_sig_options": [] },
+    { "group_id": "PLUSSCHED", "name": "Scheduler", "description": "PM schedule and job plan management", "member_user_ids": ["U005"], "custom_sig_options": [] },
+    { "group_id": "PLUSSFIELD", "name": "Field Technician (Restricted Mobile)", "description": "Mobile-only restricted access to WO and assets", "member_user_ids": ["U006"], "custom_sig_options": ["RESTRICTED_STARTCENTER"] },
+    { "group_id": "PLUSSMOBILE", "name": "Mobile User", "description": "Maximo mobile app access", "member_user_ids": ["U006"], "custom_sig_options": [] },
+    { "group_id": "PLUSSFINANCE", "name": "Finance User", "description": "License planning and contract view", "member_user_ids": ["U007"], "custom_sig_options": [] },
+    { "group_id": "PLUSSAUDIT", "name": "Auditor (MASReady Read-only)", "description": "Custom read-only group for MASReady audit integration", "member_user_ids": [], "custom_sig_options": [] }
+  ],
+  "total": 11
+}

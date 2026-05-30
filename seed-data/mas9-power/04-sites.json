@@ -1,0 +1,59 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "description": "Fictional operational sites for the MAS9 Power demo tenant",
+  "sites": [
+    {
+      "site_id": "SITE_HQ",
+      "name": "Headquarters — Control Centre",
+      "type": "administrative",
+      "region": "CBD",
+      "address": "1 Fictional Tower, Demo City, AU 0000",
+      "asset_count": 12,
+      "active_work_orders": 3,
+      "status": "active"
+    },
+    {
+      "site_id": "SITE_NORTH",
+      "name": "Northern Grid Substation Complex",
+      "type": "operational",
+      "region": "North",
+      "address": "45 Fictional Industrial Rd, Northvale, AU 0001",
+      "asset_count": 78,
+      "active_work_orders": 14,
+      "status": "active"
+    },
+    {
+      "site_id": "SITE_WEST",
+      "name": "Western Transmission Corridor",
+      "type": "operational",
+      "region": "West",
+      "address": "Fictional Transmission Way, Westfield, AU 0002",
+      "asset_count": 112,
+      "active_work_orders": 22,
+      "status": "active"
+    },
+    {
+      "site_id": "SITE_SOUTH",
+      "name": "Southern Distribution Network",
+      "type": "operational",
+      "region": "South",
+      "address": "Fictional Grid Lane, Southtown, AU 0003",
+      "asset_count": 94,
+      "active_work_orders": 18,
+      "status": "active"
+    },
+    {
+      "site_id": "SITE_DEPOT",
+      "name": "Central Depot & Warehouse",
+      "type": "depot",
+      "region": "CBD",
+      "address": "99 Fictional Depot St, Demo City, AU 0000",
+      "asset_count": 45,
+      "active_work_orders": 6,
+      "status": "active"
+    }
+  ],
+  "total_sites": 5,
+  "total_assets": 341,
+  "total_active_work_orders": 63
+}

@@ -1,0 +1,48 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "description": "Read-only integration configurations for the MAS9 Power demo tenant. All connections are fictional. No write access is enabled.",
+  "integrations": [
+    {
+      "integration_id": "INT-JIRA",
+      "name": "Jira (Read-only)",
+      "type": "jira",
+      "mode": "read_only",
+      "scopes": ["read:issue", "read:project", "read:sprint"],
+      "write_enabled": false,
+      "status": "connected",
+      "base_url": "https://fictional-jira.atlassian.net",
+      "project_key": "MAS9PWR",
+      "auth_method": "API Token (read-only scoped)",
+      "last_sync": "2025-11-01T09:00:00Z"
+    },
+    {
+      "integration_id": "INT-ADO",
+      "name": "Azure DevOps (Read-only)",
+      "type": "azure_devops",
+      "mode": "read_only",
+      "scopes": ["vso.workitems", "vso.project"],
+      "write_enabled": false,
+      "status": "connected",
+      "organisation": "fictional-org",
+      "project": "MAS9PowerDelivery",
+      "auth_method": "PAT (read-only)",
+      "last_sync": "2025-11-01T09:00:00Z"
+    },
+    {
+      "integration_id": "INT-MAXIMO",
+      "name": "IBM Maximo (Fingerprint Read-only)",
+      "type": "maximo",
+      "mode": "fingerprint_readonly",
+      "scopes": ["mbo.read", "security.read", "script.read"],
+      "write_enabled": false,
+      "status": "connected",
+      "endpoint": "https://fictional-mas.mas9power.demo/maximo/oslc",
+      "auth_method": "OAuth2 (read-only client credentials)",
+      "last_sync": "2025-11-01T07:30:00Z",
+      "customisations_detected": 46
+    }
+  ],
+  "total": 3,
+  "mutations": 0,
+  "trust_boundary": "REVIEW_ONLY"
+}

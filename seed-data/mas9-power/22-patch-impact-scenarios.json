@@ -1,0 +1,80 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "description": "Patch impact analysis results for a fictional MAS 9.0.3 → 9.1.0 upgrade scenario",
+  "patch_reference": "IBM MAS Manage 9.1.0 (FICTIONAL — not a real patch)",
+  "scan_date": "2025-11-01",
+  "total_impacted": 7,
+  "severity_summary": { "CRITICAL": 0, "HIGH": 2, "MEDIUM": 3, "LOW": 2 },
+  "impacted_items": [
+    {
+      "impact_id": "IMP-001",
+      "customisation_ref": "CUST-007",
+      "severity": "HIGH",
+      "title": "WO Start Validation Script — API signature change",
+      "description": "The WOSTART_ENERGY_ISOLATION script uses the MboRemote.getString() method which has a deprecated signature in 9.1.0. The script must be updated before patch application.",
+      "patch_note_ref": "MAS-9.1.0-BC-001",
+      "remediation": "Update script to use new getValue() method. Estimated effort: 4h.",
+      "affected_users": ["U002", "U003", "U006"]
+    },
+    {
+      "impact_id": "IMP-002",
+      "customisation_ref": "CUST-008",
+      "severity": "HIGH",
+      "title": "GIS Sync Script — REST client library replaced",
+      "description": "The ASSET_GIS_SYNC script uses the internal Maximo HTTP client class which is replaced in 9.1.0 with a new external library. Script must be rewritten.",
+      "patch_note_ref": "MAS-9.1.0-BC-002",
+      "remediation": "Rewrite script using new approved HTTP client. Estimated effort: 8h.",
+      "affected_users": ["U004"]
+    },
+    {
+      "impact_id": "IMP-003",
+      "customisation_ref": "CUST-022",
+      "severity": "MEDIUM",
+      "title": "MAXIMO-GIS OSLC Integration — endpoint path change",
+      "description": "The GIS OSLC integration endpoint path changes in 9.1.0. Integration configuration must be updated.",
+      "patch_note_ref": "MAS-9.1.0-CFG-001",
+      "remediation": "Update integration endpoint URL in Integration Designer. Estimated effort: 1h.",
+      "affected_users": ["U001", "U004"]
+    },
+    {
+      "impact_id": "IMP-004",
+      "customisation_ref": "CUST-023",
+      "severity": "MEDIUM",
+      "title": "SCADA→Maximo Alarm Feed — message format update",
+      "description": "The SCADA alarm work request feed uses a message format that is revised in 9.1.0. Queue configuration update required.",
+      "patch_note_ref": "MAS-9.1.0-CFG-002",
+      "remediation": "Update message mapping in Integration Framework. Estimated effort: 3h.",
+      "affected_users": ["U001"]
+    },
+    {
+      "impact_id": "IMP-005",
+      "customisation_ref": "CUST-040",
+      "severity": "MEDIUM",
+      "title": "AMI Head-end Meter Import — batch size limit change",
+      "description": "The meter reading import integration has a reduced batch size limit in 9.1.0 to improve stability. The current batch size of 5000 must be reduced to 2000.",
+      "patch_note_ref": "MAS-9.1.0-CFG-003",
+      "remediation": "Update batch size configuration. Estimated effort: 0.5h.",
+      "affected_users": ["U001"]
+    },
+    {
+      "impact_id": "IMP-006",
+      "customisation_ref": "CUST-005",
+      "severity": "LOW",
+      "title": "Energy Safety Checklist Screen — tab order reset",
+      "description": "Screen customisations on the WO Start tab may have their tab order reset during the 9.1.0 upgrade. Post-upgrade visual review required.",
+      "patch_note_ref": "MAS-9.1.0-UI-001",
+      "remediation": "Post-upgrade screen review and re-ordering if needed. Estimated effort: 1h.",
+      "affected_users": ["U002", "U003", "U006"]
+    },
+    {
+      "impact_id": "IMP-007",
+      "customisation_ref": "CUST-028",
+      "severity": "LOW",
+      "title": "SCADA WO Generate Cron — scheduler class update",
+      "description": "The cron task uses a scheduler class that is renamed in 9.1.0. Cron task registration must be refreshed.",
+      "patch_note_ref": "MAS-9.1.0-CFG-004",
+      "remediation": "Re-register cron task after upgrade. Estimated effort: 0.5h.",
+      "affected_users": ["U001"]
+    }
+  ]
+}

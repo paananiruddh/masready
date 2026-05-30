@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="628" viewBox="0 0 1200 628">
+  <defs>
+    <linearGradient id="roadbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0a1e"/>
+      <stop offset="100%" style="stop-color:#180f2e"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#ec4899"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="628" fill="url(#roadbg)"/>
+  <rect x="0" y="0" width="1200" height="4" fill="url(#purple)"/>
+
+  <!-- Title -->
+  <text x="60" y="72" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#a78bfa" letter-spacing="3">ROADMAP</text>
+  <text x="60" y="128" font-family="Inter, sans-serif" font-size="46" font-weight="800" fill="#ffffff">What's</text>
+  <text x="60" y="180" font-family="Inter, sans-serif" font-size="46" font-weight="800" fill="#a78bfa">coming next</text>
+
+  <text x="60" y="224" font-family="Inter, sans-serif" font-size="16" fill="#4c3d6e">The architecture is the bet. The skills and scenarios grow over time.</text>
+
+  <!-- Timeline items — left column -->
+  <!-- Item 1 -->
+  <circle cx="80" cy="284" r="8" fill="#8b5cf6"/>
+  <line x1="80" y1="292" x2="80" y2="356" stroke="#8b5cf6" stroke-opacity="0.2" stroke-width="2"/>
+  <text x="104" y="280" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">More Maximo skill packs</text>
+  <text x="104" y="300" font-family="Inter, sans-serif" font-size="13" fill="#4c3d6e">Broader domain coverage, deeper version specificity</text>
+
+  <!-- Item 2 -->
+  <circle cx="80" cy="356" r="8" fill="#a855f7"/>
+  <line x1="80" y1="364" x2="80" y2="428" stroke="#a855f7" stroke-opacity="0.2" stroke-width="2"/>
+  <text x="104" y="352" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">Skill quality scoring</text>
+  <text x="104" y="372" font-family="Inter, sans-serif" font-size="13" fill="#4c3d6e">Not all skill coverage is equal — surface the gaps clearly</text>
+
+  <!-- Item 3 -->
+  <circle cx="80" cy="428" r="8" fill="#c084fc"/>
+  <line x1="80" y1="436" x2="80" y2="500" stroke="#c084fc" stroke-opacity="0.2" stroke-width="2"/>
+  <text x="104" y="424" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">Deeper patch / iFix intelligence</text>
+  <text x="104" y="444" font-family="Inter, sans-serif" font-size="13" fill="#4c3d6e">More version cross-referencing and impact analysis</text>
+
+  <!-- Item 4 -->
+  <circle cx="80" cy="500" r="8" fill="#e879f9"/>
+  <text x="104" y="496" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">Customer-derived benchmarks</text>
+  <text x="104" y="516" font-family="Inter, sans-serif" font-size="13" fill="#4c3d6e">Controlled learning from approved customer evidence</text>
+
+  <!-- Right column -->
+  <!-- Item 5 -->
+  <circle cx="630" cy="284" r="8" fill="#ec4899"/>
+  <line x1="630" y1="292" x2="630" y2="356" stroke="#ec4899" stroke-opacity="0.2" stroke-width="2"/>
+  <text x="654" y="280" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">More industry scenarios</text>
+  <text x="654" y="300" font-family="Inter, sans-serif" font-size="13" fill="#4c3d6e">Utilities, government, facilities, transport</text>
+
+  <!-- Item 6 -->
+  <circle cx="630" cy="356" r="8" fill="#f472b6"/>
+  <line x1="630" y1="364" x2="630" y2="428" stroke="#f472b6" stroke-opacity="0.2" stroke-width="2"/>
+  <text x="654" y="352" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">Azure-hosted customer subdomains</text>
+  <text x="654" y="372" font-family="Inter, sans-serif" font-size="13" fill="#4c3d6e">More per-customer live environments and demos</text>
+
+  <!-- Item 7 -->
+  <circle cx="630" cy="428" r="8" fill="#fb7185"/>
+  <line x1="630" y1="436" x2="630" y2="500" stroke="#fb7185" stroke-opacity="0.2" stroke-width="2"/>
+  <text x="654" y="424" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">More evidence-based insights</text>
+  <text x="654" y="444" font-family="Inter, sans-serif" font-size="13" fill="#4c3d6e">Smarter synthesis of requirements and fingerprints</text>
+
+  <!-- Item 8 -->
+  <circle cx="630" cy="500" r="8" fill="#fda4af"/>
+  <text x="654" y="496" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">Upgrade readiness expansion</text>
+  <text x="654" y="516" font-family="Inter, sans-serif" font-size="13" fill="#4c3d6e">Deeper 7.6.x → MAS 9 pathway intelligence</text>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="590" width="1200" height="38" fill="#0a0618"/>
+  <text x="60" y="613" font-family="Inter, sans-serif" font-size="13" fill="#2d1f52">Powered by OverPayingforAI.com</text>
+  <text x="1140" y="613" font-family="Inter, sans-serif" font-size="13" fill="#2d1f52" text-anchor="end">softwarecomparereview.github.io/masready/</text>
+</svg>

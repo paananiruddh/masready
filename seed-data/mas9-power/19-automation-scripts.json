@@ -1,0 +1,17 @@
+{
+  "data_classification": "FICTIONAL — DEMO ONLY",
+  "description": "Key automation scripts active in the MAS9 Power demo tenant Maximo environment",
+  "automation_scripts": [
+    { "script_id": "AS-001", "name": "WOSTART_ENERGY_ISOLATION", "language": "Python", "object": "WORKORDER", "launch_point": "WORKORDER.SAVE", "description": "Validates that an energy isolation certificate has been raised before a WO can move to INPRG status", "patch_risk": "HIGH", "customisation_ref": "CUST-007" },
+    { "script_id": "AS-002", "name": "ASSET_GIS_SYNC", "language": "Python", "object": "ASSET", "launch_point": "ASSET.SAVE", "description": "Pushes asset status changes to the fictional GIS layer via REST call", "patch_risk": "HIGH", "customisation_ref": "CUST-008" },
+    { "script_id": "AS-003", "name": "PM_CRITICAL_DUEDATE", "language": "JavaScript", "object": "PM", "launch_point": "PM.SAVE", "description": "Overrides calculated PM due date for assets marked CRITICALITY=HIGH by reducing the next-due period by 20%", "patch_risk": "MEDIUM", "customisation_ref": "CUST-009" },
+    { "script_id": "AS-004", "name": "INVISSUE_PPE_ALERT", "language": "Python", "object": "INVISSUE", "launch_point": "INVISSUE.SAVE", "description": "Triggers notification to safety officer when HV-rated PPE stock falls below threshold", "patch_risk": "LOW", "customisation_ref": "CUST-010" },
+    { "script_id": "AS-005", "name": "WO_CREW_AUTO_POPULATE", "language": "Python", "object": "WORKORDER", "launch_point": "WORKORDER.INITIATE", "description": "Queries site roster data and pre-populates crew on new WOs based on site and trade", "patch_risk": "MEDIUM", "customisation_ref": "CUST-021" },
+    { "script_id": "AS-006", "name": "METER_ANOMALY_DETECT", "language": "Python", "object": "METER", "launch_point": "METERREADING.SAVE", "description": "Applies statistical thresholds to meter readings and flags anomalies for review", "patch_risk": "MEDIUM", "customisation_ref": "CUST-026" },
+    { "script_id": "AS-007", "name": "SCADA_WO_GENERATE", "language": "JavaScript", "object": "CRONTASK", "launch_point": "CRON — 15min", "description": "Polls SCADA alarm feed and auto-generates Maximo work requests when alarm threshold exceeded", "patch_risk": "HIGH", "customisation_ref": "CUST-028" },
+    { "script_id": "AS-008", "name": "REGULATORY_NOTIFY_CLOSE", "language": "Python", "object": "WORKORDER", "launch_point": "WORKORDER.COMPLETE", "description": "Sends regulatory notification email on WO completion for REGULATORY_NOTIFICATION_SENT=false WOs", "patch_risk": "MEDIUM", "customisation_ref": "CUST-031" },
+    { "script_id": "AS-009", "name": "ASSET_CRITICALITY_CLASSIFY", "language": "Python", "object": "ASSET", "launch_point": "ASSET.SAVE", "description": "Auto-sets asset criticality rating based on VOLTAGE_CLASS custom field value", "patch_risk": "HIGH", "customisation_ref": "CUST-036" },
+    { "script_id": "AS-010", "name": "WOACTIVITY_ISOLATION_VALIDATE", "language": "Python", "object": "WOACTIVITY", "launch_point": "WOACTIVITY.SAVE", "description": "Validates that ENERGY_ISOLATION_METHOD is populated before activity can be approved", "patch_risk": "MEDIUM", "customisation_ref": "CUST-042" }
+  ],
+  "total": 10
+}

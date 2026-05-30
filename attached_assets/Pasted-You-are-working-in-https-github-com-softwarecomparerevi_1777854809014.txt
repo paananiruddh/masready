@@ -1,0 +1,642 @@
+You are working in:
+
+https://github.com/softwarecomparereview/masready
+
+The current website is not acceptable yet. Treat this as a full redesign and interaction upgrade, not a small patch.
+
+Goal:
+Create three separate, pollable, animated website design variants for the MASReady / Maximo Delivery Automation Workbench GitHub Pages site.
+
+The site must be static, SEO-ready, Google Search Console-ready, GitHub Pages-compatible, and visually strong enough to share on LinkedIn for a public design poll.
+
+Live base:
+https://softwarecomparereview.github.io/masready/
+
+Important:
+The product brand is:
+
+Maximo Delivery Automation Workbench
+
+MAS9 Power is only one showcase/demo scenario, not the product name.
+
+Customer-specific live demos/subdomains will later be hosted on Azure. This GitHub Pages site is the public marketing and static interactive simulation site.
+
+============================================================
+SOURCE MATERIAL
+============================================================
+
+Use the original project commit as content/source reference:
+
+https://github.com/softwarecomparereview/AssetizeMaximoBroBot/commit/c671e33b9f28ab0c698d2b66d35a4ff47404c79d
+
+Read and use source content from:
+- README.md
+- docs/wiki/Functionality-and-Configuration.md
+- docs/wiki/MAS9_POWER-Functionality-and-Configuration.md
+- docs/wiki/announcements/MAS9_POWER-Demo-Announcement.md
+- workspace/demo/website-assets/MAS9_POWER/README.md
+- workspace/demo/website-assets/MAS9_POWER/manifest/media-manifest.json
+- workspace/demo/media/MAS9_POWER/charts/*.svg
+- workspace/demo/website-assets/MAS9_POWER/diagrams/*.mmd
+- workspace/demo/media/MAS9_POWER/literature/*
+- workspace/demo/seed-data/MAS9_POWER/*.json
+
+Use these key facts:
+- Product: Maximo Delivery Automation Workbench
+- Demo tenant: MAS9 Power
+- MAS9 Power industry: Energy and Utilities
+- Platform: IBM Maximo Application Suite Manage 9.x
+- Data mode: customer_hosted
+- Jira integration: read-only / jira_only
+- License usage planning: enabled
+- Patch impact: enabled
+- PFM contract mobilisation: disabled
+- Premium actions: disabled
+- 23 seed data files
+- 8 generated SVG charts
+- 6 Mermaid diagrams
+- 7 demo users
+- 12-minute walkthrough storyboard
+- 46 customisations scanned
+- 7 impacted patch items
+- 0 critical, 2 high, 3 medium, 2 low
+- 12-month AppPoint trend
+- 1847 estimated used / 2400 entitled
+- 77% utilisation
+- 84% peak
+- 94 named users
+- 71 active / 23 inactive
+- mobile pool 89% peak utilisation
+- no SQL execution
+- no Maximo mutation
+- no Jira mutation
+- no Azure DevOps mutation
+- review-only outputs
+- all MAS9 Power data is fictional
+
+Required disclaimer:
+License usage planning is for planning and visibility only. It is not legal, contractual, IBM-certified, or compliance advice.
+
+============================================================
+BIG REQUIREMENT: THREE DESIGN VARIANTS
+============================================================
+
+Create three separate design variants that can be shared in a poll.
+
+Routes:
+
+- /design1/
+- /design2/
+- /design3/
+- /compare.html
+
+Each design must include the same interactive animated simulator, but each design must look and feel different.
+
+Design 1:
+Executive SaaS / Enterprise Trust
+
+Style:
+- professional
+- clean
+- executive-friendly
+- boardroom-ready
+- strong trust model
+- polished enterprise SaaS
+- best for CIO / delivery manager / transformation audience
+
+Visual direction:
+- white/dark hybrid
+- strong typography
+- clean cards
+- elegant dashboards
+- calm animations
+- clear trust badges
+- premium but restrained
+
+Design 2:
+Viral Product Launch / Social Feed
+
+Style:
+- more energetic
+- LinkedIn/X/Facebook-inspired
+- shareable product launch cards
+- strong social proof
+- feed-style updates
+- bolder copy
+- better for public launch and LinkedIn poll
+
+Visual direction:
+- launch feed
+- post cards
+- animated metric tiles
+- “what changed” blocks
+- quote cards
+- sticky share/poll CTA
+- punchier section headers
+
+Design 3:
+Immersive Command Center / Product Simulation
+
+Style:
+- most animated
+- most product-like
+- feels like a live demo cockpit
+- best for product/technical audience
+
+Visual direction:
+- dark command center
+- glowing progress rail
+- animated dashboard panels
+- scenario cards
+- data flow animation
+- terminal/evidence stream
+- readiness meter
+- final report reveal
+
+============================================================
+SHARED ANIMATED SIMULATOR
+============================================================
+
+Every design must include a “Choose your Maximo scenario” animated simulator.
+
+Also create a standalone simulator route:
+
+- /simulator.html
+
+The simulator must work on:
+- /design1/
+- /design2/
+- /design3/
+- /simulator.html
+
+Each design should style the simulator differently, but use the same scenario data.
+
+The user selects one of three scenarios:
+
+1. MAS 9 Energy & Utilities
+Demo name: MAS9 Power
+Maximo version: IBM Maximo Application Suite Manage 9.x
+Scenario: Patch Impact + License Usage Planning + Environment Fingerprint
+
+2. Legacy Upgrade Readiness
+Demo name: Legacy 7.6 Upgrade Readiness
+Maximo version: Maximo 7.6.x
+Scenario: EOS warning + iFix/Patch Impact + Upgrade Readiness
+
+3. Contract Mobilisation
+Demo name: MAS 9 Contract Mobilisation
+Maximo version: MAS 9 / Manage 9.x
+Scenario: Requirements intake + site/contract onboarding + generated runbook
+
+When the user clicks “Run animated demo”, animate this 7-stage flow:
+
+1. Customer Context
+Shows selected customer/scenario, version, industry, data mode.
+
+2. Evidence Intake
+Shows requirement documents, Jira/Azure DevOps evidence, scan JSON, seed data flowing into the workbench.
+
+3. Environment Fingerprint
+Shows Maximo version, patch profile, capabilities, endpoints.
+
+4. Skill Match
+Shows local Maximo skill packs being matched:
+- automation scripts
+- relationships
+- workflow
+- escalation
+- integration framework
+- patch impact
+- license planning
+- mobilisation where relevant
+
+5. Scenario Analysis
+Scenario-specific:
+- MAS9 Power: patch impact + AppPoint usage planning
+- Legacy 7.6: EOS warning + upgrade readiness + impacted customisations
+- Contract Mobilisation: onboarding runbook + validation checklist
+
+6. Trust Boundary
+Always show:
+- no SQL execution
+- no Maximo mutation
+- no Jira mutation
+- no Azure DevOps mutation
+- review-only output
+- fictional demo data
+
+7. Review-ready Output
+Scenario-specific final output:
+- patch impact report
+- licence usage planning summary
+- upgrade readiness checklist
+- contract mobilisation runbook
+- executive summary
+
+The simulator must include:
+- visible progress rail
+- animated active stage
+- completed stages with checkmarks
+- feed/event stream
+- metric counters
+- scenario-specific final result
+- readiness score/meter
+- “Run another scenario”
+- “View Trust Model”
+- “Request walkthrough”
+
+Add label:
+Static guided simulation — no real customer systems connected.
+
+Respect prefers-reduced-motion.
+
+No external animation libraries.
+No backend.
+No API calls.
+No database.
+
+============================================================
+SCENARIO DATA
+============================================================
+
+Create:
+
+assets/js/scenarios.js
+
+Define three scenario objects.
+
+Scenario 1:
+
+id: mas9-power
+title: MAS 9 Energy & Utilities
+demoName: MAS9 Power
+version: MAS 9 / Manage 9.x
+industry: Energy & Utilities
+dataMode: customer_hosted
+integration: Jira read-only
+enabledFeatures:
+- Delivery Intelligence
+- Patch Impact
+- License Usage Planning
+- Environment Fingerprint
+- Skill Coverage
+- Trust Center
+metrics:
+- 46 customisations scanned
+- 7 impacted items
+- 0 critical
+- 2 high risk
+- 1847 AppPoints used
+- 2400 AppPoints entitled
+- 77% utilisation
+- 94 named users
+result:
+- Patch impact report ready
+- Licence planning summary ready
+- UAT retest required
+- Review-only output
+
+Scenario 2:
+
+id: legacy-upgrade
+title: Maximo 7.6.x Upgrade Readiness
+demoName: Legacy Upgrade Readiness
+version: Maximo 7.6.x
+industry: Government / Asset Intensive
+dataMode: demo / assetize_managed
+integration: Jira read-only
+enabledFeatures:
+- EOS Awareness
+- Patch Impact
+- Upgrade Readiness
+- Environment Drift
+- Skill Coverage
+metrics:
+- legacy version detected
+- EOS warning active
+- 38 customisations scanned
+- 11 impacted objects
+- 3 high risk
+- upgrade readiness score 72
+result:
+- Upgrade readiness report ready
+- iFix impact summary ready
+- technical remediation backlog ready
+- executive warning banner generated
+
+Scenario 3:
+
+id: contract-mobilisation
+title: MAS 9 Contract Mobilisation
+demoName: Contract Mobilisation
+version: MAS 9 / Manage 9.x
+industry: Facilities / Services
+dataMode: customer_hosted
+integration: Azure DevOps read-only
+enabledFeatures:
+- Requirement Intake
+- Contract/Site Onboarding
+- Generated Runbook
+- Skill Coverage
+- Audit Trail
+metrics:
+- 12 onboarding modules
+- 36 validation checks
+- 9 generated runbook sections
+- 4 blocked assumptions
+- readiness score 88
+result:
+- Mobilisation runbook ready
+- Environment checklist ready
+- Role/task matrix ready
+- Review package ready
+
+============================================================
+COMPARE / POLL PAGE
+============================================================
+
+Create:
+
+compare.html
+
+Purpose:
+Let me run a public poll and ask people which design is best.
+
+Page must include:
+- three design preview cards
+- links to /design1/, /design2/, /design3/
+- short description of each design direction
+- “Best for” labels
+- screenshot/preview mock blocks
+- localStorage voting widget
+- current local vote count on that browser
+- suggested LinkedIn poll copy
+- suggested X/Twitter post copy
+- disclaimer that voting is local-only unless later connected to analytics
+
+Local vote options:
+- Design 1 — Executive SaaS
+- Design 2 — Viral Launch
+- Design 3 — Command Center
+
+No backend needed.
+
+Suggested LinkedIn poll copy:
+“We are testing three design directions for a Maximo Delivery Automation Workbench. Which one makes you want to click and explore?
+1. Executive SaaS
+2. Viral Product Launch
+3. Command Center Simulator”
+
+============================================================
+PUBLIC SITE STRUCTURE
+============================================================
+
+Keep or create these pages:
+
+- index.html
+- design1/index.html
+- design2/index.html
+- design3/index.html
+- simulator.html
+- compare.html
+- mas9-power.html
+- features.html
+- trust.html
+- architecture.html
+- media.html
+- demo-walkthrough.html
+- launch.html
+- contact.html
+
+The home page should direct people to:
+- Explore the three designs
+- Run the simulator
+- View MAS9 Power demo
+- View trust model
+
+The site must not look like a plain documentation site.
+
+============================================================
+ASSET FIX REQUIREMENT
+============================================================
+
+Images are currently not displaying. Fix permanently.
+
+Required files:
+
+assets/css/site.css
+assets/css/design1.css
+assets/css/design2.css
+assets/css/design3.css
+assets/js/site.js
+assets/js/scenarios.js
+assets/js/simulator.js
+assets/js/compare.js
+
+Required SVG charts in:
+
+assets/charts/
+
+- license-apppoints-trend.svg
+- user-role-distribution.svg
+- asset-class-distribution.svg
+- patch-impact-risk.svg
+- skill-coverage-summary.svg
+- generation-run-status.svg
+- work-risk-summary.svg
+- outage-readiness-score.svg
+
+If source SVG charts cannot be copied, recreate visually polished SVG placeholders using the correct titles and fictional data.
+
+Do not leave broken image references.
+
+Create:
+
+assets/og/masready-og.svg
+assets/og/design1-og.svg
+assets/og/design2-og.svg
+assets/og/design3-og.svg
+assets/icons/favicon.svg
+
+All asset paths must work under GitHub Pages:
+
+https://softwarecomparereview.github.io/masready/
+
+Use either:
+- relative paths like ../assets/...
+- or root project paths like /masready/assets/...
+
+Be consistent.
+
+============================================================
+SEO / GOOGLE SEARCH CONSOLE / SERP
+============================================================
+
+Make the site SEO-compliant and Google Search Console-ready.
+
+Add/update:
+- sitemap.xml
+- robots.txt
+- llms.txt
+- manifest.webmanifest
+- humans.txt optional
+- googleREPLACE_WITH_TOKEN.html placeholder
+- meta google-site-verification placeholder
+
+Every page must have:
+- unique title
+- unique meta description
+- canonical URL
+- Open Graph title
+- Open Graph description
+- Open Graph image
+- Twitter card metadata
+- one H1
+- meaningful H2s
+- internal links
+- descriptive image alt text
+
+Canonical base:
+https://softwarecomparereview.github.io/masready/
+
+Add structured data:
+- Organization
+- WebSite
+- SoftwareApplication
+- WebPage
+- BreadcrumbList where useful
+- FAQPage on simulator/trust pages
+
+Add /simulator.html to sitemap.
+
+Add:
+/design1/
+/design2/
+/design3/
+/compare.html
+
+to sitemap.
+
+Do not noindex the design pages.
+
+============================================================
+AZURE CUSTOMER SUBDOMAINS
+============================================================
+
+Create/update:
+
+docs/CUSTOMER_SUBDOMAINS_ON_AZURE.md
+
+Explain:
+- GitHub Pages hosts public marketing site and static simulator
+- Azure hosts customer-specific live demos/apps
+- customer subdomains route to Azure
+- examples:
+  - mas9power.masready.com
+  - customer-a.masready.com
+  - customer-b.masready.com
+- GoDaddy DNS uses CNAME records for Azure subdomains
+- Azure validates domains with TXT records
+- HTTPS certificates managed in Azure
+- no customer data is hosted on GitHub Pages
+- customer-specific data stays in Azure/customer-hosted environments
+
+============================================================
+CONTENT SAFETY
+============================================================
+
+Do not publish:
+- Playwright trace zip files
+- raw DOM traces
+- secrets
+- tokens
+- real customer data
+- localhost URLs
+- debug screenshots
+- raw credentials
+- unreviewed video/screenshots
+
+Allowed:
+- fictional seeded metrics
+- generated SVG charts
+- Mermaid diagrams
+- public documentation summaries
+- safety disclaimers
+- static simulations
+
+Must clearly say:
+- MAS9 Power is fictional
+- Static simulation only
+- No real customer systems connected
+- Review-only outputs
+- License planning is not compliance advice
+
+============================================================
+VALIDATION SCRIPT
+============================================================
+
+Create/update:
+
+scripts/check-site.js
+
+It must verify:
+- index.html exists
+- design1/index.html exists
+- design2/index.html exists
+- design3/index.html exists
+- simulator.html exists
+- compare.html exists
+- assets/css/site.css exists
+- design CSS files exist
+- assets/js/site.js exists
+- assets/js/scenarios.js exists
+- assets/js/simulator.js exists
+- assets/js/compare.js exists
+- all chart SVGs exist
+- every local img src exists
+- every local script src exists
+- every local stylesheet href exists
+- sitemap includes all pages
+- robots.txt references sitemap
+- no trace zip files exist
+- no obvious secrets/tokens committed
+- no broken absolute /assets paths that fail under /masready/
+
+Run:
+
+node scripts/check-site.js
+
+Fix all failures before final.
+
+============================================================
+GITHUB PAGES
+============================================================
+
+Ensure:
+- .nojekyll exists
+- .github/workflows/pages.yml exists
+- workflow publishes static files from repository root
+- no build step required unless absolutely necessary
+- all pages work under /masready/
+
+Commit message:
+
+Add three animated pollable design variants with Maximo scenario simulator
+
+Final response must include:
+- what was broken before
+- what was redesigned
+- three design routes
+- simulator routes
+- asset fixes
+- SEO/Search Console readiness
+- Azure customer subdomain docs
+- validation result
+- live URLs to check after GitHub Pages deploys
+
+Do not ask questions.
+Do not build a backend.
+Do not use a database.
+Do not leave broken images.
+Do not claim real product connection.
+Proceed with best effort.
