@@ -12,12 +12,12 @@ const PIPELINE = [
     details: [
       "Data mode setting: customer_hosted or assetize_managed",
       "Integration credentials stored backend-only — never exposed to the client",
-      "Feature flags: enable or disable License Planning, Patch Impact, PFM Mobilisation, and Premium Actions per tenant",
+      "Feature flags: enable or disable License Planning, Patch Impact, and Premium Actions per tenant",
       "Jira integration mode: read-only / jira_only — no ticket creation or mutation",
       "Azure DevOps integration mode: read-only — no pipeline triggers",
       "Customer context isolates all data at the tenant boundary — no cross-tenant leakage",
     ],
-    example: "MAS9 Power: customer_hosted · Jira read-only · License Planning ON · PFM OFF"
+    example: "MAS9 Power: customer_hosted · Jira read-only · License Planning ON · Premium Actions OFF"
   },
   {
     label: "Seed Data",
