@@ -1,0 +1,97 @@
+The MASReady site header/layout is broken after refresh.
+
+Observed issue:
+- “Skip to content” is visible on page load.
+- “Menu” button is visible on desktop.
+- Desktop navigation and mobile menu button appear at the same time.
+- Logo/brand area is clipped on the left.
+- Header does not look production-ready.
+
+Fix the global/header CSS across the MASReady marketing site.
+
+Requirements:
+1. Hide skip link visually by default.
+2. Show skip link only on keyboard focus.
+3. Hide mobile menu button on desktop.
+4. Show mobile menu button only below mobile breakpoint.
+5. Ensure desktop nav is visible only on desktop.
+6. Ensure header content is centered within a max-width container.
+7. Ensure logo/brand block is not clipped.
+8. Prevent horizontal overflow.
+9. Test Home, Features, Architecture, Trust, Launch, MAS9 Power, and Contact pages.
+10. Do not change product copy unless required.
+11. Do not introduce BOM, PFM, Programmed, Transurban, or any customer-specific references.
+12. Run build/test and report files changed.
+
+Suggested CSS rules to verify/add:
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  z-index: 9999;
+  padding: 0.75rem 1rem;
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 0.5rem;
+}
+
+.mobile-menu-button,
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-button,
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .desktop-nav,
+  .site-nav {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .desktop-nav,
+  .site-nav {
+    display: flex;
+  }
+
+  .mobile-menu-button,
+  .menu-toggle {
+    display: none;
+  }
+}
+
+.site-header,
+.header-inner,
+.nav-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+After fixing, provide:
+- files changed
+- before/after explanation
+- build result
+- manual QA checklist
