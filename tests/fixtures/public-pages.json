@@ -1,0 +1,14 @@
+[
+  { "path": "/", "name": "Home", "required": true },
+  { "path": "/mas9-power", "name": "MAS9 Power (SPA)", "required": true },
+  { "path": "/features", "name": "Features (SPA)", "required": true },
+  { "path": "/trust", "name": "Trust Center (SPA)", "required": true },
+  { "path": "/architecture", "name": "Architecture (SPA)", "required": true },
+  { "path": "/demo-walkthrough", "name": "Demo Walkthrough (SPA)", "required": true },
+  { "path": "/launch", "name": "Launch (SPA)", "required": true },
+  { "path": "/contact", "name": "Contact (SPA)", "required": true },
+  { "path": "/data-modes", "name": "Data Modes (SPA)", "required": true },
+  { "path": "/skills", "name": "Skills (SPA)", "required": false },
+  { "path": "/simulator", "name": "Simulator (SPA)", "required": false },
+  { "path": "/compare", "name": "Compare (SPA)", "required": false }
+]

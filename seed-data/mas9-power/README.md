@@ -34,7 +34,7 @@ The seed data drives:
 | `13-job-plans.json` | 5 job plans referenced by PM schedules |
 | `14-inventory.json` | 7 spare parts and materials (fictional values) |
 | `15-vendors.json` | 7 fictional vendor/supplier records |
-| `16-contracts.json` | 5 fictional service/maintenance contracts (PFM disabled) |
+| `16-contracts.json` | 5 fictional service/maintenance contracts (mobilisation module disabled) |
 | `17-integrations.json` | Read-only integration configs (Jira, ADO, Maximo) |
 | `18-customisations.json` | 46 detected Maximo customisations (patch risk classified) |
 | `19-automation-scripts.json` | 10 key automation scripts with patch risk |

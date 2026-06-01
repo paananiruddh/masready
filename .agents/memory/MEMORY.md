@@ -1,0 +1,1 @@
+- [Playwright NixOS setup](playwright-nixos.md) — Chromium headless-shell missing libgbm on NixOS; use system nixpkgs chromium via executablePath in playwright.config.ts.

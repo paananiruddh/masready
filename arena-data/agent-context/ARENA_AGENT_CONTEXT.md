@@ -19,8 +19,8 @@ MASReady = Maximo product/demo context
 Build MADD fast through rapid rounds so it can be included in:
 
 ```text
-pfm.masready.com.au
-bom.masready.com.au
+customer-a.masready.com.au
+customer-b.masready.com.au
 ```
 
 MADD must become operational enough to demonstrate Maximo technical assistance safely and credibly.

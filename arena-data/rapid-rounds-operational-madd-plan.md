@@ -5,8 +5,8 @@
 No slow public episodes. The Arena runs fast round after round until MADD becomes operational enough to include in customer demo environments such as:
 
 ```text
-pfm.masready.com.au
-bom.masready.com.au
+customer-a.masready.com.au
+customer-b.masready.com.au
 ```
 
 ## Goal
@@ -75,7 +75,7 @@ Escalate only for:
 
 ## Operational acceptance criteria
 
-MADD can be included in PFM/BOM demos when it can:
+MADD can be included in customer demo environments when it can:
 
 - answer from offline skill packs when possible
 - call LLM only when needed
@@ -144,7 +144,7 @@ Concept tests:
 - signature options
 - least privilege
 
-### Round 005 — Demo embedding for PFM/BOM
+### Round 005 — Demo embedding for Customer demo
 
 Target:
 Expose MADD widget/page inside customer demo subdomains.
@@ -182,13 +182,13 @@ The public Arena should show rapid rounds, not slow episodes:
 - MADD operational readiness percentage
 - next round queue
 
-## PFM/BOM demo requirement
+## Customer demo requirement
 
 Add MADD entry points for:
 
 ```text
-/pfm/madd/
-/bom/madd/
+/customer-a/madd/
+/customer-b/madd/
 ```
 
 or equivalent static demo routes if subdomain routing maps to the same static site.
@@ -217,6 +217,6 @@ Do not put keys in pages, prompts, docs, or comments.
 
 1. Upgrade `/overpayingforai-arena/` into Rapid Rounds Arena UI.
 2. Add data JSON files.
-3. Add demo MADD pages/routes for PFM and BOM.
+3. Add demo MADD pages/routes for customer demo environments.
 4. Build OpenRouter GitHub Action after the static UI is ready.
 5. Run rapid rounds until MADD passes the operational scorecard.

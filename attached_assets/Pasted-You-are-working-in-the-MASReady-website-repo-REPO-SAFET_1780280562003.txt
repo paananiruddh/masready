@@ -1,0 +1,346 @@
+You are working in the MASReady website repo.
+
+REPO SAFETY CHECK — DO THIS FIRST
+
+1. Confirm the target repo URL and current git remote:
+   - Expected live repo: https://github.com/paananiruddh/masready
+   - If this Replit workspace is instead pointed to https://github.com/softwarecomparereview/masready, stop and report before changing anything.
+2. Confirm the repo purpose:
+   - MASReady public website / demo website.
+3. Confirm current branch:
+   - Work from latest main.
+4. DO NOT modify any other repo.
+5. DO NOT create a PR unless explicitly asked.
+6. Commit directly to main only after tests pass.
+7. Do not expose secrets or API keys.
+
+TASK OBJECTIVE
+
+Clean up public website references to PFM and BOM, and add a Playwright regression test suite that automatically grows or shrinks as public pages/features are added or removed.
+
+BACKGROUND
+
+Search found public/site-facing PFM/BOM references in:
+
+- artifacts/masready/src/pages/launch.tsx
+- mas9-power.html
+- artifacts/masready/src/pages/demo-walkthrough.tsx
+- artifacts/masready/src/pages/architecture.tsx
+- seed-data/mas9-power/01-tenant-profile.json
+- seed-data/mas9-power/16-contracts.json
+- project-memory/CUSTOMER_TENANT_MODEL.md
+- social/linkedin/architecture-summary.md
+
+Known public issue:
+- launch.tsx has comparison columns “Generic PFM” and “Generic BOM”.
+- MAS9 Power pages mention PFM Contract Mobilisation disabled.
+- Demo walkthrough has a “No Contract Mobilisation” step proving PFM disabled.
+- Seed data includes pfm_contract_mobilisation and pfm_enabled.
+- Internal project memory mentions PFM as a feature flag.
+
+CLEANUP RULES
+
+Public website pages must not expose real/sensitive customer labels like PFM or BOM.
+
+Replace public-facing PFM/BOM wording with generic labels:
+
+Use:
+- Customer A
+- Customer B
+- Generic customer demo
+- Private customer demo
+- Customer-specific module
+- Contract mobilisation module
+- Feature-flagged mobilisation module
+- Private customer subdomain
+- Customer demo track
+
+Avoid on public pages:
+- PFM
+- BOM
+- Generic PFM
+- Generic BOM
+- pfm-demo
+- bom-demo
+- any real company/customer names
+
+Important:
+- Do not remove feature-flag architecture entirely if needed internally.
+- Internal config keys can remain only if not rendered publicly.
+- If internal docs mention PFM/BOM, either make them clearly private/internal or replace them with generic customer/feature terminology.
+- Keep MAS9 Power clearly fictional.
+- Preserve the existing safety story: demo-only, read-only, no Maximo mutation, no Jira mutation, no SQL execution.
+
+SPECIFIC CLEANUP WORK
+
+1. Update artifacts/masready/src/pages/launch.tsx
+   - Remove “Generic PFM” and “Generic BOM”.
+   - Replace with “Generic Customer A” and “Generic Customer B”, or similar.
+   - Keep comparison table meaningful.
+
+2. Update mas9-power.html
+   - Replace visible “PFM contract mobilisation disabled” wording with:
+     “Contract mobilisation module disabled”
+     or
+     “Feature-flagged mobilisation module disabled”.
+   - Do not expose PFM.
+
+3. Update artifacts/masready/src/pages/demo-walkthrough.tsx
+   - Rename “No Contract Mobilisation” step if needed.
+   - Replace “PFM disabled” with “Contract mobilisation module disabled”.
+   - Replace “PFM menu hidden” with “Mobilisation menu hidden”.
+   - Keep the feature-flag proof.
+
+4. Update artifacts/masready/src/pages/architecture.tsx
+   - Replace public-facing “PFM Mobilisation” with “Contract Mobilisation” or “Feature-flagged Mobilisation”.
+   - Replace “PFM OFF” with “Mobilisation OFF”.
+
+5. Update seed-data/mas9-power/01-tenant-profile.json
+   - If key names are public-facing or rendered, rename safely.
+   - Prefer:
+     mobilisation_module_enabled: false
+     contract_mobilisation: false
+   - If changing keys breaks app logic, keep old internal key but add a public_label that is generic.
+   - Make sure public UI does not show raw key name pfm_contract_mobilisation.
+
+6. Update seed-data/mas9-power/16-contracts.json
+   - Replace pfm_enabled / pfm_note if public-rendered.
+   - Prefer:
+     mobilisation_enabled: false
+     mobilisation_note: "Contract mobilisation module is disabled for this demo tenant — contracts are view-only"
+
+7. Update project-memory/CUSTOMER_TENANT_MODEL.md
+   - Replace PFM-specific wording with generic “Contract Mobilisation Module”.
+   - Keep the idea that live customer work is separate from fictional demo data.
+
+8. Update social/linkedin/architecture-summary.md
+   - Replace pfm-demo.masready.com.au with customer-a.masready.com.au or private-customer.masready.com.au.
+   - Remove any BOM/PFM naming.
+
+9. Search the entire repo after changes:
+   - PFM
+   - pfm
+   - BOM
+   - bom
+   - Programmed
+   - Bureau
+   - Meteorology
+
+Expected:
+- No public page should contain PFM/BOM/customer-specific names.
+- If any internal file still contains these words, document why in CLEANUP_REPORT.md and ensure they are not rendered publicly.
+
+PLAYWRIGHT REGRESSION SUITE
+
+Add a regression suite that grows/shrinks automatically as pages/features are added or removed.
+
+Architecture:
+
+Create:
+
+tests/
+  playwright/
+    public-pages.spec.ts
+    public-copy-safety.spec.ts
+    feature-manifest.spec.ts
+    visual-smoke.spec.ts
+    helpers/
+      pageManifest.ts
+      featureManifest.ts
+      forbiddenTerms.ts
+
+Create:
+
+tests/fixtures/public-pages.json
+tests/fixtures/feature-manifest.json
+tests/fixtures/forbidden-public-terms.json
+
+The suite must be manifest-driven.
+
+1. public-pages.json
+
+This should list all public website routes/pages to test.
+
+Example:
+
+[
+  { "path": "/", "name": "Home", "required": true },
+  { "path": "/mas9-power.html", "name": "MAS9 Power", "required": true },
+  { "path": "/launch.html", "name": "Launch", "required": true },
+  { "path": "/architecture.html", "name": "Architecture", "required": true },
+  { "path": "/demo-walkthrough.html", "name": "Demo Walkthrough", "required": true },
+  { "path": "/madd/", "name": "MADD", "required": false },
+  { "path": "/overpayingforai-arena/", "name": "OverpayingForAI Arena", "required": false }
+]
+
+The test must:
+- Iterate every entry.
+- Visit each page.
+- Assert status is not 404.
+- Assert title or body exists.
+- Assert no console errors.
+- Assert no obvious broken layout markers.
+- Screenshot only on failure.
+
+If a page is removed intentionally, developer updates public-pages.json. The test suite shrinks automatically.
+
+If a page is added, developer adds it to public-pages.json. The suite grows automatically.
+
+2. forbidden-public-terms.json
+
+Add forbidden public terms:
+
+[
+  "Generic PFM",
+  "Generic BOM",
+  "PFM",
+  "BOM",
+  "Programmed",
+  "Bureau of Meteorology",
+  "bom.gov.au",
+  "programmedgroup.com.au"
+]
+
+But allow exceptions through an explicit allowlist if absolutely necessary:
+
+{
+  "term": "BOM",
+  "allowedPaths": [],
+  "reason": "No public usage expected"
+}
+
+public-copy-safety.spec.ts must:
+- Load all routes from public-pages.json.
+- Check visible body text and page HTML.
+- Fail if forbidden terms appear on public pages.
+- Report exact route and term.
+
+3. feature-manifest.json
+
+Create a feature registry.
+
+Example:
+
+[
+  {
+    "id": "contract-mobilisation",
+    "label": "Contract Mobilisation",
+    "publicLabel": "Feature-flagged mobilisation module",
+    "enabledInDemo": false,
+    "routes": ["/mas9-power.html", "/demo-walkthrough.html"],
+    "expectedPublicCopy": ["mobilisation module disabled"],
+    "forbiddenPublicCopy": ["PFM"]
+  },
+  {
+    "id": "madd-arena",
+    "label": "OverpayingForAI Arena",
+    "enabledInDemo": true,
+    "routes": ["/overpayingforai-arena/"],
+    "expectedPublicCopy": ["Rapid Rounds", "OpenAI reviewer", "Claude reviewer"]
+  }
+]
+
+feature-manifest.spec.ts must:
+- Loop through features.
+- Visit relevant routes.
+- Validate expected public copy exists if feature is enabled.
+- Validate forbidden public copy does not appear.
+- Allow disabled features to assert disabled messaging.
+
+As features are added/removed, feature-manifest.json changes and the suite grows/shrinks automatically.
+
+4. visual-smoke.spec.ts
+
+Keep this lightweight:
+- Homepage
+- MAS9 Power
+- Architecture
+- Launch
+- MADD/Arena if present
+- Mobile viewport and desktop viewport
+- Assert page renders above-the-fold.
+- Screenshot on failure only.
+- Do not store bulky screenshots in repo.
+
+5. CI / scripts
+
+Add package scripts if package.json exists:
+
+"test:e2e": "playwright test"
+"test:e2e:ui": "playwright test --ui"
+"test:e2e:headed": "playwright test --headed"
+"test:public-copy": "playwright test tests/playwright/public-copy-safety.spec.ts"
+
+If Playwright is not installed:
+- Add @playwright/test as dev dependency.
+- Add playwright.config.ts.
+- Use baseURL from environment:
+  BASE_URL=http://localhost:4173 or configured local server.
+
+6. Local dev server
+
+Detect actual project commands.
+
+If Vite/React:
+- Use existing build/dev commands.
+- Configure Playwright webServer accordingly.
+
+If static GitHub Pages files:
+- Use a simple static server:
+  npx http-server . -p 4173
+or
+  npx serve . -l 4173
+
+Do not break existing build.
+
+7. Regression report
+
+Create:
+
+CLEANUP_REPORT.md
+
+Include:
+- files changed
+- terms removed/replaced
+- remaining PFM/BOM mentions and why, if any
+- public routes tested
+- Playwright commands
+- how to add/remove pages from regression suite
+- how to add/remove features from feature manifest
+
+8. Acceptance criteria
+
+Cleanup:
+- No public route renders “PFM” or “BOM”.
+- No public route renders “Generic PFM” or “Generic BOM”.
+- No public route renders real customer names/domains.
+- MAS9 Power remains fictional/demo-only.
+- Contract mobilisation concept remains generic.
+- Feature flag story still works.
+
+Testing:
+- Playwright suite added.
+- public-pages.json drives route coverage.
+- feature-manifest.json drives feature coverage.
+- forbidden-public-terms.json drives copy safety.
+- Tests pass locally.
+- Tests can shrink/grow by editing manifests.
+- README/CLEANUP_REPORT explains how to maintain the suite.
+
+9. Commit
+
+Run:
+- repo search for forbidden terms
+- build if available
+- Playwright tests
+
+Then commit directly to main with:
+
+Cleanup public customer labels and add manifest-driven Playwright regression suite
+
+Report:
+- commit SHA
+- files changed
+- commands run
+- test results
+- any remaining internal-only PFM/BOM references and why

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "contract-mobilisation",
+    "label": "Contract Mobilisation Module",
+    "publicLabel": "Feature-flagged mobilisation module",
+    "enabledInDemo": false,
+    "routes": ["/demo-walkthrough", "/mas9-power"],
+    "expectedPublicCopy": ["mobilisation"],
+    "forbiddenPublicCopy": ["PFM", "pfm_contract_mobilisation", "pfm_enabled"]
+  },
+  {
+    "id": "license-planning",
+    "label": "License Usage Planning",
+    "publicLabel": "AppPoint usage planning",
+    "enabledInDemo": true,
+    "routes": ["/mas9-power", "/features"],
+    "expectedPublicCopy": ["License", "planning"],
+    "forbiddenPublicCopy": ["PFM", "BOM"]
+  },
+  {
+    "id": "patch-impact",
+    "label": "Patch Impact Analysis",
+    "publicLabel": "Patch impact analysis",
+    "enabledInDemo": true,
+    "routes": ["/mas9-power", "/features"],
+    "expectedPublicCopy": ["Patch", "impact"],
+    "forbiddenPublicCopy": ["PFM", "BOM"]
+  },
+  {
+    "id": "trust-center",
+    "label": "Trust Center",
+    "publicLabel": "Review-only trust model",
+    "enabledInDemo": true,
+    "routes": ["/trust"],
+    "expectedPublicCopy": ["Review-Only", "No SQL"],
+    "forbiddenPublicCopy": ["PFM", "BOM"]
+  },
+  {
+    "id": "data-modes",
+    "label": "Data Modes",
+    "publicLabel": "Data handling modes",
+    "enabledInDemo": true,
+    "routes": ["/data-modes"],
+    "expectedPublicCopy": ["Customer Hosted", "Zero Retention"],
+    "forbiddenPublicCopy": ["PFM", "BOM", "pfm-demo", "bom-demo"]
+  }
+]

@@ -45,8 +45,9 @@ Any work involving real customer data must:
 5. Run through the same read-only connector architecture
 6. Never appear in the marketing website, simulator, or public charts
 
-## PFM (Procurement & Finance Module)
+## Contract Mobilisation Module
 
-- PFM is a feature-flag gated module (`pfm_contract_mobilisation: false` in demo)
-- PFM live data work is separate from fictional demo data
-- The demo tenant has PFM disabled to prevent confusion with production capabilities
+- Contract mobilisation is a feature-flag gated module (`contract_mobilisation: false` in demo)
+- Live customer work using this module is separate from fictional demo data
+- The demo tenant has this module disabled to prevent confusion with production capabilities
+- Internal config key: `contract_mobilisation` — not rendered in public UI

@@ -193,7 +193,7 @@ But the output must be tested, not trusted blindly.
 
 ## Operational use
 
-For PFM/BOM demos, use curated and seeded materials only:
+For customer demos, use curated and seeded materials only:
 
 - synthetic screenshots
 - redacted examples

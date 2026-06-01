@@ -16,7 +16,7 @@ For use in LinkedIn comments, articles, and supporting posts.
 ## Customer Demos
 
 - Hosted on Azure App Service or Azure Static Web Apps
-- Per-customer subdomains — e.g. `pfm-demo.masready.com.au`, `mas9power.masready.com.au`
+- Per-customer subdomains — e.g. `customer-a.masready.com.au`, `mas9power.masready.com.au`
 - Host/subdomain maps to default branding and customer context only
 - Auth and RBAC remain the real security boundary
 - Configured per customer — data boundary model selected per deployment

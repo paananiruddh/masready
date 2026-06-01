@@ -19,7 +19,7 @@
     "maximo_fingerprint": true,
     "skill_coverage": true,
     "trust_center": true,
-    "pfm_contract_mobilisation": false,
+    "contract_mobilisation": false,
     "premium_actions": false,
     "sql_execution": false,
     "jira_write": false,

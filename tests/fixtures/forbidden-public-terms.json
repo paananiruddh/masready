@@ -1,0 +1,62 @@
+[
+  {
+    "term": "Generic PFM",
+    "allowedPaths": [],
+    "reason": "Customer-specific label — must not appear on public pages"
+  },
+  {
+    "term": "Generic BOM",
+    "allowedPaths": [],
+    "reason": "Customer-specific label — must not appear on public pages"
+  },
+  {
+    "term": "PFM",
+    "allowedPaths": [],
+    "reason": "Customer acronym — must not appear on public pages"
+  },
+  {
+    "term": "BOM",
+    "allowedPaths": [],
+    "reason": "Customer acronym — must not appear on public pages"
+  },
+  {
+    "term": "Programmed",
+    "allowedPaths": [],
+    "reason": "Real company name — must not appear on public pages"
+  },
+  {
+    "term": "Bureau of Meteorology",
+    "allowedPaths": [],
+    "reason": "Real organisation name — must not appear on public pages"
+  },
+  {
+    "term": "bom.gov.au",
+    "allowedPaths": [],
+    "reason": "Real domain — must not appear on public pages"
+  },
+  {
+    "term": "programmedgroup.com.au",
+    "allowedPaths": [],
+    "reason": "Real domain — must not appear on public pages"
+  },
+  {
+    "term": "pfm-demo.masready.com.au",
+    "allowedPaths": [],
+    "reason": "Old internal subdomain pattern — must not appear on public pages"
+  },
+  {
+    "term": "bom-demo.masready.com.au",
+    "allowedPaths": [],
+    "reason": "Old internal subdomain pattern — must not appear on public pages"
+  },
+  {
+    "term": "pfm_contract_mobilisation",
+    "allowedPaths": [],
+    "reason": "Internal config key — must not be rendered in public UI"
+  },
+  {
+    "term": "pfm_enabled",
+    "allowedPaths": [],
+    "reason": "Internal config key — must not be rendered in public UI"
+  }
+]

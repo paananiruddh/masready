@@ -51,4 +51,4 @@ cp artifacts/masready/dist/public/assets/*.css assets/
 - Customer subdomain: `<customer>.masready.com.au`
 - Each instance isolated with its own database
 - Read-only connectors to customer systems (Jira, ADO, Maximo)
-- PFM module gated by feature flag
+- Contract mobilisation module gated by feature flag

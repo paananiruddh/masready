@@ -104,7 +104,7 @@ const STEPS = [
   {
     num: "10",
     title: "No Contract Mobilisation",
-    route: "/pfm",
+    route: "/contract-mobilisation",
     role: "Admin",
     duration: "30 sec",
     tag: "Flags",

@@ -9,6 +9,6 @@
     { "contract_id": "CON-2022-001", "vendor_id": "VND-002", "description": "Distribution equipment supply agreement (expired)", "value_aud": 340000, "start_date": "2022-01-01", "end_date": "2024-12-31", "status": "EXPIRED", "type": "SUPPLY" }
   ],
   "total": 5,
-  "pfm_enabled": false,
-  "pfm_note": "PFM Contract Mobilisation module is disabled for this demo tenant — contracts are view-only"
+  "mobilisation_enabled": false,
+  "mobilisation_note": "Contract mobilisation module is disabled for this demo tenant — contracts are view-only"
 }
