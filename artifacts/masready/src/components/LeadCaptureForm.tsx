@@ -76,22 +76,15 @@ export default function LeadCaptureForm() {
 
     try {
       const data = new FormData(form);
-      const res = await fetch(`${BREVO_ACTION}?isAjaxCall=1`, {
+      // mode: 'no-cors' — Brevo's sibforms.com doesn't expose CORS headers.
+      // The request IS sent and received by Brevo; we just get an opaque
+      // response (status 0) which we cannot read. Show success optimistically
+      // after client-side validation has already passed.
+      await fetch(BREVO_ACTION, {
         method: "POST",
+        mode: "no-cors",
         body: data,
       });
-      const text = await res.text().catch(() => "");
-
-      if (!res.ok || text.toLowerCase().includes('"result":"fail"')) {
-        let msg = "Something went wrong. Please try again.";
-        try {
-          const json = JSON.parse(text);
-          if (json?.message) msg = json.message;
-        } catch { /* ignore */ }
-        setErrorMsg(msg);
-        setStatus("error");
-        return;
-      }
 
       fireGA4("lead_capture_submitted");
       setStatus("success");
