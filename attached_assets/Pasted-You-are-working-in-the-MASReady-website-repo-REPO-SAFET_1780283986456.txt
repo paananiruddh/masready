@@ -1,0 +1,314 @@
+You are working in the MASReady website repo.
+
+REPO SAFETY CHECK — DO THIS FIRST
+
+1. Confirm the target repo URL and current git remote.
+   Expected live repo:
+   https://github.com/paananiruddh/masready
+
+2. Confirm repo purpose:
+   MASReady public website / demo website.
+
+3. Work from latest main.
+
+4. Do not modify any other repo.
+
+5. Do not create a PR unless explicitly asked.
+
+6. Commit directly to main after changes are complete.
+
+7. Do not add secrets, API keys, customer data, or real customer names.
+
+IMPORTANT CORRECTION
+
+Do NOT add a Playwright regression suite for testing the MASReady website itself.
+
+The requested work is to add a NEW MASReady PRODUCT FEATURE to the public website.
+
+The feature is:
+
+Environment-Aware Regression Suite
+
+or
+
+Fingerprint-to-Regression Suite
+
+or
+
+Adaptive Regression Intelligence
+
+Recommended public name:
+
+Adaptive Regression Intelligence
+
+Feature concept:
+
+Just like MASReady has Environment Proof, License Usage Planning, Patch Impact, and Skill Coverage, this is a new feature where MASReady uses the customer’s Maximo environment fingerprint to generate, maintain, and evolve a customer-specific Playwright regression suite.
+
+MASReady fingerprints the customer environment:
+- Maximo / MAS version
+- installed add-ons
+- industry solutions
+- applications enabled
+- automation scripts
+- workflows
+- escalations
+- cron tasks
+- MIF integrations
+- object structures
+- security groups
+- application designer changes
+- custom fields / objects
+- mobile configuration
+- reports
+- key business processes
+
+Then MASReady creates a regression pack that matches that customer’s actual environment.
+
+When the fingerprint changes, MASReady detects whether the change is significant and automatically recommends updates to the regression suite.
+
+Examples:
+- New add-on installed → add relevant smoke/regression tests
+- Industry solution installed → add industry-specific validation tests
+- New integration deployed → add integration health tests
+- New workflow added → add workflow path tests
+- Automation script changed → add targeted script regression tests
+- Application Designer changes detected → update UI navigation/assertion tests
+- Feature removed → mark obsolete tests for removal
+- Patch/iFix applied → generate patch-impact regression scope
+
+This feature is NOT about testing the MASReady website.
+It is about MASReady helping customers generate and maintain their own Maximo regression test suite.
+
+PUBLIC POSITIONING
+
+Use this wording:
+
+“Your Maximo environment changes. Your regression suite should change with it.”
+
+“MASReady turns the Maximo fingerprint into an adaptive Playwright regression pack.”
+
+“Regression coverage grows or shrinks as installed components, add-ons, integrations, and customisations change.”
+
+“Stop running generic test scripts against a highly customised Maximo environment.”
+
+FEATURE SHOULD EXPLAIN
+
+1. Environment fingerprint is captured.
+2. MASReady identifies what needs testing.
+3. A customer-specific Playwright regression suite is generated.
+4. Tests are grouped by Maximo concept and risk.
+5. When environment drift is detected, MASReady recommends test additions/removals.
+6. Human review approves the generated changes.
+7. The customer can export/run the suite in their own pipeline.
+
+FEATURE OUTPUTS
+
+Describe outputs such as:
+
+- Playwright test pack
+- Regression scope report
+- Test coverage map
+- Risk-based test matrix
+- Changed-feature impact list
+- Obsolete test recommendations
+- CI/CD handoff guide
+- Human approval checklist
+
+IMPORTANT SAFETY / TRUST WORDING
+
+This feature should be described as:
+- generated from evidence
+- reviewable by humans
+- exportable
+- customer-controlled
+- non-mutating
+- read-only during fingerprinting
+- not a replacement for QA ownership
+
+Do NOT imply:
+- MASReady silently changes customer pipelines
+- MASReady mutates Maximo
+- generated tests are automatically perfect
+- human QA is unnecessary
+- production systems are changed
+
+RECOMMENDED WEBSITE CHANGES
+
+1. Add a new feature card wherever feature cards are shown.
+
+Title:
+Adaptive Regression Intelligence
+
+Subtitle:
+Generate and maintain a Playwright regression suite from your Maximo environment fingerprint.
+
+Short copy:
+MASReady detects installed components, add-ons, customisations, integrations, scripts, workflows, and environment drift, then recommends the regression tests your customer environment actually needs.
+
+2. Add a dedicated section to the Features page.
+
+Section title:
+Adaptive Regression Intelligence
+
+Hero line:
+Your Maximo environment changes. Your regression suite should change with it.
+
+Body:
+MASReady uses the Maximo fingerprint to produce a customer-specific Playwright regression pack. As new add-ons, industry solutions, scripts, integrations, workflows, and UI changes are detected, MASReady reviews the impact and recommends test additions, removals, or updates.
+
+3. Add a visual workflow.
+
+Workflow:
+Maximo fingerprint
+→ component/change detection
+→ regression scope analysis
+→ Playwright test pack
+→ human review
+→ CI/CD handoff
+→ drift-triggered updates
+
+4. Add a comparison table.
+
+Generic regression testing vs MASReady Adaptive Regression Intelligence
+
+Rows:
+- Test basis
+- Environment awareness
+- Add-on detection
+- Customisation awareness
+- Drift response
+- Human review
+- CI/CD handoff
+- Obsolete test detection
+
+Example:
+
+Generic regression testing:
+- manually maintained
+- often stale
+- weak environment awareness
+- hard to map to Maximo customisations
+
+MASReady:
+- generated from fingerprint
+- risk-based
+- Maximo-aware
+- updated when significant environment change is detected
+- review-ready before CI/CD use
+
+5. Add an architecture section.
+
+Explain:
+- read-only fingerprinting
+- no Maximo mutation
+- test pack generation
+- human approval before customer use
+- customer-controlled execution
+- optional pipeline export
+
+6. Add this feature to MAS9 Power fictional demo if appropriate.
+
+Use fictional example:
+MAS9 Power has automation scripts, outage escalations, patch impacts, integrations, and mobile workflows.
+MASReady recommends:
+- smoke tests for core navigation
+- automation script regression checks
+- escalation schedule tests
+- MIF endpoint validation tests
+- patch-impact test scope
+- mobile workflow checks
+
+Clearly label all demo data as fictional.
+
+7. Add route/page if useful:
+
+Possible page:
+adaptive-regression.html
+
+or if React route:
+ /adaptive-regression
+
+Page title:
+Adaptive Regression Intelligence | MASReady
+
+Meta description:
+MASReady generates and maintains customer-specific Playwright regression suites from Maximo environment fingerprints, installed add-ons, integrations, customisations, and detected drift.
+
+8. Add SEO/marketing copy.
+
+Keywords:
+- Maximo regression testing
+- Maximo Playwright testing
+- Maximo test automation
+- MAS regression testing
+- Maximo environment fingerprint
+- Maximo automation script testing
+- Maximo patch regression
+- Maximo integration testing
+- Maximo upgrade regression
+
+9. Add FAQ section.
+
+Questions:
+- What is Adaptive Regression Intelligence?
+- Does MASReady run tests against production?
+- Does it replace QA teams?
+- How does MASReady know which tests to generate?
+- What happens when the Maximo environment changes?
+- Can customers export the Playwright suite?
+- Can it work with CI/CD?
+- Does it mutate Maximo?
+
+Suggested answers:
+Keep answers evidence-first, non-mutating, human-reviewed, customer-controlled.
+
+10. Add homepage callout if homepage has feature highlights.
+
+Short version:
+Adaptive Regression Intelligence
+Fingerprint your Maximo environment and generate the regression tests it actually needs.
+
+ACCEPTANCE CRITERIA
+
+- The website clearly presents Adaptive Regression Intelligence as a MASReady product feature.
+- It does not add Playwright tests for the MASReady website itself.
+- It explains that MASReady generates/customer-maintains Playwright regression suites for customer Maximo environments.
+- It explains growth/shrink behavior based on environment drift.
+- It preserves the read-only/no-mutation trust model.
+- It includes human review before generated test suites are used.
+- It is visually consistent with Environment Proof, License Planning, Patch Impact, and other MASReady features.
+- It includes SEO-friendly copy.
+- It does not expose real customer names such as PFM or BOM.
+- It keeps MAS9 Power fictional if used as an example.
+
+FILES TO CHECK / UPDATE
+
+Search and update relevant files, likely including:
+
+- artifacts/masready/src/pages/features.tsx
+- artifacts/masready/src/pages/architecture.tsx
+- artifacts/masready/src/pages/mas9-power.tsx
+- artifacts/masready/src/pages/launch.tsx
+- static HTML equivalents if this repo publishes built HTML directly
+- sitemap.xml if a new page is added
+- any feature/data manifest if present
+
+If the site uses a build process, update source first and rebuild static output.
+
+If static GitHub Pages files are the live output, update the static output too.
+
+REPORT BACK
+
+After completion, report:
+
+- commit SHA
+- files changed
+- public URL(s) to verify
+- whether source and static output were both updated
+- whether sitemap was updated
+- any remaining TODOs
+
+COMMIT MESSAGE
+
+Add Adaptive Regression Intelligence feature to MASReady website

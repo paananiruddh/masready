@@ -1,0 +1,121 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="author" content="MASReady"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Adaptive Regression Intelligence | MASReady</title><meta name="description" content="MASReady generates and maintains customer-specific Playwright regression suites from Maximo environment fingerprints, installed add-ons, integrations, customisations, and detected drift."/>
+<meta name="keywords" content="Maximo regression testing, Maximo Playwright testing, Maximo test automation, MAS regression testing, Maximo environment fingerprint, Maximo automation script testing, Maximo patch regression, Maximo integration testing, Maximo upgrade regression"/>
+<link rel="canonical" href="https://masready.com.au/adaptive-regression.html"/>
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+<meta property="og:type" content="website"/><meta property="og:title" content="Adaptive Regression Intelligence | MASReady"/><meta property="og:description" content="MASReady generates and maintains customer-specific Playwright regression suites from Maximo environment fingerprints, installed add-ons, integrations, customisations, and detected drift."/><meta property="og:url" content="https://masready.com.au/adaptive-regression.html"/><meta property="og:image" content="https://masready.com.au/assets/og/masready-og.svg"/>
+<meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Adaptive Regression Intelligence | MASReady"/><meta name="twitter:description" content="MASReady generates and maintains customer-specific Playwright regression suites from Maximo environment fingerprints, installed add-ons, integrations, customisations, and detected drift."/><meta name="twitter:image" content="https://masready.com.au/assets/og/masready-og.svg"/>
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"/><link rel="manifest" href="manifest.webmanifest"/>
+<link rel="stylesheet" href="assets/css/site.css"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "MASReady", "url": "https://masready.com.au", "sameAs": ["https://masready.com.au"]}, {"@type": "SoftwareApplication", "name": "Maximo Delivery Automation Workbench", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "Evidence-backed IBM Maximo delivery automation for MAS 9 teams \u2014 delivery intelligence, patch impact, environment fingerprinting, license usage planning, trust boundaries, adaptive regression intelligence, and offline skill packs.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "WebPage", "name": "Adaptive Regression Intelligence | MASReady", "description": "MASReady generates and maintains customer-specific Playwright regression suites from Maximo environment fingerprints, installed add-ons, integrations, customisations, and detected drift.", "url": "https://masready.com.au/adaptive-regression.html", "isPartOf": {"@type": "WebSite", "name": "Maximo Delivery Automation Workbench", "url": "https://masready.com.au"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Adaptive Regression Intelligence?", "acceptedAnswer": {"@type": "Answer", "text": "A MASReady feature that uses the Maximo environment fingerprint to generate, maintain, and recommend a customer-specific Playwright regression suite \u2014 reflecting the actual installed components, not a generic Maximo template."}}, {"@type": "Question", "name": "Does MASReady run tests against production?", "acceptedAnswer": {"@type": "Answer", "text": "No. MASReady generates test files for customer use. Tests are exported and run by the customer in their own pipeline. MASReady never executes tests against customer systems."}}, {"@type": "Question", "name": "Does it replace QA teams?", "acceptedAnswer": {"@type": "Answer", "text": "No. MASReady generates a starting point and a recommended scope. Human QA review and approval is required before the suite is used. QA teams own the decision to accept, modify, or reject generated tests."}}, {"@type": "Question", "name": "Does it mutate Maximo?", "acceptedAnswer": {"@type": "Answer", "text": "No. Fingerprinting uses read-only APIs exclusively. MASReady cannot write to, modify, or trigger any action in Maximo or any connected system."}}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2G0P43096"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-T2G0P43096');</script></head><body><a class="skip" href="#main">Skip to content</a><header class="nav"><div class="nav-inner"><a class="brand" href="index.html"><span class="logo">M</span><span>Maximo Delivery<br/><span class="muted" style="font-weight:650;font-size:12px">Automation Workbench</span></span></a><button class="mobile-toggle" data-mobile-toggle aria-label="Toggle navigation">Menu</button><nav class="nav-links" aria-label="Main navigation"><a href="index.html" class="">Home</a><a href="mas9-power.html" class="">MAS9 Power</a><a href="features.html" class="">Features</a><a href="adaptive-regression.html" class="active">Adaptive Regression</a><a href="data-modes.html" class="">Data Modes</a><a href="trust.html" class="">Trust</a><a href="architecture.html" class="">Architecture</a><a href="media.html" class="">Media</a><a href="demo-walkthrough.html" class="">Walkthrough</a><a href="launch.html" class="">Launch</a><a href="contact.html" class="">Contact</a></nav></div></header><main id="main">
+
+<section class="hero"><div class="container">
+<span class="eyebrow">New Feature</span>
+<h1 class="h1">Adaptive Regression Intelligence</h1>
+<p class="lead">Your Maximo environment changes. Your regression suite should change with it.</p>
+<p class="lead" style="font-size:1rem;margin-top:0.75rem">MASReady turns the Maximo environment fingerprint into a customer-specific Playwright regression pack. Regression coverage grows or shrinks as installed components, add-ons, integrations, and customisations change — all with human review before any test reaches a pipeline.</p>
+</div></section>
+
+<section class="section"><div class="container">
+<h2 class="h2">How it works</h2>
+<p class="muted" style="max-width:640px;margin-bottom:2.5rem">Seven stages from Maximo fingerprint to CI/CD-ready Playwright suite — with mandatory human review before any generated test is used.</p>
+<ol style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1.25rem;max-width:720px">
+<li style="display:flex;gap:1.25rem;align-items:flex-start"><span style="min-width:2rem;font-weight:700;color:var(--accent)">01</span><div><strong>Maximo Fingerprint Captured</strong> — Read-only scan of installed applications, add-ons, automation scripts, workflows, escalations, integrations, cron tasks, security groups, and UI customisations.</div></li>
+<li style="display:flex;gap:1.25rem;align-items:flex-start"><span style="min-width:2rem;font-weight:700;color:var(--accent)">02</span><div><strong>Component &amp; Change Detection</strong> — MASReady identifies what is installed, what has changed since the last fingerprint, and what has been removed — at the component level.</div></li>
+<li style="display:flex;gap:1.25rem;align-items:flex-start"><span style="min-width:2rem;font-weight:700;color:var(--accent)">03</span><div><strong>Regression Scope Analysis</strong> — Each detected component, customisation, integration, and workflow is mapped to its test risk profile. High-risk areas drive higher test density.</div></li>
+<li style="display:flex;gap:1.25rem;align-items:flex-start"><span style="min-width:2rem;font-weight:700;color:var(--accent)">04</span><div><strong>Playwright Test Pack Generated</strong> — MASReady produces customer-specific TypeScript Playwright tests grouped by Maximo domain and risk tier. No generic scripts — everything reflects the actual environment.</div></li>
+<li style="display:flex;gap:1.25rem;align-items:flex-start"><span style="min-width:2rem;font-weight:700;color:var(--accent)">05</span><div><strong>Human Review &amp; Approval</strong> — Generated tests are presented as recommendations only. QA engineers review the scope, modify as needed, and approve before any test is used in a pipeline.</div></li>
+<li style="display:flex;gap:1.25rem;align-items:flex-start"><span style="min-width:2rem;font-weight:700;color:var(--accent)">06</span><div><strong>CI/CD Handoff</strong> — Approved tests are exported as standard TypeScript Playwright files with a pipeline guide for GitHub Actions, Azure Pipelines, Jenkins, or GitLab CI.</div></li>
+<li style="display:flex;gap:1.25rem;align-items:flex-start"><span style="min-width:2rem;font-weight:700;color:var(--accent)">07</span><div><strong>Drift-Triggered Updates</strong> — When significant environment drift is detected — new add-on, removed workflow, changed integration — MASReady recommends targeted test additions, removals, or updates.</div></li>
+</ol>
+</div></section>
+
+<section class="section" style="background:var(--surface-1)"><div class="container">
+<h2 class="h2">What you receive</h2>
+<p class="muted" style="max-width:640px;margin-bottom:2.5rem">Every output is reviewable, exportable, and customer-controlled. MASReady produces evidence — customers decide what to use.</p>
+<div class="grid grid-3">
+<article class="card"><h3 class="h3">Playwright Test Pack</h3><p>TypeScript Playwright test files, grouped by Maximo domain and risk tier. Customer-controlled, exportable, ready for CI/CD.</p></article>
+<article class="card"><h3 class="h3">Regression Scope Report</h3><p>What is tested, what is not tested, and why. Traceability from fingerprint component to generated test.</p></article>
+<article class="card"><h3 class="h3">Test Coverage Map</h3><p>Visual map of which Maximo functional domains, applications, and integrations have regression coverage.</p></article>
+<article class="card"><h3 class="h3">Risk-Based Test Matrix</h3><p>Tests ranked by component risk — patch-impacted scripts, changed integrations, and new add-ons surface first.</p></article>
+<article class="card"><h3 class="h3">Changed-Feature Impact List</h3><p>Which detected changes triggered new test recommendations and why each change was considered significant.</p></article>
+<article class="card"><h3 class="h3">Obsolete Test Recommendations</h3><p>When a component is removed from the fingerprint, related tests are flagged for removal with a rationale.</p></article>
+<article class="card"><h3 class="h3">CI/CD Handoff Guide</h3><p>Pipeline configuration examples for GitHub Actions, Azure Pipelines, Jenkins, and GitLab CI with environment variables and run instructions.</p></article>
+<article class="card"><h3 class="h3">Human Approval Checklist</h3><p>Structured review checklist for QA engineers to verify, modify, and approve generated tests before production use.</p></article>
+</div>
+</div></section>
+
+<section class="section"><div class="container">
+<h2 class="h2">Generic testing vs Adaptive Regression Intelligence</h2>
+<p class="muted" style="max-width:640px;margin-bottom:2.5rem">Stop running generic scripts against a highly customised Maximo environment.</p>
+<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;min-width:600px">
+<thead><tr style="border-bottom:1px solid rgba(255,255,255,0.1)">
+<th style="padding:1rem;text-align:left;font-weight:600;color:var(--muted)">Aspect</th>
+<th style="padding:1rem;text-align:center;font-weight:600;color:var(--muted)">Generic Regression Testing</th>
+<th style="padding:1rem;text-align:center;font-weight:700;color:var(--accent)">MASReady — Adaptive Regression Intelligence</th>
+</tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.06)"><td style="padding:1rem;font-weight:500">Test basis</td><td style="padding:1rem;text-align:center;color:var(--muted)">Manually authored scripts</td><td style="padding:1rem;text-align:center;color:var(--accent)">Generated from environment fingerprint</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.06)"><td style="padding:1rem;font-weight:500">Environment awareness</td><td style="padding:1rem;text-align:center;color:var(--muted)">Low — written once, rarely updated</td><td style="padding:1rem;text-align:center;color:var(--accent)">High — reflects installed components at every scan</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.06)"><td style="padding:1rem;font-weight:500">Add-on detection</td><td style="padding:1rem;text-align:center;color:var(--muted)">None — must be manually tracked</td><td style="padding:1rem;text-align:center;color:var(--accent)">Detects and maps installed add-ons automatically</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.06)"><td style="padding:1rem;font-weight:500">Customisation awareness</td><td style="padding:1rem;text-align:center;color:var(--muted)">Manual effort to identify scope</td><td style="padding:1rem;text-align:center;color:var(--accent)">Reads directly from Maximo customisation scan</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.06)"><td style="padding:1rem;font-weight:500">Drift response</td><td style="padding:1rem;text-align:center;color:var(--muted)">None — tests become stale silently</td><td style="padding:1rem;text-align:center;color:var(--accent)">Automatic drift detection with recommendations</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.06)"><td style="padding:1rem;font-weight:500">Human review</td><td style="padding:1rem;text-align:center;color:var(--muted)">Not structurally enforced</td><td style="padding:1rem;text-align:center;color:var(--accent)">Required — approval gate before CI/CD use</td></tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.06)"><td style="padding:1rem;font-weight:500">CI/CD handoff</td><td style="padding:1rem;text-align:center;color:var(--muted)">Manual pipeline setup</td><td style="padding:1rem;text-align:center;color:var(--accent)">Guided export with pipeline configuration guide</td></tr>
+<tr><td style="padding:1rem;font-weight:500">Obsolete test detection</td><td style="padding:1rem;text-align:center;color:var(--muted)">None — dead tests accumulate</td><td style="padding:1rem;text-align:center;color:var(--accent)">Flagged when fingerprinted components are removed</td></tr>
+</tbody>
+</table></div>
+</div></section>
+
+<section class="section" style="background:var(--surface-1)"><div class="container">
+<h2 class="h2">Architecture &amp; trust boundaries</h2>
+<p class="muted" style="max-width:640px;margin-bottom:2.5rem">Adaptive Regression Intelligence inherits MASReady's core trust model. Fingerprinting is always read-only. Generated tests are always customer-controlled.</p>
+<div class="grid grid-2">
+<article class="card"><h3 class="h3" style="color:#4ade80">Read-only fingerprinting</h3><ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.5rem"><li class="muted">Maximo API access uses read-only credentials only</li><li class="muted">Zero mutations to source system at any stage</li><li class="muted">Fingerprint reads environment state — it never writes</li><li class="muted">No data written to Maximo during scanning</li></ul></article>
+<article class="card"><h3 class="h3" style="color:#60a5fa">Human review gate</h3><ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.5rem"><li class="muted">Generated tests are recommendations, not automations</li><li class="muted">QA engineers review all proposed test additions</li><li class="muted">No test reaches a pipeline without explicit approval</li><li class="muted">Rejection or modification is always an option</li></ul></article>
+<article class="card"><h3 class="h3" style="color:#38bdf8">Customer-controlled export</h3><ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.5rem"><li class="muted">Exported test files are plain TypeScript — no lock-in</li><li class="muted">Customer runs tests in their own pipeline</li><li class="muted">MASReady does not execute tests on customer systems</li><li class="muted">Export includes full source — nothing is hidden</li></ul></article>
+<article class="card"><h3 class="h3" style="color:#a78bfa">Data boundary</h3><ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.5rem"><li class="muted">Fingerprint data stays within the customer data boundary</li><li class="muted">No environment data shared between tenants</li><li class="muted">Generated tests reference no proprietary environment data</li><li class="muted">Customer chooses data mode (hosted, zero-retention, BYO)</li></ul></article>
+</div>
+</div></section>
+
+<section class="section"><div class="container">
+<h2 class="h2">MAS9 Power — ARI example <span style="font-size:0.75rem;font-weight:400;color:var(--muted);margin-left:0.5rem">(All data fictional)</span></h2>
+<p class="muted" style="max-width:640px;margin-bottom:2rem">MAS9 Power is a fictional energy and utilities company running Maximo 7.6.1.3 on-premise, upgrading to IBM MAS Manage 9.x. After fingerprinting, MASReady would recommend the following regression pack — entirely fictional and generated for demonstration purposes only.</p>
+<div class="grid grid-2" style="max-width:800px">
+<article class="card"><strong>Core navigation smoke tests</strong><p class="muted" style="margin:0.25rem 0 0">12 applications enabled in MAS 9.x scope &mdash; <em>Risk: Baseline</em></p></article>
+<article class="card"><strong>Automation script regression</strong><p class="muted" style="margin:0.25rem 0 0">10 key scripts detected — 4 flagged with patch risk &mdash; <em>Risk: High</em></p></article>
+<article class="card"><strong>Escalation schedule tests</strong><p class="muted" style="margin:0.25rem 0 0">5 outage escalation workflows active &mdash; <em>Risk: Medium</em></p></article>
+<article class="card"><strong>MIF endpoint validation</strong><p class="muted" style="margin:0.25rem 0 0">3 integrations: Jira, ADO, Maximo API &mdash; <em>Risk: High</em></p></article>
+<article class="card"><strong>Patch-impact test scope</strong><p class="muted" style="margin:0.25rem 0 0">7 patch impacts found in latest iFix assessment &mdash; <em>Risk: High</em></p></article>
+<article class="card"><strong>Mobile workflow checks</strong><p class="muted" style="margin:0.25rem 0 0">MAS Mobile configuration active &mdash; <em>Risk: Medium</em></p></article>
+</div>
+<p class="muted" style="margin-top:1.5rem;font-size:0.8rem">⚠ All recommendations above are fictitious examples generated for demonstration. No real Maximo environment, customer data, or test files are present in this demo.</p>
+</div></section>
+
+<section class="section" style="background:var(--surface-1)"><div class="container">
+<h2 class="h2">Frequently asked questions</h2>
+<div style="max-width:720px;display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem">
+<div><h3 class="h3">What is Adaptive Regression Intelligence?</h3><p class="muted">A MASReady feature that uses the Maximo environment fingerprint to generate, maintain, and recommend a customer-specific Playwright regression suite — reflecting the actual installed components, not a generic Maximo template.</p></div>
+<div><h3 class="h3">Does MASReady run tests against production?</h3><p class="muted">No. MASReady generates test files for customer use. Tests are exported and run by the customer in their own pipeline. MASReady never executes tests against customer systems.</p></div>
+<div><h3 class="h3">Does it replace QA teams?</h3><p class="muted">No. MASReady generates a starting point and a recommended scope. Human QA review and approval is required before the suite is used. QA teams own the decision to accept, modify, or reject generated tests.</p></div>
+<div><h3 class="h3">How does MASReady know which tests to generate?</h3><p class="muted">From the environment fingerprint — installed applications, add-ons, automation scripts, workflows, escalations, integrations, cron tasks, security groups, application designer changes, and UI customisations.</p></div>
+<div><h3 class="h3">What happens when the Maximo environment changes?</h3><p class="muted">MASReady detects drift between the captured fingerprint and the current environment. When significant changes are found, it recommends test additions, removals, or updates — which human QA reviews before adoption.</p></div>
+<div><h3 class="h3">Can customers export the Playwright suite?</h3><p class="muted">Yes. The generated test pack is fully exportable as TypeScript Playwright files, ready for the customer's own CI/CD pipeline. MASReady does not retain or run these files.</p></div>
+<div><h3 class="h3">Can it work with CI/CD?</h3><p class="muted">Yes. Exported tests run in standard CI/CD environments (GitHub Actions, Azure Pipelines, Jenkins, GitLab CI). A CI/CD handoff guide with pipeline configuration is included with every export.</p></div>
+<div><h3 class="h3">Does it mutate Maximo?</h3><p class="muted">No. Fingerprinting uses read-only APIs exclusively. MASReady cannot write to, modify, or trigger any action in Maximo or any connected system.</p></div>
+</div>
+</div></section>
+
+<section class="section" style="text-align:center"><div class="container">
+<h2 class="h2">Ready to see MASReady in action?</h2>
+<p class="muted" style="max-width:560px;margin:0 auto 2rem">Explore the MAS9 Power demo tenant or take the 12-minute walkthrough to see delivery intelligence end to end.</p>
+<div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+<a href="mas9-power.html" class="btn btn-primary">Explore MAS9 Power</a>
+<a href="demo-walkthrough.html" class="btn btn-secondary">Take the Walkthrough</a>
+<a href="contact.html" class="btn btn-secondary">Contact Us</a>
+</div>
+</div></section>
+
+</main><footer class="footer"><div class="container footer-inner"><span class="muted">&copy; 2026 Assetize. MASReady is a product of Assetize Pty Ltd.</span><nav class="footer-links"><a href="trust.html">Trust</a><a href="architecture.html">Architecture</a><a href="features.html">Features</a><a href="contact.html">Contact</a></nav></div></footer></body></html>

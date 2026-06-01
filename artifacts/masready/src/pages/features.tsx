@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Activity, UploadCloud, Fingerprint, Crosshair, PieChart, PackageCheck, Target, ShieldCheck, History, BookOpen, Database, ToggleLeft, CheckCircle2, AlertTriangle } from "lucide-react";
+import { Link } from "wouter";
+import { Activity, UploadCloud, Fingerprint, Crosshair, PieChart, PackageCheck, Target, ShieldCheck, History, BookOpen, Database, ToggleLeft, CheckCircle2, AlertTriangle, Code2, ArrowRight } from "lucide-react";
 
 const FEATURES = [
   { title: "Delivery Intelligence", icon: Activity, desc: "Unified delivery confidence score across all project dimensions to assess readiness instantly." },
@@ -14,6 +15,7 @@ const FEATURES = [
   { title: "Controlled Learning", icon: BookOpen, desc: "Curated, version-locked training paths aligned to actual environment needs." },
   { title: "Data Boundary", icon: Database, desc: "Customer-hosted data model where no data leaves the physical or logical boundary." },
   { title: "Feature Flags", icon: ToggleLeft, desc: "Per-tenant configuration of enabled/disabled features for strict scope control." },
+  { title: "Adaptive Regression Intelligence", icon: Code2, desc: "Generate and maintain a customer-specific Playwright regression suite from the Maximo environment fingerprint. Coverage grows and shrinks as components, add-ons, and integrations change." },
 ];
 
 const SEED_CHECKLIST = [
@@ -142,6 +144,65 @@ export default function Features() {
           </motion.div>
         ))}
       </div>
+
+      {/* Adaptive Regression Intelligence spotlight */}
+      <section className="mt-24 pt-16 border-t border-white/5">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="rounded-2xl border border-violet-500/20 bg-gradient-to-br from-violet-500/5 to-primary/5 overflow-hidden"
+        >
+          <div className="flex items-center gap-4 px-8 py-5 border-b border-violet-500/15 bg-violet-500/5">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-violet-500/20 border border-violet-500/30 flex items-center justify-center shrink-0">
+                <Code2 className="w-5 h-5 text-violet-400" />
+              </div>
+              <div>
+                <div className="text-xs font-bold uppercase tracking-widest text-violet-400/70 mb-0.5">New Feature</div>
+                <div className="text-xl font-bold text-white">Adaptive Regression Intelligence</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="px-8 py-7 grid md:grid-cols-2 gap-8">
+            <div>
+              <p className="text-muted-foreground leading-relaxed mb-5">
+                MASReady uses the Maximo environment fingerprint to produce a customer-specific Playwright regression pack. As new add-ons, industry solutions, scripts, integrations, workflows, and UI changes are detected, MASReady reviews the impact and recommends test additions, removals, or updates — always with human review before any test reaches a pipeline.
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                <strong className="text-white">Your Maximo environment changes. Your regression suite should change with it.</strong>
+              </p>
+              <Link href="/adaptive-regression" className="inline-flex items-center gap-2 rounded-lg bg-violet-500/20 border border-violet-500/30 text-violet-300 px-5 py-2.5 text-sm font-semibold hover:bg-violet-500/30 transition-all hover:-translate-y-0.5">
+                Explore Adaptive Regression Intelligence <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <div className="space-y-3">
+              {[
+                "Generated from environment fingerprint — not manually authored",
+                "Coverage grows or shrinks as installed components change",
+                "Drift detection triggers targeted test recommendations",
+                "Human review required before any test reaches CI/CD",
+                "Exported as standard TypeScript Playwright files",
+                "Read-only fingerprinting — no Maximo mutation at any stage",
+              ].map((point, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="flex items-start gap-3 text-sm"
+                >
+                  <CheckCircle2 className="w-4 h-4 text-violet-400 shrink-0 mt-0.5" />
+                  <span className="text-muted-foreground leading-snug">{point}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </section>
 
       {/* Data ingestion paths */}
       <section className="mt-24 pt-16 border-t border-white/5">

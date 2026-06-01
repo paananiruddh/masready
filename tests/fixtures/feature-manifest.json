@@ -43,5 +43,14 @@
     "routes": ["/data-modes"],
     "expectedPublicCopy": ["Customer Hosted", "Zero Retention"],
     "forbiddenPublicCopy": ["PFM", "BOM", "pfm-demo", "bom-demo"]
+  },
+  {
+    "id": "adaptive-regression",
+    "label": "Adaptive Regression Intelligence",
+    "publicLabel": "Fingerprint-driven Playwright regression suite",
+    "enabledInDemo": true,
+    "routes": ["/adaptive-regression", "/features", "/mas9-power"],
+    "expectedPublicCopy": ["regression", "fingerprint"],
+    "forbiddenPublicCopy": ["PFM", "BOM", "pfm-demo", "bom-demo"]
   }
 ]

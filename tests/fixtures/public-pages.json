@@ -8,6 +8,7 @@
   { "path": "/launch", "name": "Launch (SPA)", "required": true },
   { "path": "/contact", "name": "Contact (SPA)", "required": true },
   { "path": "/data-modes", "name": "Data Modes (SPA)", "required": true },
+  { "path": "/adaptive-regression", "name": "Adaptive Regression Intelligence (SPA)", "required": true },
   { "path": "/skills", "name": "Skills (SPA)", "required": false },
   { "path": "/simulator", "name": "Simulator (SPA)", "required": false },
   { "path": "/compare", "name": "Compare (SPA)", "required": false }

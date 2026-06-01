@@ -39,6 +39,7 @@ export default function Launch() {
                 "Read-Only Safety",
                 "Customisation Scan",
                 "Bot Skill-Pack Coverage",
+                "Adaptive Regression Suite",
                 "Audit Trail",
                 "Multi-Tenant"
               ].map((feature, i) => (

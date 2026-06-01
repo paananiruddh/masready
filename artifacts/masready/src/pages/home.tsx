@@ -252,10 +252,10 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { title: "Delivery Intelligence", icon: Activity, desc: "Unified delivery confidence score across all project dimensions." },
-              { title: "Maximo Fingerprint", icon: Fingerprint, desc: "Automated scan of installed objects, customisations, and version data." },
-              { title: "License Planning", icon: FileText, desc: "AppPoint trends, named users, and mobile pool analysis for capacity planning." },
-              { title: "Trust Center", icon: Shield, desc: "Audit-first, read-only design with comprehensive trace capture." },
+              { title: "Delivery Intelligence", icon: Activity, desc: "Unified delivery confidence score across all project dimensions.", href: "/features" },
+              { title: "Maximo Fingerprint", icon: Fingerprint, desc: "Automated scan of installed objects, customisations, and version data.", href: "/features" },
+              { title: "License Planning", icon: FileText, desc: "AppPoint trends, named users, and mobile pool analysis for capacity planning.", href: "/features" },
+              { title: "Adaptive Regression Intelligence", icon: Shield, desc: "Fingerprint your Maximo environment and generate the regression tests it actually needs.", href: "/adaptive-regression" },
             ].map((f, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 20 }}

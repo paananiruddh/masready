@@ -47,6 +47,7 @@ import PatchImpact from "@/pages/patch-impact";
 import LicenseReport from "@/pages/license-report";
 import DeliveryIntelligence from "@/pages/delivery-intelligence";
 import Drift from "@/pages/drift";
+import AdaptiveRegression from "@/pages/adaptive-regression";
 
 const queryClient = new QueryClient();
 
@@ -109,6 +110,7 @@ function Design1Router() {
         <Route path="/license-report" component={LicenseReport} />
         <Route path="/delivery-intelligence" component={DeliveryIntelligence} />
         <Route path="/drift" component={Drift} />
+        <Route path="/adaptive-regression" component={AdaptiveRegression} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
