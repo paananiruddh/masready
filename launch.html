@@ -11,8 +11,8 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "MASReady", "url": "https://masready.com.au", "sameAs": ["https://masready.com.au"]}, {"@type": "SoftwareApplication", "name": "Maximo Delivery Automation Workbench", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "Evidence-backed IBM Maximo delivery automation for MAS 9 teams \u2014 delivery intelligence, patch impact, environment fingerprinting, license usage planning, trust boundaries, and offline skill packs.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "WebPage", "name": "Launch | MAS9 Power Demo Tenant", "description": "Launch announcement page for the MAS9 Power energy/utilities demo tenant and Maximo Delivery Automation Workbench.", "url": "https://masready.com.au/launch.html", "isPartOf": {"@type": "WebSite", "name": "Maximo Delivery Automation Workbench", "url": "https://masready.com.au"}}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2G0P43096"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-T2G0P43096');</script></head><body><a class="skip" href="#main">Skip to content</a><header class="nav"><div class="nav-inner"><a class="brand" href="index.html"><span class="logo">M</span><span>Maximo Delivery<br/><span class="muted" style="font-weight:650;font-size:12px">Automation Workbench</span></span></a><button class="mobile-toggle" data-mobile-toggle aria-label="Toggle navigation">Menu</button><nav class="nav-links" aria-label="Main navigation"><a href="index.html" class="">Home</a><a href="mas9-power.html" class="">MAS9 Power</a><a href="features.html" class="">Features</a><a href="adaptive-regression.html" class="">Adaptive Regression</a><a href="data-modes.html" class="">Data Modes</a><a href="trust.html" class="">Trust</a><a href="architecture.html" class="">Architecture</a><a href="media.html" class="">Media</a><a href="demo-walkthrough.html" class="">Walkthrough</a><a href="launch.html" class="active">Launch</a><a href="contact.html" class="">Contact</a></nav></div></header><main id="main"><section class="hero"><div class="container"><span class="eyebrow">Launch post</span><h1 class="h1">MAS9 Power demo tenant now tells the bigger product story.</h1><p class="lead">A LinkedIn/X-friendly launch page for the Maximo Delivery Automation Workbench with shareable proof blocks and safety reminders.</p></div></section><section class="section"><div class="container grid grid-2"><article class="card"><span class="tag good">What’s new</span><h2>Energy & Utilities demo for MAS 9</h2><p>MAS9 Power is the third white-label demo tenant and the first to showcase the platform for an energy/utilities scenario on IBM Maximo Application Suite Manage 9.x.</p></article><article class="card"><span class="tag">Why it matters</span><h2>Beyond one customer type</h2><p>The product leads with Maximo Delivery Automation Workbench while MAS9 Power becomes the demo story for patch impact, license planning, and skill coverage.</p></article><article class="card"><span class="tag warn">Try first</span><h2>Patch Impact + License Planning</h2><p>Show the MAS Manage Fix Pack 9.1.2 risk matrix, then the 12-month AppPoint usage planning trend.</p></article><article class="card"><span class="tag bad">Safety reminder</span><h2>Planning only. Review only.</h2><p>No SQL execution. No Maximo mutation. No Jira mutation. License planning is not compliance advice.</p></article></div></section><section class="section" id="lead-capture"><div class="container"><div class="card" style="max-width:560px;margin:0 auto"><h2 class="h2" style="text-align:center;margin-bottom:4px">Get the MASReady demo link</h2>
 <p class="muted" style="text-align:center;margin-bottom:24px">Full product walkthrough. No sales pressure.</p>
-<form id="w3f-form" novalidate>
-  <input type="hidden" name="access_key" value="e3f95161-8759-43a2-90a6-707479beed4b"/>
+<form id="w3f-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+  <input type="hidden" name="access_key" value="e3f95161-8759-43a2-90a6-707479beed4b"/><input type="hidden" name="redirect" value="https://masready.com.au/launch.html?sent=1"/>
   <input type="hidden" name="subject" value="MASReady demo request"/>
   <input type="hidden" name="from_name" value="MASReady Lead Form"/>
   <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off"/>
@@ -50,45 +50,12 @@
   <h3 style="margin-bottom:6px">You're on the list.</h3>
   <p class="muted" style="font-size:14px">We'll send the MASReady demo link to you shortly.</p>
 </div>
-</div></div></section></main><footer class="footer"><div class="container"><div><div class="brand"><span class="logo">M</span><span>Maximo Delivery Automation Workbench</span></div><p class="muted">Evidence-backed IBM Maximo delivery automation. MAS9 Power is a fictional demo tenant built from seeded data.</p><p class="muted">© <span data-year></span> MASReady — Maximo Delivery Automation Workbench.</p></div><div><div class="footer-links"><a href="index.html">Home</a><a href="mas9-power.html">MAS9 Power</a><a href="features.html">Features</a><a href="adaptive-regression.html">Adaptive Regression</a><a href="data-modes.html">Data Modes</a><a href="trust.html">Trust</a><a href="architecture.html">Architecture</a><a href="media.html">Media</a><a href="demo-walkthrough.html">Walkthrough</a><a href="launch.html">Launch</a><a href="contact.html">Contact</a><a href="sitemap.xml">Sitemap</a><a href="robots.txt">Robots</a></div><p class="disclaimer" style="margin-top:18px">License usage planning is for visibility only. It is not legal, contractual, IBM-certified, or compliance advice.</p></div></div></footer><script src="assets/js/site.js"></script><script>(function(){
-  var form=document.getElementById("w3f-form");
-  var btn=document.getElementById("w3f-btn");
-  var errEl=document.getElementById("w3f-error");
-  var successEl=document.getElementById("w3f-success");
-  var started=false;
-  if(!form)return;
-  form.querySelectorAll("input,select").forEach(function(el){
-    el.addEventListener("focus",function(){if(!started){started=true;if(typeof gtag==="function")gtag("event","lead_capture_started",{event_category:"engagement",event_label:"lead_form",value:1});}});
-  });
-  form.addEventListener("submit",function(e){
-    e.preventDefault();
-    var email=document.getElementById("EMAIL").value.trim();
-    if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){errEl.textContent="Please enter a valid email address.";errEl.style.display="block";return;}
-    errEl.style.display="none";btn.disabled=true;btn.style.opacity="0.6";btn.textContent="Sending\u2026";
-    var payload={
-      access_key:"e3f95161-8759-43a2-90a6-707479beed4b",
-      subject:"MASReady demo request \u2014 "+(document.getElementById("FIRSTNAME").value.trim()||email),
-      from_name:"MASReady Lead Form",
-      email:email,
-      name:document.getElementById("FIRSTNAME").value.trim()||"(not provided)",
-      company:document.getElementById("COMPANY").value.trim()||"(not provided)",
-      interest:document.getElementById("INTEREST").value||"(not provided)",
-      botcheck:""
-    };
-    fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)})
-      .then(function(r){return r.json();})
-      .then(function(json){
-        if(json.success){
-          form.style.display="none";successEl.style.display="block";
-          if(typeof gtag==="function")gtag("event","lead_capture_submitted",{event_category:"engagement",event_label:"lead_form",value:1});
-        }else{
-          errEl.textContent=json.message||"Something went wrong. Please try again.";errEl.style.display="block";
-          btn.disabled=false;btn.style.opacity="1";btn.textContent="Get the MASReady demo link";
-        }
-      })
-      .catch(function(){
-        errEl.textContent="Network error \u2014 please email aniruddh@assetize.com.au.";errEl.style.display="block";
-        btn.disabled=false;btn.style.opacity="1";btn.textContent="Get the MASReady demo link";
-      });
-  });
-})();</script></body></html>
+</div></div></section></main><footer class="footer"><div class="container"><div><div class="brand"><span class="logo">M</span><span>Maximo Delivery Automation Workbench</span></div><p class="muted">Evidence-backed IBM Maximo delivery automation. MAS9 Power is a fictional demo tenant built from seeded data.</p><p class="muted">© <span data-year></span> MASReady — Maximo Delivery Automation Workbench.</p></div><div><div class="footer-links"><a href="index.html">Home</a><a href="mas9-power.html">MAS9 Power</a><a href="features.html">Features</a><a href="adaptive-regression.html">Adaptive Regression</a><a href="data-modes.html">Data Modes</a><a href="trust.html">Trust</a><a href="architecture.html">Architecture</a><a href="media.html">Media</a><a href="demo-walkthrough.html">Walkthrough</a><a href="launch.html">Launch</a><a href="contact.html">Contact</a><a href="sitemap.xml">Sitemap</a><a href="robots.txt">Robots</a></div><p class="disclaimer" style="margin-top:18px">License usage planning is for visibility only. It is not legal, contractual, IBM-certified, or compliance advice.</p></div></div></footer><script src="assets/js/site.js"></script><script></script>
+<script>
+if(new URLSearchParams(window.location.search).get('sent')==='1'){
+  var f=document.getElementById('w3f-form');
+  var s=document.getElementById('w3f-success');
+  if(f)f.style.display='none';
+  if(s)s.style.display='block';
+}
+</script></body></html>
