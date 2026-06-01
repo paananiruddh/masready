@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { Rocket, Globe, Lock, ArrowRight, CheckCircle2 } from "lucide-react";
-import { useState, useRef } from "react";
+import { Rocket, Globe, Lock, CheckCircle2 } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 
 const WEB3FORMS_KEY = "e3f95161-8759-43a2-90a6-707479beed4b";
 
@@ -16,10 +16,15 @@ const INTERESTS = [
   "Architecture discussion",
 ] as const;
 
-function DemoRequestForm() {
+function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [interest, setInterest] = useState(defaultInterest ?? "");
   const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (defaultInterest) setInterest(defaultInterest);
+  }, [defaultInterest]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -126,6 +131,8 @@ function DemoRequestForm() {
         <select
           id="launch-interest"
           name="interest"
+          value={interest}
+          onChange={(e) => setInterest(e.target.value)}
           className="w-full rounded-lg border border-white/15 bg-background/80 px-3.5 py-2.5 text-sm text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
           disabled={status === "sending"}
         >
@@ -156,6 +163,18 @@ function DemoRequestForm() {
 }
 
 export default function Launch() {
+  const [defaultInterest, setDefaultInterest] = useState<string>("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("mode") === "persisted") {
+      setDefaultInterest("Secure persisted demo");
+      setTimeout(() => {
+        document.getElementById("demo-form")?.scrollIntoView({ behavior: "smooth" });
+      }, 200);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Background */}
@@ -188,7 +207,7 @@ export default function Launch() {
             {/* Two CTA choices */}
             <div className="grid sm:grid-cols-2 gap-4 max-w-xl mx-auto mb-10">
               <Link
-                href="/industry-previews"
+                href="/preview-studio"
                 className="flex items-center gap-3 rounded-xl border border-accent/30 bg-gradient-to-br from-accent/10 to-accent/5 p-4 hover:border-accent/50 transition-all hover:-translate-y-0.5 group text-left"
               >
                 <div className="p-2.5 rounded-lg bg-accent/15 border border-accent/20 shrink-0">
@@ -196,7 +215,7 @@ export default function Launch() {
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-white">Open Public Synthetic Preview</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">Session-only · 10 industries</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">2-hour session link · 10 industries</div>
                 </div>
               </Link>
               <button
@@ -223,12 +242,13 @@ export default function Launch() {
             className="rounded-2xl border border-white/12 bg-card/80 backdrop-blur-xl shadow-2xl shadow-black/30 p-8 max-w-[720px] mx-auto"
           >
             <div className="mb-7">
-              <h2 className="text-xl font-bold mb-1">Get your MASReady demo link</h2>
-              <p className="text-sm text-muted-foreground">
-                Tell us about your interest and we'll send through the right preview or connect you with the team.
+              <h2 className="text-xl font-bold mb-1">Request a Persisted Private Demo</h2>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Public synthetic previews open through 2-hour session-scoped links and do not require a contact form.
+                Use this form only if you want a <strong className="text-white">persisted private demo</strong>, secure assessment, or enterprise walkthrough.
               </p>
             </div>
-            <DemoRequestForm />
+            <DemoRequestForm defaultInterest={defaultInterest} />
           </motion.div>
 
         </div>

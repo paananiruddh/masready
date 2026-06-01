@@ -231,7 +231,7 @@ export default function IndustryPreviews() {
                 </div>
 
                 <Link
-                  href="/launch"
+                  href={`/preview-studio?industry=${industry.slug}`}
                   className={`mt-auto flex items-center justify-center gap-2 rounded-lg border ${industry.border} bg-card px-4 py-2.5 text-sm font-semibold ${industry.color} hover:bg-white/5 transition-colors`}
                 >
                   Open {industry.title} Preview <ArrowRight className="w-3.5 h-3.5" />

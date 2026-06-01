@@ -1,0 +1,753 @@
+You are working on the MASReady website/app repo:
+
+softwarecomparereview/masready
+
+Implement a professional, time-limited MASReady Synthetic Preview access system.
+
+Do not create GitHub issues.
+Do not only explain.
+Implement the change, run build, commit, and report what changed.
+
+============================================================
+OBJECTIVE
+============================================================
+
+The public synthetic preview must not be an always-open permanent URL.
+
+Current concern:
+If users can directly access URLs like:
+
+/preview/rail
+/preview/water
+/preview/utilities
+
+then they can keep using the synthetic demo forever without MASReady permission or any auditability.
+
+Required new model:
+Users must first create a short-lived synthetic preview session.
+
+The system creates a UUID/token-based preview URL.
+
+Example:
+
+/preview-session/9f3a7c21-5d84-4a9c-9f88-8b62a4b1d1ef
+
+or:
+
+/preview/rail?session=9f3a7c21-5d84-4a9c-9f88-8b62a4b1d1ef
+
+The session must expire after 2 hours.
+
+After 2 hours:
+- user cannot access the preview anymore
+- show expired session screen
+- offer buttons:
+  - Start New Preview
+  - Request Persisted Demo
+
+Also write audit events for:
+- session created
+- industry selected
+- preview opened
+- page/section opened where practical
+- persisted demo CTA clicked
+- session expired
+- preview reset/cleared
+
+This must feel professional, secure, SEO-friendly, and enterprise-grade.
+
+============================================================
+IMPORTANT ARCHITECTURE NOTE
+============================================================
+
+The repo appears to be a GitHub Pages static site / SPA.
+
+A purely static GitHub Pages app cannot securely enforce server-side 2-hour expiry because users can manipulate browser state.
+
+Therefore implement this in two phases:
+
+PHASE 1 — STATIC-SAFE MVP
+Implement client-side TTL using signed-looking UUID/session metadata in browser storage.
+This improves UX and audit simulation but is not security-grade.
+
+PHASE 2 — SERVER-ENFORCED READY DESIGN
+Add a clean abstraction/interface so later Azure Function / API / Worker can enforce expiry server-side.
+
+The implementation must clearly separate:
+- client preview state
+- audit event writer
+- session validation adapter
+
+This allows later replacement of local/session storage with real backend validation.
+
+Do not pretend client-side expiry is real security.
+Use wording:
+“Public previews are time-limited and session-scoped. Enterprise/private demos use controlled access.”
+
+Do not say:
+“cryptographically secure access control”
+unless a backend is actually implemented.
+
+============================================================
+TARGET USER JOURNEY
+============================================================
+
+A. Start public synthetic preview
+
+/launch
+→ click “Open Public Synthetic Preview”
+→ /preview-studio
+→ user selects industry and optional runtime-only personalization
+→ click “Generate 2-Hour Preview Link”
+→ app creates UUID session
+→ app writes audit event: preview_session_created
+→ app navigates to /preview-session/<uuid>
+
+B. Preview session
+
+/preview-session/<uuid>
+→ validates UUID exists in current browser session/local/session store
+→ validates createdAt + expiresAt
+→ displays selected industry synthetic preview
+→ shows expiry countdown:
+   “Preview expires in 1h 58m”
+→ shows current industry and session badge
+→ shows buttons:
+   - Change Industry
+   - Clear Preview Data
+   - Request Persisted Demo
+
+C. Expired session
+
+If now > expiresAt:
+→ write audit event: preview_session_expired
+→ show expired screen:
+   “This MASReady synthetic preview link has expired.”
+   “Public previews are valid for 2 hours.”
+→ buttons:
+   - Start New Preview
+   - Request Persisted Demo
+
+D. Direct preview URL access
+
+If user opens:
+/preview/rail
+
+Do not allow full preview directly.
+
+Instead show an access gate:
+
+Title:
+Start a time-limited MASReady preview
+
+Body:
+Synthetic previews require a 2-hour preview session so MASReady can keep public demo access controlled and auditable.
+
+Buttons:
+- Start Preview Studio
+- Request Persisted Demo
+
+Optional:
+Show SEO-friendly industry teaser content below the gate, but not the full interactive preview.
+
+E. Industry preview cards
+
+/industry-previews
+→ each card should not permanently open /preview/industry directly
+→ each card should either:
+   - create a 2-hour session immediately for that industry, or
+   - go to /preview-studio?industry=rail
+
+Preferred:
+Open Rail Preview → /preview-studio?industry=rail
+
+Then user clicks:
+Generate 2-Hour Preview Link
+
+============================================================
+1. CREATE PREVIEW SESSION MODEL
+============================================================
+
+Create a dedicated preview session utility.
+
+Suggested file:
+
+src/lib/previewSession.ts
+
+or equivalent existing source location.
+
+Define:
+
+PreviewSession:
+- id: UUID string
+- industry: string
+- createdAt: ISO timestamp
+- expiresAt: ISO timestamp
+- overlay: runtime personalization object
+- source: launch | industry-previews | preview-studio | direct
+- version: number
+
+RuntimePersonalization:
+- companyLabel optional
+- currentMaximoVersion optional
+- targetMasVersion optional
+- addOns optional
+- industrySolutions optional
+- mobilityTool optional
+- integrationTypes optional
+- mainConcern optional
+
+Functions:
+- createPreviewSession(input)
+- getPreviewSession(id)
+- validatePreviewSession(id)
+- expirePreviewSession(id)
+- clearPreviewSession(id)
+- clearAllPreviewSessions()
+- getRemainingTime(session)
+- isExpired(session)
+
+TTL:
+2 hours exactly.
+
+Use:
+const PREVIEW_TTL_MS = 2 * 60 * 60 * 1000
+
+Generate UUID using:
+crypto.randomUUID()
+
+Fallback if needed:
+secure random fallback for older browsers.
+
+Storage:
+Use localStorage or sessionStorage depending on implementation.
+
+Recommendation:
+Use localStorage for the session token so refresh does not immediately destroy the preview, but enforce expiresAt strictly.
+
+All stored data must be public-demo-safe.
+Do not store screenshots.
+Do not store pasted Maximo content.
+Do not store production data.
+Do not store anything sensitive.
+
+============================================================
+2. CREATE AUDIT LOG MODEL
+============================================================
+
+Create an audit utility.
+
+Suggested file:
+
+src/lib/previewAudit.ts
+
+Audit event shape:
+- eventId
+- sessionId
+- eventType
+- timestamp
+- industry optional
+- route optional
+- section optional
+- source optional
+- metadata optional
+
+Required event types:
+- preview_session_created
+- preview_session_opened
+- preview_session_expired
+- industry_selected
+- preview_section_opened
+- preview_data_cleared
+- persisted_demo_clicked
+- preview_session_invalid
+- preview_session_access_denied
+- preview_new_session_requested
+
+For static MVP:
+Store audit events in localStorage under a clear key such as:
+masready_preview_audit_events
+
+Also add a visible internal/debug export only if suitable:
+- “Export Session Audit” button on preview session page
+- export JSON for MASReady internal testing
+- hide it behind a small “Session details” accordion if needed
+
+Do not send audit events to backend unless a backend already exists.
+
+Prepare for backend:
+Create an AuditSink abstraction:
+
+interface AuditSink {
+  write(event): Promise<void> | void
+}
+
+Implement:
+- LocalStorageAuditSink now
+- placeholder/comment for future ApiAuditSink
+
+Future API endpoint placeholder:
+POST /api/preview-audit
+
+Do not implement fake backend if none exists.
+
+============================================================
+3. CREATE /preview-studio WITH SESSION GENERATION
+============================================================
+
+Update or create:
+
+/preview-studio
+
+This page must no longer directly send users to permanent preview URLs.
+
+It should create a 2-hour preview session.
+
+Page content:
+
+Title:
+MASReady Synthetic Preview Studio
+
+Subtitle:
+Create a time-limited, session-scoped synthetic Maximo preview. Public preview links expire after 2 hours.
+
+Privacy/security banner:
+Your answers personalize this preview in your browser session only. Public preview links expire after 2 hours. No production data is required.
+
+Fields:
+- Industry required
+- Company label optional
+- Current Maximo version optional
+- Target MAS version optional
+- Add-ons optional
+- Industry solutions optional
+- Mobility tool optional
+- Integration types optional
+- Main upgrade concern optional
+
+Button:
+Generate 2-Hour Preview Link
+
+On click:
+- validate industry selected
+- create preview session
+- write audit:
+  preview_session_created
+  industry_selected
+- navigate to:
+/preview-session/<uuid>
+
+Add secondary button:
+Request Persisted Demo
+→ /launch?mode=persisted#demo-form
+
+Add tertiary:
+Clear Preview Data
+→ clears current local/session overlay state
+
+If URL contains:
+/preview-studio?industry=rail
+
+Preselect Rail.
+
+============================================================
+4. CREATE /preview-session/:sessionId
+============================================================
+
+Create route:
+
+/preview-session/:sessionId
+
+Behavior:
+- read sessionId from route
+- validate session exists
+- validate expiry
+- if invalid, show invalid access screen
+- if expired, show expired session screen
+- if valid, render full synthetic preview dashboard for selected industry
+
+Valid session page must show:
+
+Top session banner:
+- “2-hour synthetic preview”
+- Industry
+- Session ID shortened, e.g. 9f3a7c21
+- Countdown:
+  “Expires in 1h 42m”
+- Button: Request Persisted Demo
+
+Preview sections:
+1. Environment Snapshot
+2. Assets and Locations
+3. Work Management Preview
+4. Environment Fingerprint
+5. Drift Intelligence
+6. Regression Intelligence
+7. AI Skill Pack Preview
+8. Recommendations
+9. Persisted Demo CTA
+
+Use the selected industry baseline synthetic data.
+
+Apply runtime overlay:
+- companyLabel
+- currentMaximoVersion
+- targetMasVersion
+- addOns
+- industrySolutions
+- mobilityTool
+- integrationTypes
+- mainConcern
+
+Write audit event when page opens:
+preview_session_opened
+
+Write section audit events when major preview sections are viewed or clicked.
+For simple MVP, write on accordion/card click or section CTA click.
+Do not over-engineer scroll tracking unless already easy.
+
+If expired while user is on the page:
+- countdown reaches zero
+- write preview_session_expired
+- switch page to expired screen
+- prevent further interaction with preview content
+
+Expired screen:
+Title:
+This MASReady synthetic preview link has expired.
+
+Body:
+Public synthetic previews are valid for 2 hours. Start a new preview or request a persisted private demo.
+
+Buttons:
+- Start New Preview → /preview-studio
+- Request Persisted Demo → /launch?mode=persisted#demo-form
+
+Invalid screen:
+Title:
+Preview session not found
+
+Body:
+This preview link is invalid, expired, or was created in another browser session.
+
+Buttons:
+- Start Preview Studio
+- Request Persisted Demo
+
+============================================================
+5. LOCK DOWN DIRECT /preview/:industry ROUTES
+============================================================
+
+If routes like /preview/rail exist, do not show the full dashboard directly anymore.
+
+Instead show an SEO-friendly access gate.
+
+For /preview/rail:
+
+Title:
+Rail MASReady Synthetic Preview
+
+Subtitle:
+Explore a synthetic Maximo-style rail operations preview through a 2-hour MASReady preview session.
+
+Body:
+This industry preview is available through a time-limited preview session. This keeps public demo access controlled, auditable, and separate from persisted private demos.
+
+Buttons:
+- Start Rail Preview → /preview-studio?industry=rail
+- Request Persisted Demo → /launch?mode=persisted#demo-form
+
+Below, show SEO-friendly teaser content:
+- typical rail assets
+- typical work types
+- example MASReady insights
+- what the preview includes
+
+But do NOT render the full interactive preview dashboard unless a valid /preview-session/:sessionId exists.
+
+Apply same pattern to:
+- utilities
+- transport
+- government
+- mining
+- facilities
+- power-generation
+- water
+- rail
+- roads
+- airports
+
+============================================================
+6. UPDATE /industry-previews
+============================================================
+
+Keep the existing visual cards.
+
+Change card CTAs:
+
+Open Utilities Preview → /preview-studio?industry=utilities
+Open Transport Preview → /preview-studio?industry=transport
+Open Government Preview → /preview-studio?industry=government
+Open Mining Preview → /preview-studio?industry=mining
+Open Facilities Preview → /preview-studio?industry=facilities
+Open Power Generation Preview → /preview-studio?industry=power-generation
+Open Water Preview → /preview-studio?industry=water
+Open Rail Preview → /preview-studio?industry=rail
+Open Roads Preview → /preview-studio?industry=roads
+Open Airports Preview → /preview-studio?industry=airports
+
+Add page-level CTA:
+Start Preview Studio → /preview-studio
+
+Add secondary CTA:
+Request Persisted Demo → /launch?mode=persisted#demo-form
+
+Add explanation:
+Public previews are generated as 2-hour session-scoped links. Persisted private demos are available by request.
+
+============================================================
+7. UPDATE /launch
+============================================================
+
+On /launch:
+
+Open Public Synthetic Preview:
+→ /preview-studio
+
+Request Persisted Demo:
+→ /launch?mode=persisted#demo-form
+
+The form is only for persisted/private/secure contact-assisted request.
+
+Add copy:
+Public synthetic previews open through 2-hour session-scoped links and do not require a contact form. Use this form only if you want a persisted private demo, secure assessment, or enterprise walkthrough.
+
+Form should default to:
+Secure persisted demo
+when mode=persisted.
+
+On submit:
+show success confirmation.
+
+Do not loop.
+
+============================================================
+8. AUDIT LOG UI
+============================================================
+
+Add a small session audit panel on /preview-session/:sessionId.
+
+Location:
+Bottom of preview page or behind “Session details”.
+
+Show:
+- session created timestamp
+- expiry timestamp
+- industry
+- event count
+- last event timestamp
+
+Optional button:
+Export Session Audit
+
+If implemented:
+Export JSON file containing local audit events for that session.
+
+This is useful for MASReady internal testing and demo maturity.
+
+Do not expose sensitive user input in audit export.
+For MVP, metadata should be minimal and safe:
+- industry
+- route
+- section
+- source
+- timestamps
+- session ID
+
+Avoid storing:
+- company label
+- screenshots
+- pasted text
+- detailed environment text
+
+============================================================
+9. SEO REQUIREMENTS
+============================================================
+
+Make industry preview gate pages SEO-friendly.
+
+Each /preview/<industry> gate page should have:
+- meaningful title
+- meta description
+- H1
+- industry-specific content
+- canonical where appropriate
+- internal links to /industry-previews, /preview-studio, /launch
+
+Example title:
+Rail MASReady Synthetic Preview | Maximo Delivery Automation Workbench
+
+Example description:
+Explore a time-limited synthetic IBM Maximo preview for rail operations, including assets, work management, regression intelligence, environment fingerprinting, and MAS readiness insights.
+
+Do not noindex these gate pages unless there is a strong reason.
+
+The session URLs should not be indexed.
+
+For /preview-session/:sessionId:
+- add noindex meta if possible
+- do not include session URLs in sitemap
+- do not link session URLs from static sitemap
+- do not expose session IDs in SEO pages
+
+If sitemap is static:
+- include /preview/rail etc gate pages
+- include /preview-studio
+- include /industry-previews
+- do not include /preview-session/*
+
+============================================================
+10. PROFESSIONAL COPY
+============================================================
+
+Use professional enterprise language.
+
+Use these terms:
+- time-limited preview session
+- session-scoped synthetic preview
+- controlled public demo access
+- audit trail
+- runtime-only personalization
+- persisted private demo
+- secure connected assessment
+- synthetic industry baseline
+
+Avoid:
+- fake demo
+- mock data
+- toy preview
+- forever public link
+- unlimited demo access
+
+============================================================
+11. SECURITY COPY
+============================================================
+
+Add clear public preview safety message:
+
+Public previews use fixed synthetic baseline data and runtime-only personalization. Preview links expire after 2 hours. Persisted private demos and connected assessments are available by request.
+
+Add expired session copy:
+
+This preview link has expired. Public synthetic previews are intentionally time-limited so MASReady can keep public demo access controlled and auditable.
+
+============================================================
+12. ACCEPTANCE CRITERIA
+============================================================
+
+Implementation is complete only when:
+
+1. /launch public synthetic CTA goes to /preview-studio, not the form.
+2. /launch persisted demo CTA opens/selects the contact form.
+3. /preview-studio creates a UUID preview session.
+4. The generated preview URL uses a UUID.
+5. UUID preview sessions expire after 2 hours.
+6. Expired sessions show an expired screen.
+7. Invalid session IDs show an invalid screen.
+8. Direct /preview/<industry> does not render full preview without a valid session.
+9. /preview/<industry> is SEO-friendly as a gate/teaser page.
+10. /preview-session/:sessionId renders the full synthetic dashboard only when valid.
+11. /industry-previews cards go to /preview-studio?industry=<slug>.
+12. Audit events are written for creation, open, industry select, expiry, persisted demo click, and section activity where practical.
+13. A small audit/session details panel exists.
+14. Session URLs are not included in sitemap.
+15. Preview session pages are noindex where possible.
+16. No production data is stored.
+17. No screenshots/pasted text are stored.
+18. No fake customer logos or real customer names are added.
+19. Build passes with pnpm.
+20. Commit message:
+Implement time-limited synthetic preview sessions
+
+============================================================
+13. MANUAL TESTS
+============================================================
+
+Run these tests manually after implementation:
+
+A. Launch public preview
+- Open /launch
+- Click Open Public Synthetic Preview
+- Confirm /preview-studio opens
+- Select Rail
+- Generate 2-Hour Preview Link
+- Confirm URL contains UUID
+- Confirm /preview-session/<uuid> opens
+- Confirm countdown is visible
+
+B. Industry card
+- Open /industry-previews
+- Click Open Water Preview
+- Confirm /preview-studio?industry=water opens
+- Generate link
+- Confirm water preview opens
+
+C. Direct industry gate
+- Open /preview/rail
+- Confirm it does not show full dashboard
+- Confirm it shows SEO-friendly rail preview gate
+- Click Start Rail Preview
+- Confirm /preview-studio?industry=rail opens
+
+D. Expiry
+- Temporarily reduce TTL in dev to 10 seconds
+- Generate session
+- Wait until expiry
+- Confirm expired screen appears
+- Confirm audit event is written
+
+E. Invalid session
+- Open /preview-session/not-a-real-id
+- Confirm invalid session screen appears
+
+F. Persisted demo
+- Open /launch
+- Click Request Persisted Demo
+- Confirm form opens
+- Confirm Secure persisted demo is selected
+- Submit form
+- Confirm success message
+- Confirm no loop
+
+G. Audit
+- Generate session
+- Open a few preview sections
+- Open Session details
+- Confirm event count and timestamps appear
+- Export audit if implemented
+
+============================================================
+14. BUILD
+============================================================
+
+Run:
+
+pnpm install
+pnpm run build
+
+If available:
+pnpm run test
+pnpm run lint
+
+Commit:
+
+Implement time-limited synthetic preview sessions
+
+Report:
+- files changed
+- routes added
+- how UUID session generation works
+- how 2-hour expiry works
+- how audit log works
+- what is static MVP vs future server-enforced design
+- build/test results

@@ -51,6 +51,9 @@ import AdaptiveRegression from "@/pages/adaptive-regression";
 import AuditChecklist from "@/pages/audit-checklist";
 import IndustryPreviews from "@/pages/industry-previews";
 import Platform from "@/pages/platform";
+import PreviewStudio from "@/pages/preview-studio";
+import PreviewSession from "@/pages/preview-session";
+import PreviewGate from "@/pages/preview-gate";
 
 const queryClient = new QueryClient();
 
@@ -117,6 +120,9 @@ function Design1Router() {
         <Route path="/audit-checklist" component={AuditChecklist} />
         <Route path="/industry-previews" component={IndustryPreviews} />
         <Route path="/platform" component={Platform} />
+        <Route path="/preview-studio" component={PreviewStudio} />
+        <Route path="/preview-session/:sessionId" component={PreviewSession} />
+        <Route path="/preview/:industry" component={PreviewGate} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
