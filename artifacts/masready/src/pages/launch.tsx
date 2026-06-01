@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Rocket, ShieldCheck, Activity } from "lucide-react";
+import LeadCaptureForm from "@/components/LeadCaptureForm";
 
 export default function Launch() {
   return (
@@ -53,6 +54,11 @@ export default function Launch() {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* ── Lead capture ── */}
+      <div className="max-w-xl mx-auto mt-20 mb-8">
+        <LeadCaptureForm />
       </div>
     </div>
   );

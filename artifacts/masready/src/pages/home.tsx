@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Shield, ArrowRight, Activity, FileText, Fingerprint, Lock, Box, Users } from "lucide-react";
+import LeadCaptureForm from "@/components/LeadCaptureForm";
 import { useEffect, useState, useRef } from "react";
 
 function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
@@ -380,6 +381,19 @@ export default function Home() {
               </a>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Lead capture ── */}
+      <section className="py-20 border-t border-white/5">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <LeadCaptureForm />
+          </motion.div>
         </div>
       </section>
 

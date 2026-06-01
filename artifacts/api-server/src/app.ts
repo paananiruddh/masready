@@ -25,7 +25,29 @@ app.use(
     },
   }),
 );
-app.use(cors());
+app.use(
+  cors({
+    origin(origin, callback) {
+      const allowed = [
+        "https://masready.com.au",
+        "https://www.masready.com.au",
+      ];
+      if (
+        !origin ||
+        allowed.includes(origin) ||
+        /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin) ||
+        origin.endsWith(".replit.dev") ||
+        origin.endsWith(".replit.app")
+      ) {
+        callback(null, true);
+      } else {
+        callback(null, false);
+      }
+    },
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
+  }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -1,0 +1,68 @@
+URGENT: Add email capture to masready.com.au using Brevo.
+
+Goal:
+People are visiting now. Add a simple working lead capture form immediately.
+
+Do NOT expose the Brevo API key in frontend/public JS.
+Use backend/serverless/API route/env secret even if this is static-hosted.
+Create BREVO_API_KEY as an environment variable/secret.
+
+Implement:
+1. Add email capture section on homepage and launch page.
+2. Fields:
+   - email required
+   - name optional
+   - company optional
+   - interest dropdown optional:
+     - MASReady demo
+     - Maximo environment proof
+     - Licensing report
+     - Regression test suite
+     - General inquiry
+3. CTA text:
+   “Get the MASReady demo link”
+4. On submit:
+   - send contact to Brevo
+   - add/update contact
+   - add attribute SOURCE = masready.com.au
+   - add attribute INTEREST if provided
+   - show success message
+5. Add spam/basic validation:
+   - valid email format
+   - hidden honeypot field
+   - disable submit while sending
+6. Add GA4 event:
+   lead_capture_submitted
+7. Add fallback:
+   if Brevo fails, log server error and show friendly “Please try again” message.
+8. Add a visible backup mailto link:
+   ani@assetize.com.au
+   Text: “Or email us directly”
+9. Make it mobile-friendly and consistent with current site styling.
+10. Test locally and confirm production build passes.
+
+Brevo API:
+Use Brevo Contacts API v3:
+POST https://api.brevo.com/v3/contacts
+
+Payload:
+{
+  "email": "...",
+  "attributes": {
+    "FIRSTNAME": "...",
+    "COMPANY": "...",
+    "SOURCE": "masready.com.au",
+    "INTEREST": "..."
+  },
+  "updateEnabled": true
+}
+
+Headers:
+api-key: process.env.BREVO_API_KEY
+Content-Type: application/json
+
+After implementation:
+- Tell me exactly where to add BREVO_API_KEY.
+- Tell me the pages/components changed.
+- Confirm whether the form works on GitHub Pages or requires Azure/Cloudflare/Vercel function.
+- If current hosting cannot run backend code, implement the smallest deployable serverless endpoint and explain the fastest deployment path.
