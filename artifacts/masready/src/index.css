@@ -65,31 +65,31 @@
   --elevate-1: rgba(255,255,255, .04);
   --elevate-2: rgba(255,255,255, .09);
 
-  /* Lighter slate-navy */
-  --background: 222 28% 18%;
-  --foreground: 210 40% 96%;
-  --border: 222 22% 28%;
+  /* Deep navy base — cards now clearly contrast against background */
+  --background: 224 38% 8%;
+  --foreground: 210 50% 97%;
+  --border: 222 24% 24%;
 
-  --card: 222 26% 22%;
-  --card-foreground: 210 40% 96%;
-  --card-border: 222 22% 30%;
+  --card: 222 30% 16%;
+  --card-foreground: 210 50% 97%;
+  --card-border: 222 24% 26%;
 
-  --popover: 222 26% 22%;
-  --popover-foreground: 210 40% 96%;
-  --popover-border: 222 22% 30%;
+  --popover: 222 30% 16%;
+  --popover-foreground: 210 50% 97%;
+  --popover-border: 222 24% 26%;
 
-  /* Electric blue */
-  --primary: 217 91% 60%;
+  /* Vivid electric blue */
+  --primary: 217 100% 65%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 222 22% 32%;
-  --secondary-foreground: 210 40% 96%;
+  --secondary: 222 24% 28%;
+  --secondary-foreground: 210 50% 97%;
 
-  --muted: 222 22% 27%;
-  --muted-foreground: 215 20% 68%;
+  --muted: 222 24% 20%;
+  --muted-foreground: 215 28% 72%;
 
-  /* Cyan */
-  --accent: 189 94% 43%;
+  /* Bright cyan */
+  --accent: 188 100% 50%;
   --accent-foreground: 0 0% 100%;
 
   /* Amber */

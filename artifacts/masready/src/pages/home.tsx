@@ -48,10 +48,11 @@ function LiveDashboard() {
       className="relative"
     >
       {/* Glow behind card */}
-      <div className="absolute -inset-4 bg-primary/20 rounded-3xl blur-2xl pointer-events-none" />
-      <div className="relative rounded-2xl border border-white/10 bg-card/70 backdrop-blur-xl shadow-2xl overflow-hidden">
+      <div className="absolute -inset-4 bg-primary/30 rounded-3xl blur-3xl pointer-events-none" />
+      <div className="absolute -inset-4 bg-accent/10 rounded-3xl blur-2xl pointer-events-none" />
+      <div className="relative rounded-2xl border border-white/20 bg-card backdrop-blur-xl shadow-2xl shadow-primary/20 overflow-hidden">
         {/* Title bar */}
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-background/60">
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-background/80">
           <div className="flex gap-1.5">
             <div className="w-3 h-3 rounded-full bg-red-500" />
             <div className="w-3 h-3 rounded-full bg-yellow-400" />
@@ -63,27 +64,27 @@ function LiveDashboard() {
         <div className="p-5 space-y-4">
           {/* Score row */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-xl border border-white/5 bg-background/40 p-4">
-              <div className="text-xs text-muted-foreground mb-1">Intelligence Score</div>
-              <div className="text-3xl font-bold text-accent">87<span className="text-base text-muted-foreground">/100</span></div>
-              <div className="mt-2 h-1.5 rounded-full bg-white/5">
+            <div className="rounded-xl border border-primary/30 bg-gradient-to-br from-primary/15 to-primary/5 p-4">
+              <div className="text-xs text-primary/80 font-medium mb-1">Intelligence Score</div>
+              <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">87<span className="text-base text-muted-foreground">/100</span></div>
+              <div className="mt-2 h-1.5 rounded-full bg-white/10">
                 <motion.div className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
                   initial={{ width: 0 }} animate={{ width: "87%" }} transition={{ delay: 0.8, duration: 1 }} />
               </div>
             </div>
-            <div className="rounded-xl border border-white/5 bg-background/40 p-4">
-              <div className="text-xs text-muted-foreground mb-1">Trust Boundary</div>
+            <div className="rounded-xl border border-green-500/30 bg-gradient-to-br from-green-500/15 to-green-500/5 p-4">
+              <div className="text-xs text-green-400/80 font-medium mb-1">Trust Boundary</div>
               <div className="flex items-center gap-1.5 mt-2">
                 <Shield className="w-4 h-4 text-green-400" />
                 <span className="text-sm font-bold text-green-400">REVIEW ONLY</span>
               </div>
-              <div className="text-xs text-muted-foreground mt-2">0 mutations · read-only</div>
+              <div className="text-xs text-green-400/50 mt-2">0 mutations · read-only</div>
             </div>
           </div>
 
           {/* Live cycling metric */}
-          <div className="rounded-xl border border-white/10 bg-background/30 p-4">
-            <div className="text-xs text-muted-foreground mb-3 uppercase tracking-wider">Live Status</div>
+          <div className="rounded-xl border border-white/15 bg-background/60 p-4">
+            <div className="text-xs text-muted-foreground mb-3 uppercase tracking-wider font-semibold">Live Status</div>
             <div className="space-y-2">
               {SCENARIOS.map((s, i) => (
                 <motion.div key={s.label}
@@ -102,13 +103,13 @@ function LiveDashboard() {
           </div>
 
           {/* Zero mutations badge */}
-          <div className="flex items-center gap-3 rounded-xl border border-primary/20 bg-primary/5 px-4 py-3">
+          <div className="flex items-center gap-3 rounded-xl border border-primary/40 bg-gradient-to-r from-primary/15 to-accent/10 px-4 py-3">
             <Lock className="w-4 h-4 text-primary shrink-0" />
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-medium">Zero Production Mutations</div>
+              <div className="text-sm font-semibold text-white">Zero Production Mutations</div>
               <div className="text-xs text-muted-foreground">No SQL exec · No Jira write · No Maximo write</div>
             </div>
-            <span className="text-xs font-mono font-bold text-primary bg-primary/10 px-2 py-1 rounded shrink-0">SAFE</span>
+            <span className="text-xs font-mono font-bold text-primary bg-primary/20 border border-primary/40 px-2 py-1 rounded shrink-0">SAFE</span>
           </div>
         </div>
       </div>
@@ -123,20 +124,20 @@ export default function Home() {
       <section className="relative pt-28 pb-20 overflow-hidden">
         {/* Animated gradient orbs */}
         <motion.div
-          className="pointer-events-none absolute top-0 left-0 w-[600px] h-[600px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)" }}
+          className="pointer-events-none absolute top-0 left-0 w-[700px] h-[700px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(59,130,246,0.38) 0%, transparent 70%)" }}
           animate={{ x: [0, 60, 0], y: [0, -40, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="pointer-events-none absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(14,165,233,0.16) 0%, transparent 70%)" }}
+          className="pointer-events-none absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(0,220,255,0.30) 0%, transparent 70%)" }}
           animate={{ x: [0, -50, 0], y: [0, 50, 0] }}
           transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="pointer-events-none absolute top-1/2 left-1/3 w-[400px] h-[400px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%)" }}
+          className="pointer-events-none absolute top-1/2 left-1/3 w-[450px] h-[450px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(139,92,246,0.22) 0%, transparent 70%)" }}
           animate={{ x: [0, 40, -20, 0], y: [0, -30, 20, 0] }}
           transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -214,7 +215,7 @@ export default function Home() {
       </section>
 
       {/* ── Capability Strip ── */}
-      <section className="border-y border-white/10 bg-card/50 backdrop-blur-sm py-8">
+      <section className="border-y border-white/10 bg-gradient-to-r from-primary/8 via-card/80 to-accent/8 backdrop-blur-sm py-10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6 text-center">
             {[
@@ -234,10 +235,10 @@ export default function Home() {
                 transition={{ delay: i * 0.05 }}
                 className="flex flex-col items-center"
               >
-                <div className="text-2xl font-bold text-white mb-1">
+                <div className="text-2xl font-bold mb-1 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
                   <CountUp end={stat.value} suffix={stat.suffix} />
                 </div>
-                <div className="text-xs text-muted-foreground font-medium uppercase tracking-wider">{stat.label}</div>
+                <div className="text-xs text-muted-foreground font-semibold uppercase tracking-wider">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -245,31 +246,32 @@ export default function Home() {
       </section>
 
       {/* ── Features Grid ── */}
-      <section className="py-24 bg-card">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-card relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-background/60" />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold mb-4">What the Workbench Does</h2>
+            <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/70">What the Workbench Does</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">A unified approach to Maximo delivery, combining disjointed processes into a single source of truth.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { title: "Delivery Intelligence", icon: Activity, desc: "Unified delivery confidence score across all project dimensions.", href: "/features" },
-              { title: "Maximo Fingerprint", icon: Fingerprint, desc: "Automated scan of installed objects, customisations, and version data.", href: "/features" },
-              { title: "License Planning", icon: FileText, desc: "AppPoint trends, named users, and mobile pool analysis for capacity planning.", href: "/features" },
-              { title: "Adaptive Regression Intelligence", icon: Shield, desc: "Fingerprint your Maximo environment and generate the regression tests it actually needs.", href: "/adaptive-regression" },
+              { title: "Delivery Intelligence", icon: Activity, desc: "Unified delivery confidence score across all project dimensions.", href: "/features", accent: "text-primary", border: "border-primary/25", bg: "bg-primary/12", glow: "from-primary/10" },
+              { title: "Maximo Fingerprint", icon: Fingerprint, desc: "Automated scan of installed objects, customisations, and version data.", href: "/features", accent: "text-accent", border: "border-accent/25", bg: "bg-accent/10", glow: "from-accent/10" },
+              { title: "License Planning", icon: FileText, desc: "AppPoint trends, named users, and mobile pool analysis for capacity planning.", href: "/features", accent: "text-violet-400", border: "border-violet-400/25", bg: "bg-violet-400/10", glow: "from-violet-400/10" },
+              { title: "Adaptive Regression", icon: Shield, desc: "Fingerprint your Maximo environment and generate the regression tests it actually needs.", href: "/adaptive-regression", accent: "text-amber-400", border: "border-amber-400/25", bg: "bg-amber-400/10", glow: "from-amber-400/10" },
             ].map((f, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="rounded-xl border border-white/10 bg-background/50 p-6 flex flex-col gap-4 hover:bg-white/5 hover:border-white/20 transition-all hover:-translate-y-1 cursor-default"
+                className={`rounded-xl border ${f.border} bg-gradient-to-b ${f.glow} to-card/80 p-6 flex flex-col gap-4 hover:border-opacity-60 hover:-translate-y-1 transition-all duration-200 cursor-default`}
               >
-                <div className="p-3 rounded-lg bg-primary/10 text-primary w-fit">
+                <div className={`p-3 rounded-lg ${f.bg} ${f.accent} w-fit`}>
                   <f.icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">{f.title}</h3>
+                  <h3 className={`font-semibold mb-2 ${f.accent}`}>{f.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
                 </div>
               </motion.div>
@@ -280,7 +282,8 @@ export default function Home() {
 
       {/* ── Audit Checklist Spotlight ── */}
       <section className="py-24 border-t border-white/10 relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/12 via-transparent to-accent/8" />
+        <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full" style={{ background: "radial-gradient(ellipse, rgba(59,130,246,0.15) 0%, transparent 70%)" }} />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -318,13 +321,13 @@ export default function Home() {
 
                 <div className="grid grid-cols-3 gap-4">
                   {[
-                    { value: "52", label: "Audit Checks" },
-                    { value: "7", label: "Domains" },
-                    { value: "23", label: "SQL Hints" },
+                    { value: "52", label: "Audit Checks", color: "from-primary to-accent" },
+                    { value: "7",  label: "Domains",      color: "from-accent to-primary" },
+                    { value: "23", label: "SQL Hints",    color: "from-violet-400 to-primary" },
                   ].map((s, i) => (
-                    <div key={i} className="text-center rounded-xl border border-white/10 bg-card/50 py-4">
-                      <div className="text-2xl font-bold text-white">{s.value}</div>
-                      <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
+                    <div key={i} className="text-center rounded-xl border border-white/15 bg-card py-5 hover:border-primary/40 transition-colors">
+                      <div className={`text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${s.color}`}>{s.value}</div>
+                      <div className="text-xs text-muted-foreground mt-1 font-medium">{s.label}</div>
                     </div>
                   ))}
                 </div>
@@ -353,7 +356,7 @@ export default function Home() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.06 }}
-                    className="flex items-center gap-4 rounded-xl border border-white/10 bg-card/50 backdrop-blur px-4 py-3"
+                    className="flex items-center gap-4 rounded-xl border border-white/15 bg-card/80 backdrop-blur px-4 py-3 hover:border-primary/30 transition-colors"
                   >
                     <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
                       domain.status === "pass" ? "bg-green-400" :
@@ -501,7 +504,8 @@ export default function Home() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-28 bg-primary/10 text-center border-t border-primary/20">
+      <section className="py-28 bg-gradient-to-br from-primary/20 via-background to-accent/15 text-center border-t border-primary/30 relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(59,130,246,0.12) 0%, transparent 100%)" }} />
         <div className="container mx-auto px-4">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-4xl font-bold mb-5">Ready to see MASReady in action?</h2>
