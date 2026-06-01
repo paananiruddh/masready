@@ -13,7 +13,7 @@ import { useState, useRef } from "react";
 // ─────────────────────────────────────────────────────────────────────────────
 const BREVO_ACTION: string =
   (import.meta.env.VITE_BREVO_FORM_ACTION as string | undefined) ??
-  "BREVO_FORM_ACTION_URL_HERE";
+  "https://75232578.sibforms.com/serve/MUIFAHtIRt-B7-A2JWAVSXzXbsIyZmDLOE2TzmbffSn476swcFcWsGucu6KrllQW9qtONrnIMrGqAIP4Iq1SG6Ghtq8_JVp355My8vdANM4HG_oQtQiEwg4q8EhbhYoTy8QgQ7CRWIu65dArnwRq2urrxvTIsHzWd90UvT56Xo6aQeI1-HLT7alAYabVkxvSKwHNxX0PfMKCGzRXwg==";
 
 const INTERESTS = [
   "MASReady demo",
