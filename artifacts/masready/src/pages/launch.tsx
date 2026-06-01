@@ -67,14 +67,27 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
 
   if (status === "success") {
     return (
-      <div className="text-center py-8">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-green-500/15 border border-green-500/30 mb-4">
+      <div className="text-center py-8 space-y-5">
+        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-green-500/15 border border-green-500/30 mb-2">
           <CheckCircle2 className="w-7 h-7 text-green-400" />
         </div>
-        <h3 className="text-xl font-bold mb-2">Request received.</h3>
-        <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">
-          We'll be in touch shortly with your MASReady demo link.
-        </p>
+        <div>
+          <h3 className="text-xl font-bold mb-2">Request received.</h3>
+          <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mx-auto">
+            Thanks — MASReady will contact you about your request. We typically respond within one business day.
+          </p>
+        </div>
+        <div className="border-t border-white/8 pt-5">
+          <p className="text-xs text-muted-foreground mb-3">
+            While you wait, you can explore a public synthetic preview instantly:
+          </p>
+          <Link
+            href="/preview-studio"
+            className="inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/8 px-5 py-2.5 text-sm font-semibold text-accent hover:bg-accent/15 transition-colors"
+          >
+            <Globe className="w-4 h-4" /> Open Public Synthetic Preview
+          </Link>
+        </div>
       </div>
     );
   }
@@ -152,7 +165,7 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
         disabled={status === "sending"}
         className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {status === "sending" ? "Sending…" : "Get MASReady Demo Link"}
+        {status === "sending" ? "Sending…" : "Request Persisted Demo"}
       </button>
 
       <p className="text-center text-xs text-muted-foreground pt-1">

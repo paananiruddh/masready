@@ -1,0 +1,557 @@
+You are working on the MASReady website/app repo:
+
+softwarecomparereview/masready
+
+Fix the MASReady demo-link flow properly. The current behaviour is still unacceptable: users are going round and round through forms, submit screens, and thank-you messages, but they never actually receive or open a usable UUID-based synthetic preview URL.
+
+Do not create GitHub issues.
+Do not only explain.
+Implement the change, run build, run Playwright tests, produce evidence, commit, and report exactly what changed.
+
+============================================================
+CORE PROBLEM
+============================================================
+
+The current flow is still broken.
+
+Observed issue:
+
+- User clicks “Get MASReady demo link” or similar CTA.
+- A form opens.
+- User fills the form.
+- They get a thank-you message.
+- But then what?
+- They do not get a UUID URL.
+- They do not get a new window.
+- They do not get an actual synthetic preview session.
+- It still feels like form → form → form → thank you → nothing.
+
+This must stop.
+
+A user who requests a public synthetic demo link must immediately receive a usable, time-limited UUID-based preview URL.
+
+The form should not be called “Get MASReady Demo Link” if it does not actually generate and open a link.
+
+============================================================
+NEW REQUIRED RULE
+============================================================
+
+For public synthetic preview/demo-link flow:
+
+On form submission or wizard completion:
+
+1. Generate a UUID-based preview session.
+2. Build a URL:
+   /preview-session/<uuid>
+3. Show the URL clearly on the current page.
+4. Automatically open the URL in a new browser tab/window.
+5. Also provide a button:
+   Open Preview Link
+6. Also provide a copy button:
+   Copy Preview Link
+7. Show thank-you/confirmation on the current page only as secondary information.
+
+The user must never be left with only “Thank you” and no URL.
+
+Repeat this rule in code comments if useful:
+
+NEW WINDOW URL, NEW WINDOW URL, NEW WINDOW URL.
+
+============================================================
+IMPORTANT DISTINCTION
+============================================================
+
+There are two different flows:
+
+A. PUBLIC SYNTHETIC PREVIEW LINK FLOW
+
+This creates a 2-hour UUID preview session and opens the preview URL immediately.
+
+This is not a sales lead form.
+
+It may ask lightweight preview-shaping questions:
+- industry
+- company label optional
+- current Maximo version optional
+- add-ons optional
+- mobility optional
+- integrations optional
+- main concern optional
+
+But these answers must remain runtime/session-only.
+
+On submit:
+- create UUID
+- create /preview-session/<uuid>
+- open in new tab/window
+- show URL on current page
+- show copy button
+- show countdown/expiry information
+- show audit status
+
+B. PERSISTED DEMO / CONTACT FLOW
+
+This is for sales-assisted/private demos.
+
+This may show thank-you only because MASReady will contact the user.
+
+But it must be clearly labelled:
+Tell us about your interest
+
+NOT:
+Get MASReady demo link
+
+If the form does not immediately generate a link, do not call it “Get Demo Link”.
+
+============================================================
+COPY CHANGE
+============================================================
+
+Replace misleading wording:
+
+Bad:
+Get MASReady Demo Link
+
+Use instead for contact/persisted forms:
+Tell us about your interest
+
+or:
+Request MASReady Follow-Up
+
+or:
+Request Persisted Demo
+
+Only use “Generate Demo Link” or “Get Demo Link” when the system actually generates and opens a UUID preview URL.
+
+============================================================
+1. FIX /launch PUBLIC PREVIEW CTA
+============================================================
+
+On /launch:
+
+Card/button:
+Open Public Synthetic Preview
+
+Must go to:
+/preview-studio
+
+Do not open the contact form.
+
+If there is a form under public preview flow, it must be the preview studio wizard, not the persisted/contact form.
+
+The preview studio submit button must say:
+
+Generate 2-Hour Preview Link
+
+On submit:
+- generate UUID
+- create session
+- create URL /preview-session/<uuid>
+- open it in new tab/window using window.open(previewUrl, "_blank", "noopener,noreferrer")
+- show URL on current page
+- show copy button
+- show “Open Preview Link” button
+- show “This link expires in 2 hours”
+
+Do not only show thank you.
+
+============================================================
+2. FIX /preview-studio
+============================================================
+
+The /preview-studio page must be the main public preview generator.
+
+Page title:
+MASReady Synthetic Preview Studio
+
+Subtitle:
+Create a time-limited synthetic Maximo preview link. Public preview links expire after 2 hours.
+
+Required fields:
+- Industry required
+- Company label optional
+- Current Maximo version optional
+- Target MAS version optional
+- Add-ons optional
+- Industry solutions optional
+- Mobility tool optional
+- Integration types optional
+- Main upgrade concern optional
+
+Submit button:
+Generate 2-Hour Preview Link
+
+On submit:
+
+const sessionId = crypto.randomUUID()
+const previewUrl = `${window.location.origin}/preview-session/${sessionId}`
+
+Then:
+- persist safe preview session metadata in local/session storage
+- expiresAt = now + 2 hours
+- write local audit event: preview_session_created
+- open previewUrl in a new tab/window
+- render success panel on current page
+
+Success panel must include:
+
+Title:
+Your MASReady preview link is ready
+
+Body:
+A new tab has been opened with your 2-hour synthetic preview. If it did not open, use the button below.
+
+Visible URL:
+https://masready.com.au/preview-session/<uuid>
+
+Buttons:
+- Open Preview Link
+- Copy Preview Link
+- Start Another Preview
+- Request Persisted Demo
+
+Important:
+If popup is blocked, the visible Open Preview Link button must still work.
+
+Also add note:
+Public preview links are browser-session scoped and expire after 2 hours.
+
+============================================================
+3. FIX /industry-previews
+============================================================
+
+Industry cards must not lead to a contact form.
+
+Each “Open <Industry> Preview” button should go to:
+
+/preview-studio?industry=<slug>
+
+Example:
+Open Rail Preview → /preview-studio?industry=rail
+Open Water Preview → /preview-studio?industry=water
+Open Utilities Preview → /preview-studio?industry=utilities
+
+On /preview-studio, preselect the industry from query parameter.
+
+The user then clicks:
+Generate 2-Hour Preview Link
+
+That generates and opens:
+/preview-session/<uuid>
+
+============================================================
+4. FIX /preview-session/<uuid>
+============================================================
+
+The preview session page must display the real synthetic preview dashboard when the UUID is valid.
+
+It must show:
+- selected industry
+- preview session ID short code
+- expiry countdown
+- environment snapshot
+- synthetic assets
+- synthetic work management
+- environment fingerprint
+- drift findings
+- regression intelligence
+- AI skill pack preview
+- recommendations
+- Request Persisted Demo CTA
+
+If session is invalid:
+Show:
+Preview session not found
+
+If session is expired:
+Show:
+This MASReady synthetic preview link has expired.
+
+Buttons:
+- Start New Preview
+- Request Persisted Demo
+
+============================================================
+5. FIX CONTACT / PERSISTED DEMO FORM WORDING
+============================================================
+
+Any persisted/contact form must be labelled correctly.
+
+Use:
+
+Form title:
+Tell us about your interest
+
+Subtitle:
+Use this form for persisted private demos, secure assessments, roadmap discussions, or enterprise walkthroughs. Public synthetic preview links are generated instantly through Preview Studio.
+
+Submit buttons based on mode:
+
+/launch?mode=persisted#demo-form
+Request Persisted Demo
+
+/launch?mode=assessment#demo-form
+Request Secure Assessment
+
+/launch?mode=roadmap#demo-form
+Request Roadmap Demo
+
+/contact
+Send Enquiry
+
+Do not call any of these:
+Get MASReady Demo Link
+
+unless the form actually generates a preview URL immediately.
+
+============================================================
+6. AFTER CONTACT FORM SUBMIT
+============================================================
+
+For persisted/contact forms:
+
+On submit:
+- show success message
+- do not loop
+- do not pretend a link was generated
+- include clear next step:
+
+Thanks — MASReady will contact you about this request.
+
+Also show optional secondary CTA:
+Open Public Synthetic Preview
+→ /preview-studio
+
+This gives user something to do immediately, but does not confuse it with persisted demo.
+
+============================================================
+7. AUDIT EVENTS
+============================================================
+
+For preview link generation:
+
+Write local audit events:
+- preview_session_created
+- preview_link_generated
+- preview_link_opened_new_window
+- preview_link_copy_clicked
+- preview_session_opened
+- preview_session_expired
+- persisted_demo_clicked
+
+For static MVP:
+Use localStorage audit log.
+
+Do not send audit to backend unless backend exists.
+
+Do not store sensitive user-entered details in audit.
+
+Audit metadata may include:
+- sessionId
+- industry
+- createdAt
+- expiresAt
+- route
+- eventType
+
+Do not include:
+- company label
+- screenshots
+- pasted Maximo text
+- confidential details
+
+============================================================
+8. POPUP BLOCKER HANDLING
+============================================================
+
+When opening preview URL in new tab:
+
+const opened = window.open(previewUrl, "_blank", "noopener,noreferrer")
+
+If opened is null or blocked:
+Show warning:
+Your browser blocked the new preview tab. Use the Open Preview Link button below.
+
+Always show the link and button regardless.
+
+============================================================
+9. PLAYWRIGHT TEST REQUIREMENTS
+============================================================
+
+Update Playwright tests to prove the flow works.
+
+Test 1:
+Public preview studio generates URL and opens preview
+
+Steps:
+- go to /preview-studio
+- select industry Rail
+- click Generate 2-Hour Preview Link
+- assert success panel appears
+- assert visible URL contains /preview-session/
+- assert visible UUID pattern exists
+- click Open Preview Link
+- assert preview page opens/loads
+- assert preview session dashboard appears
+
+Test 2:
+Launch public CTA does not open contact form
+
+Steps:
+- go to /launch
+- click Open Public Synthetic Preview
+- assert URL is /preview-studio
+- assert page contains Generate 2-Hour Preview Link
+- assert it does not show persisted contact form as primary destination
+
+Test 3:
+Industry preview card starts preview studio
+
+Steps:
+- go to /industry-previews
+- click Open Rail Preview
+- assert URL is /preview-studio?industry=rail
+- assert Rail is preselected
+- generate link
+- assert preview URL appears and opens
+
+Test 4:
+Persisted form is not called demo-link generator
+
+Steps:
+- go to /launch?mode=persisted#demo-form
+- assert form title says Tell us about your interest or Request Persisted Demo
+- assert it does not say Get MASReady Demo Link
+- submit valid fields
+- assert success says MASReady will contact you
+- assert it does not claim a preview link was generated
+- assert there is optional CTA to Open Public Synthetic Preview
+
+Test 5:
+Popup blocked fallback
+
+Simulate or test fallback by verifying:
+- visible preview URL appears after generation
+- Open Preview Link button exists
+- Copy Preview Link button exists
+
+Test 6:
+Invalid session
+
+- go to /preview-session/not-a-real-id
+- assert invalid session screen appears
+
+Test 7:
+Expired session
+
+If expiry test helper exists:
+- create expired session
+- open /preview-session/<uuid>
+- assert expired screen appears
+
+============================================================
+10. EVIDENCE ZIP REQUIREMENT
+============================================================
+
+Generate evidence ZIP after tests.
+
+Path:
+artifacts/masready-evidence/masready-preview-url-flow-evidence-<timestamp>.zip
+
+Include:
+
+screenshots/
+- launch-public-cta.png
+- preview-studio-before-submit.png
+- preview-studio-link-generated.png
+- visible-uuid-url.png
+- preview-session-opened.png
+- industry-card-to-preview-studio.png
+- persisted-form-correct-wording.png
+- persisted-success-with-public-preview-cta.png
+- invalid-session.png
+- expired-session.png if tested
+
+reports/
+- playwright-html-report
+- test-results-summary.md
+
+logs/
+- build.log
+- test.log
+- console-errors.log
+
+evidence-summary.md:
+Include:
+- what was broken
+- what was fixed
+- generated preview URL example with UUID redacted/shortened
+- confirmation that URL is shown on page
+- confirmation that new window opens
+- confirmation that fallback button exists
+- confirmation persisted form no longer says Get MASReady Demo Link
+- routes tested
+- pass/fail result
+- known gaps
+
+============================================================
+11. ACCEPTANCE CRITERIA
+============================================================
+
+Complete only when:
+
+1. Public preview flow generates a UUID.
+2. Public preview flow creates /preview-session/<uuid>.
+3. Public preview flow automatically opens the URL in a new window/tab.
+4. Public preview flow shows the URL visibly on the current page.
+5. Public preview flow provides Open Preview Link button.
+6. Public preview flow provides Copy Preview Link button.
+7. Popup-blocked case is handled.
+8. /launch public preview CTA goes to /preview-studio, not contact form.
+9. /industry-previews CTAs go to /preview-studio?industry=<slug>.
+10. /preview-studio preselects industry from query parameter.
+11. /preview-session/<uuid> renders real synthetic preview for valid session.
+12. Invalid sessions show invalid screen.
+13. Expired sessions show expired screen.
+14. Persisted/contact forms no longer use misleading “Get MASReady Demo Link” wording.
+15. Persisted/contact submit shows contact follow-up success only.
+16. Persisted/contact submit includes optional Open Public Synthetic Preview CTA.
+17. No circular form loop remains.
+18. Playwright tests prove the UUID URL flow.
+19. Evidence ZIP is generated.
+20. Build passes.
+21. Commit is created.
+
+============================================================
+12. BUILD, TEST, COMMIT
+============================================================
+
+Run:
+
+pnpm install
+pnpm run build
+
+Run Playwright tests:
+
+pnpm run test:e2e
+
+or equivalent.
+
+Generate evidence ZIP:
+
+artifacts/masready-evidence/masready-preview-url-flow-evidence-<timestamp>.zip
+
+Commit message:
+
+Fix preview link generation and remove form loop
+
+Final report must include:
+- files changed
+- routes changed
+- proof that UUID URL is generated
+- proof that URL opens in new window
+- proof that URL is visible on page
+- proof that persisted form wording is corrected
+- Playwright result
+- evidence ZIP path
+- known gaps

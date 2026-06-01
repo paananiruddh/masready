@@ -8,7 +8,10 @@ export type AuditEventType =
   | "persisted_demo_clicked"
   | "preview_session_invalid"
   | "preview_session_access_denied"
-  | "preview_new_session_requested";
+  | "preview_new_session_requested"
+  | "preview_link_generated"
+  | "preview_link_opened_new_window"
+  | "preview_link_copy_clicked";
 
 export interface AuditEvent {
   eventId: string;
