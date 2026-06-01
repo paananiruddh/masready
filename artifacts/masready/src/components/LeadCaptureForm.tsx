@@ -1,16 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// BREVO SETUP
-//
-// 1. Log in to Brevo → Marketing → Signup Forms → Create form
-// 2. Add fields:  Email (required), First Name, Company, and a custom
-//    attribute called INTEREST (single-line text or dropdown).
-// 3. Copy the form's action URL (looks like
-//    https://sibforms.com/serve/MUIEUM_xxxxxxxxxxxx).
-// 4. Paste it as the value of BREVO_ACTION below (or set env var
-//    VITE_BREVO_FORM_ACTION in the build).
-// ─────────────────────────────────────────────────────────────────────────────
 const BREVO_ACTION: string =
   (import.meta.env.VITE_BREVO_FORM_ACTION as string | undefined) ??
   "https://75232578.sibforms.com/serve/MUIFAHtIRt-B7-A2JWAVSXzXbsIyZmDLOE2TzmbffSn476swcFcWsGucu6KrllQW9qtONrnIMrGqAIP4Iq1SG6Ghtq8_JVp355My8vdANM4HG_oQtQiEwg4q8EhbhYoTy8QgQ7CRWIu65dArnwRq2urrxvTIsHzWd90UvT56Xo6aQeI1-HLT7alAYabVkxvSKwHNxX0PfMKCGzRXwg==";
@@ -39,10 +28,29 @@ function fireGA4(eventName: string) {
 }
 
 export default function LeadCaptureForm() {
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  // Detect return from Brevo redirect (?submitted=1)
+  const [status, setStatus] = useState<"idle" | "error" | "success">(() => {
+    if (typeof window !== "undefined") {
+      const p = new URLSearchParams(window.location.search);
+      if (p.get("submitted") === "1") return "success";
+    }
+    return "idle";
+  });
   const [errorMsg, setErrorMsg] = useState("");
   const [started, setStarted] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+
+  // Clean ?submitted=1 from URL so refreshing doesn't re-show success
+  useEffect(() => {
+    if (status === "success") {
+      const p = new URLSearchParams(window.location.search);
+      if (p.get("submitted") === "1") {
+        p.delete("submitted");
+        const q = p.toString();
+        window.history.replaceState({}, "", window.location.pathname + (q ? "?" + q : ""));
+      }
+    }
+  }, [status]);
 
   function handleFirstInteraction() {
     if (!started) {
@@ -51,10 +59,8 @@ export default function LeadCaptureForm() {
     }
   }
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (status === "sending") return;
-
     const form = formRef.current!;
     const email = (form.elements.namedItem("EMAIL") as HTMLInputElement).value.trim();
 
@@ -63,35 +69,23 @@ export default function LeadCaptureForm() {
       setStatus("error");
       return;
     }
-
-    if (BREVO_ACTION === "BREVO_FORM_ACTION_URL_HERE") {
-      // Dev fallback — form action not configured yet
-      setStatus("success");
-      fireGA4("lead_capture_submitted");
-      return;
-    }
-
-    setStatus("sending");
     setErrorMsg("");
 
-    try {
-      const data = new FormData(form);
-      // mode: 'no-cors' — Brevo's sibforms.com doesn't expose CORS headers.
-      // The request IS sent and received by Brevo; we just get an opaque
-      // response (status 0) which we cannot read. Show success optimistically
-      // after client-side validation has already passed.
-      await fetch(BREVO_ACTION, {
-        method: "POST",
-        mode: "no-cors",
-        body: data,
-      });
-
-      fireGA4("lead_capture_submitted");
-      setStatus("success");
-    } catch {
-      setErrorMsg("Network error — please try again or email us directly.");
-      setStatus("error");
+    // Inject redirectionUrl so Brevo sends the user back here with ?submitted=1
+    let redir = form.querySelector<HTMLInputElement>('input[name="redirectionUrl"]');
+    if (!redir) {
+      redir = document.createElement("input");
+      redir.type = "hidden";
+      redir.name = "redirectionUrl";
+      form.appendChild(redir);
     }
+    redir.value = `${window.location.origin}${window.location.pathname}?submitted=1`;
+
+    // Fire GA4 before the page navigates away
+    fireGA4("lead_capture_submitted");
+
+    // Native POST directly to Brevo — zero CORS, zero JS fetch, always works
+    form.submit();
   }
 
   if (status === "success") {
@@ -113,7 +107,14 @@ export default function LeadCaptureForm() {
         Full product walkthrough. No sales pressure.
       </p>
 
-      <form ref={formRef} onSubmit={handleSubmit} noValidate className="space-y-4">
+      <form
+        ref={formRef}
+        action={BREVO_ACTION}
+        method="post"
+        onSubmit={handleSubmit}
+        noValidate
+        className="space-y-4"
+      >
         {/* Brevo honeypot — must stay empty */}
         <div style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }} aria-hidden="true">
           <input type="text" name="email_address_check" defaultValue="" tabIndex={-1} autoComplete="off" />
@@ -132,8 +133,7 @@ export default function LeadCaptureForm() {
             autoComplete="email"
             placeholder="you@company.com"
             onFocus={handleFirstInteraction}
-            className="w-full rounded-lg border border-white/15 bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
-            disabled={status === "sending"}
+            className="w-full rounded-lg border border-white/15 bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
 
@@ -149,8 +149,7 @@ export default function LeadCaptureForm() {
               autoComplete="given-name"
               placeholder="Jane"
               onFocus={handleFirstInteraction}
-              className="w-full rounded-lg border border-white/15 bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
-              disabled={status === "sending"}
+              className="w-full rounded-lg border border-white/15 bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div>
@@ -164,8 +163,7 @@ export default function LeadCaptureForm() {
               autoComplete="organization"
               placeholder="Acme Corp"
               onFocus={handleFirstInteraction}
-              className="w-full rounded-lg border border-white/15 bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
-              disabled={status === "sending"}
+              className="w-full rounded-lg border border-white/15 bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
         </div>
@@ -178,8 +176,7 @@ export default function LeadCaptureForm() {
             id="lcr-interest"
             name="INTEREST"
             onFocus={handleFirstInteraction}
-            className="w-full rounded-lg border border-white/15 bg-background px-3.5 py-2.5 text-sm text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
-            disabled={status === "sending"}
+            className="w-full rounded-lg border border-white/15 bg-background px-3.5 py-2.5 text-sm text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="">Select an area of interest…</option>
             {INTERESTS.map((i) => (
@@ -196,10 +193,9 @@ export default function LeadCaptureForm() {
 
         <button
           type="submit"
-          disabled={status === "sending"}
-          className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg hover:bg-primary/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg hover:bg-primary/90 transition-all"
         >
-          {status === "sending" ? "Sending…" : "Get the MASReady demo link"}
+          Get the MASReady demo link
         </button>
 
         <p className="text-center text-xs text-muted-foreground pt-1">
