@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { Shield, ArrowRight, Activity, FileText, Fingerprint, Lock, Box, Users } from "lucide-react";
+import { Shield, ArrowRight, Activity, FileText, Fingerprint, Lock, Box, Users, ClipboardCheck, CheckCircle2, AlertTriangle, ExternalLink } from "lucide-react";
 import LeadCaptureForm from "@/components/LeadCaptureForm";
 import { useEffect, useState, useRef } from "react";
 
@@ -274,6 +274,109 @@ export default function Home() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Audit Checklist Spotlight ── */}
+      <section className="py-24 border-t border-white/10 relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+              {/* Left — copy */}
+              <motion.div
+                initial={{ opacity: 0, x: -24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-6">
+                  <ClipboardCheck className="w-3 h-3" /> New · MAS 9 Environment Audit
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-5 leading-[1.1]">
+                  52 checks.<br />
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                    Is your Maximo ready for MAS 9?
+                  </span>
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  The MASReady Environment Audit Checklist walks you through 7 domains — from delivery intelligence and trust centre compliance through to AppPoints licence planning and post-migration validation. Fully owned. No external tools.
+                </p>
+
+                <div className="flex flex-wrap gap-3 mb-8">
+                  <Link
+                    href="/audit-checklist"
+                    className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all hover:-translate-y-0.5"
+                  >
+                    <ClipboardCheck className="w-4 h-4" />
+                    Run the Environment Audit
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+
+                <div className="grid grid-cols-3 gap-4">
+                  {[
+                    { value: "52", label: "Audit Checks" },
+                    { value: "7", label: "Domains" },
+                    { value: "23", label: "SQL Hints" },
+                  ].map((s, i) => (
+                    <div key={i} className="text-center rounded-xl border border-white/10 bg-card/50 py-4">
+                      <div className="text-2xl font-bold text-white">{s.value}</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Right — domain cards */}
+              <motion.div
+                initial={{ opacity: 0, x: 24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="space-y-2.5"
+              >
+                {[
+                  { label: "Delivery Intelligence",       count: 7,  status: "pass",  icon: CheckCircle2 },
+                  { label: "Trust Centre Compliance",     count: 8,  status: "warn",  icon: AlertTriangle },
+                  { label: "Patch & iFix Impact",         count: 8,  status: "fail",  icon: AlertTriangle },
+                  { label: "Licence Planning Readiness",  count: 9,  status: "pass",  icon: CheckCircle2 },
+                  { label: "OpenShift & Infrastructure",  count: 7,  status: "warn",  icon: AlertTriangle },
+                  { label: "Integration & API Readiness", count: 6,  status: "pass",  icon: CheckCircle2 },
+                  { label: "Post-Migration Validation",   count: 7,  status: "na",    icon: ClipboardCheck },
+                ].map((domain, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.06 }}
+                    className="flex items-center gap-4 rounded-xl border border-white/10 bg-card/50 backdrop-blur px-4 py-3"
+                  >
+                    <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                      domain.status === "pass" ? "bg-green-400" :
+                      domain.status === "warn" ? "bg-amber-400" :
+                      domain.status === "fail" ? "bg-red-400" :
+                      "bg-white/30"
+                    }`} />
+                    <span className="text-sm font-medium text-white flex-1">{domain.label}</span>
+                    <span className="text-xs text-muted-foreground">{domain.count} checks</span>
+                    <div className={`w-16 h-1.5 rounded-full bg-white/10 overflow-hidden`}>
+                      <div className={`h-full rounded-full ${
+                        domain.status === "pass" ? "bg-green-400 w-full" :
+                        domain.status === "warn" ? "bg-amber-400 w-3/5" :
+                        domain.status === "fail" ? "bg-red-400 w-2/5" :
+                        "bg-white/20 w-0"
+                      }`} />
+                    </div>
+                  </motion.div>
+                ))}
+                <p className="text-xs text-muted-foreground text-center pt-1">Sample audit — your results depend on your environment</p>
+              </motion.div>
+
+            </div>
           </div>
         </div>
       </section>
