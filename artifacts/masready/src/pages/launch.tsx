@@ -1,64 +1,237 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { Rocket, ShieldCheck, Activity } from "lucide-react";
-import LeadCaptureForm from "@/components/LeadCaptureForm";
+import { Rocket, Globe, Lock, ArrowRight, CheckCircle2 } from "lucide-react";
+import { useState, useRef } from "react";
 
-export default function Launch() {
-  return (
-    <div className="container mx-auto px-4 py-24 min-h-screen">
-      <div className="text-center max-w-4xl mx-auto mb-24">
-        <motion.div 
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 text-primary font-bold tracking-wider uppercase mb-8"
-        >
-          <Rocket className="w-5 h-5" /> Official Release
-        </motion.div>
-        <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter">MASReady is Live.</h1>
-        <p className="text-2xl text-muted-foreground leading-relaxed">
-          The industry's first true Delivery Automation Workbench for IBM Maximo Application Suite. 
-          Evidence-backed. Read-only. Built for enterprise scrutiny.
+const WEB3FORMS_KEY = "e3f95161-8759-43a2-90a6-707479beed4b";
+
+const INTERESTS = [
+  "Synthetic industry preview",
+  "MAS 9 readiness",
+  "Environment fingerprinting",
+  "Adaptive regression",
+  "AI skill packs",
+  "Licensing report",
+  "Secure persisted demo",
+  "Architecture discussion",
+] as const;
+
+function DemoRequestForm() {
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (status === "sending") return;
+    const form = formRef.current!;
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setErrorMsg("Please enter a valid work email address.");
+      setStatus("error");
+      return;
+    }
+    const name = (form.elements.namedItem("name") as HTMLInputElement).value.trim();
+    const company = (form.elements.namedItem("company") as HTMLInputElement).value.trim();
+    const interest = (form.elements.namedItem("interest") as HTMLSelectElement).value;
+    setStatus("sending");
+    setErrorMsg("");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `MASReady demo request — ${name || email}`,
+          from_name: "MASReady Launch Form",
+          email,
+          name: name || "(not provided)",
+          company: company || "(not provided)",
+          interest: interest || "(not provided)",
+          botcheck: "",
+        }),
+      });
+      const json = await res.json();
+      if (json.success) { setStatus("success"); }
+      else { setErrorMsg(json.message || "Something went wrong. Please try again."); setStatus("error"); }
+    } catch {
+      setErrorMsg("Network error — please try again or email aniruddh@assetize.com.au.");
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="text-center py-8">
+        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-green-500/15 border border-green-500/30 mb-4">
+          <CheckCircle2 className="w-7 h-7 text-green-400" />
+        </div>
+        <h3 className="text-xl font-bold mb-2">Request received.</h3>
+        <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">
+          We'll be in touch shortly with your MASReady demo link.
         </p>
       </div>
+    );
+  }
 
-      <div className="max-w-5xl mx-auto">
-        <div className="rounded-2xl border border-white/10 bg-card overflow-hidden">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b border-white/10 bg-background/50">
-                <th className="p-4 font-semibold text-muted-foreground">Feature</th>
-                <th className="p-4 font-bold text-primary text-center">MASReady</th>
-                <th className="p-4 font-semibold text-muted-foreground text-center">Generic Project Finance Tool</th>
-                <th className="p-4 font-semibold text-muted-foreground text-center">Generic Reporting Tool</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/5">
-              {[
-                "License Planning",
-                "Patch Impact",
-                "Delivery Intelligence",
-                "Read-Only Safety",
-                "Customisation Scan",
-                "Bot Skill-Pack Coverage",
-                "Adaptive Regression Suite",
-                "Audit Trail",
-                "Multi-Tenant"
-              ].map((feature, i) => (
-                <tr key={i} className="hover:bg-white/5 transition-colors">
-                  <td className="p-4 font-medium">{feature}</td>
-                  <td className="p-4 text-center text-primary font-bold">Yes</td>
-                  <td className="p-4 text-center text-muted-foreground">Limited</td>
-                  <td className="p-4 text-center text-muted-foreground">No</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+  return (
+    <form ref={formRef} onSubmit={handleSubmit} noValidate className="space-y-4">
+      <input type="hidden" name="botcheck" value="" />
+
+      <div>
+        <label className="block text-sm font-medium mb-1.5" htmlFor="launch-email">
+          Work email <span className="text-red-400" aria-hidden="true">*</span>
+        </label>
+        <input
+          id="launch-email"
+          type="email"
+          name="email"
+          required
+          autoComplete="email"
+          placeholder="you@company.com"
+          className="w-full rounded-lg border border-white/15 bg-background/80 px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+          disabled={status === "sending"}
+        />
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium mb-1.5" htmlFor="launch-name">Name</label>
+          <input
+            id="launch-name"
+            type="text"
+            name="name"
+            autoComplete="name"
+            placeholder="Jane Smith"
+            className="w-full rounded-lg border border-white/15 bg-background/80 px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+            disabled={status === "sending"}
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-1.5" htmlFor="launch-company">Company</label>
+          <input
+            id="launch-company"
+            type="text"
+            name="company"
+            autoComplete="organization"
+            placeholder="Acme Corp"
+            className="w-full rounded-lg border border-white/15 bg-background/80 px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+            disabled={status === "sending"}
+          />
         </div>
       </div>
 
-      {/* ── Lead capture ── */}
-      <div className="max-w-xl mx-auto mt-20 mb-8">
-        <LeadCaptureForm />
+      <div>
+        <label className="block text-sm font-medium mb-1.5" htmlFor="launch-interest">Area of interest</label>
+        <select
+          id="launch-interest"
+          name="interest"
+          className="w-full rounded-lg border border-white/15 bg-background/80 px-3.5 py-2.5 text-sm text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+          disabled={status === "sending"}
+        >
+          <option value="">Select an area of interest…</option>
+          {INTERESTS.map((i) => <option key={i} value={i}>{i}</option>)}
+        </select>
+      </div>
+
+      {status === "error" && (
+        <p role="alert" className="text-sm text-red-400 bg-red-400/10 rounded-lg px-3.5 py-2.5">
+          {errorMsg}
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={status === "sending"}
+        className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        {status === "sending" ? "Sending…" : "Get MASReady Demo Link"}
+      </button>
+
+      <p className="text-center text-xs text-muted-foreground pt-1">
+        Public previews are session-only. Persisted private demo environments are available by request.
+      </p>
+    </form>
+  );
+}
+
+export default function Launch() {
+  return (
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Background */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/6" />
+      <div className="pointer-events-none absolute top-0 left-0 w-[700px] h-[700px] rounded-full" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)" }} />
+      <div className="pointer-events-none absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full" style={{ background: "radial-gradient(circle, rgba(0,220,255,0.10) 0%, transparent 70%)" }} />
+
+      <div className="relative z-10 container mx-auto px-4 py-20">
+        <div className="max-w-3xl mx-auto">
+
+          {/* Hero */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-12"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-6">
+              <Rocket className="w-3 h-3" /> MASReady Preview Studio
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 leading-[1.1]">
+              Launch a MASReady{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                Preview
+              </span>
+            </h1>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-2xl mx-auto">
+              Explore MASReady through a synthetic, industry-shaped Maximo environment. No production data required.
+            </p>
+
+            {/* Two CTA choices */}
+            <div className="grid sm:grid-cols-2 gap-4 max-w-xl mx-auto mb-10">
+              <Link
+                href="/industry-previews"
+                className="flex items-center gap-3 rounded-xl border border-accent/30 bg-gradient-to-br from-accent/10 to-accent/5 p-4 hover:border-accent/50 transition-all hover:-translate-y-0.5 group text-left"
+              >
+                <div className="p-2.5 rounded-lg bg-accent/15 border border-accent/20 shrink-0">
+                  <Globe className="w-5 h-5 text-accent" />
+                </div>
+                <div>
+                  <div className="text-sm font-semibold text-white">Open Public Synthetic Preview</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">Session-only · 10 industries</div>
+                </div>
+              </Link>
+              <button
+                onClick={() => document.getElementById("demo-form")?.scrollIntoView({ behavior: "smooth" })}
+                className="flex items-center gap-3 rounded-xl border border-primary/30 bg-gradient-to-br from-primary/10 to-primary/5 p-4 hover:border-primary/50 transition-all hover:-translate-y-0.5 group text-left w-full"
+              >
+                <div className="p-2.5 rounded-lg bg-primary/15 border border-primary/20 shrink-0">
+                  <Lock className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <div className="text-sm font-semibold text-white">Request Persisted Demo</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">Private · Sales-assisted</div>
+                </div>
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Form card */}
+          <motion.div
+            id="demo-form"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="rounded-2xl border border-white/12 bg-card/80 backdrop-blur-xl shadow-2xl shadow-black/30 p-8 max-w-[720px] mx-auto"
+          >
+            <div className="mb-7">
+              <h2 className="text-xl font-bold mb-1">Get your MASReady demo link</h2>
+              <p className="text-sm text-muted-foreground">
+                Tell us about your interest and we'll send through the right preview or connect you with the team.
+              </p>
+            </div>
+            <DemoRequestForm />
+          </motion.div>
+
+        </div>
       </div>
     </div>
   );

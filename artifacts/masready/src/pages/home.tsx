@@ -162,11 +162,11 @@ export default function Home() {
                 transition={{ delay: 0.1, duration: 0.6 }}
                 className="text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.05]"
               >
-                Maximo delivery{" "}
+                Operational{" "}
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary">
                   intelligence
                 </span>
-                ,<br />without the chaos.
+                {" "}for IBM Maximo.
               </motion.h1>
 
               <motion.p
@@ -175,7 +175,7 @@ export default function Home() {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="text-lg text-muted-foreground mb-8 leading-relaxed"
               >
-                Evidence-backed delivery automation for IBM Maximo teams — combining requirements, environment fingerprints, patch impact, license planning, bot skill-pack coverage, and trust boundaries into one review-ready workbench.
+                MASReady helps teams understand, validate, govern, and modernise Maximo and MAS environments using environment fingerprinting, AI skill packs, adaptive regression, and secure synthetic previews.
               </motion.p>
 
               <motion.div
@@ -184,14 +184,14 @@ export default function Home() {
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="flex flex-wrap gap-3 mb-8"
               >
-                <Link href="/mas9-power" className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all hover:shadow-primary/40 hover:-translate-y-0.5">
-                  Explore MAS9 Power <ArrowRight className="w-4 h-4" />
+                <Link href="/industry-previews" className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all hover:shadow-primary/40 hover:-translate-y-0.5">
+                  Explore Industry Previews <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link href="/trust" className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 backdrop-blur px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-all hover:-translate-y-0.5">
-                  See Trust Model
+                <Link href="/launch" className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 backdrop-blur px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-all hover:-translate-y-0.5">
+                  Request Enterprise Demo
                 </Link>
-                <Link href="/simulator" className="inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/10 px-6 py-3 text-sm font-semibold text-accent hover:bg-accent/20 transition-all hover:-translate-y-0.5">
-                  Run Simulator
+                <Link href="/mas9-power" className="inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/10 px-6 py-3 text-sm font-semibold text-accent hover:bg-accent/20 transition-all hover:-translate-y-0.5">
+                  MAS9 Power Demo
                 </Link>
               </motion.div>
 

@@ -5,16 +5,11 @@ import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/mas9-power", label: "MAS9 Power Demo" },
+  { href: "/platform", label: "Platform" },
   { href: "/features", label: "Features" },
-  { href: "/adaptive-regression", label: "Adaptive Regression" },
-  { href: "/data-modes", label: "Data Modes" },
-  { href: "/trust", label: "Trust Center" },
-  { href: "/audit-checklist", label: "Audit Checklist" },
+  { href: "/industry-previews", label: "Industry Previews" },
   { href: "/architecture", label: "Architecture" },
-  { href: "/media", label: "Media" },
-  { href: "/demo-walkthrough", label: "Walkthrough" },
-  { href: "/launch", label: "Launch" },
+  { href: "/mas9-power", label: "Demo" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -31,13 +26,13 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-6">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-primary",
+                "text-sm font-medium transition-colors hover:text-primary whitespace-nowrap",
                 location === link.href ? "text-primary" : "text-muted-foreground"
               )}
             >
@@ -46,10 +41,18 @@ export function Navbar() {
           ))}
         </div>
 
+        <Link
+          href="/launch"
+          className="hidden lg:inline-flex text-sm font-semibold px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shrink-0"
+        >
+          Get Demo
+        </Link>
+
         {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2 text-muted-foreground hover:text-white"
+          className="lg:hidden p-2 text-muted-foreground hover:text-white"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -57,21 +60,30 @@ export function Navbar() {
 
       {/* Mobile Nav */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-white/10 bg-background">
-          <div className="flex flex-col py-4 px-4 gap-4">
+        <div className="lg:hidden border-t border-white/10 bg-background/95 backdrop-blur-md">
+          <div className="flex flex-col py-4 px-4 gap-1">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  location === link.href ? "text-primary" : "text-muted-foreground"
+                  "text-sm font-medium py-2.5 px-3 rounded-lg transition-colors hover:bg-white/5 hover:text-primary",
+                  location === link.href ? "text-primary bg-primary/10" : "text-muted-foreground"
                 )}
               >
                 {link.label}
               </Link>
             ))}
+            <div className="pt-2 border-t border-white/10 mt-2">
+              <Link
+                href="/launch"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block w-full text-center text-sm font-semibold px-4 py-2.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+              >
+                Get Demo
+              </Link>
+            </div>
           </div>
         </div>
       )}

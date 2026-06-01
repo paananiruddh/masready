@@ -1,0 +1,504 @@
+You are working on the MASReady website: https://masready.com.au
+
+Goal:
+Clean up the current website IA, fix the broken Launch page form/layout, and restructure the product story so MASReady feels like a premium enterprise AI platform rather than a documentation-heavy static site.
+
+Important current issue:
+The Launch page at /launch has a broken layout. The form appears too low on the page, partly cut off, and the surrounding comparison/table content overlaps or leaves awkward spacing. The navigation also feels overcrowded with too many top-level items such as Adaptive Regression and Data Modes. These should be consolidated into product/features pages.
+
+Do not remove MASReady core messaging.
+Do not remove the MAS9 Power Demo concept.
+Do not use real customer names.
+Do not introduce fake customer logos.
+Do not expose any production/customer data.
+
+==================================================
+1. FIX /launch PAGE
+==================================================
+
+Fix the /launch page layout immediately.
+
+Current problems to address:
+- Form is vertically misplaced and appears cut off near the bottom of the viewport.
+- Top comparison/table section creates awkward overflow.
+- Page spacing is poor.
+- Mobile responsiveness likely broken.
+- Form should be clearly visible without the user needing to scroll awkwardly.
+- CTA area should look professional and enterprise-grade.
+
+Required /launch layout:
+
+Hero:
+Title:
+“Launch a MASReady Preview”
+
+Subtitle:
+“Explore MASReady through a synthetic, industry-shaped Maximo environment. No production data required.”
+
+Add two CTA choices:
+1. “Open Public Synthetic Preview”
+2. “Request Persisted Demo”
+
+Then below, show the lead form in a clean card.
+
+Form fields:
+- Work email
+- Name
+- Company
+- Interest dropdown
+
+Dropdown options:
+- Synthetic industry preview
+- MAS 9 readiness
+- Environment fingerprinting
+- Adaptive regression
+- AI skill packs
+- Licensing report
+- Secure persisted demo
+- Architecture discussion
+
+Button:
+“Get MASReady Demo Link”
+
+Add helper text:
+“Public previews are session-only. Persisted private demo environments are available by request.”
+
+Fix all CSS so:
+- The form card is centered.
+- It has proper top/bottom spacing.
+- It does not get clipped.
+- It works on desktop, tablet, and mobile.
+- It has a max-width around 720px.
+- It uses consistent input styling.
+- The submit button is full-width on mobile.
+- There is no overlap with navigation or tables.
+
+==================================================
+2. ADD SYNTHETIC PREVIEW MODEL
+==================================================
+
+Introduce a new concept across the site:
+
+“MASReady Synthetic Preview Studio”
+
+Positioning:
+“Explore MASReady with an environment shaped like your industry — without connecting production Maximo data.”
+
+Public previews should be session-only and should not persist user-entered details.
+
+Create or document support for these industry previews:
+- utilities
+- transport
+- government
+- mining
+- facilities
+- power generation
+- water
+- rail
+- roads
+- airports
+
+Recommended future subdomains:
+- utilities.masready.com.au
+- transport.masready.com.au
+- government.masready.com.au
+- mining.masready.com.au
+- facilities.masready.com.au
+- power.masready.com.au
+- water.masready.com.au
+- rail.masready.com.au
+- roads.masready.com.au
+- airports.masready.com.au
+
+Important:
+Do not create per-user tenants for public visitors.
+Do not save wizard answers by default.
+Do not save uploaded screenshots by default.
+Do not create persistent customer records from the public preview.
+Use fixed reusable synthetic datasets and runtime-only personalization overlays.
+
+Add copy:
+“Your answers personalize this preview in memory only. MASReady does not store your company details, screenshots, or environment information in the public demo.”
+
+Add CTA:
+“Need a persisted demo or private environment?”
+
+Body:
+“For saved previews, private demo workspaces, real environment analysis, or secure customer-specific synthetic datasets, contact MASReady. Public previews are session-only and do not store your information.”
+
+Buttons:
+- Request Persisted Demo
+- Contact MASReady
+- Book Secure Assessment
+
+Rules:
+- Public preview = session-only, no persistence.
+- Persisted demo = sales-assisted/private workflow only.
+- Contact form may store only business contact details and explicit consent.
+- Keep preview answers separate from contact form data.
+- Never attach screenshots or pasted Maximo content to contact submission unless explicitly uploaded in a dedicated secure contact workflow.
+
+==================================================
+3. SIMPLIFY TOP NAVIGATION
+==================================================
+
+Current navigation is too crowded.
+
+Replace current navigation with:
+
+- Home
+- Platform
+- Features
+- Industry Previews
+- Architecture
+- Demo
+- Contact
+
+Remove these as top-level nav items:
+- Adaptive Regression
+- Data Modes
+- Trust Center
+- Audit Checklist
+- Media
+- Walkthrough
+
+These should move into appropriate pages/sections.
+
+Mapping:
+- Adaptive Regression → Features page under “Regression Intelligence”
+- Data Modes → Platform or Architecture page under “Synthetic, assisted, and connected modes”
+- Trust Center → Architecture page under “Security and Zero Trust”
+- Audit Checklist → Features page under “Readiness and Governance”
+- Media → optional footer link only
+- Walkthrough → Demo page
+
+==================================================
+4. CREATE /features AS THE PRODUCT CAPABILITY HUB
+==================================================
+
+The /features page should absorb and organize the current standalone capability pages.
+
+Create feature sections:
+
+A. Environment Fingerprinting
+Copy:
+“Discover configuration, integrations, automation, add-ons, industry solutions, and operational dependencies before major change.”
+
+B. Drift Intelligence
+Copy:
+“Compare environments and detect unexpected configuration or operational differences.”
+
+C. Regression Intelligence
+Copy:
+“Generate and evolve Playwright-based regression packs as your Maximo environment changes.”
+
+D. AI Skill Packs
+Copy:
+“Deploy specialized Maximo assistants for technical support, upgrade readiness, governance, documentation, and delivery workflows.”
+
+E. Licensing Intelligence
+Copy:
+“Turn licensing complexity into understandable reports, entitlement insights, and optimization opportunities.”
+
+F. Mobilization Readiness
+Copy:
+“Assess readiness for new sites, contracts, assets, PMs, job plans, integrations, and operational teams.”
+
+G. Delivery Governance
+Copy:
+“Track delivery risk, readiness, evidence, auditability, and operational confidence.”
+
+H. Secure Demo Modes
+Copy:
+“Use synthetic previews, persisted private workspaces, or secure connected assessments depending on customer readiness.”
+
+Each feature should be shown as a premium card with:
+- icon
+- short heading
+- short explanation
+- visual dashboard snippet
+- CTA link
+
+==================================================
+5. CREATE /industry-previews PAGE
+==================================================
+
+Create a new page called “Industry Previews”.
+
+Purpose:
+Let visitors choose an industry-shaped synthetic preview.
+
+Hero:
+“Explore MASReady Through Your Industry”
+
+Subtitle:
+“Start with a curated synthetic Maximo-style environment for your sector. Add optional runtime-only details to make the preview feel closer to your world.”
+
+Cards:
+- Utilities
+- Transport
+- Government
+- Mining
+- Facilities
+- Power Generation
+- Water
+- Rail
+- Roads
+- Airports
+
+Each card should show:
+- typical assets
+- typical work types
+- typical integrations
+- MASReady insights shown
+- CTA: “Open Preview”
+
+Example Rail card:
+Title:
+“Rail Operations Preview”
+
+Includes:
+- rolling stock / trackside assets
+- depots and stations
+- PM and corrective maintenance
+- mobility workflows
+- regression packs
+- drift findings
+- MAS 9 readiness scoring
+
+CTA:
+“Open Rail Preview”
+
+Example Water card:
+Title:
+“Water Utility Preview”
+
+Includes:
+- pump stations
+- treatment assets
+- field maintenance
+- SCADA integration examples
+- compliance workflows
+- upgrade risk scoring
+
+==================================================
+6. PLATFORM PAGE
+==================================================
+
+Create or refine /platform.
+
+Position MASReady as an operational intelligence platform with three operating modes:
+
+1. Public Synthetic Preview
+- fixed reusable synthetic data
+- runtime-only personalization
+- no production data
+- no persistence
+
+2. Persisted Private Demo
+- saved customer-specific demo
+- created by MASReady after contact
+- can include secure synthetic customization
+- sales-assisted/private workflow
+
+3. Secure Connected Assessment
+- customer-approved ingestion
+- environment fingerprinting
+- real readiness analysis
+- secure architecture and governance
+
+Add visual:
+Three-column operating model.
+
+Add diagram:
+Input → Intelligence Engine → Outputs
+
+Inputs:
+- industry template
+- Maximo version
+- add-ons
+- integrations
+- screenshots/text notes
+- environment metadata, when approved
+
+Outputs:
+- readiness report
+- drift findings
+- regression pack
+- AI skill pack answers
+- architecture insights
+- governance checklist
+- demo dashboard
+
+==================================================
+7. ARCHITECTURE PAGE
+==================================================
+
+Update /architecture to include:
+
+Sections:
+- Zero Trust Architecture
+- Synthetic Preview Mode
+- Persisted Private Demo Mode
+- Secure Connected Assessment Mode
+- Tenant isolation
+- No customer data in public preview
+- Runtime-only personalization
+- API boundaries
+- Future Azure deployment model
+- Subdomain strategy
+
+Add architecture diagram text:
+
+Public visitor:
+Browser runtime state
+→ fixed industry scenario JSON
+→ UI placeholder overlay
+→ no database write
+
+Private demo:
+MASReady-assisted workspace
+→ explicit consent
+→ persisted configuration
+→ controlled access
+
+Connected assessment:
+Approved customer connection
+→ secure ingestion
+→ environment fingerprinting
+→ reports and regression intelligence
+
+==================================================
+8. HOME PAGE REFRESH
+==================================================
+
+Update homepage to better explain the whole platform.
+
+Hero headline:
+“Operational Intelligence for IBM Maximo Environments”
+
+Subheadline:
+“MASReady helps teams understand, validate, govern, and modernize Maximo and MAS environments using environment fingerprinting, AI skill packs, adaptive regression, and secure synthetic previews.”
+
+Hero CTAs:
+- Explore Industry Preview
+- Request Enterprise Demo
+
+Add sections:
+- Why Maximo environments are hard
+- What MASReady does
+- Industry-shaped synthetic previews
+- AI skill packs
+- Regression intelligence
+- Environment fingerprinting
+- Secure operating modes
+- Final CTA
+
+==================================================
+9. FORM HANDLING RULES
+==================================================
+
+For public preview forms:
+- Do not persist answers unless explicitly submitting a contact/demo request.
+- Do not log form field values.
+- Do not include user-entered values in analytics payloads.
+- Do not store screenshots or pasted text.
+- Keep user preview answers in client memory/session only.
+- Add reset button:
+“Clear Preview Data”
+
+For contact/demo request form:
+Allowed to store:
+- work email
+- name
+- company
+- selected interest
+- consent timestamp
+
+Do not automatically store:
+- Maximo screenshots
+- pasted environment text
+- detailed environment configuration
+- production data
+
+Add checkbox:
+“I agree to be contacted by MASReady about a demo or assessment.”
+
+==================================================
+10. VISUAL DESIGN REQUIREMENTS
+==================================================
+
+Keep the visual style:
+- dark enterprise theme
+- premium dashboard aesthetic
+- clean gradients
+- subtle glassmorphism
+- enterprise typography
+- no cheap neon overload
+- no stock people photos
+- no cartoon robots
+- no fake customer logos
+
+Use visuals:
+- topology maps
+- dependency graphs
+- readiness scores
+- regression coverage cards
+- AI assistant cards
+- drift alerts
+- operating mode diagrams
+- industry cards
+- secure architecture lanes
+
+==================================================
+11. RESPONSIVE FIXES
+==================================================
+
+Audit all pages:
+- /launch
+- /
+- /features
+- /architecture
+- /industry-previews
+- /demo or existing MAS9 Power Demo page
+
+Ensure:
+- no horizontal overflow
+- navbar wraps or collapses cleanly
+- forms are usable on mobile
+- cards stack correctly
+- hero sections do not clip content
+- buttons remain visible
+- dropdowns are accessible
+- tables become cards on mobile
+
+==================================================
+12. ACCEPTANCE CRITERIA
+==================================================
+
+The work is complete only if:
+
+1. /launch form is fixed and no longer clipped.
+2. Top navigation is simplified.
+3. Adaptive Regression is no longer a top-level nav item.
+4. Data Modes is no longer a top-level nav item.
+5. Features page contains regression, data modes, skill packs, licensing, fingerprinting, drift, governance.
+6. Industry Previews page exists.
+7. Public synthetic preview model is explained clearly.
+8. Persisted demo path is contact-only.
+9. Public preview does not save user inputs.
+10. Site works on desktop, tablet, and mobile.
+11. No real customer names are used.
+12. No fake customer logos are added.
+13. MASReady appears as a serious enterprise AI operational intelligence platform.
+
+After implementation:
+- run build
+- run lint if available
+- run any existing tests
+- manually inspect /launch
+- manually inspect mobile layout
+- commit all changes with a clear commit message
+
+Commit message:
+“Fix launch page and restructure MASReady platform navigation”

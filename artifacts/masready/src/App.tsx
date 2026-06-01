@@ -49,6 +49,8 @@ import DeliveryIntelligence from "@/pages/delivery-intelligence";
 import Drift from "@/pages/drift";
 import AdaptiveRegression from "@/pages/adaptive-regression";
 import AuditChecklist from "@/pages/audit-checklist";
+import IndustryPreviews from "@/pages/industry-previews";
+import Platform from "@/pages/platform";
 
 const queryClient = new QueryClient();
 
@@ -113,6 +115,8 @@ function Design1Router() {
         <Route path="/drift" component={Drift} />
         <Route path="/adaptive-regression" component={AdaptiveRegression} />
         <Route path="/audit-checklist" component={AuditChecklist} />
+        <Route path="/industry-previews" component={IndustryPreviews} />
+        <Route path="/platform" component={Platform} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
