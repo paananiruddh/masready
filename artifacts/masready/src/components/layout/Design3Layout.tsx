@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Link, useLocation } from "wouter";
 import { 
   Home, Zap, List, Shield, GitMerge, Image, MonitorPlay, Rocket, Mail, 
-  Terminal, Activity, Server, Database
+  Terminal, Activity, Server, Database, ClipboardCheck
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { href: "/mas9-power", label: "MAS9_POWER", icon: Zap },
   { href: "/features", label: "CAPABILITIES", icon: List },
   { href: "/trust", label: "TRUST_MODEL", icon: Shield },
+  { href: "/audit-checklist", label: "AUDIT_CHECKLIST", icon: ClipboardCheck },
   { href: "/architecture", label: "ARCHITECTURE", icon: GitMerge },
   { href: "/media", label: "TELEMETRY", icon: Image },
   { href: "/demo-walkthrough", label: "MISSION_BRIEF", icon: MonitorPlay },

@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Link, useLocation } from "wouter";
 import { 
   Home, Zap, List, Shield, GitMerge, Image, Presentation, Rocket, Mail, 
-  Search, Bell, BadgeCheck, MoreHorizontal
+  Search, Bell, BadgeCheck, MoreHorizontal, ClipboardCheck
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { href: "/mas9-power", label: "MAS9 Power", icon: Zap },
   { href: "/features", label: "Features", icon: List },
   { href: "/trust", label: "Trust", icon: Shield },
+  { href: "/audit-checklist", label: "Audit Checklist", icon: ClipboardCheck },
   { href: "/architecture", label: "Architecture", icon: GitMerge },
   { href: "/media", label: "Media", icon: Image },
   { href: "/demo-walkthrough", label: "Walkthrough", icon: Presentation },

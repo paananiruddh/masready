@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { href: "/adaptive-regression", label: "Adaptive Regression" },
   { href: "/data-modes", label: "Data Modes" },
   { href: "/trust", label: "Trust Center" },
+  { href: "/audit-checklist", label: "Audit Checklist" },
   { href: "/architecture", label: "Architecture" },
   { href: "/media", label: "Media" },
   { href: "/demo-walkthrough", label: "Walkthrough" },

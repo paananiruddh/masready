@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { Activity, UploadCloud, Fingerprint, Crosshair, PieChart, PackageCheck, Target, ShieldCheck, History, BookOpen, Database, ToggleLeft, CheckCircle2, AlertTriangle, Code2, ArrowRight } from "lucide-react";
+import { Activity, UploadCloud, Fingerprint, Crosshair, PieChart, PackageCheck, Target, ShieldCheck, History, BookOpen, Database, ToggleLeft, CheckCircle2, AlertTriangle, Code2, ArrowRight, ClipboardCheck } from "lucide-react";
 
 const FEATURES = [
   { title: "Delivery Intelligence", icon: Activity, desc: "Unified delivery confidence score across all project dimensions to assess readiness instantly." },
@@ -16,6 +16,7 @@ const FEATURES = [
   { title: "Data Boundary", icon: Database, desc: "Customer-hosted data model where no data leaves the physical or logical boundary." },
   { title: "Feature Flags", icon: ToggleLeft, desc: "Per-tenant configuration of enabled/disabled features for strict scope control." },
   { title: "Adaptive Regression Intelligence", icon: Code2, desc: "Generate and maintain a customer-specific Playwright regression suite from the Maximo environment fingerprint. Coverage grows and shrinks as components, add-ons, and integrations change." },
+  { title: "Environment Audit Checklist", icon: ClipboardCheck, desc: "52-point pre-migration assessment covering delivery intelligence, trust center compliance, patch impact, and AppPoints license planning for Maximo 7.6.x to MAS 9 transitions." },
 ];
 
 const SEED_CHECKLIST = [
