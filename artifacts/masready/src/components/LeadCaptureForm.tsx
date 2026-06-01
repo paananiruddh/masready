@@ -1,4 +1,19 @@
-import { useState, useId } from "react";
+import { useState, useRef } from "react";
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BREVO SETUP
+//
+// 1. Log in to Brevo → Marketing → Signup Forms → Create form
+// 2. Add fields:  Email (required), First Name, Company, and a custom
+//    attribute called INTEREST (single-line text or dropdown).
+// 3. Copy the form's action URL (looks like
+//    https://sibforms.com/serve/MUIEUM_xxxxxxxxxxxx).
+// 4. Paste it as the value of BREVO_ACTION below (or set env var
+//    VITE_BREVO_FORM_ACTION in the build).
+// ─────────────────────────────────────────────────────────────────────────────
+const BREVO_ACTION: string =
+  (import.meta.env.VITE_BREVO_FORM_ACTION as string | undefined) ??
+  "BREVO_FORM_ACTION_URL_HERE";
 
 const INTERESTS = [
   "MASReady demo",
@@ -8,13 +23,11 @@ const INTERESTS = [
   "General inquiry",
 ] as const;
 
-const API_BASE = (import.meta.env.VITE_API_URL as string | undefined) ?? "";
-
-function fireGA4(email: string) {
+function fireGA4(eventName: string) {
   try {
     const w = window as any;
     if (typeof w.gtag === "function") {
-      w.gtag("event", "lead_capture_submitted", {
+      w.gtag("event", eventName, {
         event_category: "engagement",
         event_label: "lead_form",
         value: 1,
@@ -26,23 +39,35 @@ function fireGA4(email: string) {
 }
 
 export default function LeadCaptureForm() {
-  const honeypotId = useId();
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [company, setCompany] = useState("");
-  const [interest, setInterest] = useState("");
-  const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [started, setStarted] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  async function handleSubmit(e: React.FormEvent) {
+  function handleFirstInteraction() {
+    if (!started) {
+      setStarted(true);
+      fireGA4("lead_capture_started");
+    }
+  }
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (status === "sending") return;
 
-    const trimmedEmail = email.trim();
-    if (!trimmedEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+    const form = formRef.current!;
+    const email = (form.elements.namedItem("EMAIL") as HTMLInputElement).value.trim();
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setErrorMsg("Please enter a valid email address.");
       setStatus("error");
+      return;
+    }
+
+    if (BREVO_ACTION === "BREVO_FORM_ACTION_URL_HERE") {
+      // Dev fallback — form action not configured yet
+      setStatus("success");
+      fireGA4("lead_capture_submitted");
       return;
     }
 
@@ -50,30 +75,28 @@ export default function LeadCaptureForm() {
     setErrorMsg("");
 
     try {
-      const res = await fetch(`${API_BASE}/api/leads`, {
+      const data = new FormData(form);
+      const res = await fetch(`${BREVO_ACTION}?isAjaxCall=1`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: trimmedEmail,
-          name: name.trim(),
-          company: company.trim(),
-          interest,
-          website: honeypot,
-        }),
+        body: data,
       });
+      const text = await res.text().catch(() => "");
 
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok) {
-        setErrorMsg(data?.error ?? "Something went wrong. Please try again.");
+      if (!res.ok || text.toLowerCase().includes('"result":"fail"')) {
+        let msg = "Something went wrong. Please try again.";
+        try {
+          const json = JSON.parse(text);
+          if (json?.message) msg = json.message;
+        } catch { /* ignore */ }
+        setErrorMsg(msg);
         setStatus("error");
         return;
       }
 
-      fireGA4(trimmedEmail);
+      fireGA4("lead_capture_submitted");
       setStatus("success");
     } catch {
-      setErrorMsg("Network error. Please try again.");
+      setErrorMsg("Network error — please try again or email us directly.");
       setStatus("error");
     }
   }
@@ -81,10 +104,10 @@ export default function LeadCaptureForm() {
   if (status === "success") {
     return (
       <div className="rounded-2xl border border-primary/30 bg-primary/10 p-8 text-center max-w-xl mx-auto">
-        <div className="text-3xl mb-3">✓</div>
+        <div className="text-4xl mb-3">✓</div>
         <h3 className="text-xl font-bold mb-2">You're on the list.</h3>
-        <p className="text-muted-foreground text-sm">
-          We'll send the MASReady demo link to <strong>{email}</strong> shortly.
+        <p className="text-muted-foreground text-sm leading-relaxed">
+          We'll send the MASReady demo link to you shortly.
         </p>
       </div>
     );
@@ -94,36 +117,28 @@ export default function LeadCaptureForm() {
     <div className="rounded-2xl border border-white/10 bg-card/60 backdrop-blur p-8 max-w-xl mx-auto">
       <h3 className="text-xl font-bold mb-1 text-center">Get the MASReady demo link</h3>
       <p className="text-muted-foreground text-sm text-center mb-6">
-        Access the full product walkthrough — no sales pressure.
+        Full product walkthrough. No sales pressure.
       </p>
 
-      <form onSubmit={handleSubmit} noValidate className="space-y-4">
-        {/* Honeypot — hidden from humans */}
+      <form ref={formRef} onSubmit={handleSubmit} noValidate className="space-y-4">
+        {/* Brevo honeypot — must stay empty */}
         <div style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }} aria-hidden="true">
-          <label htmlFor={honeypotId}>Leave blank</label>
-          <input
-            id={honeypotId}
-            type="text"
-            name="website"
-            value={honeypot}
-            onChange={(e) => setHoneypot(e.target.value)}
-            tabIndex={-1}
-            autoComplete="off"
-          />
+          <input type="text" name="email_address_check" defaultValue="" tabIndex={-1} autoComplete="off" />
         </div>
+        <input type="hidden" name="locale" value="en" />
 
         <div>
-          <label className="block text-sm font-medium mb-1.5" htmlFor="lc-email">
-            Work email <span className="text-destructive">*</span>
+          <label className="block text-sm font-medium mb-1.5" htmlFor="lcr-email">
+            Work email <span className="text-destructive" aria-hidden="true">*</span>
           </label>
           <input
-            id="lc-email"
+            id="lcr-email"
             type="email"
+            name="EMAIL"
             required
             autoComplete="email"
             placeholder="you@company.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onFocus={handleFirstInteraction}
             className="w-full rounded-lg border border-white/15 bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
             disabled={status === "sending"}
           />
@@ -131,32 +146,31 @@ export default function LeadCaptureForm() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-1.5" htmlFor="lc-name">
+            <label className="block text-sm font-medium mb-1.5" htmlFor="lcr-name">
               Name
             </label>
             <input
-              id="lc-name"
+              id="lcr-name"
               type="text"
-              autoComplete="name"
-              placeholder="Jane Smith"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              name="FIRSTNAME"
+              autoComplete="given-name"
+              placeholder="Jane"
+              onFocus={handleFirstInteraction}
               className="w-full rounded-lg border border-white/15 bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
               disabled={status === "sending"}
             />
           </div>
-
           <div>
-            <label className="block text-sm font-medium mb-1.5" htmlFor="lc-company">
+            <label className="block text-sm font-medium mb-1.5" htmlFor="lcr-company">
               Company
             </label>
             <input
-              id="lc-company"
+              id="lcr-company"
               type="text"
+              name="COMPANY"
               autoComplete="organization"
               placeholder="Acme Corp"
-              value={company}
-              onChange={(e) => setCompany(e.target.value)}
+              onFocus={handleFirstInteraction}
               className="w-full rounded-lg border border-white/15 bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
               disabled={status === "sending"}
             />
@@ -164,27 +178,25 @@ export default function LeadCaptureForm() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1.5" htmlFor="lc-interest">
+          <label className="block text-sm font-medium mb-1.5" htmlFor="lcr-interest">
             I'm interested in
           </label>
           <select
-            id="lc-interest"
-            value={interest}
-            onChange={(e) => setInterest(e.target.value)}
+            id="lcr-interest"
+            name="INTEREST"
+            onFocus={handleFirstInteraction}
             className="w-full rounded-lg border border-white/15 bg-background px-3.5 py-2.5 text-sm text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
             disabled={status === "sending"}
           >
             <option value="">Select an area of interest…</option>
             {INTERESTS.map((i) => (
-              <option key={i} value={i}>
-                {i}
-              </option>
+              <option key={i} value={i}>{i}</option>
             ))}
           </select>
         </div>
 
         {status === "error" && (
-          <p className="text-sm text-destructive bg-destructive/10 rounded-lg px-3.5 py-2.5">
+          <p role="alert" className="text-sm text-destructive bg-destructive/10 rounded-lg px-3.5 py-2.5">
             {errorMsg}
           </p>
         )}
@@ -198,12 +210,12 @@ export default function LeadCaptureForm() {
         </button>
 
         <p className="text-center text-xs text-muted-foreground pt-1">
-          Or{" "}
+          Or email us directly at{" "}
           <a
-            href="mailto:ani@assetize.com.au"
+            href="mailto:aniruddh@assetize.com.au"
             className="underline underline-offset-2 hover:text-foreground transition-colors"
           >
-            email us directly
+            aniruddh@assetize.com.au
           </a>
         </p>
       </form>
