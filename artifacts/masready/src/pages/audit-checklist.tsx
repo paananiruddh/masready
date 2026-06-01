@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ClipboardCheck, CheckCircle2, XCircle, AlertTriangle, Minus, Clock,
   ChevronDown, ChevronRight, Code2, Wrench, Download, Plus, Trash2,
-  Brain, ShieldCheck, Layers, Key, Server, Workflow, BarChart3
+  Brain, ShieldCheck, Layers, Key, Server, Workflow, BarChart3, Mail, X
 } from "lucide-react";
 import { DemoBanner } from "@/components/DemoBanner";
 import {
@@ -385,6 +385,7 @@ export default function AuditChecklist() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [showNewModal, setShowNewModal] = useState(false);
   const [view, setView] = useState<"dashboard" | "audit">("dashboard");
+  const [emailPanel, setEmailPanel] = useState<{ open: boolean; email: string; status: "idle" | "sending" | "sent" | "error" }>({ open: false, email: "", status: "idle" });
 
   const activeSession = sessions.find(s => s.id === activeId) ?? null;
 
@@ -428,6 +429,35 @@ export default function AuditChecklist() {
     a.download = `masready-audit-${session.customerName.replace(/\s+/g, "-").toLowerCase()}-${Date.now()}.md`;
     a.click();
     URL.revokeObjectURL(url);
+  };
+
+  const handleEmailReport = async (session: AuditSession) => {
+    if (!emailPanel.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailPanel.email)) return;
+    setEmailPanel(p => ({ ...p, status: "sending" }));
+    const md = exportMarkdown(session.name, session.customerName, session.maximoVersion, session.state);
+    const score = getOverallScore(session.state);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: "e3f95161-8759-43a2-90a6-707479beed4b",
+          subject: `MASReady Audit Report — ${session.customerName} (Score: ${score.score}%)`,
+          from_name: "MASReady Audit Tool",
+          email: emailPanel.email,
+          name: session.customerName,
+          audit_name: session.name,
+          maximo_version: session.maximoVersion,
+          readiness_score: `${score.score}% — Pass: ${score.pass} / Warn: ${score.warn} / Fail: ${score.fail} / Pending: ${score.pending}`,
+          full_report: md.slice(0, 5000),
+          botcheck: "",
+        }),
+      });
+      const json = await res.json();
+      setEmailPanel(p => ({ ...p, status: json.success ? "sent" : "error" }));
+    } catch {
+      setEmailPanel(p => ({ ...p, status: "error" }));
+    }
   };
 
   // ── Dashboard view ──
@@ -599,12 +629,63 @@ export default function AuditChecklist() {
             <h1 className="text-2xl font-bold text-white mb-1">{activeSession.name}</h1>
             <p className="text-sm text-muted-foreground">{activeSession.customerName} · Maximo {activeSession.maximoVersion}</p>
           </div>
-          <button
-            onClick={() => handleExport(activeSession)}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 text-sm text-white/70 hover:border-white/30 hover:text-white transition-colors"
-          >
-            <Download size={14} /> Export Report
-          </button>
+          <div className="flex flex-col items-end gap-2">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setEmailPanel(p => ({ ...p, open: !p.open, status: "idle" }))}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl border border-primary/30 bg-primary/10 text-sm text-primary hover:bg-primary/20 transition-colors"
+              >
+                <Mail size={14} /> Email Report
+              </button>
+              <button
+                onClick={() => handleExport(activeSession)}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 text-sm text-white/70 hover:border-white/30 hover:text-white transition-colors"
+              >
+                <Download size={14} /> Export
+              </button>
+            </div>
+
+            {emailPanel.open && (
+              <div className="w-full sm:w-80 rounded-xl border border-white/10 bg-card/80 backdrop-blur p-4">
+                {emailPanel.status === "sent" ? (
+                  <div className="text-center py-2">
+                    <CheckCircle2 className="w-6 h-6 text-green-400 mx-auto mb-2" />
+                    <p className="text-sm font-medium text-white mb-0.5">Report sent.</p>
+                    <p className="text-xs text-muted-foreground mb-3">Check your inbox — you can also download a local copy.</p>
+                    <div className="flex gap-2">
+                      <button onClick={() => handleExport(activeSession)} className="flex-1 text-xs px-3 py-1.5 rounded-lg border border-white/10 text-white/60 hover:text-white transition-colors flex items-center justify-center gap-1">
+                        <Download size={11} /> Download
+                      </button>
+                      <button onClick={() => setEmailPanel({ open: false, email: "", status: "idle" })} className="flex-1 text-xs px-3 py-1.5 rounded-lg border border-white/10 text-white/40 hover:text-white transition-colors flex items-center justify-center gap-1">
+                        <X size={11} /> Close
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <p className="text-xs text-white/60 mb-3">Enter your email — the full audit report will be sent to your inbox and a copy logged with MASReady.</p>
+                    <div className="flex gap-2">
+                      <input
+                        type="email"
+                        value={emailPanel.email}
+                        onChange={e => setEmailPanel(p => ({ ...p, email: e.target.value }))}
+                        placeholder="you@company.com"
+                        className="flex-1 min-w-0 rounded-lg border border-white/10 bg-background px-3 py-1.5 text-xs text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-primary"
+                      />
+                      <button
+                        disabled={emailPanel.status === "sending"}
+                        onClick={() => handleEmailReport(activeSession)}
+                        className="px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 disabled:opacity-50 transition-colors whitespace-nowrap"
+                      >
+                        {emailPanel.status === "sending" ? "Sending…" : "Send"}
+                      </button>
+                    </div>
+                    {emailPanel.status === "error" && <p className="text-xs text-red-400 mt-2">Failed — try again or use Export.</p>}
+                  </>
+                )}
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
