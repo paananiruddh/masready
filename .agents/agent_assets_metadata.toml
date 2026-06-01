@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "yD4o0k3OyeRhHlGoUVLyE"
+uri = "file://masready-static-site.zip"
+type = "unspecified"
+title = "masready-static-site.zip — Full static site (43 files, 0.38 MB)"
