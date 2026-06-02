@@ -1,5 +1,27 @@
 import { Shield } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
+
+function DebugBanner() {
+  const [location] = useLocation();
+  const isDebug = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("debug") === "1";
+  if (!isDebug) return null;
+
+  const buildTime = import.meta.env.VITE_BUILD_TIME ?? "dev";
+  const commitSha  = import.meta.env.VITE_COMMIT_SHA  ?? "unknown";
+  const demoMode   = "true";
+
+  return (
+    <div className="border-t border-amber-400/30 bg-amber-950/30 px-4 py-3 text-xs font-mono">
+      <div className="container mx-auto flex flex-wrap gap-x-6 gap-y-1 text-amber-400/80">
+        <span>Build source: <strong className="text-amber-300">React SPA</strong> (artifacts/masready/src)</span>
+        <span>Route: <strong className="text-amber-300">{location}</strong></span>
+        <span>Build time: <strong className="text-amber-300">{buildTime}</strong></span>
+        <span>Commit: <strong className="text-amber-300">{commitSha}</strong></span>
+        <span>PUBLIC_DEMO_MODE: <strong className="text-amber-300">{demoMode}</strong></span>
+      </div>
+    </div>
+  );
+}
 
 export function Footer() {
   return (
@@ -38,6 +60,7 @@ export function Footer() {
           </a>
         </p>
       </div>
+      <DebugBanner />
     </footer>
   );
 }

@@ -124,12 +124,20 @@ export default function Contact() {
                 {status === "sending" ? "Sending…" : "Request Walkthrough"}
               </Button>
 
-              <p className="text-center text-xs text-muted-foreground">
-                Or email us directly at{" "}
-                <a href="mailto:aniruddh@assetize.com.au" className="underline underline-offset-2 hover:text-primary transition-colors">
-                  aniruddh@assetize.com.au
-                </a>
-              </p>
+              <div className="text-center text-xs text-muted-foreground space-y-1">
+                <p>
+                  Or reach us directly:{" "}
+                  <a href="mailto:aniruddh@assetize.com.au" className="underline underline-offset-2 hover:text-primary transition-colors">
+                    aniruddh@assetize.com.au
+                  </a>
+                </p>
+                <p>
+                  Aniruddh Panvalkar ·{" "}
+                  <a href="tel:+61430739020" className="underline underline-offset-2 hover:text-primary transition-colors">
+                    0430 739 020
+                  </a>
+                </p>
+              </div>
             </form>
           )}
         </div>

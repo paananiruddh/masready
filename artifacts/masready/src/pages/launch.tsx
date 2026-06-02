@@ -247,7 +247,7 @@ export default function Launch() {
             <div className="mb-7">
               <h2 className="text-xl font-bold mb-1">Request a Persisted Private Demo</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Public synthetic previews open through 2-hour session-scoped links and do not require a contact form.
+                Public synthetic previews open through session-scoped links and do not require a contact form.
                 Use this form only if you want a <strong className="text-foreground">persisted private demo</strong>, secure assessment, or enterprise walkthrough.
               </p>
             </div>

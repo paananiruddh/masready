@@ -1,0 +1,436 @@
+Stop feature work. Run a full delivery audit and recovery check.
+
+The concern is that previous work may be lost, incomplete, or changed in the wrong source tree. I need a clear confirmation of every expected feature, what exists, what is missing, and how to manually run/verify everything in future.
+
+## Context
+
+There may be two competing code paths:
+
+1. Static root HTML pages
+2. React SPA under the app source directory
+
+Previous changes may not be visible because work was done in one code path while the deployed site serves another.
+
+Do not assume anything. Prove it.
+
+## Part 1 — Source-of-truth audit
+
+Inspect the repository and identify:
+
+* active app source directory
+* static HTML pages
+* React SPA pages/routes
+* build command
+* deploy command
+* publish/output directory
+* routing/rewrite configuration
+* whether static HTML shadows React routes
+* whether live deployment uses the current source
+* whether there are duplicate pages with the same purpose
+
+Check especially:
+
+```text
+/
+contact
+launch
+launch?mode=persisted
+demo-walkthrough
+preview-studio
+mas9-power
+industry
+industry-previews
+demos/industries
+```
+
+## Part 2 — Expected feature checklist
+
+Create a full audit table with columns:
+
+```text
+Feature
+Expected behaviour
+Expected route/file
+Actual route/file found
+Implemented? Yes/No/Partial
+Visible on live site? Yes/No/Unknown
+Evidence
+Problem found
+Fix required
+```
+
+Audit these expected features:
+
+### A. MAS9 / MAS9Power naming
+
+Expected:
+
+* Always use exact name: `MAS9 / MAS9Power`
+* Never call it Math Nine Power
+* Never split/rename it incorrectly
+
+Check all files.
+
+### B. 11 full demo experiences
+
+Expected:
+
+* 1 MAS9 / MAS9Power full demo
+* 10 industry full demo apps
+* total 11 full standalone demos
+* preview cards do not count as demos
+
+### C. Industry demo route
+
+Expected:
+
+```text
+/demos/industries/:industrySlug
+```
+
+or equivalent.
+
+Must exist for all 10 industries.
+
+Each must include:
+
+* dashboard
+* work orders
+* assets
+* PM compliance
+* SLA/risk
+* integrations
+* demo access
+* seeded data
+* filters
+* detail drawer/modal
+* public demo safety
+
+### D. Industry marketing route
+
+Expected:
+
+```text
+/industry/:slug
+```
+
+Must remain a marketing/deep-dive page, not be overloaded as the demo app.
+
+### E. Industry hub
+
+Expected:
+
+* gallery/launcher only
+* each card should offer:
+
+  * view industry brief
+  * launch full demo
+* launch full demo opens in new tab/window
+
+### F. Public demo safety mode
+
+Expected:
+
+```text
+PUBLIC_DEMO_MODE=true
+```
+
+When enabled:
+
+* no live API execution
+* no Maximo connection test
+* no API key entry/use
+* no editable Maximo URLs
+* no write/update/delete actions
+* seed data only
+* integrations visible but disabled
+* no secrets exposed
+
+### G. Demo Access section
+
+Expected on:
+
+```text
+/mas9-power
+/industry/:slug
+/demos/industries/:industrySlug
+```
+
+Must include:
+
+* 5-step demo login instructions
+* role/persona cards
+* links to `https://mas9power.masready.com.au`
+* open in new tab
+* no password fields
+* no API fields
+* exact MAS9 / MAS9Power naming
+
+### H. Persisted demo page polish
+
+Expected:
+
+```text
+/launch?mode=persisted#demo-form
+```
+
+Must match MASReady theme:
+
+* not ugly
+* not half-width
+* standard header/footer
+* shared layout
+* polished form/card style
+* mobile responsive
+
+### I. Preview Studio
+
+Expected:
+
+```text
+/preview-studio?industry=utilities
+```
+
+Must show current implemented design, not stale/static output.
+
+Audit whether this is served by static HTML, React SPA, or old build artifact.
+
+### J. Demo walkthrough animation
+
+Expected:
+
+```text
+/demo-walkthrough
+```
+
+Must visibly animate:
+
+* hero entrance
+* KPI count-up
+* card stagger
+* scroll reveals
+* walkthrough stages
+* no invisible/stuck elements
+
+Audit whether animation code exists and actually fires.
+
+### K. Tenant shell architecture
+
+Expected:
+
+* ability/design for empty customer shell, e.g. ABC
+* no inherited demo data
+* disabled integrations
+* onboarding/enrichment checklist
+* tenant isolation
+
+### L. Four operating data models
+
+Expected:
+
+```text
+public_demo
+empty_shell
+customer_enriched
+live_integrated
+```
+
+Must be represented in architecture/code/content where appropriate.
+
+### M. Zero Trust Data Model
+
+Expected:
+
+* Zero Trust Data Model visible in product/marketing messaging
+* applies across all 4 data models
+* no data trusted until classified, validated, tenant-scoped, and approved
+
+### N. Contact details
+
+Expected visible at the bottom of contact form and below relevant OverpayingForAI-related public site area:
+
+```text
+Aniruddh Panvalkar
+0430739020
+```
+
+### O. Static HTML vs React SPA conflict
+
+Expected:
+
+* one clear source of truth
+* no duplicate stale pages being deployed accidentally
+* if both remain, document why and which one is live
+
+## Part 3 — Live route verification
+
+For each route, test locally and, if possible, live:
+
+```text
+/
+ /mas9-power
+/industry-previews
+/industry/utilities
+/demos/industries/utilities
+/launch?mode=persisted#demo-form
+/preview-studio?industry=utilities
+/demo-walkthrough
+/contact
+```
+
+For each route report:
+
+```text
+Status
+HTTP result
+Rendered source: Static HTML / React SPA / Unknown
+Visible build marker
+Key expected section present?
+Problems
+```
+
+## Part 4 — Add temporary build/source marker
+
+Add a small diagnostic marker visible only in a subtle footer/debug area or hidden behind a `?debug=1` query.
+
+It must show:
+
+```text
+Build source: React SPA or Static HTML
+Route:
+Build timestamp:
+Commit SHA if available:
+PUBLIC_DEMO_MODE:
+```
+
+Purpose: prove what source is actually being served.
+
+Do not leave it as ugly visible text. It should be subtle or debug-only.
+
+## Part 5 — Recovery instructions
+
+Create a file:
+
+```text
+RECOVERY_AND_RUNBOOK.md
+```
+
+Include:
+
+### 1. How to run locally
+
+Give exact commands, for example:
+
+```bash
+npm install
+npm run dev
+```
+
+or if inside a subfolder:
+
+```bash
+cd artifacts/masready
+npm install
+npm run dev
+```
+
+Use the actual repo structure, not guesses.
+
+### 2. How to build
+
+Give exact command:
+
+```bash
+npm run build
+```
+
+and identify output folder.
+
+### 3. How to preview production build locally
+
+Example:
+
+```bash
+npm run preview
+```
+
+or equivalent.
+
+### 4. How to deploy
+
+Explain actual deployment path/config.
+
+Include:
+
+* deployed source directory
+* deployed output directory
+* build command
+* environment variables required
+* any rewrite/fallback rules
+
+### 5. How to verify after deploy
+
+Include checklist:
+
+```text
+Open /preview-studio?industry=utilities
+Check build marker
+Open /demos/industries/utilities
+Check demo tabs
+Open /demo-walkthrough
+Check visible animation
+Open /contact
+Check phone/name
+```
+
+### 6. How to prevent future lost work
+
+Include rules:
+
+* never edit stale static page if React SPA is live
+* never edit React SPA only if static HTML is live
+* always confirm source-of-truth before changes
+* always add/verify route in deployed app
+* always run build before claiming done
+* always test the live URL requested by user
+* always report exact files changed
+
+## Part 6 — Required final report
+
+After audit, provide a concise but complete report:
+
+```text
+1. Source of truth
+2. What was actually deployed
+3. What changes exist
+4. What changes are missing
+5. What routes are broken/stale
+6. What static/React conflicts exist
+7. Exact files changed
+8. Exact commands to run manually
+9. Exact verification checklist
+10. Remaining risks
+```
+
+## Important
+
+Do not say “done” unless visible evidence exists.
+
+Do not say “implemented” unless:
+
+* file exists
+* route exists
+* build succeeds
+* route renders
+* expected UI is visible
+* live or local verification is documented
+
+## Acceptance criteria
+
+* Full feature audit completed.
+* Missing/lost work identified.
+* Static HTML vs React SPA conflict confirmed or ruled out.
+* Manual run instructions documented.
+* Build/deploy source of truth documented.
+* Exact verification checklist provided.
+* No more vague claims without visible proof.
