@@ -45,7 +45,7 @@ function SessionBanner({ session, remaining, onPersistedDemo }: {
       <div className="container mx-auto px-4 py-3 flex flex-wrap items-center gap-3 justify-between">
         <div className="flex items-center gap-3 flex-wrap">
           <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-            2-hour synthetic preview
+            Synthetic Preview
           </span>
           {industry && (
             <span className={cn("text-xs font-bold px-2.5 py-1 rounded-full border", industry.border, industry.color, "bg-card")}>
@@ -450,7 +450,7 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
           <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-3">Enterprise Demo</p>
           <h3 className="text-xl font-semibold mb-2">Ready for a persisted private demo?</h3>
           <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-xl">
-            Public synthetic previews use fixed baseline data and expire after 2 hours. Persisted private demos are saved, privately hosted, and can include secure customer-specific synthetic data and architecture discussions.
+            Public synthetic previews use fixed baseline data. Persisted private demos are saved, privately hosted, and can include secure customer-specific synthetic data and architecture discussions.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
@@ -486,7 +486,7 @@ function ExpiredScreen({ sessionId, session }: { sessionId: string; session: Pre
           Public synthetic previews are intentionally time-limited so MASReady can keep public demo access controlled and auditable.
         </p>
         <p className="text-muted-foreground text-sm mb-8">
-          Public previews are valid for 2 hours. Start a new preview session or request a persisted private demo.
+          Start a new preview session or request a persisted private demo.
         </p>
         {session && (
           <p className="text-xs text-muted-foreground font-mono mb-6">

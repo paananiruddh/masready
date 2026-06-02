@@ -218,7 +218,7 @@ export default function Launch() {
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-foreground">Open Public Synthetic Preview</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">2-hour session link · 10 industries</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">Session-scoped · 10 industries</div>
                 </div>
               </Link>
               <button

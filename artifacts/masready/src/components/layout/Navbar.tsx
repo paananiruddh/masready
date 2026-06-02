@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { href: "/industry-previews", label: "Industry Previews" },
   { href: "/architecture", label: "Architecture" },
   { href: "/audit-checklist", label: "Audit" },
-  { href: "/mas9-power", label: "Demo" },
+  { href: "/demo-walkthrough", label: "Walkthrough" },
   { href: "/contact", label: "Contact" },
 ];
 
