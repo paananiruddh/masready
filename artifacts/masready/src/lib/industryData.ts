@@ -32,6 +32,85 @@ export interface SyntheticSnapshot {
   recommendations: string[];
 }
 
+// ─── Demo App Types ───────────────────────────────────────────────────────────
+
+export interface WorkOrderRecord {
+  id: string;
+  description: string;
+  status: "OPEN" | "INPRG" | "WAPPR" | "COMP" | "WSCH";
+  priority: "1" | "2" | "3" | "4";
+  type: "PM" | "CM" | "INS" | "SAFE" | "CAP";
+  woClass: string;
+  site: string;
+  asset: string;
+  assignedTo: string;
+  reportedDate: string;
+  targetDate: string;
+  overdue: boolean;
+}
+
+export interface AssetRecord {
+  id: string;
+  description: string;
+  assetType: string;
+  status: "OPERATING" | "NOT READY" | "INACTIVE" | "DECOMMISSIONED";
+  location: string;
+  criticality: "HIGH" | "MED" | "LOW";
+  condition: "GOOD" | "FAIR" | "POOR";
+  lastPM: string;
+  nextPM: string;
+  installDate: string;
+}
+
+export interface PMRecord {
+  id: string;
+  description: string;
+  assetId: string;
+  assetDescription: string;
+  frequency: "Monthly" | "Quarterly" | "6-Monthly" | "Annual";
+  lastCompleted: string;
+  nextDue: string;
+  status: "COMPLIANT" | "OVERDUE" | "DUE SOON" | "SCHEDULED";
+  assignedTo: string;
+}
+
+export interface SLARecord {
+  id: string;
+  description: string;
+  category: "Response" | "Resolution" | "PM Completion" | "Compliance";
+  target: string;
+  actual: string;
+  status: "ON TRACK" | "AT RISK" | "BREACHED";
+  compliance: number;
+}
+
+export interface IntegrationRecord {
+  name: string;
+  system: string;
+  endpoint: string;
+  scopes: string;
+  status: "CONNECTED" | "DEGRADED" | "DISABLED";
+  lastSync: string;
+}
+
+export interface PersonaRecord {
+  name: string;
+  role: string;
+  badge: string;
+  desc: string;
+  startAt: string;
+}
+
+export interface KPIRecord {
+  label: string;
+  value: string;
+  sub: string;
+  trend?: "up" | "down" | "flat";
+  color?: string;
+}
+
+// ─── Industry Definitions ─────────────────────────────────────────────────────
+
 export const INDUSTRIES: IndustryInfo[] = [
   {
     slug: "utilities",
@@ -158,6 +237,8 @@ export const INDUSTRIES: IndustryInfo[] = [
 export function getIndustry(slug: string): IndustryInfo | undefined {
   return INDUSTRIES.find((i) => i.slug === slug);
 }
+
+// ─── Synthetic Snapshots ──────────────────────────────────────────────────────
 
 const SNAPSHOTS: Record<string, SyntheticSnapshot> = {
   utilities: {
@@ -294,7 +375,6 @@ const SNAPSHOTS: Record<string, SyntheticSnapshot> = {
   },
 };
 
-// Fill remaining industries with generated defaults
 const DEFAULT_SNAPSHOT = (slug: string): SyntheticSnapshot => ({
   assetCount: 1200 + Math.floor(slug.length * 300), locationCount: 28, openWOs: 180, criticalWOs: 9, activeUsers: 55,
   currentVersion: "Maximo 7.6.1.2", targetVersion: "MAS 9.0", customObjects: 18, automationScripts: 5, integrationCount: 3,
@@ -348,3 +428,244 @@ export const COMMON_ADDONS = [
 export const MOBILITY_TOOLS = [
   "IBM Maximo Mobile", "Maximo Anywhere (legacy)", "Work Centers", "Custom mobile app", "None",
 ];
+
+// ─── Deterministic pseudo-hash ────────────────────────────────────────────────
+
+function dh(s: string, n: number): number {
+  let v = (n + 1) * 2654435761;
+  for (let i = 0; i < s.length; i++) v = ((v << 5) - v + s.charCodeAt(i)) | 0;
+  return Math.abs(v);
+}
+
+// ─── Work Order Generator ─────────────────────────────────────────────────────
+
+const WO_BASES: Record<string, number> = {
+  utilities: 84310, transport: 53200, government: 61450, mining: 98220,
+  facilities: 33100, power: 110400, water: 72280, rail: 41800,
+  roads: 21150, airports: 11050,
+};
+
+const WO_STATUSES: WorkOrderRecord["status"][] = [
+  "OPEN", "INPRG", "WAPPR", "OPEN", "COMP", "WSCH", "OPEN", "INPRG", "OPEN", "WAPPR",
+];
+const WO_PRIORITIES: WorkOrderRecord["priority"][] = [
+  "2", "1", "2", "3", "3", "2", "1", "2", "4", "3",
+];
+const WO_TYPES: WorkOrderRecord["type"][] = [
+  "PM", "CM", "INS", "PM", "SAFE", "CM", "CAP", "PM", "INS", "CM",
+];
+const WO_OVERDUE = [false, true, false, false, false, false, true, false, false, false];
+const WO_REPORTED = [
+  "2025-10-15", "2025-10-22", "2025-11-01", "2025-10-18", "2025-11-05",
+  "2025-10-29", "2025-11-08", "2025-10-12", "2025-11-02", "2025-10-25",
+];
+const WO_TARGET = [
+  "2025-11-30", "2025-11-15", "2025-11-08", "2025-12-15", "2025-12-20",
+  "2025-11-30", "2025-11-25", "2025-11-22", "2025-12-10", "2025-11-22",
+];
+const TECHNICIANS = [
+  "Jordan Lee", "Sam Patel", "Alex Kim", "Chris Morgan", "Taylor Brown",
+  "Morgan Davis", "Riley Chen", "Cameron White", "Quinn Hall", "Blake Foster",
+];
+
+const WO_CLASS_MAP: Record<WorkOrderRecord["type"], string> = {
+  PM: "Planned", CM: "Unplanned", INS: "Inspection", SAFE: "Safety", CAP: "Capital",
+};
+
+export function getWorkOrders(slug: string): WorkOrderRecord[] {
+  const industry = getIndustry(slug);
+  if (!industry) return [];
+  const { title, workTypes, assets } = industry;
+  const base = WO_BASES[slug] ?? 10000 + slug.length * 1000;
+
+  const siteNames = [
+    `${title} — Operations Centre`,
+    `${title} — ${assets[0]} Complex`,
+    `${title} — ${assets[Math.min(1, assets.length - 1)]} Hub`,
+    `${title} — South Operations`,
+    `${title} — North Depot`,
+  ];
+
+  return Array.from({ length: 10 }, (_, i) => {
+    const assetType = assets[i % assets.length];
+    const workType  = workTypes[i % workTypes.length];
+    const type      = WO_TYPES[i];
+    const prefix    = assetType.replace(/[^A-Za-z]/g, "").slice(0, 3).toUpperCase();
+    const assetNum  = String(100 + (dh(slug, i) % 900)).padStart(4, "0");
+
+    const descMap: Record<WorkOrderRecord["type"], string> = {
+      PM:   `Scheduled PM — ${assetType}`,
+      CM:   `Corrective repair — ${assetType} fault identified`,
+      INS:  `${workType} — ${assetType}`,
+      SAFE: `Safety inspection — ${assetType} access review`,
+      CAP:  `Capital renewal — ${assetType} programme`,
+    };
+
+    return {
+      id: `WO-${String(base + i).padStart(6, "0")}`,
+      description: descMap[type],
+      status: WO_STATUSES[i],
+      priority: WO_PRIORITIES[i],
+      type,
+      woClass: WO_CLASS_MAP[type],
+      site: siteNames[i % siteNames.length],
+      asset: `${prefix}-${assetNum}`,
+      assignedTo: TECHNICIANS[i % TECHNICIANS.length],
+      reportedDate: WO_REPORTED[i],
+      targetDate: WO_TARGET[i],
+      overdue: WO_OVERDUE[i],
+    };
+  });
+}
+
+// ─── Asset Register Generator ─────────────────────────────────────────────────
+
+const ASSET_STATUSES: AssetRecord["status"][] = [
+  "OPERATING", "OPERATING", "OPERATING", "NOT READY", "OPERATING", "INACTIVE", "OPERATING", "OPERATING",
+];
+const ASSET_CRITS: AssetRecord["criticality"][] = [
+  "HIGH", "HIGH", "MED", "HIGH", "MED", "LOW", "MED", "LOW",
+];
+const ASSET_CONDITIONS: AssetRecord["condition"][] = [
+  "GOOD", "GOOD", "FAIR", "POOR", "GOOD", "FAIR", "GOOD", "FAIR",
+];
+const ASSET_LAST_PM = [
+  "2025-09-15", "2025-10-02", "2025-08-28", "2025-10-18",
+  "2025-09-22", "2025-07-15", "2025-10-08", "2025-09-30",
+];
+const ASSET_NEXT_PM = [
+  "2025-12-15", "2026-01-02", "2025-11-28", "2026-01-18",
+  "2025-12-22", "2025-10-15", "2026-01-08", "2025-12-30",
+];
+const INSTALL_YEARS = ["2011", "2014", "2009", "2016", "2013", "2008", "2015", "2012"];
+const REGIONS = ["North", "South", "East", "West", "Central", "CBD", "Northwest", "Southeast"];
+
+export function getAssetRegister(slug: string): AssetRecord[] {
+  const industry = getIndustry(slug);
+  if (!industry) return [];
+  const { title, assets } = industry;
+
+  return Array.from({ length: 8 }, (_, i) => {
+    const assetType = assets[i % assets.length];
+    const prefix    = assetType.replace(/[^A-Za-z]/g, "").slice(0, 3).toUpperCase();
+    const num       = String(10 + (dh(slug, i + 20) % 490)).padStart(4, "0");
+    const region    = REGIONS[i % REGIONS.length];
+
+    return {
+      id: `${prefix}-${num}`,
+      description: `${assetType} — ${region} ${title} ${i % 2 === 0 ? "Hub" : "Complex"}`,
+      assetType,
+      status: ASSET_STATUSES[i],
+      location: `${region} ${title} Operations`,
+      criticality: ASSET_CRITS[i],
+      condition: ASSET_CONDITIONS[i],
+      lastPM: ASSET_LAST_PM[i],
+      nextPM: ASSET_NEXT_PM[i],
+      installDate: INSTALL_YEARS[i],
+    };
+  });
+}
+
+// ─── PM Record Generator ──────────────────────────────────────────────────────
+
+const PM_BASES: Record<string, number> = {
+  utilities: 8200, transport: 5100, government: 6100, mining: 9800,
+  facilities: 3100, power: 11000, water: 7200, rail: 4100,
+  roads: 2100, airports: 1100,
+};
+const PM_FREQS: PMRecord["frequency"][] = [
+  "Monthly", "Quarterly", "6-Monthly", "Annual", "Monthly", "Quarterly", "Annual", "6-Monthly",
+];
+const PM_LAST = [
+  "2025-10-01", "2025-09-01", "2025-07-01", "2025-04-01",
+  "2025-10-15", "2025-09-15", "2025-04-15", "2025-07-15",
+];
+const PM_NEXT = [
+  "2025-11-01", "2025-12-01", "2026-01-01", "2026-04-01",
+  "2025-11-15", "2025-12-15", "2026-04-15", "2026-01-15",
+];
+const PM_STATUSES: PMRecord["status"][] = [
+  "COMPLIANT", "COMPLIANT", "DUE SOON", "SCHEDULED", "OVERDUE", "COMPLIANT", "SCHEDULED", "DUE SOON",
+];
+
+export function getPMRecords(slug: string): PMRecord[] {
+  const industry = getIndustry(slug);
+  if (!industry) return [];
+  const assets = getAssetRegister(slug);
+  const base   = PM_BASES[slug] ?? 1000 + slug.length * 100;
+
+  return Array.from({ length: 8 }, (_, i) => {
+    const asset = assets[i % assets.length];
+    const freq  = PM_FREQS[i];
+    return {
+      id: `PM-${String(base + i).padStart(5, "0")}`,
+      description: `${freq} ${asset.assetType} maintenance`,
+      assetId: asset.id,
+      assetDescription: asset.description,
+      frequency: freq,
+      lastCompleted: PM_LAST[i],
+      nextDue: PM_NEXT[i],
+      status: PM_STATUSES[i],
+      assignedTo: TECHNICIANS[i % TECHNICIANS.length],
+    };
+  });
+}
+
+// ─── SLA Record Generator ─────────────────────────────────────────────────────
+
+const SLA_TEMPLATE = [
+  { desc: "Priority 1 — Emergency Response",    cat: "Response" as const,      target: "2h",     actual: "1h 47m", status: "ON TRACK" as const, compliance: 94 },
+  { desc: "Priority 2 — Urgent Work Orders",    cat: "Response" as const,      target: "4h",     actual: "4h 23m", status: "AT RISK"  as const, compliance: 81 },
+  { desc: "Priority 3 — Standard Work Orders",  cat: "Resolution" as const,    target: "5 days", actual: "4.2d",   status: "ON TRACK" as const, compliance: 91 },
+  { desc: "PM Completion Rate — Planned Works", cat: "PM Completion" as const, target: "95%",    actual: "88%",    status: "AT RISK"  as const, compliance: 88 },
+  { desc: "Statutory Compliance Inspections",   cat: "Compliance" as const,    target: "100%",   actual: "97%",    status: "BREACHED" as const, compliance: 97 },
+  { desc: "Asset Condition Assessment",         cat: "Compliance" as const,    target: "Annual", actual: "Current",status: "ON TRACK" as const, compliance: 100 },
+];
+
+export function getSLARecords(slug: string): SLARecord[] {
+  const base = PM_BASES[slug] ?? 1000;
+  return SLA_TEMPLATE.map((t, i) => ({
+    id: `SLA-${String(base + i + 10).padStart(5, "0")}`,
+    description: t.desc,
+    category: t.cat,
+    target: t.target,
+    actual: t.actual,
+    status: t.status,
+    compliance: t.compliance,
+  }));
+}
+
+// ─── Integration Record Generator ─────────────────────────────────────────────
+
+const INT_STATUSES: IntegrationRecord["status"][] = ["CONNECTED", "CONNECTED", "CONNECTED", "DEGRADED"];
+const INT_SYNCS = ["2025-11-15 06:14", "2025-11-15 06:02", "2025-11-15 05:58", "2025-11-14 18:30"];
+
+export function getIntegrationRecords(slug: string): IntegrationRecord[] {
+  const industry = getIndustry(slug);
+  if (!industry) return [];
+
+  return industry.integrations.map((name, i) => ({
+    name: `${name} (Read-only)`,
+    system: name,
+    endpoint: `https://api.demo.${name.toLowerCase().replace(/[\s/]+/g, "-")}.local/v2`,
+    scopes: `mbo.read · ${name.toLowerCase().replace(/\s+/g, ".")}.read · audit.read`,
+    status: INT_STATUSES[i % INT_STATUSES.length],
+    lastSync: INT_SYNCS[i % INT_SYNCS.length],
+  }));
+}
+
+// ─── Persona Records ──────────────────────────────────────────────────────────
+
+const PERSONA_LIST: PersonaRecord[] = [
+  { name: "Alex Chen",     role: "Platform Administrator", badge: "PLATFORM ADMIN",    desc: "Full platform access — configure integrations, manage platform settings, review the Trust Centre, and access all MASReady modules.",            startAt: "Delivery Intelligence dashboard → Trust Centre → Integrations" },
+  { name: "Priya Nair",    role: "Customer Admin",         badge: "CUSTOMER ADMIN",     desc: "Customer environment management — view the delivery programme, environment health, organisational settings, and user access.",                   startAt: "Home dashboard → Environment Profile → Licence Planning" },
+  { name: "Ethan Brooks",  role: "Solution Architect",     badge: "SOLUTION ARCHITECT", desc: "Upgrade architecture view — review the customisation inventory, patch impacts, integration design, and technical upgrade path.",                startAt: "Maximo Fingerprint → Patch Impact Analysis → Architecture" },
+  { name: "Maya Kelly",    role: "Maximo Developer",       badge: "DEVELOPER",          desc: "Developer deep-dive — inspect automation scripts, custom objects, screen changes, and the full environment fingerprint detail.",                  startAt: "Maximo Inventory → Skill Packs → Automation Script detail" },
+  { name: "Oliver Grant",  role: "Release Manager",        badge: "RELEASE MANAGER",    desc: "Delivery oversight — track the delivery confidence score, patch remediation progress, regression coverage, and release readiness gates.",        startAt: "Delivery Intelligence → Patch Impact → Adaptive Regression" },
+  { name: "Sofia Rivera",  role: "Work Requester",         badge: "REQUESTER",          desc: "End-user perspective — raise work requests, view asset records, and access operational dashboards with limited module scope.",                     startAt: "Home dashboard → Work Order view → Asset records" },
+  { name: "Hannah Wright", role: "Viewer / Auditor",       badge: "VIEWER / AUDITOR",   desc: "Governance read-only — review audit trails, trust boundary reports, compliance evidence, and delivery assurance across all modules.",             startAt: "Trust Centre → Audit Log → Delivery Intelligence (read-only)" },
+];
+
+export function getPersonas(): PersonaRecord[] {
+  return PERSONA_LIST;
+}

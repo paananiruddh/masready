@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, Zap, Truck, Building2, Pickaxe, Building, Flame, Droplets, Train, Navigation, PlaneTakeoff, Info } from "lucide-react";
+import { ArrowRight, ExternalLink, Zap, Truck, Building2, Pickaxe, Building, Flame, Droplets, Train, Navigation, PlaneTakeoff, Info } from "lucide-react";
 
 const INDUSTRIES = [
   {
@@ -214,14 +214,20 @@ export default function IndustryPreviews() {
                   </div>
                 </div>
 
-                <a
-                  href={`/industry/${industry.slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`mt-auto flex items-center justify-center gap-2 border ${industry.border} bg-background px-4 py-2.5 text-sm font-medium ${industry.color} hover:bg-card transition-colors`}
-                >
-                  Open {industry.title} Demo <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+                <div className="flex flex-col gap-2 mt-auto">
+                  <Link
+                    href={`/industry/${industry.slug}`}
+                    className={`flex items-center justify-center gap-2 border ${industry.border} bg-background px-4 py-2.5 text-sm font-medium ${industry.color} hover:bg-card transition-colors`}
+                  >
+                    View Industry Brief <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                  <Link
+                    href={`/demos/industries/${industry.slug}`}
+                    className="flex items-center justify-center gap-2 bg-primary text-white px-4 py-2.5 text-sm font-medium hover:bg-primary/90 transition-colors"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" /> Launch Full Demo
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>

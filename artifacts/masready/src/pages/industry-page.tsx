@@ -1,7 +1,7 @@
 import { Link, useParams } from "wouter";
 import {
   ArrowRight, Shield, Database, LayoutGrid, CheckCircle2, XCircle,
-  Server, Users, MapPin, Lock, ExternalLink, FileText, Activity,
+  Server, Users, MapPin, Lock, ExternalLink, FileText, Activity, Play,
 } from "lucide-react";
 import { DemoBanner } from "@/components/DemoBanner";
 import { getIndustry, getSyntheticSnapshot } from "@/lib/industryData";
@@ -637,15 +637,24 @@ export default function IndustryPage() {
                 </ol>
               </div>
 
-              <a
-                href="https://mas9power.masready.com.au"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors"
-              >
-                <ExternalLink className="w-4 h-4" />
-                Open MAS9 / MAS9Power Demo
-              </a>
+              <div className="flex flex-col gap-3">
+                <a
+                  href="https://mas9power.masready.com.au"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Open MAS9 / MAS9Power Demo
+                </a>
+                <Link
+                  href={`/demos/industries/${slug}`}
+                  className="inline-flex items-center gap-2 border border-primary text-primary px-6 py-3 text-sm font-medium hover:bg-primary/5 transition-colors"
+                >
+                  <Play className="w-4 h-4" />
+                  Launch {industry.title} Full Demo
+                </Link>
+              </div>
               <p className="text-xs text-muted-foreground mt-3">All data is fictional · No password required</p>
             </div>
 
