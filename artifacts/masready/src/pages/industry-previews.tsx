@@ -217,12 +217,14 @@ export default function IndustryPreviews() {
                   </div>
                 </div>
 
-                <Link
+                <a
                   href={`/industry/${industry.slug}`}
-                  className={`mt-auto flex items-center justify-center gap-2 rounded-lg border ${industry.border} bg-white px-4 py-2.5 text-sm font-semibold ${industry.color} hover:${industry.badgeBg} transition-colors`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`mt-auto flex items-center justify-center gap-2 rounded-lg border ${industry.border} bg-white px-4 py-2.5 text-sm font-semibold ${industry.color} transition-colors`}
                 >
-                  Open {industry.title} Preview <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                  Open {industry.title} Demo <ArrowRight className="w-3.5 h-3.5" />
+                </a>
               </motion.div>
             ))}
           </div>

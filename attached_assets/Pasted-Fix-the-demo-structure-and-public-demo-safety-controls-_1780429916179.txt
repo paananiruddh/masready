@@ -1,0 +1,205 @@
+Fix the demo structure and public demo safety controls.
+
+Important correction:
+
+The reference demo is **MAS9 / MAS9Power**.
+
+Do not call it Math Nine Power. Do not split or rename it. Use exactly:
+
+**MAS9 / MAS9Power**
+
+## Current issue
+
+The current 10 industry demos are wrong. They are only showing small snapshot cards / simple pages.
+
+They must work like the existing **MAS9 / MAS9Power** demo.
+
+Each industry must be a full standalone demo application experience, not a tiny preview.
+
+## Required full demo count
+
+Create / preserve exactly **11 full standalone demo experiences**:
+
+1. MAS9 / MAS9Power
+2. Industry Demo 1
+3. Industry Demo 2
+4. Industry Demo 3
+5. Industry Demo 4
+6. Industry Demo 5
+7. Industry Demo 6
+8. Industry Demo 7
+9. Industry Demo 8
+10. Industry Demo 9
+11. Industry Demo 10
+
+Do not count preview cards as demos.
+
+## Required behaviour
+
+When the user clicks an industry demo:
+
+* Open it as a full demo experience.
+* Open in a new window/tab.
+* Do not show it as a small embedded snapshot.
+* Do not keep all 10 industries as tiny previews only.
+* Each industry must have its own seed data.
+* Each industry must have its own dashboard, workflow, records, details, and realistic demo state.
+
+## Use MAS9 / MAS9Power as the reference
+
+Inspect the existing **MAS9 / MAS9Power** demo and replicate its application pattern.
+
+For each of the 10 industry demos, implement the same kind of structure:
+
+* Landing/dashboard page
+* Seeded demo data
+* Main workflow screen
+* Detail screen
+* Metrics/KPI cards
+* Example records
+* Scenario/user journey
+* Demo navigation
+* Reset/reseed option if MAS9 / MAS9Power has one
+* Any modal/detail interaction pattern used by MAS9 / MAS9Power
+
+Do not only copy the visual look. Copy the application structure and depth.
+
+## Demo hub behaviour
+
+Keep the industry gallery/hub, but make it only a launcher.
+
+The hub should show the 10 industries as clean launch cards, but the real demo must open separately as a full app.
+
+Suggested route pattern:
+
+```text
+/demos/industries/:industrySlug
+```
+
+or use the same route pattern already used by **MAS9 / MAS9Power**.
+
+Update links/buttons so each industry demo opens in a new window/tab:
+
+```html
+target="_blank"
+rel="noopener noreferrer"
+```
+
+## Public demo access
+
+The public demo should be enjoyable without arguments, blockers, mandatory setup, API keys, or Maximo configuration.
+
+Remove the two arguments / restrictions currently blocking or limiting public demo access.
+
+Let anyone open and enjoy:
+
+* MAS9 / MAS9Power
+* all 10 industry demos
+
+## Public demo safety
+
+For all public demo flows:
+
+* Disable all real API execution.
+* Disable all Maximo connection actions.
+* Disable all Maximo update/write/delete/test actions.
+* Disable all configurable Maximo URLs.
+* Disable all API key entry/use.
+* Disable all buttons that would connect to, test, write to, or alter any external Maximo system.
+* Do not allow visitors to connect their own Maximo instance.
+* Do not allow visitors to tamper with any Maximo URL/API setting.
+* Do not expose any secrets.
+
+Show Maximo/API areas as visible but disabled/read-only, so users understand what the real provisioned version can do.
+
+Add clear labels such as:
+
+```text
+Demo mode: real Maximo/API connection disabled.
+Available in provisioned private demo.
+```
+
+## Demo mode implementation
+
+Add a safe public demo mode.
+
+Suggested environment variable:
+
+```text
+PUBLIC_DEMO_MODE=true
+```
+
+When `PUBLIC_DEMO_MODE=true`:
+
+* all external API calls are blocked
+* all Maximo URLs are read-only or disabled
+* all API key fields are disabled
+* all connection/test/update buttons are disabled
+* all demos use seed data only
+* no user-entered endpoint can be called
+* no write/update/delete operation can run
+* no secret value is shown
+* no real Maximo connection can be attempted
+
+Only enable real Maximo/API connection features later in a provisioned/private demo mode when explicitly requested.
+
+## Implementation steps
+
+1. Audit **MAS9 / MAS9Power**:
+
+   * routes
+   * components
+   * data model
+   * seed data
+   * navigation
+   * dashboard structure
+   * workflow screens
+   * state handling
+   * reset/reseed behaviour
+   * modal/detail interactions
+
+2. Audit existing 10 industry demos:
+
+   * identify where they are only snapshot cards
+   * identify missing routes/components/data
+   * identify public demo blockers
+   * identify the two arguments/restrictions that currently block access
+
+3. Remove the public-demo blockers.
+
+4. Refactor the 10 industry demos to follow the **MAS9 / MAS9Power** full-app pattern.
+
+5. Create realistic seed data for each industry.
+
+6. Ensure each industry demo has:
+
+   * dashboard
+   * KPIs
+   * workflow screen
+   * detail view
+   * example records
+   * realistic seeded state
+   * disabled Maximo/API controls where relevant
+
+7. Ensure the hub only launches demos.
+
+8. Ensure all public demo API/Maximo controls are disabled.
+
+## Acceptance criteria
+
+* There are **11 full standalone demo experiences**.
+* **MAS9 / MAS9Power** remains working.
+* Each of the 10 industry demos opens like a real app, not a snapshot.
+* Each industry demo opens in a new tab/window from the hub.
+* Each industry demo has seed data.
+* Each industry demo has dashboard metrics.
+* Each industry demo has workflows and detail views.
+* The demo hub only launches demos.
+* Public users do not need arguments or setup.
+* Public users cannot connect to Maximo.
+* Public users cannot enter or change Maximo URLs for live connection.
+* Public users cannot enter or use API keys.
+* Public users cannot perform real API tests or updates.
+* Disabled Maximo/API controls are visible enough to show future capability.
+* Real API features are reserved for future provisioned/private demo mode only.
+* The name **MAS9 / MAS9Power** is used exactly and never split or renamed.

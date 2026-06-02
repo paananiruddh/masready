@@ -171,13 +171,41 @@ export default function IndustryPage() {
   }));
 
   const roles = [
-    { name: "Alex Chen",     role: "Platform Administrator", dept: "IT Operations",  badge: "PLATFORM ADMIN" },
-    { name: "Priya Nair",    role: "Customer Admin",         dept: "Programme",      badge: "CUSTOMER ADMIN" },
-    { name: "Ethan Brooks",  role: "Solution Architect",     dept: "Architecture",   badge: "SOLUTION ARCHITECT" },
-    { name: "Maya Kelly",    role: "Maximo Developer",       dept: "Delivery",       badge: "DEVELOPER" },
-    { name: "Oliver Grant",  role: "Release Manager",        dept: "Delivery",       badge: "RELEASE MANAGER" },
-    { name: "Sofia Rivera",  role: "Work Requester",         dept: "Operations",     badge: "REQUESTER" },
-    { name: "Hannah Wright", role: "Viewer / Auditor",       dept: "Governance",     badge: "VIEWER / AUDITOR" },
+    {
+      name: "Alex Chen", role: "Platform Administrator", badge: "PLATFORM ADMIN",
+      desc: "Full platform access — configure integrations, manage platform settings, review the Trust Centre, and access all MASReady modules.",
+      startAt: "Delivery Intelligence dashboard → Trust Centre → Integrations",
+    },
+    {
+      name: "Priya Nair", role: "Customer Admin", badge: "CUSTOMER ADMIN",
+      desc: "Customer environment management — view the delivery programme, environment health, organisational settings, and user access.",
+      startAt: "Home dashboard → Environment Profile → Licence Planning",
+    },
+    {
+      name: "Ethan Brooks", role: "Solution Architect", badge: "SOLUTION ARCHITECT",
+      desc: "Upgrade architecture view — review the customisation inventory, patch impacts, integration design, and technical upgrade path.",
+      startAt: "Maximo Fingerprint → Patch Impact Analysis → Architecture",
+    },
+    {
+      name: "Maya Kelly", role: "Maximo Developer", badge: "DEVELOPER",
+      desc: "Developer deep-dive — inspect automation scripts, custom objects, screen changes, and the full environment fingerprint detail.",
+      startAt: "Maximo Inventory → Skill Packs → Automation Script detail",
+    },
+    {
+      name: "Oliver Grant", role: "Release Manager", badge: "RELEASE MANAGER",
+      desc: "Delivery oversight — track the delivery confidence score, patch remediation progress, regression coverage, and release readiness gates.",
+      startAt: "Delivery Intelligence → Patch Impact → Adaptive Regression",
+    },
+    {
+      name: "Sofia Rivera", role: "Work Requester", badge: "REQUESTER",
+      desc: "End-user perspective — raise work requests, view asset records, and access operational dashboards with limited module scope.",
+      startAt: "Home dashboard → Work Order view → Asset records",
+    },
+    {
+      name: "Hannah Wright", role: "Viewer / Auditor", badge: "VIEWER / AUDITOR",
+      desc: "Governance read-only — review audit trails, trust boundary reports, compliance evidence, and delivery assurance across all modules.",
+      startAt: "Trust Centre → Audit Log → Delivery Intelligence (read-only)",
+    },
   ];
 
   return (
@@ -567,46 +595,92 @@ export default function IndustryPage() {
                   0 mutations across all integrations.
                 </p>
               </div>
+              <div className="mt-3 p-4 border border-amber-200 bg-amber-50 text-xs text-amber-800">
+                <span className="font-semibold">Demo mode: real Maximo / API connection disabled.</span>{" "}
+                Integration reads shown above use synthetic seed data only. Live connection to Maximo and external systems is available in a provisioned private demo.
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Demo Roles ── */}
+      {/* ── Demo Access ── */}
       <section className="border-b border-border py-20">
         <div className="container mx-auto px-6 lg:px-16 max-w-6xl">
-          <div className="mb-12">
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">Demo Access</p>
-            <h2 className="text-3xl font-semibold" style={serif}>7 roles. No password required.</h2>
-            <p className="text-sm text-muted-foreground mt-3 max-w-xl leading-relaxed">
-              The live demo tenant lets you explore MASReady through seven distinct fictional personas — each with
-              a different permission scope, module access, and view of the same environment.
-            </p>
-          </div>
-          <div className="border border-border bg-card">
-            {roles.map((r, i) => (
-              <div key={i} className="flex items-center gap-4 px-6 py-4 border-b border-border last:border-0 hover:bg-background transition-colors">
-                <div className="w-8 h-8 rounded-full bg-border flex items-center justify-center text-xs font-bold text-muted-foreground flex-shrink-0">
-                  {r.name.split(" ").map(n => n[0]).join("")}
-                </div>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold">{r.name}</div>
-                  <div className="text-xs text-muted-foreground">{r.dept}</div>
-                </div>
-                <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground hidden md:block">{r.badge}</div>
-                <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+          <div className="grid lg:grid-cols-12 gap-16">
+
+            {/* Left — how to login */}
+            <div className="lg:col-span-4">
+              <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">Demo Access</p>
+              <h2 className="text-3xl font-semibold leading-snug mb-4" style={serif}>
+                7 roles.<br />No password required.
+              </h2>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-8">
+                Each role gives a different view of the same MAS9 / MAS9Power environment. Click any card to enter the live demo as that persona.
+              </p>
+
+              <div className="space-y-5 mb-8">
+                {[
+                  { n: "1", label: "Click any role card →",     detail: "Choose the persona you want to explore" },
+                  { n: "2", label: "Opens in a new tab",         detail: "You'll land on mas9power.masready.com.au" },
+                  { n: "3", label: 'Select "Demo Mode" tab',    detail: "Top-left of the login screen — it's the default" },
+                  { n: "4", label: "Click your chosen role",     detail: "No password needed — you're straight in" },
+                ].map((s, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">{s.n}</div>
+                    <div>
+                      <div className="text-sm font-semibold">{s.label}</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">{s.detail}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div className="mt-6 text-center">
-            <Link
-              href="/launch"
-              className="inline-flex items-center gap-2 bg-primary text-white px-8 py-3.5 text-sm font-medium hover:bg-primary/90 transition-colors"
-            >
-              <ExternalLink className="w-4 h-4" />
-              Request an Enterprise Demo — Select a Role
-            </Link>
-            <p className="text-xs text-muted-foreground mt-3">All data is fictional · No password required in demo mode</p>
+
+              <a
+                href="https://mas9power.masready.com.au"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Open MAS9 / MAS9Power Demo
+              </a>
+              <p className="text-xs text-muted-foreground mt-2">All data is fictional · No password required</p>
+            </div>
+
+            {/* Right — role cards */}
+            <div className="lg:col-span-8">
+              <div className="border border-border bg-background">
+                {roles.map((r, i) => (
+                  <a
+                    key={i}
+                    href="https://mas9power.masready.com.au"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-4 px-6 py-5 border-b border-border last:border-0 hover:bg-card transition-colors group"
+                  >
+                    <div className="w-9 h-9 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-xs font-bold text-primary flex-shrink-0 mt-0.5">
+                      {r.name.split(" ").map((n: string) => n[0]).join("")}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm font-semibold mb-1">{r.name} — MAS9 Power {r.role}</div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xs font-semibold uppercase tracking-widest text-primary">{r.badge}</span>
+                        <span className="text-xs text-muted-foreground">·</span>
+                        <span className="text-xs font-mono text-muted-foreground">MAS9_POWER</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-1">{r.desc}</p>
+                      <p className="text-xs font-medium text-primary/80">Start at: {r.startAt}</p>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 mt-2" />
+                  </a>
+                ))}
+              </div>
+              <p className="text-xs text-muted-foreground mt-3">
+                All data is fictional · No password required ·{" "}
+                <a href="https://mas9power.masready.com.au" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">mas9power.masready.com.au</a>
+              </p>
+            </div>
           </div>
         </div>
       </section>
