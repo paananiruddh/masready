@@ -489,31 +489,32 @@ export default function MAS9Power() {
         <div className="container mx-auto px-6 lg:px-16 max-w-6xl">
           <div className="grid lg:grid-cols-12 gap-16">
 
-            {/* Left — how to login */}
+            {/* Left — instructions */}
             <div className="lg:col-span-4">
               <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">Demo Access</p>
               <h2 className="text-3xl font-semibold leading-snug mb-4" style={serif}>
                 7 roles.<br />No password required.
               </h2>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-                Each role gives a different view of the MAS9 / MAS9Power environment. Click any card to enter the live demo as that persona.
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                The MAS9 / MAS9Power demo opens in a new tab. Select any role — no account needed.
               </p>
 
-              <div className="space-y-5 mb-8">
-                {[
-                  { n: "1", label: "Click any role card →",     detail: "Choose the persona you want to explore" },
-                  { n: "2", label: "Opens in a new tab",         detail: "You'll land on mas9power.masready.com.au" },
-                  { n: "3", label: 'Select "Demo Mode" tab',    detail: "Top-left of the login screen — it's the default" },
-                  { n: "4", label: "Click your chosen role",     detail: "No password needed — you're straight in" },
-                ].map((s, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">{s.n}</div>
-                    <div>
-                      <div className="text-sm font-semibold">{s.label}</div>
-                      <div className="text-xs text-muted-foreground mt-0.5">{s.detail}</div>
-                    </div>
-                  </div>
-                ))}
+              <div className="border border-border bg-card p-6 mb-6">
+                <p className="text-xs font-semibold uppercase tracking-widest mb-4">How to enter</p>
+                <ol className="space-y-3">
+                  {[
+                    "Click any role card on the right.",
+                    "The MAS9Power demo opens in a new tab.",
+                    "On the login screen, select the Demo Mode tab.",
+                    "Click the matching demo role.",
+                    "No password is required in Demo Mode.",
+                  ].map((step, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="w-5 h-5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
+                      <span className="text-sm text-muted-foreground leading-relaxed">{step}</span>
+                    </li>
+                  ))}
+                </ol>
               </div>
 
               <a
@@ -525,12 +526,12 @@ export default function MAS9Power() {
                 <ExternalLink className="w-4 h-4" />
                 Open MAS9 / MAS9Power Demo
               </a>
-              <p className="text-xs text-muted-foreground mt-2">All data is fictional · No password required</p>
+              <p className="text-xs text-muted-foreground mt-3">All data is fictional · No password required</p>
             </div>
 
             {/* Right — role cards */}
             <div className="lg:col-span-8">
-              <div className="border border-border bg-background">
+              <div className="border border-border">
                 {ROLES.map((r, i) => (
                   <a
                     key={i}
@@ -543,24 +544,29 @@ export default function MAS9Power() {
                       {r.name.split(" ").map(n => n[0]).join("")}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold mb-1">{r.name} — MAS9 Power {r.role}</div>
+                      <div className="flex items-start justify-between gap-3 mb-1">
+                        <span className="text-sm font-semibold leading-snug">{r.name} — MAS9 Power {r.role}</span>
+                      </div>
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-xs font-semibold uppercase tracking-widest text-primary">{r.badge}</span>
                         <span className="text-xs text-muted-foreground">·</span>
                         <span className="text-xs font-mono text-muted-foreground">MAS9_POWER</span>
                       </div>
-                      <p className="text-xs text-muted-foreground leading-relaxed mb-1">{r.desc}</p>
-                      <p className="text-xs font-medium text-primary/80">Start at: {r.startAt}</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-1.5">{r.desc}</p>
+                      <p className="text-xs text-muted-foreground">
+                        <span className="font-semibold text-foreground">Start at:</span> {r.startAt}
+                      </p>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 mt-2" />
+                    <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 mt-1.5" />
                   </a>
                 ))}
               </div>
               <p className="text-xs text-muted-foreground mt-3">
-                All data is fictional · No password required ·{" "}
+                All data is fictional · No password required in Demo Mode ·{" "}
                 <a href="https://mas9power.masready.com.au" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">mas9power.masready.com.au</a>
               </p>
             </div>
+
           </div>
         </div>
       </section>

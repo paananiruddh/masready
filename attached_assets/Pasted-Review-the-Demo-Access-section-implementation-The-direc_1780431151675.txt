@@ -1,0 +1,109 @@
+Review the Demo Access section implementation.
+
+The direction is mostly right, but make sure the section does not just become another pasted block. It must fully match the MASReady page theme and look polished.
+
+## Confirmed requirement
+
+The live demo login is:
+
+```text
+https://mas9power.masready.com.au
+```
+
+Do not rename or split:
+
+```text
+MAS9 / MAS9Power
+```
+
+## Required Demo Access behaviour
+
+On both:
+
+```text
+/mas9-power
+/industry/:slug
+```
+
+the Demo Access section should explain how to enter the live demo using the real login experience.
+
+## Required content structure
+
+Add a polished section with:
+
+### Left side: How to enter the demo
+
+Use clear numbered instructions:
+
+1. Click any role card below.
+2. The MAS9Power demo opens in a new tab.
+3. On the login screen, select the **Demo Mode** tab.
+4. Click the matching demo role.
+5. No password is required in Demo Mode.
+
+### Right side: Demo role cards
+
+Show 7 clickable role cards matching the live demo login personas.
+
+Each card must include:
+
+* avatar initials
+* full persona name
+* role title
+* tenant tag: `MAS9_POWER`
+* short description of what that role can see
+* “Start at” recommendation
+* external-link/arrow indicator
+* link to:
+
+```text
+https://mas9power.masready.com.au
+```
+
+Open in a new tab with:
+
+```html
+target="_blank"
+rel="noopener noreferrer"
+```
+
+## Design requirements
+
+The Demo Access section must use the same MASReady / MAS9 / MAS9Power theme:
+
+* same container width
+* same card styling
+* same border radius
+* same gradients/background treatment
+* same typography scale
+* same spacing
+* same hover treatment
+* same responsive grid behaviour
+* same button/link styling
+
+Do not make it look like a raw list, pasted text, or separate mini-layout.
+
+## Important safety
+
+This section should only link to the demo login.
+
+Do not add:
+
+* API key fields
+* Maximo URL fields
+* live connection buttons
+* user-editable endpoint fields
+* password fields
+* anything that lets visitors connect their own Maximo
+
+## QA checks
+
+After implementation, verify:
+
+* `/mas9-power` loads cleanly
+* at least one `/industry/:slug` page loads cleanly
+* Demo Access section appears in the correct location
+* links open `https://mas9power.masready.com.au` in a new tab
+* page does not become half-width or visually broken
+* mobile layout stacks cleanly
+* MAS9 / MAS9Power naming is exact
