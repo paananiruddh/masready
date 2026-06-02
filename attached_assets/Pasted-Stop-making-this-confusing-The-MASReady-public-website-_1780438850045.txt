@@ -1,0 +1,320 @@
+Stop making this confusing.
+
+The MASReady public website must be **fully pre-rendered**.
+
+Do not rely on “React SPA handles all routes” as the final answer.
+
+The live app can still hydrate as React after load, but every public route must have static pre-rendered HTML generated at build time.
+
+## Core rule
+
+All public MASReady website routes must be pre-rendered.
+
+React interactivity is fine after hydration.
+
+But the initial HTML for every public page must exist at build output time.
+
+## Source of truth
+
+The source of truth remains:
+
+```text
+artifacts/masready/src/
+```
+
+Build output remains:
+
+```text
+artifacts/masready/dist/public/
+```
+
+Do not use stale root `.html` files as the source of truth.
+
+Files like these are stale/legacy/SEO-only and must not drive the current site:
+
+```text
+mas9-power.html
+demo-walkthrough.html
+launch.html
+architecture.html
+contact.html
+docs.html
+media.html
+madd.html
+```
+
+If they remain, document them as legacy only.
+
+## Required architecture
+
+Implement a proper pre-render build step for the React/Vite/wouter app.
+
+At build time, generate static HTML files for every public route.
+
+Expected output structure should be like:
+
+```text
+artifacts/masready/dist/public/index.html
+artifacts/masready/dist/public/mas9-power/index.html
+artifacts/masready/dist/public/industry-previews/index.html
+artifacts/masready/dist/public/industry/utilities/index.html
+artifacts/masready/dist/public/demos/industries/utilities/index.html
+artifacts/masready/dist/public/demo-walkthrough/index.html
+artifacts/masready/dist/public/contact/index.html
+```
+
+or an equivalent static-hosting-compatible folder structure.
+
+The important point: every route has its own generated HTML.
+
+## Required pre-rendered route list
+
+Pre-render all public routes.
+
+Start with these:
+
+```text
+/
+/mas9-power
+/industry-previews
+/launch
+/preview-studio
+/demo-walkthrough
+/contact
+/trust
+/data-modes
+/architecture
+/docs
+/media
+/madd
+```
+
+Also pre-render every industry marketing route from the actual `industryData.ts` source of truth:
+
+```text
+/industry/:slug
+```
+
+Also pre-render every full industry demo route from the same source:
+
+```text
+/demos/industries/:slug
+```
+
+Do not hardcode incorrect industry slugs. Read the actual industry slug list from the data source used by the app.
+
+## Query routes
+
+The following URLs must work correctly:
+
+```text
+/launch?mode=persisted
+/preview-studio?industry=utilities
+```
+
+Static hosting may not create separate query-string HTML files. That is fine.
+
+But the base routes must be pre-rendered:
+
+```text
+/launch
+/preview-studio
+```
+
+and after hydration they must correctly read the query string and display the correct state.
+
+Verify both query URLs directly.
+
+## Required implementation options
+
+Use the least disruptive reliable method for Vite + React + wouter.
+
+Acceptable approaches:
+
+1. Custom Node prerender script using React server rendering.
+2. Vite-compatible static pre-render plugin.
+3. Deterministic crawler-based prerender after build, only if it generates stable route HTML.
+4. Another clean static generation approach that works with the existing app.
+
+Do not switch the whole project to another framework unless absolutely necessary.
+
+## Required package scripts
+
+Add or update package scripts so there is one clear command:
+
+```bash
+npm run build
+```
+
+That command must:
+
+1. build the React app
+2. pre-render all public routes
+3. output static HTML route files into `dist/public`
+
+If needed, also add:
+
+```bash
+npm run prerender
+```
+
+but `npm run build` must include it.
+
+## Required route manifest
+
+Create a route manifest file or script.
+
+Example:
+
+```text
+scripts/prerender-routes.ts
+```
+
+or:
+
+```text
+src/prerender-routes.ts
+```
+
+It must include:
+
+* static routes
+* dynamic industry routes generated from industry data
+* dynamic industry demo routes generated from industry data
+
+Do not let the list silently drift from the app.
+
+## Required verification script
+
+Add a verification script that checks pre-render output exists.
+
+Example command:
+
+```bash
+npm run verify:prerender
+```
+
+It must check that generated files exist for all expected routes.
+
+For example:
+
+```text
+dist/public/mas9-power/index.html
+dist/public/industry/utilities/index.html
+dist/public/demos/industries/utilities/index.html
+dist/public/demo-walkthrough/index.html
+dist/public/contact/index.html
+```
+
+The script should fail if any required route was not generated.
+
+## Public demo safety must remain
+
+Pre-rendering must not break demo safety.
+
+Confirm public demo mode still enforces:
+
+```text
+PUBLIC_DEMO_MODE=true
+```
+
+Public routes must still have:
+
+* no live Maximo API execution
+* no Maximo connection test
+* no API key entry/use
+* no editable Maximo URLs
+* no write/update/delete actions
+* seed data only
+* integrations visible but disabled
+* no secrets exposed
+
+## Hydration must work
+
+After pre-rendering, React must hydrate without breaking:
+
+* demo tabs
+* work order filters
+* asset filters
+* drawers/modals
+* animation
+* preview-studio query parameters
+* launch persisted mode query parameters
+* debug marker with `?debug=1`
+
+No hydration warnings.
+
+No blank page.
+
+No duplicate content.
+
+## Important naming rule
+
+Use exact naming:
+
+```text
+MAS9 / MAS9Power
+```
+
+Do not call it Math Nine Power.
+
+Do not split or rename it.
+
+## Update the runbook
+
+Update:
+
+```text
+RECOVERY_AND_RUNBOOK.md
+```
+
+Add a clear section:
+
+```text
+Pre-rendering all public routes
+```
+
+Include:
+
+* why all public routes are pre-rendered
+* exact build command
+* exact pre-render command if separate
+* exact verify command
+* output folder
+* how routes are generated
+* how industry routes are generated
+* how query URLs are handled
+* how to add a new public route
+* how to check direct-load behaviour
+* how to deploy safely
+
+## Required final report
+
+After implementation, report:
+
+1. Pre-rendering approach used.
+2. Files changed.
+3. Static route list.
+4. Dynamic industry route generation method.
+5. Output files generated.
+6. Query route handling.
+7. Exact commands to run manually.
+8. Verification command result.
+9. Confirmation `npm run build` includes pre-rendering.
+10. Confirmation direct route loads work.
+11. Confirmation React hydration works.
+12. Confirmation stale root `.html` files are not used as current source of truth.
+
+## Acceptance criteria
+
+* All public routes are pre-rendered.
+* Every industry marketing route is pre-rendered.
+* Every industry demo app route is pre-rendered.
+* `/launch?mode=persisted` works after hydration.
+* `/preview-studio?industry=utilities` works after hydration.
+* `npm run build` generates route HTML files.
+* `npm run verify:prerender` passes.
+* React hydration still works.
+* Public demo safety remains enforced.
+* MAS9 / MAS9Power naming remains exact.
+* No one claims “SPA handles it” as sufficient anymore.
