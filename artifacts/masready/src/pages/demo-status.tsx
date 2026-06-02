@@ -21,36 +21,36 @@ const WALKTHROUGH_ROUTES = [
 export default function DemoStatus() {
   return (
     <div className="min-h-screen">
-    <DemoBanner variant="seed-data" />
+    <DemoBanner variant="planning" />
     <div className="container mx-auto px-4 py-16 max-w-3xl">
       <div className="mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium mb-4">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-xs font-medium mb-4">
           Demo Environment
         </div>
         <h1 className="text-4xl font-bold mb-3">Demo Status</h1>
         <p className="text-muted-foreground">
           Fictional tenant — Maximo 7.6.1.3 → MAS 9.x upgrade planning scenario.
-          All data is seeded demo data. No live Maximo connection active.
+          All data is fictional. No live Maximo connection active.
         </p>
       </div>
 
-      <div className="rounded-xl border border-white/10 bg-card p-6 mb-6">
+      <div className="rounded-xl border border-border bg-card p-6 mb-6">
         <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-          <Shield className="w-5 h-5 text-green-400" />
+          <Shield className="w-5 h-5 text-emerald-600" />
           Tenant Profile
         </h2>
         <div className="grid grid-cols-2 gap-3 text-sm">
           {[
             { label: "Tenant", value: "Fictional tenant — Maximo 7.6.1.3 → MAS 9.x upgrade planning scenario" },
-            { label: "Data mode", value: "demo_seed" },
+            { label: "Data mode", value: "Synthetic (fictional)" },
             { label: "Current platform", value: "Maximo 7.6.1.3" },
             { label: "Target platform", value: "IBM MAS Manage 9.x" },
             { label: "Trust boundary", value: "REVIEW ONLY" },
             { label: "Mutations", value: "0" },
-            { label: "Seed files", value: String(DEMO_METRICS.seedFiles) },
+            { label: "Data files", value: String(DEMO_METRICS.seedFiles) },
             { label: "Customisations", value: String(DEMO_METRICS.customisationsScanned) },
           ].map(row => (
-            <div key={row.label} className="flex justify-between py-2 border-b border-white/5">
+            <div key={row.label} className="flex justify-between py-2 border-b border-border/50">
               <span className="text-muted-foreground">{row.label}</span>
               <span className="font-medium">{row.value}</span>
             </div>
@@ -58,24 +58,24 @@ export default function DemoStatus() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-white/10 bg-card p-6">
+      <div className="rounded-xl border border-border bg-card p-6">
         <h2 className="text-lg font-semibold mb-4">12-Scene Walkthrough — Route Status</h2>
         <div className="space-y-2">
           {WALKTHROUGH_ROUTES.map(item => (
-            <div key={item.scene} className="flex items-center justify-between py-2 px-3 rounded-lg bg-background/50 text-sm">
+            <div key={item.scene} className="flex items-center justify-between py-2 px-3 rounded-lg bg-muted/50 text-sm">
               <div className="flex items-center gap-3">
                 <span className="text-xs font-mono text-muted-foreground w-8">{item.scene}</span>
                 <span className="font-medium">{item.name}</span>
               </div>
               <div className="flex items-center gap-2">
                 {item.status === "ready" && (
-                  <><CheckCircle2 className="w-4 h-4 text-green-400" /><span className="text-green-400 text-xs">Ready</span></>
+                  <><CheckCircle2 className="w-4 h-4 text-emerald-600" /><span className="text-emerald-600 text-xs">Ready</span></>
                 )}
                 {item.status === "gated" && (
                   <><XCircle className="w-4 h-4 text-muted-foreground" /><span className="text-muted-foreground text-xs">Feature gated</span></>
                 )}
                 {item.status === "auth-required" && (
-                  <><AlertCircle className="w-4 h-4 text-yellow-400" /><span className="text-yellow-400 text-xs">Auth required</span></>
+                  <><AlertCircle className="w-4 h-4 text-amber-600" /><span className="text-amber-600 text-xs">Auth required</span></>
                 )}
               </div>
             </div>

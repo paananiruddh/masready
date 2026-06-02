@@ -16,14 +16,14 @@ const CUSTOMISATIONS = [
 
 const IMPACT_CONFIG = {
   high: { label: "High", color: "text-destructive", bg: "bg-destructive/10", border: "border-destructive/20" },
-  medium: { label: "Medium", color: "text-yellow-400", bg: "bg-yellow-400/10", border: "border-yellow-400/20" },
-  low: { label: "Low", color: "text-green-400", bg: "bg-green-400/10", border: "border-green-400/20" },
+  medium: { label: "Medium", color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-200" },
+  low: { label: "Low", color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-200" },
 } as const;
 
 export default function MaximoInventory() {
   return (
     <div className="min-h-screen">
-      <DemoBanner variant="seed-data" />
+      <DemoBanner variant="planning" />
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium mb-4">
@@ -36,9 +36,9 @@ export default function MaximoInventory() {
           </p>
 
           <div className="grid md:grid-cols-3 gap-4 mb-10">
-            <div className="rounded-xl border border-white/10 bg-card p-5">
+            <div className="rounded-xl border border-border bg-card p-5">
               <div className="text-xs text-muted-foreground mb-1">Current Platform</div>
-              <div className="text-lg font-bold text-white">Maximo 7.6.1.3</div>
+              <div className="text-lg font-bold text-foreground">Maximo 7.6.1.3</div>
               <div className="text-xs text-muted-foreground mt-1">On-premise deployment</div>
             </div>
             <div className="rounded-xl border border-accent/20 bg-accent/5 p-5">
@@ -46,20 +46,20 @@ export default function MaximoInventory() {
               <div className="text-lg font-bold text-accent">IBM MAS Manage 9.x</div>
               <div className="text-xs text-muted-foreground mt-1">Planning stage</div>
             </div>
-            <div className="rounded-xl border border-white/10 bg-card p-5">
+            <div className="rounded-xl border border-border bg-card p-5">
               <div className="text-xs text-muted-foreground mb-1">Customisations Scanned</div>
-              <div className="text-lg font-bold text-white">{DEMO_METRICS.customisationsScanned}</div>
+              <div className="text-lg font-bold text-foreground">{DEMO_METRICS.customisationsScanned}</div>
               <div className="text-xs text-muted-foreground mt-1">Across DEV / TEST / PROD</div>
             </div>
           </div>
 
-          <div className="rounded-xl border border-white/10 bg-card overflow-hidden mb-6">
-            <div className="px-6 py-4 border-b border-white/10 flex items-center gap-3">
+          <div className="rounded-xl border border-border bg-card overflow-hidden mb-6">
+            <div className="px-6 py-4 border-b border-border flex items-center gap-3">
               <Server className="w-5 h-5 text-primary" />
               <h2 className="font-semibold">Customisation Baseline</h2>
               <span className="ml-auto text-xs text-muted-foreground">{CUSTOMISATIONS.length} shown of {DEMO_METRICS.customisationsScanned}</span>
             </div>
-            <div className="divide-y divide-white/5">
+            <div className="divide-y divide-border">
               {CUSTOMISATIONS.map((c, i) => {
                 const cfg = IMPACT_CONFIG[c.impact as keyof typeof IMPACT_CONFIG];
                 return (
@@ -73,8 +73,8 @@ export default function MaximoInventory() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="font-mono text-xs text-muted-foreground">{c.id}</span>
-                        <span className="text-xs px-1.5 py-0.5 rounded bg-white/5 text-white/60">{c.type}</span>
-                        <span className="font-medium text-sm text-white">{c.name}</span>
+                        <span className="text-xs px-1.5 py-0.5 rounded bg-muted text-muted-foreground">{c.type}</span>
+                        <span className="font-medium text-sm text-foreground">{c.name}</span>
                       </div>
                       <p className="text-xs text-muted-foreground">{c.change}</p>
                     </div>
@@ -90,10 +90,10 @@ export default function MaximoInventory() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-green-400/20 bg-green-400/5 p-4 flex items-start gap-3">
-            <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+          <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 flex items-start gap-3">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
             <p className="text-sm text-muted-foreground">
-              <span className="text-green-400 font-semibold">Read-only scan complete. </span>
+              <span className="text-emerald-600 font-semibold">Read-only scan complete. </span>
               Zero mutations. Zero SQL writes. No changes made to any Maximo environment.
             </p>
           </div>

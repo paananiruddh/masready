@@ -5,17 +5,17 @@ import { DEMO_METRICS } from "@/lib/constants";
 
 const DIMENSIONS = [
   { label: "Requirement Coverage", score: 91, color: "bg-primary" },
-  { label: "Patch Impact Readiness", score: 74, color: "bg-yellow-400" },
+  { label: "Patch Impact Readiness", score: 74, color: "bg-amber-500" },
   { label: "Bot Skill-Pack Coverage", score: 82, color: "bg-accent" },
   { label: "License Headroom", score: 88, color: "bg-primary" },
-  { label: "Trust Boundary", score: 100, color: "bg-green-400" },
+  { label: "Trust Boundary", score: 100, color: "bg-emerald-500" },
   { label: "Evidence Completeness", score: 79, color: "bg-accent" },
 ];
 
 export default function DeliveryIntelligence() {
   return (
     <div className="min-h-screen">
-      <DemoBanner variant="seed-data" />
+      <DemoBanner variant="planning" />
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium mb-4">
@@ -24,7 +24,7 @@ export default function DeliveryIntelligence() {
           <h1 className="text-4xl font-bold mb-4">Delivery Intelligence</h1>
           <p className="text-muted-foreground mb-10">
             Review bot-generated delivery intelligence reports — evidence-backed, not AI-speculative.
-            All data shown is fictional demo seed data.
+            All figures reflect the fictional MAS9 Power environment profile.
           </p>
 
           {/* Confidence score */}
@@ -32,13 +32,13 @@ export default function DeliveryIntelligence() {
             <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Delivery Confidence Score</div>
             <div className="text-7xl font-black text-accent mb-2">87<span className="text-3xl text-muted-foreground">/100</span></div>
             <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-              <Shield className="w-4 h-4 text-green-400" />
+              <Shield className="w-4 h-4 text-emerald-600" />
               <span>Trust boundary: REVIEW ONLY · Zero mutations</span>
             </div>
           </div>
 
           {/* Dimension breakdown */}
-          <div className="rounded-xl border border-white/10 bg-card p-6 mb-6">
+          <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h2 className="font-semibold mb-4">Score Breakdown by Dimension</h2>
             <div className="space-y-4">
               {DIMENSIONS.map((d, i) => (
@@ -47,7 +47,7 @@ export default function DeliveryIntelligence() {
                     <span className="text-muted-foreground">{d.label}</span>
                     <span className="font-medium">{d.score}%</span>
                   </div>
-                  <div className="h-2 rounded-full bg-white/10">
+                  <div className="h-2 rounded-full bg-muted">
                     <motion.div
                       className={`h-full rounded-full ${d.color}`}
                       initial={{ width: 0 }}
@@ -75,11 +75,11 @@ export default function DeliveryIntelligence() {
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.05 }}
-                className="flex items-start gap-3 rounded-lg border border-white/10 bg-card/60 px-4 py-3"
+                className="flex items-start gap-3 rounded-lg border border-border bg-card px-4 py-3"
               >
                 {f.type === "ok"
-                  ? <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
-                  : <AlertTriangle className="w-4 h-4 text-yellow-400 shrink-0 mt-0.5" />}
+                  ? <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  : <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />}
                 <span className="text-sm text-muted-foreground">{f.text}</span>
               </motion.div>
             ))}

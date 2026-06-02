@@ -13,9 +13,9 @@ const STEPS = [
     role: "Admin",
     time: "1 min",
     icon: User,
-    color: "text-blue-400",
-    bg: "bg-blue-400/10",
-    border: "border-blue-400/30",
+    color: "text-blue-600",
+    bg: "bg-blue-50",
+    border: "border-blue-200",
     summary: "Proves multi-tenant auth, customer scoping",
     detail: "Log in as the MAS9 Power tenant admin. Demonstrate how switching between customers scopes all data — requirements, patches, licences — to a single client. No cross-tenant data leakage.",
     proof: ["Multi-tenant login screen", "Customer selector dropdown", "Scoped dashboard refresh"],
@@ -29,17 +29,17 @@ const STEPS = [
     bg: "bg-primary/10",
     border: "border-primary/30",
     summary: "Proves unified confidence score, top-level posture",
-    detail: "The delivery confidence score aggregates requirements coverage, patch risk, skill gaps, and licence headroom into one number. In this demo the score is 87/100 from seeded data. In a live deployment, every contributing factor reflects your real environment. Walk through each dimension to explain the methodology.",
-    proof: ["Intelligence Score: 87/100 (demo seed data)", "Score breakdown by dimension", "Trend sparkline"],
+    detail: "The delivery confidence score aggregates requirements coverage, patch risk, skill gaps, and licence headroom into one number. The score of 87/100 reflects the MAS9 Power environment fingerprint — 46 customisations detected, 7 patch impacts identified, 77% AppPoint utilisation, and 82% bot skill-pack coverage. In a live deployment, every contributing factor reflects your real environment.",
+    proof: ["Intelligence Score: 87/100 — based on environment fingerprint", "Score breakdown by dimension", "Trend sparkline"],
   },
   {
     title: "Trust Center",
     role: "Admin",
     time: "1 min",
     icon: Shield,
-    color: "text-green-400",
-    bg: "bg-green-400/10",
-    border: "border-green-400/30",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
+    border: "border-emerald-200",
     summary: "Proves read-only design, no mutation confirmation",
     detail: "The Trust Center shows every integration in READ-ONLY mode. No SQL execution, no Jira write, no Maximo write. The platform is architecturally constrained — write operations are impossible by design, not just by configuration.",
     proof: ["Zero mutations — platform is architecturally read-only", "Read-only integration list", "Trust boundary = REVIEW ONLY"],
@@ -49,11 +49,11 @@ const STEPS = [
     role: "Admin",
     time: "1 min",
     icon: Settings,
-    color: "text-purple-400",
-    bg: "bg-purple-400/10",
-    border: "border-purple-400/30",
+    color: "text-violet-600",
+    bg: "bg-violet-50",
+    border: "border-violet-200",
     summary: "Proves Jira read-only mode, no ADO/Maximo write",
-    detail: "Open Integration Settings. Show that write toggles are disabled at the platform level — not just via UI. In a live customer deployment, Jira and Maximo tokens are stored as server-side environment variables and scoped to read-only. In this demo environment the integration is shown in unconfigured state — no live token is active.",
+    detail: "Open Integration Settings. Show that write toggles are disabled at the platform level — not just via UI. In a live customer deployment, Jira and Maximo tokens are stored as server-side environment variables and scoped to read-only. In this environment the integration is shown in unconfigured state — no live token is active.",
     proof: ["Write toggles disabled at platform level", "API tokens stored server-side only — never in browser", "Integration architecture is read-only by design"],
   },
   {
@@ -73,9 +73,9 @@ const STEPS = [
     role: "Asset Manager",
     time: "1 min",
     icon: Fingerprint,
-    color: "text-orange-400",
-    bg: "bg-orange-400/10",
-    border: "border-orange-400/30",
+    color: "text-orange-600",
+    bg: "bg-orange-50",
+    border: "border-orange-200",
     summary: "Proves 46 customisations scanned, environment profile",
     detail: "The fingerprint scan reads the current Maximo 7.6.1.3 environment and identifies 46 customisations — BOs, screen changes, automation scripts, and workflow modifications. This snapshot becomes the baseline for MAS 9 readiness assessment. Non-destructive: zero mutations, zero SQL writes.",
     proof: ["46 customisations detected", "Current: Maximo 7.6.1.3 on-premise → Target: MAS 9.x", "Scan is non-destructive"],
@@ -97,9 +97,9 @@ const STEPS = [
     role: "Finance",
     time: "1 min",
     icon: BarChart3,
-    color: "text-yellow-400",
-    bg: "bg-yellow-400/10",
-    border: "border-yellow-400/30",
+    color: "text-amber-600",
+    bg: "bg-amber-50",
+    border: "border-amber-200",
     summary: "Proves AppPoint trend, 77% utilisation, planning only",
     detail: "Show the 12-month AppPoint trend (77% average utilisation). The planning view simulates adding mobile users and projects the headroom remaining — helping avoid overage before renewal.",
     proof: ["77% AppPoint utilisation", "12-month trend chart", "\"What-if\" planning mode"],
@@ -109,9 +109,9 @@ const STEPS = [
     role: "Delivery Lead",
     time: "1 min",
     icon: Users,
-    color: "text-teal-400",
-    bg: "bg-teal-400/10",
-    border: "border-teal-400/30",
+    color: "text-teal-700",
+    bg: "bg-teal-50",
+    border: "border-teal-200",
     summary: "Proves 82% bot skill-pack coverage across Maximo delivery domains",
     detail: "The skill-pack coverage map shows which bot skill packs are installed and active against the 46 customisations and patch requirements. 82% bot skill-pack coverage across Maximo delivery domains (system-defined — base packs) — 8 gaps are flagged with suggested remediation.",
     proof: ["82% bot skill-pack coverage across Maximo delivery domains (system-defined — base packs)", "8 identified gaps", "Gap → recommended action"],
@@ -121,9 +121,9 @@ const STEPS = [
     role: "Admin",
     time: "30s",
     icon: Lock,
-    color: "text-slate-400",
-    bg: "bg-slate-400/10",
-    border: "border-slate-400/30",
+    color: "text-slate-600",
+    bg: "bg-slate-100",
+    border: "border-slate-200",
     summary: "Proves contract mobilisation module disabled, feature flag respected",
     detail: "Toggle the \"Contract Mobilisation\" feature flag to OFF. Show that the Contract Mobilisation module section disappears across all views — proving feature-flag driven control.",
     proof: ["Contract mobilisation flag = OFF", "Module menu hidden", "No data residue"],
@@ -133,9 +133,9 @@ const STEPS = [
     role: "Auditor",
     time: "30s",
     icon: BookOpen,
-    color: "text-pink-400",
-    bg: "bg-pink-400/10",
-    border: "border-pink-400/30",
+    color: "text-pink-700",
+    bg: "bg-pink-50",
+    border: "border-pink-200",
     summary: "Proves immutable trace, full activity history",
     detail: "Open the Audit Log. Every action in the session is recorded — logins, scans, uploads, report views. The log is immutable (append-only) and can be exported for client-facing evidence packages.",
     proof: ["Session fully traced", "Immutable append-only log", "Export to PDF/CSV"],
@@ -145,9 +145,9 @@ const STEPS = [
     role: "Any",
     time: "30s",
     icon: BookOpen,
-    color: "text-indigo-400",
-    bg: "bg-indigo-400/10",
-    border: "border-indigo-400/30",
+    color: "text-indigo-600",
+    bg: "bg-indigo-50",
+    border: "border-indigo-200",
     summary: "Proves offline skill packs, guided onboarding",
     detail: "Open the Help Center. Skill packs are bundled offline — no internet required during a client workshop. Each module has step-by-step onboarding guides tailored to each role (Admin, Delivery Lead, Finance, Auditor).",
     proof: ["Offline skill pack available", "Role-filtered guides", "No external dependency"],
@@ -161,7 +161,7 @@ function StepDot({ index, state }: { index: number; state: "done" | "active" | "
     <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all duration-300
       ${state === "done" ? "bg-green-500 border-green-500" : ""}
       ${state === "active" ? "bg-primary border-primary shadow-lg shadow-primary/40 scale-110" : ""}
-      ${state === "future" ? "bg-background border-white/20" : ""}
+      ${state === "future" ? "bg-background border-border" : ""}
     `}>
       {state === "done"
         ? <CheckCircle2 className="w-4 h-4 text-white" />
@@ -224,8 +224,8 @@ export default function DemoWalkthrough() {
             { label: "Total time", value: "12 min" },
             { label: "Roles covered", value: "5" },
           ].map(m => (
-            <div key={m.label} className="rounded-xl border border-white/10 bg-card p-5">
-              <div className="text-3xl font-bold text-white mb-1">{m.value}</div>
+            <div key={m.label} className="rounded-xl border border-border bg-card p-5">
+              <div className="text-3xl font-bold text-foreground mb-1">{m.value}</div>
               <div className="text-sm text-muted-foreground">{m.label}</div>
             </div>
           ))}
@@ -239,17 +239,17 @@ export default function DemoWalkthrough() {
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.04 }}
-                className="flex items-center gap-4 rounded-xl border border-white/10 bg-card/60 px-5 py-3"
+                className="flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-3"
               >
                 <div className={`w-7 h-7 rounded-full ${s.bg} flex items-center justify-center shrink-0`}>
                   <Icon className={`w-3.5 h-3.5 ${s.color}`} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <span className="font-medium text-sm text-white">{s.title}</span>
+                  <span className="font-medium text-sm text-foreground">{s.title}</span>
                   <span className="ml-2 text-xs text-muted-foreground hidden sm:inline">{s.summary}</span>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
-                  <span className="text-xs text-muted-foreground bg-white/5 px-2 py-0.5 rounded">{s.role}</span>
+                  <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded">{s.role}</span>
                   <span className="text-xs text-primary">{s.time}</span>
                 </div>
               </motion.div>
@@ -271,8 +271,8 @@ export default function DemoWalkthrough() {
     return (
       <div className="container mx-auto px-4 py-24 min-h-screen flex flex-col items-center justify-center text-center">
         <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
-          <div className="w-24 h-24 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-8">
-            <CheckCircle2 className="w-12 h-12 text-green-400" />
+          <div className="w-24 h-24 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto mb-8">
+            <CheckCircle2 className="w-12 h-12 text-emerald-600" />
           </div>
           <h1 className="text-4xl font-bold mb-4">Walkthrough Complete</h1>
           <p className="text-xl text-muted-foreground mb-4">
@@ -281,7 +281,7 @@ export default function DemoWalkthrough() {
           <p className="text-sm text-muted-foreground mb-10">Every step was read-only. Zero mutations. Zero production risk.</p>
           <div className="flex flex-wrap justify-center gap-4">
             <button onClick={reset}
-              className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-all">
+              className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all">
               <RotateCcw className="w-4 h-4" /> Restart Walkthrough
             </button>
             <Link href="/mas9-power"
@@ -306,18 +306,18 @@ export default function DemoWalkthrough() {
           <p className="text-sm text-muted-foreground">Step {current + 1} of {STEPS.length}</p>
         </div>
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground bg-card border border-white/10 rounded-lg px-3 py-2">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground bg-card border border-border rounded-lg px-3 py-2">
             <Clock className="w-4 h-4" />
             <span className="font-mono">{mins}:{secs.toString().padStart(2, "0")}</span>
           </div>
-          <button onClick={reset} className="text-xs text-muted-foreground hover:text-white transition-colors flex items-center gap-1">
+          <button onClick={reset} className="text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
             <RotateCcw className="w-3 h-3" /> Reset
           </button>
         </div>
       </div>
 
       {/* Progress bar */}
-      <div className="h-1.5 rounded-full bg-white/10 mb-8">
+      <div className="h-1.5 rounded-full bg-muted mb-8">
         <motion.div className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
           animate={{ width: `${progress}%` }} transition={{ duration: 0.4 }} />
       </div>
@@ -331,7 +331,7 @@ export default function DemoWalkthrough() {
                 state={completed.has(i) ? "done" : i === current ? "active" : "future"} />
             </button>
             {i < STEPS.length - 1 && (
-              <div className={`h-px w-4 transition-colors ${completed.has(i) ? "bg-green-500" : "bg-white/10"}`} />
+              <div className={`h-px w-4 transition-colors ${completed.has(i) ? "bg-green-500" : "bg-border"}`} />
             )}
           </div>
         ))}
@@ -344,7 +344,7 @@ export default function DemoWalkthrough() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -30 }}
           transition={{ duration: 0.25 }}
-          className={`rounded-2xl border ${step.border} bg-card/80 backdrop-blur overflow-hidden mb-6`}
+          className={`rounded-2xl border ${step.border} bg-card overflow-hidden mb-6`}
         >
           {/* Card header */}
           <div className={`${step.bg} border-b ${step.border} px-8 py-6`}>
@@ -354,11 +354,11 @@ export default function DemoWalkthrough() {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap items-center gap-2 mb-1">
-                  <h2 className="text-2xl font-bold text-white">{step.title}</h2>
+                  <h2 className="text-2xl font-bold text-foreground">{step.title}</h2>
                 </div>
                 <div className="flex gap-2">
                   <span className={`text-xs font-semibold px-2 py-0.5 rounded ${step.bg} ${step.color} border ${step.border}`}>{step.role}</span>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded bg-white/10 text-white border border-white/10 flex items-center gap-1">
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded bg-muted text-foreground border border-border flex items-center gap-1">
                     <Clock className="w-3 h-3" />{step.time}
                   </span>
                 </div>
@@ -374,7 +374,7 @@ export default function DemoWalkthrough() {
               <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">What to show</div>
               <ul className="space-y-2">
                 {step.proof.map((p, j) => (
-                  <li key={j} className="flex items-center gap-3 text-sm text-white">
+                  <li key={j} className="flex items-center gap-3 text-sm text-foreground">
                     <CheckCircle2 className={`w-4 h-4 shrink-0 ${step.color}`} />
                     {p}
                   </li>
@@ -388,7 +388,7 @@ export default function DemoWalkthrough() {
       {/* Navigation */}
       <div className="flex items-center justify-between">
         <button onClick={back} disabled={current === 0}
-          className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition-all disabled:opacity-30 disabled:cursor-not-allowed">
+          className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted transition-all disabled:opacity-30 disabled:cursor-not-allowed">
           <ChevronLeft className="w-4 h-4" /> Back
         </button>
 

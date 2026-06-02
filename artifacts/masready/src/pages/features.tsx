@@ -8,8 +8,8 @@ const CAPABILITIES = [
     icon: Fingerprint,
     title: "Environment Fingerprinting",
     color: "text-accent",
-    border: "border-accent/25",
-    bg: "from-accent/10",
+    border: "border-accent/30",
+    bg: "from-accent/8",
     desc: "Discover configuration, integrations, automation, add-ons, industry solutions, and operational dependencies before major change.",
     points: ["Installed object and customisation scan", "Integration and automation mapping", "Add-on and industry solution detection", "Version and capability baseline", "Read-only — no mutations"],
     href: "/architecture",
@@ -18,9 +18,9 @@ const CAPABILITIES = [
     id: "drift",
     icon: Activity,
     title: "Drift Intelligence",
-    color: "text-orange-400",
-    border: "border-orange-400/25",
-    bg: "from-orange-400/10",
+    color: "text-orange-600",
+    border: "border-orange-200",
+    bg: "from-orange-50",
     desc: "Compare environments and detect unexpected configuration or operational differences between known baselines.",
     points: ["Cross-environment comparison", "Configuration drift alerts", "Operational difference detection", "Baseline deviation reporting", "Timeline and trend tracking"],
     href: "/drift",
@@ -29,9 +29,9 @@ const CAPABILITIES = [
     id: "regression",
     icon: Code2,
     title: "Regression Intelligence",
-    color: "text-violet-400",
-    border: "border-violet-400/25",
-    bg: "from-violet-400/10",
+    color: "text-violet-600",
+    border: "border-violet-200",
+    bg: "from-violet-50",
     desc: "Generate and evolve Playwright-based regression packs as your Maximo environment changes — coverage grows with your config.",
     points: ["Fingerprint-driven test generation", "Coverage adapts to add-on changes", "Human review before any CI/CD push", "Exported as standard TypeScript", "Gap report against requirement set"],
     href: "/adaptive-regression",
@@ -51,9 +51,9 @@ const CAPABILITIES = [
     id: "licensing",
     icon: PieChart,
     title: "Licensing Intelligence",
-    color: "text-yellow-400",
-    border: "border-yellow-400/25",
-    bg: "from-yellow-400/10",
+    color: "text-amber-600",
+    border: "border-amber-200",
+    bg: "from-amber-50",
     desc: "Turn licensing complexity into understandable reports, entitlement insights, and optimisation opportunities.",
     points: ["AppPoints trend analysis", "Named user tracking", "Mobile pool analysis", "Capacity planning reports", "Entitlement optimisation insights"],
     href: "/license-report",
@@ -62,9 +62,9 @@ const CAPABILITIES = [
     id: "mobilization",
     icon: PackageCheck,
     title: "Mobilisation Readiness",
-    color: "text-green-400",
-    border: "border-green-400/25",
-    bg: "from-green-400/10",
+    color: "text-emerald-600",
+    border: "border-emerald-200",
+    bg: "from-emerald-50",
     desc: "Assess readiness for new sites, contracts, assets, PMs, job plans, integrations, and operational teams.",
     points: ["Site and contract readiness", "Asset and PM coverage", "Job plan validation", "Integration readiness gaps", "Operational team assessment"],
     href: "/features",
@@ -73,9 +73,9 @@ const CAPABILITIES = [
     id: "governance",
     icon: ShieldCheck,
     title: "Delivery Governance",
-    color: "text-red-400",
-    border: "border-red-400/25",
-    bg: "from-red-400/10",
+    color: "text-rose-700",
+    border: "border-rose-200",
+    bg: "from-rose-50",
     desc: "Track delivery risk, readiness, evidence, auditability, and operational confidence across the full delivery lifecycle.",
     points: ["52-point environment audit checklist", "Immutable audit trail", "Evidence chain of custody", "Risk and readiness scoring", "Governance report generation"],
     href: "/audit-checklist",
@@ -84,9 +84,9 @@ const CAPABILITIES = [
     id: "demomodes",
     icon: Globe,
     title: "Secure Demo Modes",
-    color: "text-indigo-400",
-    border: "border-indigo-400/25",
-    bg: "from-indigo-400/10",
+    color: "text-indigo-600",
+    border: "border-indigo-200",
+    bg: "from-indigo-50",
     desc: "Use synthetic previews, persisted private workspaces, or secure connected assessments depending on customer readiness.",
     points: ["10 industry synthetic previews", "Session-only — no data stored", "Persisted demo by request", "Secure connected assessment", "Zero production data required"],
     href: "/platform",
@@ -139,7 +139,7 @@ export default function Features() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                className={`rounded-2xl border ${cap.border} bg-gradient-to-b ${cap.bg} to-card/70 p-7 flex flex-col gap-5`}
+                className={`rounded-2xl border ${cap.border} bg-gradient-to-b ${cap.bg} to-card p-7 flex flex-col gap-5`}
               >
                 <div className="flex items-start gap-4">
                   <div className={`p-3 rounded-xl bg-card border ${cap.border} shrink-0`}>
@@ -180,7 +180,7 @@ export default function Features() {
               <Link href="/industry-previews" className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all hover:-translate-y-0.5">
                 Explore Industry Previews <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link href="/launch" className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-all hover:-translate-y-0.5">
+              <Link href="/launch" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all hover:-translate-y-0.5">
                 Request Enterprise Demo
               </Link>
             </div>

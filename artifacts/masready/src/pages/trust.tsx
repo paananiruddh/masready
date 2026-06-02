@@ -6,7 +6,7 @@ export default function Trust() {
   return (
     <div className="container mx-auto px-4 py-24 min-h-screen">
       <div className="text-center mb-24">
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-white">
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-foreground">
           Built for trust.<br />
           <span className="text-accent">Designed for scrutiny.</span>
         </h1>
@@ -30,7 +30,7 @@ export default function Trust() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="rounded-2xl border border-white/10 bg-card/50 backdrop-blur p-8"
+            className="rounded-2xl border border-border bg-card p-8"
           >
             <pillar.icon className="w-10 h-10 text-primary mb-6" />
             <h3 className="text-xl font-bold mb-3">{pillar.title}</h3>

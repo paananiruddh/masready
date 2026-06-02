@@ -12,22 +12,22 @@ const DRIFT_ITEMS = [
 
 const SEV = {
   high: { color: "text-destructive", bg: "bg-destructive/10", border: "border-destructive/20" },
-  medium: { color: "text-yellow-400", bg: "bg-yellow-400/10", border: "border-yellow-400/20" },
-  low: { color: "text-green-400", bg: "bg-green-400/10", border: "border-green-400/20" },
+  medium: { color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-200" },
+  low: { color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-200" },
 } as const;
 
 export default function Drift() {
   return (
     <div className="min-h-screen">
-      <DemoBanner variant="seed-data" />
+      <DemoBanner variant="planning" />
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 text-xs font-medium mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-600 text-xs font-medium mb-4">
             <GitCompare className="w-3 h-3" /> Configuration Drift
           </div>
           <h1 className="text-4xl font-bold mb-4">Drift Detection</h1>
           <p className="text-muted-foreground mb-10">
-            Detected configuration drift between environments. All data is fictional demo seed data.
+            Detected configuration drift between environments. All data is fictional.
             No real customer asset names are present.
           </p>
 
@@ -46,11 +46,11 @@ export default function Drift() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-2">
                         <span className="font-mono text-xs text-muted-foreground">{item.id}</span>
-                        <span className="font-semibold text-white">{item.object}</span>
+                        <span className="font-semibold text-foreground">{item.object}</span>
                       </div>
                       <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
-                        <span>Baseline: <code className="text-white/70">{item.baseline}</code></span>
-                        <span>Current: <code className="text-yellow-300/80">{item.current}</code></span>
+                        <span>Baseline: <code className="text-foreground font-mono">{item.baseline}</code></span>
+                        <span>Current: <code className="text-amber-700 font-mono">{item.current}</code></span>
                         <span>{item.env}</span>
                       </div>
                     </div>
@@ -61,10 +61,10 @@ export default function Drift() {
             })}
           </div>
 
-          <div className="mt-6 rounded-xl border border-green-400/20 bg-green-400/5 p-4 flex items-start gap-3">
-            <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+          <div className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4 flex items-start gap-3">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
             <p className="text-sm text-muted-foreground">
-              <span className="text-green-400 font-semibold">Read-only comparison. </span>
+              <span className="text-emerald-600 font-semibold">Read-only comparison. </span>
               Drift detection is non-destructive. No changes made to any environment.
             </p>
           </div>

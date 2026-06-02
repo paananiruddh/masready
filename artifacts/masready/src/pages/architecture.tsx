@@ -5,9 +5,9 @@ const PIPELINE = [
   {
     label: "Customer Config",
     icon: Settings,
-    color: "text-blue-400",
-    bg: "bg-blue-400/10",
-    border: "border-blue-400/20",
+    color: "text-blue-600",
+    bg: "bg-blue-50",
+    border: "border-blue-200",
     summary: "Per-tenant configuration defining data mode, integration credentials, and enabled feature flags.",
     details: [
       "Data mode setting: customer_hosted or assetize_managed",
@@ -20,28 +20,28 @@ const PIPELINE = [
     example: "MAS9 Power: customer_hosted · Jira read-only · License Planning ON · Premium Actions OFF"
   },
   {
-    label: "Seed Data",
+    label: "Synthetic Dataset",
     icon: Database,
-    color: "text-cyan-400",
-    bg: "bg-cyan-400/10",
-    border: "border-cyan-400/20",
-    summary: "23 structured JSON seed files defining the fictional demo tenant environment, users, assets, and work orders.",
+    color: "text-cyan-700",
+    bg: "bg-cyan-50",
+    border: "border-cyan-200",
+    summary: "23 structured JSON files defining the fictional demo tenant environment, users, assets, and work orders.",
     details: [
-      "23 seed data files covering users, assets, work orders, customisations, and integrations",
+      "23 structured data files covering users, assets, work orders, customisations, and integrations",
       "All data is fictional — no real customer, site, or asset information is present",
-      "Seed data drives the simulator, charts, patch impact analysis, and license planning outputs",
-      "7 demo user roles seeded: Admin, Delivery Lead, Asset Manager, Scheduler, Field Tech, Finance, Auditor",
+      "This dataset drives the simulator, charts, patch impact analysis, and license planning outputs",
+      "7 demo user roles defined: Admin, Delivery Lead, Asset Manager, Scheduler, Field Tech, Finance, Auditor",
       "Energy & Utilities asset classes: substations, transformers, transmission lines, smart meters, control systems",
-      "Seed data is version-locked per demo tenant — updates are explicit and auditable",
+      "Dataset is version-locked per demo tenant — updates are explicit and auditable",
     ],
     example: "23 files · 7 users · 5 asset classes · fictional MAS9 Power energy tenant"
   },
   {
     label: "Evidence Services",
     icon: Search,
-    color: "text-violet-400",
-    bg: "bg-violet-400/10",
-    border: "border-violet-400/20",
+    color: "text-violet-600",
+    bg: "bg-violet-50",
+    border: "border-violet-200",
     summary: "Read-only connectors that pull evidence from Jira and Maximo without writing, mutating, or retaining data.",
     details: [
       "Maximo API: read-only — scans installed objects, customisations, version, capabilities, and endpoints",
@@ -57,9 +57,9 @@ const PIPELINE = [
   {
     label: "Skill Packs",
     icon: Package,
-    color: "text-amber-400",
-    bg: "bg-amber-400/10",
-    border: "border-amber-400/20",
+    color: "text-amber-600",
+    bg: "bg-amber-50",
+    border: "border-amber-200",
     summary: "Offline, version-locked skill modules covering every Maximo delivery domain — no internet required.",
     details: [
       "Self-contained ZIP modules — fully functional in air-gapped environments",
@@ -75,9 +75,9 @@ const PIPELINE = [
   {
     label: "Delivery Engine",
     icon: Cpu,
-    color: "text-green-400",
-    bg: "bg-green-400/10",
-    border: "border-green-400/20",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
+    border: "border-emerald-200",
     summary: "The core analysis layer — cross-references fingerprint, patch content, license data, and bot skill-pack coverage to produce a unified delivery confidence score.",
     details: [
       "Patch / iFix impact engine: cross-references patch content against 46 scanned customisations — 7 impacted items found",
@@ -93,9 +93,9 @@ const PIPELINE = [
   {
     label: "Reports & Media",
     icon: FileText,
-    color: "text-rose-400",
-    bg: "bg-rose-400/10",
-    border: "border-rose-400/20",
+    color: "text-rose-700",
+    bg: "bg-rose-50",
+    border: "border-rose-200",
     summary: "8 generated SVG charts, 6 architecture diagrams, and review-ready output packages — all fictional, all auditable.",
     details: [
       "8 SVG charts generated: AppPoint Trend, User Role Distribution, Asset Class Distribution, Patch Impact Risk, Skill Coverage, Generation Run Status, Work Risk Summary, Outage Readiness Score",
@@ -172,7 +172,7 @@ export default function Architecture() {
             >
               {/* Card header */}
               <div className={`flex items-start gap-4 p-6 ${stage.bg} border-b ${stage.border}`}>
-                <div className={`p-3 rounded-xl border ${stage.border} bg-card/60`}>
+                <div className={`p-3 rounded-xl border ${stage.border} bg-card`}>
                   <Icon className={`w-6 h-6 ${stage.color}`} />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -213,7 +213,7 @@ export default function Architecture() {
 
       {/* Trust footer */}
       <div className="max-w-5xl mx-auto mt-16">
-        <div className="rounded-2xl border border-white/10 bg-card p-8 text-center">
+        <div className="rounded-2xl border border-border bg-card p-8 text-center">
           <p className="text-muted-foreground text-sm leading-relaxed max-w-3xl mx-auto">
             <strong className="text-foreground">No data leaves the pipeline.</strong>{" "}
             Every stage operates read-only. No SQL execution. No Maximo mutation. No Jira mutation. No Azure DevOps mutation.

@@ -63,10 +63,10 @@ const SKILL_PACKS: Array<{ name: string; domain: string; layer: number; status: 
 ];
 
 const STATUS_CONFIG = {
-  active: { label: "Active", icon: CheckCircle2, color: "text-green-400", bg: "bg-green-400/10", border: "border-green-400/20" },
+  active: { label: "Active", icon: CheckCircle2, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-200" },
   blocked: { label: "Blocked", icon: XCircle, color: "text-destructive", bg: "bg-destructive/10", border: "border-destructive/20" },
-  disabled: { label: "Disabled", icon: XCircle, color: "text-muted-foreground", bg: "bg-white/5", border: "border-white/10" },
-  future: { label: "Roadmap", icon: Clock, color: "text-yellow-400", bg: "bg-yellow-400/10", border: "border-yellow-400/20" },
+  disabled: { label: "Disabled", icon: XCircle, color: "text-muted-foreground", bg: "bg-muted", border: "border-border" },
+  future: { label: "Roadmap", icon: Clock, color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-200" },
 } as const;
 
 export default function Skills() {
@@ -76,8 +76,8 @@ export default function Skills() {
 
   return (
     <div className="min-h-screen">
-      <DemoBanner variant="seed-data" />
-      <p className="text-xs text-center text-muted-foreground bg-card/50 py-1 px-4 border-b border-white/5">
+      <DemoBanner variant="planning" />
+      <p className="text-xs text-center text-muted-foreground bg-muted/50 py-1 px-4 border-b border-border">
         System-defined skill pack metadata above is not demo data.
       </p>
 
@@ -98,8 +98,8 @@ export default function Skills() {
             { label: "Base Coverage", value: `${coverage}%` },
             { label: "Roadmap", value: SKILL_PACKS.filter(p => p.status === "future").length },
           ].map((s, i) => (
-            <div key={i} className="rounded-xl border border-white/10 bg-card p-4 text-center">
-              <div className="text-2xl font-bold text-white mb-1">{s.value}</div>
+            <div key={i} className="rounded-xl border border-border bg-card p-4 text-center">
+              <div className="text-2xl font-bold text-foreground mb-1">{s.value}</div>
               <div className="text-xs text-muted-foreground uppercase tracking-wider">{s.label}</div>
             </div>
           ))}
@@ -111,21 +111,21 @@ export default function Skills() {
           <p className="text-muted-foreground text-sm mb-6">
             MASReady uses a five-layer model to separate static knowledge from customer-specific evidence:
           </p>
-          <div className="rounded-xl border border-white/10 bg-card overflow-hidden">
+          <div className="rounded-xl border border-border bg-card overflow-hidden">
             <table className="w-full text-sm text-left border-collapse">
               <thead>
-                <tr className="border-b border-white/10 bg-background/50">
+                <tr className="border-b border-border bg-muted/50">
                   <th className="px-4 py-3 font-semibold text-muted-foreground">Layer</th>
                   <th className="px-4 py-3 font-semibold text-muted-foreground">Type</th>
                   <th className="px-4 py-3 font-semibold text-muted-foreground hidden md:table-cell">Key</th>
                   <th className="px-4 py-3 font-semibold text-muted-foreground hidden lg:table-cell">Description</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/5">
+              <tbody className="divide-y divide-border">
                 {SKILL_LAYERS.map((row, i) => (
-                  <tr key={i} className="hover:bg-white/[0.02] transition-colors">
+                  <tr key={i} className="hover:bg-muted/40 transition-colors">
                     <td className="px-4 py-3 font-medium text-primary whitespace-nowrap">{row.layer}</td>
-                    <td className="px-4 py-3 font-medium text-white">{row.type}</td>
+                    <td className="px-4 py-3 font-medium text-foreground">{row.type}</td>
                     <td className="px-4 py-3 font-mono text-xs text-accent hidden md:table-cell">{row.key}</td>
                     <td className="px-4 py-3 text-muted-foreground text-xs hidden lg:table-cell">{row.description}</td>
                   </tr>
@@ -153,7 +153,7 @@ export default function Skills() {
                   <div className="flex items-center gap-3 min-w-0">
                     <Icon className={`w-4 h-4 shrink-0 ${cfg.color}`} />
                     <div className="min-w-0">
-                      <span className="font-medium text-sm text-white">{pack.name}</span>
+                      <span className="font-medium text-sm text-foreground">{pack.name}</span>
                       <span className="ml-2 text-xs text-muted-foreground hidden sm:inline">{pack.domain}</span>
                     </div>
                   </div>
@@ -166,10 +166,10 @@ export default function Skills() {
               );
             })}
           </div>
-          <div className="mt-6 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 flex items-start gap-3">
-            <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+          <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4 flex items-start gap-3">
+            <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
             <p className="text-sm text-muted-foreground">
-              <span className="text-amber-400 font-semibold">Coverage note: </span>
+              <span className="text-amber-600 font-semibold">Coverage note: </span>
               82% bot skill-pack coverage across Maximo delivery domains (system-defined — base packs).
               This metric measures installed and active base packs against defined Maximo delivery domains.
               It is not an HR, staffing, or headcount measure.

@@ -23,17 +23,15 @@ export default function LicenseReport() {
 
   return (
     <div className="min-h-screen">
-      <DemoBanner variant="seed-data" />
       <DemoBanner variant="planning" />
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 text-xs font-medium mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-600 text-xs font-medium mb-4">
             <PieChart className="w-3 h-3" /> License Planning
           </div>
           <h1 className="text-4xl font-bold mb-4">License Report</h1>
           <p className="text-muted-foreground mb-10">
-            AppPoint usage trends, named user analysis, and mobile pool planning. All figures are fictional demo seed data.
-            For planning purposes only — not IBM-certified or contractual advice.
+            AppPoint usage trends, named user analysis, and mobile pool planning. All figures are fictional and for planning purposes only — not IBM-certified or contractual advice.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
@@ -43,8 +41,8 @@ export default function LicenseReport() {
               { label: "Named Users", value: DEMO_METRICS.namedUsers, sub: `${DEMO_METRICS.activeUsers} active` },
               { label: "Inactive Users", value: DEMO_METRICS.inactiveUsers, sub: "Potential reclaim" },
             ].map((s, i) => (
-              <div key={i} className="rounded-xl border border-white/10 bg-card p-4 text-center">
-                <div className="text-2xl font-bold text-white mb-0.5">{s.value}</div>
+              <div key={i} className="rounded-xl border border-border bg-card p-4 text-center">
+                <div className="text-2xl font-bold text-foreground mb-0.5">{s.value}</div>
                 <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{s.label}</div>
                 <div className="text-xs text-muted-foreground">{s.sub}</div>
               </div>
@@ -52,7 +50,7 @@ export default function LicenseReport() {
           </div>
 
           {/* 12-month trend chart */}
-          <div className="rounded-xl border border-white/10 bg-card p-6 mb-6">
+          <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <div className="flex items-center gap-3 mb-6">
               <TrendingUp className="w-5 h-5 text-accent" />
               <h2 className="font-semibold">12-Month AppPoint Trend</h2>
@@ -71,7 +69,7 @@ export default function LicenseReport() {
                     style={{ originY: 1 }}
                   >
                     <div
-                      className={`w-full rounded-t ${pct > 85 ? "bg-destructive/70" : pct > 75 ? "bg-yellow-400/70" : "bg-primary/70"}`}
+                      className={`w-full rounded-t ${pct > 85 ? "bg-destructive/70" : pct > 75 ? "bg-amber-500/70" : "bg-primary/70"}`}
                       style={{ height: `${height}%` }}
                     />
                     <span className="text-xs text-muted-foreground" style={{ fontSize: "9px", writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
@@ -84,7 +82,7 @@ export default function LicenseReport() {
           </div>
 
           {/* Users breakdown */}
-          <div className="rounded-xl border border-white/10 bg-card p-6 mb-6">
+          <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <div className="flex items-center gap-3 mb-4">
               <Users className="w-5 h-5 text-primary" />
               <h2 className="font-semibold">User Activity Breakdown</h2>
@@ -92,7 +90,7 @@ export default function LicenseReport() {
             <div className="space-y-3">
               {[
                 { label: "Active users", value: DEMO_METRICS.activeUsers, pct: Math.round((DEMO_METRICS.activeUsers / DEMO_METRICS.namedUsers) * 100), color: "bg-primary" },
-                { label: "Inactive users", value: DEMO_METRICS.inactiveUsers, pct: Math.round((DEMO_METRICS.inactiveUsers / DEMO_METRICS.namedUsers) * 100), color: "bg-muted" },
+                { label: "Inactive users", value: DEMO_METRICS.inactiveUsers, pct: Math.round((DEMO_METRICS.inactiveUsers / DEMO_METRICS.namedUsers) * 100), color: "bg-muted-foreground/30" },
                 { label: "Mobile pool (peak)", value: `${DEMO_METRICS.mobilePoolPeak}% utilisation`, pct: DEMO_METRICS.mobilePoolPeak, color: "bg-accent" },
               ].map((row, i) => (
                 <div key={i}>
@@ -100,7 +98,7 @@ export default function LicenseReport() {
                     <span className="text-muted-foreground">{row.label}</span>
                     <span className="font-medium">{row.value}</span>
                   </div>
-                  <div className="h-1.5 rounded-full bg-white/10">
+                  <div className="h-1.5 rounded-full bg-muted">
                     <motion.div
                       className={`h-full rounded-full ${row.color}`}
                       initial={{ width: 0 }}
@@ -113,11 +111,11 @@ export default function LicenseReport() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 flex items-start gap-3">
-            <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+          <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 flex items-start gap-3">
+            <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
             <p className="text-sm text-muted-foreground">
-              <span className="text-amber-400 font-semibold">Planning visibility only. </span>
-              These figures are fictional demo data for planning purposes only. Not IBM-certified, not contractual, and not compliance advice.
+              <span className="text-amber-600 font-semibold">Planning visibility only. </span>
+              These figures are fictional and for planning purposes only. Not IBM-certified, not contractual, and not compliance advice.
             </p>
           </div>
         </div>

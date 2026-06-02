@@ -15,14 +15,14 @@ const IMPACTS = [
 
 const SEV_CONFIG = {
   high: { label: "High", icon: AlertCircle, color: "text-destructive", bg: "bg-destructive/10", border: "border-destructive/20" },
-  medium: { label: "Medium", icon: AlertTriangle, color: "text-yellow-400", bg: "bg-yellow-400/10", border: "border-yellow-400/20" },
-  low: { label: "Low", icon: CheckCircle2, color: "text-green-400", bg: "bg-green-400/10", border: "border-green-400/20" },
+  medium: { label: "Medium", icon: AlertTriangle, color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-200" },
+  low: { label: "Low", icon: CheckCircle2, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-200" },
 } as const;
 
 export default function PatchImpact() {
   return (
     <div className="min-h-screen">
-      <DemoBanner variant="seed-data" />
+      <DemoBanner variant="planning" />
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-destructive/10 border border-destructive/20 text-destructive text-xs font-medium mb-4">
@@ -31,17 +31,17 @@ export default function PatchImpact() {
           <h1 className="text-4xl font-bold mb-4">Patch Impact</h1>
           <p className="text-muted-foreground mb-10">
             Cross-reference of patch/iFix content against the {DEMO_METRICS.customisationsScanned} scanned customisations.
-            All data is fictional demo seed data.
+            All data is fictional.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
             {[
-              { label: "Impacted", value: DEMO_METRICS.patchImpacts, color: "text-white" },
+              { label: "Impacted", value: DEMO_METRICS.patchImpacts, color: "text-foreground" },
               { label: "Critical", value: DEMO_METRICS.criticalImpacts, color: "text-destructive" },
-              { label: "High", value: DEMO_METRICS.highImpacts, color: "text-orange-400" },
-              { label: "Medium + Low", value: DEMO_METRICS.mediumImpacts + DEMO_METRICS.lowImpacts, color: "text-yellow-400" },
+              { label: "High", value: DEMO_METRICS.highImpacts, color: "text-orange-600" },
+              { label: "Medium + Low", value: DEMO_METRICS.mediumImpacts + DEMO_METRICS.lowImpacts, color: "text-amber-600" },
             ].map((s, i) => (
-              <div key={i} className="rounded-xl border border-white/10 bg-card p-4 text-center">
+              <div key={i} className="rounded-xl border border-border bg-card p-4 text-center">
                 <div className={`text-2xl font-bold mb-1 ${s.color}`}>{s.value}</div>
                 <div className="text-xs text-muted-foreground uppercase tracking-wider">{s.label}</div>
               </div>
@@ -66,8 +66,8 @@ export default function PatchImpact() {
                       <div>
                         <div className="flex items-center gap-2 flex-wrap mb-1">
                           <span className="font-mono text-xs text-muted-foreground">{item.id}</span>
-                          <span className="font-semibold text-white">{item.customisation}</span>
-                          <span className="text-xs px-1.5 py-0.5 rounded bg-white/5 text-white/60">{item.type}</span>
+                          <span className="font-semibold text-foreground">{item.customisation}</span>
+                          <span className="text-xs px-1.5 py-0.5 rounded bg-muted text-muted-foreground">{item.type}</span>
                         </div>
                         <p className="text-sm text-muted-foreground">{item.description}</p>
                       </div>

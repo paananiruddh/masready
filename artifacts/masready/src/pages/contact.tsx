@@ -67,7 +67,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-card p-8 shadow-2xl">
+        <div className="rounded-xl border border-border bg-card p-8 shadow-sm">
           {status === "success" ? (
             <div className="text-center py-12 space-y-4">
               <CheckCircle2 className="w-16 h-16 text-primary mx-auto mb-6" />
@@ -83,23 +83,23 @@ export default function Contact() {
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white">Name</label>
-                  <input name="name" required type="text" className="w-full bg-background border border-white/10 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="text-sm font-medium text-foreground">Name</label>
+                  <input name="name" required type="text" className="w-full bg-background border border-border rounded-md px-4 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-white">Organisation</label>
-                  <input name="org" required type="text" className="w-full bg-background border border-white/10 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="text-sm font-medium text-foreground">Organisation</label>
+                  <input name="org" required type="text" className="w-full bg-background border border-border rounded-md px-4 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white">Email <span className="text-red-400">*</span></label>
-                <input name="email" required type="email" className="w-full bg-background border border-white/10 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary" />
+                <label className="text-sm font-medium text-foreground">Email <span className="text-destructive">*</span></label>
+                <input name="email" required type="email" className="w-full bg-background border border-border rounded-md px-4 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white">Maximo Version</label>
-                <select name="version" className="w-full bg-background border border-white/10 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                <label className="text-sm font-medium text-foreground">Maximo Version</label>
+                <select name="version" className="w-full bg-background border border-border rounded-md px-4 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary">
                   <option>MAS Manage 9.x</option>
                   <option>MAS Manage 8.x</option>
                   <option>Maximo 7.6.1.x</option>
@@ -108,12 +108,12 @@ export default function Contact() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-white">Message</label>
-                <textarea name="message" rows={4} className="w-full bg-background border border-white/10 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Tell us about your Maximo environment and what you're trying to achieve." />
+                <label className="text-sm font-medium text-foreground">Message</label>
+                <textarea name="message" rows={4} className="w-full bg-background border border-border rounded-md px-4 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Tell us about your Maximo environment and what you're trying to achieve." />
               </div>
 
               {status === "error" && (
-                <p className="text-sm text-red-400 bg-red-400/10 rounded-lg px-4 py-2">{errorMsg}</p>
+                <p className="text-sm text-destructive bg-destructive/10 rounded-lg px-4 py-2">{errorMsg}</p>
               )}
 
               <Button
@@ -126,7 +126,7 @@ export default function Contact() {
 
               <p className="text-center text-xs text-muted-foreground">
                 Or email us directly at{" "}
-                <a href="mailto:aniruddh@assetize.com.au" className="underline underline-offset-2 hover:text-white transition-colors">
+                <a href="mailto:aniruddh@assetize.com.au" className="underline underline-offset-2 hover:text-primary transition-colors">
                   aniruddh@assetize.com.au
                 </a>
               </p>

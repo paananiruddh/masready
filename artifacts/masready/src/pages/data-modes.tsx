@@ -66,9 +66,9 @@ const COMPARE_ROWS = [
 ];
 
 function cellColor(v: string) {
-  if (v === "✔") return "text-green-400";
-  if (v === "✘") return "text-red-400";
-  if (v === "~") return "text-amber-400";
+  if (v === "✔") return "text-emerald-600";
+  if (v === "✘") return "text-destructive";
+  if (v === "~") return "text-amber-600";
   return "text-muted-foreground";
 }
 
@@ -104,7 +104,7 @@ export default function DataModes() {
                 className={`flex items-start gap-4 rounded-2xl border p-5 cursor-pointer transition-all ${
                   isSelected
                     ? "border-primary bg-primary/5"
-                    : "border-white/10 bg-card/50 hover:border-white/20"
+                    : "border-border bg-card hover:border-primary/40"
                 }`}
               >
                 {/* Radio button */}
@@ -120,7 +120,7 @@ export default function DataModes() {
                   />
                   <div
                     className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
-                      isSelected ? "border-primary" : "border-white/30"
+                      isSelected ? "border-primary" : "border-border"
                     }`}
                   >
                     {isSelected && (
@@ -133,16 +133,16 @@ export default function DataModes() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap mb-1">
                     <span className="text-lg leading-none">{mode.icon}</span>
-                    <span className="font-bold text-base">{mode.title}</span>
+                    <span className="font-bold text-base text-foreground">{mode.title}</span>
                     {mode.badge && (
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-red-500/15 text-red-400 border border-red-500/25">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-destructive/10 text-destructive border border-destructive/20">
                         {mode.badge}
                       </span>
                     )}
                   </div>
                   <p className="text-muted-foreground text-sm leading-relaxed flex items-start gap-1.5">
                     {mode.warning && (
-                      <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                      <AlertTriangle className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
                     )}
                     {mode.description}
                   </p>
@@ -153,14 +153,14 @@ export default function DataModes() {
         </div>
 
         {/* Comparison table */}
-        <div className="rounded-2xl border border-white/10 bg-card/50 overflow-hidden">
-          <div className="px-6 py-4 border-b border-white/10">
-            <h2 className="font-bold text-sm">Mode comparison</h2>
+        <div className="rounded-2xl border border-border bg-card overflow-hidden">
+          <div className="px-6 py-4 border-b border-border">
+            <h2 className="font-bold text-sm text-foreground">Mode comparison</h2>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-white/10">
+                <tr className="border-b border-border">
                   <th className="text-left px-6 py-3 text-muted-foreground font-medium text-xs uppercase tracking-wider w-1/2">
                     Capability
                   </th>
@@ -179,7 +179,7 @@ export default function DataModes() {
                 {COMPARE_ROWS.map((row, i) => (
                   <tr
                     key={i}
-                    className={i < COMPARE_ROWS.length - 1 ? "border-b border-white/5" : ""}
+                    className={i < COMPARE_ROWS.length - 1 ? "border-b border-border/50" : ""}
                   >
                     <td className="px-6 py-3 text-muted-foreground">{row.label}</td>
                     {row.values.map((v, j) => (
@@ -192,10 +192,10 @@ export default function DataModes() {
               </tbody>
             </table>
           </div>
-          <div className="px-6 py-3 border-t border-white/5 text-xs text-muted-foreground flex gap-4 flex-wrap">
-            <span><span className="text-green-400 font-bold">✔</span> Yes</span>
-            <span><span className="text-red-400 font-bold">✘</span> No</span>
-            <span><span className="text-amber-400 font-bold">~</span> Partial</span>
+          <div className="px-6 py-3 border-t border-border/50 text-xs text-muted-foreground flex gap-4 flex-wrap">
+            <span><span className="text-emerald-600 font-bold">✔</span> Yes</span>
+            <span><span className="text-destructive font-bold">✘</span> No</span>
+            <span><span className="text-amber-600 font-bold">~</span> Partial</span>
             <span><span className="font-bold">—</span> N/A</span>
           </div>
         </div>

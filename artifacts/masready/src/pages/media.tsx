@@ -43,6 +43,8 @@ const impactData = [
   { name: 'Low', value: 2, fill: '#3b82f6' },
 ];
 
+const tooltipStyle = { backgroundColor: '#ffffff', borderColor: '#e2e8f0', color: '#1e293b' };
+
 export default function Media() {
   return (
     <div className="container mx-auto px-4 py-24 min-h-screen">
@@ -55,15 +57,15 @@ export default function Media() {
 
       <div className="grid lg:grid-cols-2 gap-8 mb-24">
         {/* AppPoints Trend */}
-        <div className="rounded-xl border border-white/10 bg-card p-6">
+        <div className="rounded-xl border border-border bg-card p-6">
           <h3 className="text-lg font-semibold mb-6">License AppPoints Trend</h3>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={appPointData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#ffffff10" />
-                <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#0d1426', borderColor: '#ffffff20' }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                <XAxis dataKey="name" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
+                <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
+                <RechartsTooltip contentStyle={tooltipStyle} />
                 <Legend />
                 <Line type="monotone" dataKey="used" stroke="#3b82f6" strokeWidth={3} dot={false} />
                 <Line type="monotone" dataKey="entitled" stroke="#06b6d4" strokeWidth={3} strokeDasharray="5 5" dot={false} />
@@ -73,7 +75,7 @@ export default function Media() {
         </div>
 
         {/* User Roles */}
-        <div className="rounded-xl border border-white/10 bg-card p-6">
+        <div className="rounded-xl border border-border bg-card p-6">
           <h3 className="text-lg font-semibold mb-6">User Role Distribution</h3>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -83,7 +85,7 @@ export default function Media() {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <RechartsTooltip contentStyle={{ backgroundColor: '#0d1426', borderColor: '#ffffff20' }} />
+                <RechartsTooltip contentStyle={tooltipStyle} />
                 <Legend />
               </PieChart>
             </ResponsiveContainer>
@@ -91,15 +93,15 @@ export default function Media() {
         </div>
 
         {/* Asset Classes */}
-        <div className="rounded-xl border border-white/10 bg-card p-6">
+        <div className="rounded-xl border border-border bg-card p-6">
           <h3 className="text-lg font-semibold mb-6">Asset Class Distribution</h3>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={assetClassData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#ffffff10" vertical={false} />
-                <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#0d1426', borderColor: '#ffffff20' }} cursor={{fill: '#ffffff05'}} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+                <XAxis dataKey="name" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
+                <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
+                <RechartsTooltip contentStyle={tooltipStyle} cursor={{ fill: '#f1f5f9' }} />
                 <Bar dataKey="value" fill="#06b6d4" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -107,15 +109,15 @@ export default function Media() {
         </div>
 
         {/* Patch Impact */}
-        <div className="rounded-xl border border-white/10 bg-card p-6">
+        <div className="rounded-xl border border-border bg-card p-6">
           <h3 className="text-lg font-semibold mb-6">Patch Impact Risk</h3>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={impactData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#ffffff10" vertical={false} />
-                <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} allowDecimals={false} />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#0d1426', borderColor: '#ffffff20' }} cursor={{fill: '#ffffff05'}} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+                <XAxis dataKey="name" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
+                <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} allowDecimals={false} />
+                <RechartsTooltip contentStyle={tooltipStyle} cursor={{ fill: '#f1f5f9' }} />
                 <Bar dataKey="value" radius={[4, 4, 0, 0]}>
                   {impactData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.fill} />

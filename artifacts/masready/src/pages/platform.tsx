@@ -9,9 +9,9 @@ const MODES = [
     title: "Public Synthetic Preview",
     subtitle: "Session-only · No production data · No persistence",
     color: "text-accent",
-    border: "border-accent/30",
-    bg: "from-accent/10",
-    badge: "bg-accent/10 text-accent border-accent/20",
+    border: "border-accent/40",
+    bg: "from-accent/8",
+    badge: "bg-accent/10 text-accent border-accent/30",
     points: [
       "Fixed reusable synthetic industry datasets",
       "Runtime-only personalisation overlays",
@@ -48,10 +48,10 @@ const MODES = [
     number: "03",
     title: "Secure Connected Assessment",
     subtitle: "Customer-approved · Real analysis · Controlled ingestion",
-    color: "text-violet-400",
-    border: "border-violet-400/30",
-    bg: "from-violet-400/10",
-    badge: "bg-violet-400/10 text-violet-400 border-violet-400/20",
+    color: "text-violet-600",
+    border: "border-violet-300",
+    bg: "from-violet-50",
+    badge: "bg-violet-100 text-violet-700 border-violet-200",
     points: [
       "Customer-approved data ingestion only",
       "Real environment fingerprinting and analysis",
@@ -87,7 +87,7 @@ export default function Platform() {
       {/* Hero */}
       <section className="relative pt-24 pb-16 overflow-hidden">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/6" />
-        <div className="pointer-events-none absolute top-0 right-0 w-[600px] h-[600px] rounded-full" style={{ background: "radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%)" }} />
+        <div className="pointer-events-none absolute top-0 right-0 w-[600px] h-[600px] rounded-full" style={{ background: "radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)" }} />
         <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -130,7 +130,7 @@ export default function Platform() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`rounded-2xl border ${mode.border} bg-gradient-to-b ${mode.bg} to-card/70 p-7 flex flex-col gap-6`}
+                className={`rounded-2xl border ${mode.border} bg-gradient-to-b ${mode.bg} to-card p-7 flex flex-col gap-6`}
               >
                 <div className="flex items-start justify-between">
                   <div className={`p-3 rounded-xl bg-card border ${mode.border}`}>
@@ -154,7 +154,7 @@ export default function Platform() {
                 </ul>
                 <Link
                   href={mode.ctaHref}
-                  className={`mt-auto flex items-center justify-center gap-2 rounded-lg border ${mode.border} bg-card px-4 py-2.5 text-sm font-semibold ${mode.color} hover:bg-white/5 transition-colors`}
+                  className={`mt-auto flex items-center justify-center gap-2 rounded-lg border ${mode.border} bg-card px-4 py-2.5 text-sm font-semibold ${mode.color} hover:bg-muted transition-colors`}
                 >
                   {mode.cta} <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
@@ -174,25 +174,25 @@ export default function Platform() {
               <p className="text-muted-foreground">From input signals to actionable delivery intelligence</p>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-card/60 backdrop-blur overflow-hidden">
-              <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
+            <div className="rounded-2xl border border-border bg-card overflow-hidden">
+              <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
                 {/* Inputs */}
                 <div className="p-8">
                   <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-5">Inputs</div>
                   <div className="space-y-4">
                     {INPUTS.map((inp) => (
                       <div key={inp.label} className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg bg-background/60 border border-white/10">
+                        <div className="p-2 rounded-lg bg-muted border border-border">
                           <inp.icon className="w-4 h-4 text-accent" />
                         </div>
-                        <span className="text-sm text-white">{inp.label}</span>
+                        <span className="text-sm text-foreground">{inp.label}</span>
                       </div>
                     ))}
                     <div className="flex items-center gap-3 opacity-50">
-                      <div className="p-2 rounded-lg bg-background/60 border border-white/10">
+                      <div className="p-2 rounded-lg bg-muted border border-border">
                         <Lock className="w-4 h-4 text-accent" />
                       </div>
-                      <span className="text-sm text-white">Screenshots / notes <span className="text-xs text-muted-foreground">(approved only)</span></span>
+                      <span className="text-sm text-foreground">Screenshots / notes <span className="text-xs text-muted-foreground">(approved only)</span></span>
                     </div>
                   </div>
                 </div>
@@ -207,8 +207,8 @@ export default function Platform() {
                   <div className="space-y-1.5 text-xs text-muted-foreground">
                     <div className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary">Environment Fingerprinting</div>
                     <div className="px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent">Drift Detection</div>
-                    <div className="px-3 py-1 rounded-full bg-violet-400/10 border border-violet-400/20 text-violet-400">Regression Intelligence</div>
-                    <div className="px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400">AI Skill Packs</div>
+                    <div className="px-3 py-1 rounded-full bg-violet-100 border border-violet-200 text-violet-600">Regression Intelligence</div>
+                    <div className="px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-600">AI Skill Packs</div>
                   </div>
                 </div>
 
@@ -218,10 +218,10 @@ export default function Platform() {
                   <div className="space-y-4">
                     {OUTPUTS.map((out) => (
                       <div key={out.label} className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg bg-background/60 border border-white/10">
+                        <div className="p-2 rounded-lg bg-muted border border-border">
                           <out.icon className="w-4 h-4 text-primary" />
                         </div>
-                        <span className="text-sm text-white">{out.label}</span>
+                        <span className="text-sm text-foreground">{out.label}</span>
                       </div>
                     ))}
                   </div>

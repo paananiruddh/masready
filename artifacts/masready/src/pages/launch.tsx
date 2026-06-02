@@ -68,8 +68,8 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
   if (status === "success") {
     return (
       <div className="text-center py-8 space-y-5">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-green-500/15 border border-green-500/30 mb-2">
-          <CheckCircle2 className="w-7 h-7 text-green-400" />
+        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-50 border border-emerald-200 mb-2">
+          <CheckCircle2 className="w-7 h-7 text-emerald-600" />
         </div>
         <div>
           <h3 className="text-xl font-bold mb-2">Request received.</h3>
@@ -77,13 +77,13 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
             Thanks — MASReady will contact you about your request. We typically respond within one business day.
           </p>
         </div>
-        <div className="border-t border-white/8 pt-5">
+        <div className="border-t border-border pt-5">
           <p className="text-xs text-muted-foreground mb-3">
             While you wait, you can explore a public synthetic preview instantly:
           </p>
           <Link
             href="/preview-studio"
-            className="inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/8 px-5 py-2.5 text-sm font-semibold text-accent hover:bg-accent/15 transition-colors"
+            className="inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/10 px-5 py-2.5 text-sm font-semibold text-accent hover:bg-accent/20 transition-colors"
           >
             <Globe className="w-4 h-4" /> Open Public Synthetic Preview
           </Link>
@@ -97,8 +97,8 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
       <input type="hidden" name="botcheck" value="" />
 
       <div>
-        <label className="block text-sm font-medium mb-1.5" htmlFor="launch-email">
-          Work email <span className="text-red-400" aria-hidden="true">*</span>
+        <label className="block text-sm font-medium text-foreground mb-1.5" htmlFor="launch-email">
+          Work email <span className="text-destructive" aria-hidden="true">*</span>
         </label>
         <input
           id="launch-email"
@@ -107,46 +107,46 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
           required
           autoComplete="email"
           placeholder="you@company.com"
-          className="w-full rounded-lg border border-white/15 bg-background/80 px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+          className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
           disabled={status === "sending"}
         />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium mb-1.5" htmlFor="launch-name">Name</label>
+          <label className="block text-sm font-medium text-foreground mb-1.5" htmlFor="launch-name">Name</label>
           <input
             id="launch-name"
             type="text"
             name="name"
             autoComplete="name"
             placeholder="Jane Smith"
-            className="w-full rounded-lg border border-white/15 bg-background/80 px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+            className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
             disabled={status === "sending"}
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1.5" htmlFor="launch-company">Company</label>
+          <label className="block text-sm font-medium text-foreground mb-1.5" htmlFor="launch-company">Company</label>
           <input
             id="launch-company"
             type="text"
             name="company"
             autoComplete="organization"
             placeholder="Acme Corp"
-            className="w-full rounded-lg border border-white/15 bg-background/80 px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+            className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
             disabled={status === "sending"}
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1.5" htmlFor="launch-interest">Area of interest</label>
+        <label className="block text-sm font-medium text-foreground mb-1.5" htmlFor="launch-interest">Area of interest</label>
         <select
           id="launch-interest"
           name="interest"
           value={interest}
           onChange={(e) => setInterest(e.target.value)}
-          className="w-full rounded-lg border border-white/15 bg-background/80 px-3.5 py-2.5 text-sm text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+          className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
           disabled={status === "sending"}
         >
           <option value="">Select an area of interest…</option>
@@ -155,7 +155,7 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
       </div>
 
       {status === "error" && (
-        <p role="alert" className="text-sm text-red-400 bg-red-400/10 rounded-lg px-3.5 py-2.5">
+        <p role="alert" className="text-sm text-destructive bg-destructive/10 rounded-lg px-3.5 py-2.5">
           {errorMsg}
         </p>
       )}
@@ -192,8 +192,8 @@ export default function Launch() {
     <div className="min-h-screen relative overflow-hidden">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/6" />
-      <div className="pointer-events-none absolute top-0 left-0 w-[700px] h-[700px] rounded-full" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)" }} />
-      <div className="pointer-events-none absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full" style={{ background: "radial-gradient(circle, rgba(0,220,255,0.10) 0%, transparent 70%)" }} />
+      <div className="pointer-events-none absolute top-0 left-0 w-[700px] h-[700px] rounded-full" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.10) 0%, transparent 70%)" }} />
+      <div className="pointer-events-none absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full" style={{ background: "radial-gradient(circle, rgba(0,220,255,0.07) 0%, transparent 70%)" }} />
 
       <div className="relative z-10 container mx-auto px-4 py-20">
         <div className="max-w-3xl mx-auto">
@@ -227,7 +227,7 @@ export default function Launch() {
                   <Globe className="w-5 h-5 text-accent" />
                 </div>
                 <div>
-                  <div className="text-sm font-semibold text-white">Open Public Synthetic Preview</div>
+                  <div className="text-sm font-semibold text-foreground">Open Public Synthetic Preview</div>
                   <div className="text-xs text-muted-foreground mt-0.5">2-hour session link · 10 industries</div>
                 </div>
               </Link>
@@ -239,7 +239,7 @@ export default function Launch() {
                   <Lock className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <div className="text-sm font-semibold text-white">Request Persisted Demo</div>
+                  <div className="text-sm font-semibold text-foreground">Request Persisted Demo</div>
                   <div className="text-xs text-muted-foreground mt-0.5">Private · Sales-assisted</div>
                 </div>
               </button>
@@ -252,13 +252,13 @@ export default function Launch() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
-            className="rounded-2xl border border-white/12 bg-card/80 backdrop-blur-xl shadow-2xl shadow-black/30 p-8 max-w-[720px] mx-auto"
+            className="rounded-2xl border border-border bg-card shadow-lg p-8 max-w-[720px] mx-auto"
           >
             <div className="mb-7">
               <h2 className="text-xl font-bold mb-1">Request a Persisted Private Demo</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Public synthetic previews open through 2-hour session-scoped links and do not require a contact form.
-                Use this form only if you want a <strong className="text-white">persisted private demo</strong>, secure assessment, or enterprise walkthrough.
+                Use this form only if you want a <strong className="text-foreground">persisted private demo</strong>, secure assessment, or enterprise walkthrough.
               </p>
             </div>
             <DemoRequestForm defaultInterest={defaultInterest} />
