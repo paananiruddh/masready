@@ -50,6 +50,7 @@ import Drift from "@/pages/drift";
 import AdaptiveRegression from "@/pages/adaptive-regression";
 import AuditChecklist from "@/pages/audit-checklist";
 import IndustryPreviews from "@/pages/industry-previews";
+import IndustryPage from "@/pages/industry-page";
 import Platform from "@/pages/platform";
 import PreviewStudio from "@/pages/preview-studio";
 import PreviewSession from "@/pages/preview-session";
@@ -119,6 +120,7 @@ function Design1Router() {
         <Route path="/adaptive-regression" component={AdaptiveRegression} />
         <Route path="/audit-checklist" component={AuditChecklist} />
         <Route path="/industry-previews" component={IndustryPreviews} />
+        <Route path="/industry/:slug" component={IndustryPage} />
         <Route path="/platform" component={Platform} />
         <Route path="/preview-studio" component={PreviewStudio} />
         <Route path="/preview-session/:sessionId" component={PreviewSession} />
