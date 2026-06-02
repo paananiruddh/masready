@@ -38,7 +38,7 @@ function SuccessPanel({ result, onStartAnother }: { result: GeneratedResult; onS
     <motion.div
       initial={{ opacity: 0, scale: 0.97 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="rounded-2xl border border-emerald-200 bg-emerald-50 p-7 space-y-5"
+      className="border border-emerald-200 bg-emerald-50 p-7 space-y-5"
     >
       {/* Header */}
       <div className="flex items-start gap-3">
@@ -64,13 +64,13 @@ function SuccessPanel({ result, onStartAnother }: { result: GeneratedResult; onS
             type="text"
             readOnly
             value={result.previewUrl}
-            className="flex-1 rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm font-mono text-primary focus:outline-none focus:ring-2 focus:ring-primary select-all"
+            className="flex-1 border border-border bg-background px-3.5 py-2.5 text-sm font-mono text-primary focus:outline-none focus:ring-2 focus:ring-primary select-all"
             onClick={(e) => (e.target as HTMLInputElement).select()}
           />
           <button
             onClick={handleCopy}
             title="Copy preview link"
-            className="flex items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-card transition-colors shrink-0"
+            className="flex items-center gap-1.5 border border-border bg-background px-3 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-card transition-colors shrink-0"
           >
             {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
             {copied ? "Copied" : "Copy"}
@@ -92,13 +92,13 @@ function SuccessPanel({ result, onStartAnother }: { result: GeneratedResult; onS
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
         <button
           onClick={handleOpen}
-          className="flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white hover:bg-primary/90 transition-all hover:-translate-y-0.5"
+          className="flex items-center justify-center gap-2 bg-primary px-5 py-3 text-sm font-medium text-white hover:bg-primary/90 transition-colors"
         >
           <ExternalLink className="w-4 h-4" /> Open Preview
         </button>
         <button
           onClick={handleCopy}
-          className="flex items-center justify-center gap-2 rounded-lg border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground hover:bg-card transition-all"
+          className="flex items-center justify-center gap-2 border border-border bg-background px-5 py-3 text-sm font-medium text-foreground hover:bg-card transition-colors"
         >
           {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
           {copied ? "Link Copied!" : "Copy Preview Link"}
@@ -205,10 +205,8 @@ export default function PreviewStudio() {
       <div className="container mx-auto px-4 py-16 max-w-2xl">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent border border-accent-foreground/20 text-primary text-xs font-semibold mb-5">
-            <Zap className="w-3 h-3" /> Synthetic Preview Studio
-          </div>
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-5">Synthetic Preview Studio</p>
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4">
             MASReady Synthetic Preview Studio
           </h1>
           <p className="text-muted-foreground leading-relaxed">
@@ -224,7 +222,7 @@ export default function PreviewStudio() {
           ) : (
             <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               {/* Privacy banner */}
-              <div className="flex items-start gap-3 rounded-xl border border-border bg-card px-4 py-3.5 mb-6 text-sm text-muted-foreground">
+              <div className="flex items-start gap-3 border border-border bg-card px-4 py-3.5 mb-6 text-sm text-muted-foreground">
                 <Info className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                 <span>
                   Your answers personalise this preview in your browser session only.{" "}
@@ -234,7 +232,7 @@ export default function PreviewStudio() {
               </div>
 
               {/* Form card */}
-              <div className="rounded-2xl border border-border bg-card shadow-sm p-7">
+              <div className="border border-border bg-card p-7">
                 <div className="space-y-5">
                   {/* Industry — required */}
                   <div>
@@ -325,7 +323,7 @@ export default function PreviewStudio() {
                   <div className="pt-2 space-y-3">
                     <button
                       onClick={handleGenerate}
-                      className="w-full flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white hover:bg-primary/90 transition-all"
+                      className="w-full flex items-center justify-center gap-2 bg-primary px-6 py-3 text-sm font-medium text-white hover:bg-primary/90 transition-colors"
                     >
                       <Zap className="w-4 h-4" /> Generate 2-Hour Preview Link
                     </button>
@@ -333,13 +331,13 @@ export default function PreviewStudio() {
                     <div className="grid grid-cols-2 gap-3">
                       <Link
                         href="/launch?mode=persisted#demo-form"
-                        className="flex items-center justify-center gap-2 rounded-lg border border-primary/30 bg-accent px-4 py-2.5 text-sm font-semibold text-primary hover:bg-accent/70 transition-colors"
+                        className="flex items-center justify-center gap-2 border border-border bg-card px-4 py-2.5 text-sm font-medium text-primary hover:bg-muted transition-colors"
                       >
                         <Lock className="w-3.5 h-3.5" /> Request Persisted Demo
                       </Link>
                       <button
                         onClick={handleClearOverlay}
-                        className="flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                        className="flex items-center justify-center gap-2 border border-border bg-card px-4 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                       >
                         <RotateCcw className="w-3.5 h-3.5" /> Clear Preview Data
                       </button>

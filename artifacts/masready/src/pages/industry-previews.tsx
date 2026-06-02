@@ -140,13 +140,10 @@ export default function IndustryPreviews() {
     <div className="min-h-screen bg-background">
       {/* Hero */}
       <section className="pt-24 pb-16 border-b border-border">
-        <div className="container mx-auto px-4 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent border border-accent-foreground/20 text-primary text-xs font-semibold mb-6">
-            <Zap className="w-3 h-3" /> Synthetic Preview Studio
-          </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-5 leading-[1.1]">
-            Explore MASReady Through{" "}
-            <span className="text-primary">Your Industry</span>
+        <div className="container mx-auto px-6 lg:px-16 max-w-6xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-6">Synthetic Preview Studio</p>
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-5 leading-[1.1]">
+            Explore MASReady Through Your Industry
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
             Start with a curated synthetic Maximo-style environment shaped for your sector. Add optional
@@ -154,16 +151,16 @@ export default function IndustryPreviews() {
           </p>
 
           {/* Privacy notice */}
-          <div className="inline-flex items-start gap-2.5 px-4 py-3 rounded-xl bg-card border border-border text-sm text-muted-foreground max-w-2xl mx-auto mb-10">
+          <div className="inline-flex items-start gap-2.5 px-4 py-3 border border-border bg-card text-sm text-muted-foreground max-w-2xl mx-auto mb-10">
             <Info className="w-4 h-4 text-primary shrink-0 mt-0.5" />
             <span>Your answers personalise this preview in memory only. MASReady does not store your company details, screenshots, or environment information in the public preview.</span>
           </div>
 
           <div className="flex flex-wrap justify-center gap-3">
-            <Link href="/launch" className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white hover:bg-primary/90 transition-all">
+            <Link href="/launch" className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors">
               Request Persisted Demo <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all">
+            <Link href="/contact" className="inline-flex items-center gap-2 border border-border bg-card px-6 py-3 text-sm font-medium text-foreground hover:bg-muted transition-colors">
               Contact MASReady
             </Link>
           </div>
@@ -172,8 +169,8 @@ export default function IndustryPreviews() {
 
       {/* Industry cards */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+        <div className="container mx-auto px-6 lg:px-16 max-w-6xl">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {INDUSTRIES.map((industry, i) => (
               <motion.div
                 key={industry.slug}
@@ -181,13 +178,13 @@ export default function IndustryPreviews() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className={`rounded-2xl border ${industry.border} bg-gradient-to-b ${industry.bg} to-white p-6 flex flex-col gap-5 hover:-translate-y-1 hover:shadow-md transition-all duration-200`}
+                className={`border ${industry.border} bg-card p-6 flex flex-col gap-5 hover:bg-muted transition-colors`}
               >
                 <div className="flex items-center gap-3">
-                  <div className={`p-2.5 rounded-xl bg-white border ${industry.border}`}>
+                  <div className={`p-2.5 border ${industry.border} bg-background`}>
                     <industry.icon className={`w-5 h-5 ${industry.color}`} />
                   </div>
-                  <h3 className={`text-lg font-bold ${industry.color}`}>{industry.title}</h3>
+                  <h3 className={`text-lg font-semibold ${industry.color}`}>{industry.title}</h3>
                 </div>
 
                 <div className="space-y-4 flex-1">
@@ -221,7 +218,7 @@ export default function IndustryPreviews() {
                   href={`/industry/${industry.slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`mt-auto flex items-center justify-center gap-2 rounded-lg border ${industry.border} bg-white px-4 py-2.5 text-sm font-semibold ${industry.color} transition-colors`}
+                  className={`mt-auto flex items-center justify-center gap-2 border ${industry.border} bg-background px-4 py-2.5 text-sm font-medium ${industry.color} hover:bg-card transition-colors`}
                 >
                   Open {industry.title} Demo <ArrowRight className="w-3.5 h-3.5" />
                 </a>
@@ -230,26 +227,22 @@ export default function IndustryPreviews() {
           </div>
 
           {/* Persisted demo note */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 rounded-2xl border border-primary/25 bg-gradient-to-br from-accent to-background p-8 md:p-10 max-w-4xl mx-auto text-center"
-          >
-            <h3 className="text-2xl font-bold mb-3">Need a persisted demo or private environment?</h3>
-            <p className="text-muted-foreground leading-relaxed mb-8 max-w-2xl mx-auto">
+          <div className="mt-16 border border-border bg-card p-8 md:p-10 max-w-4xl mx-auto">
+            <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">Enterprise Demo</p>
+            <h3 className="text-2xl font-semibold mb-3">Need a persisted demo or private environment?</h3>
+            <p className="text-muted-foreground leading-relaxed mb-8 max-w-2xl">
               For saved previews, private demo workspaces, real environment analysis, or secure customer-specific
               synthetic datasets, contact MASReady. Public previews are session-only and do not store your information.
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link href="/launch" className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white hover:bg-primary/90 transition-all">
+            <div className="flex flex-wrap gap-3">
+              <Link href="/launch" className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors">
                 Request Persisted Demo
               </Link>
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all">
+              <Link href="/contact" className="inline-flex items-center gap-2 border border-border bg-background px-6 py-3 text-sm font-medium text-foreground hover:bg-muted transition-colors">
                 Book Secure Assessment
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

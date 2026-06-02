@@ -68,7 +68,7 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
   if (status === "success") {
     return (
       <div className="text-center py-8 space-y-5">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-50 border border-emerald-200 mb-2">
+        <div className="inline-flex items-center justify-center w-14 h-14 bg-emerald-50 border border-emerald-200 mb-2">
           <CheckCircle2 className="w-7 h-7 text-emerald-600" />
         </div>
         <div>
@@ -83,7 +83,7 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
           </p>
           <Link
             href="/preview-studio"
-            className="inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/10 px-5 py-2.5 text-sm font-semibold text-accent hover:bg-accent/20 transition-colors"
+            className="inline-flex items-center gap-2 border border-border bg-card px-5 py-2.5 text-sm font-medium text-primary hover:bg-muted transition-colors"
           >
             <Globe className="w-4 h-4" /> Open Public Synthetic Preview
           </Link>
@@ -107,7 +107,7 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
           required
           autoComplete="email"
           placeholder="you@company.com"
-          className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+          className="w-full border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
           disabled={status === "sending"}
         />
       </div>
@@ -121,7 +121,7 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
             name="name"
             autoComplete="name"
             placeholder="Jane Smith"
-            className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+            className="w-full border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
             disabled={status === "sending"}
           />
         </div>
@@ -133,7 +133,7 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
             name="company"
             autoComplete="organization"
             placeholder="Acme Corp"
-            className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+            className="w-full border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
             disabled={status === "sending"}
           />
         </div>
@@ -146,7 +146,7 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
           name="interest"
           value={interest}
           onChange={(e) => setInterest(e.target.value)}
-          className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+          className="w-full border border-border bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
           disabled={status === "sending"}
         >
           <option value="">Select an area of interest…</option>
@@ -155,7 +155,7 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
       </div>
 
       {status === "error" && (
-        <p role="alert" className="text-sm text-destructive bg-destructive/10 rounded-lg px-3.5 py-2.5">
+        <p role="alert" className="text-sm text-destructive bg-destructive/10 border border-destructive/20 px-3.5 py-2.5">
           {errorMsg}
         </p>
       )}
@@ -163,7 +163,7 @@ function DemoRequestForm({ defaultInterest }: { defaultInterest?: string }) {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+        className="w-full bg-primary px-6 py-3 text-sm font-medium text-white hover:bg-primary/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "sending" ? "Sending…" : "Request Persisted Demo"}
       </button>
@@ -189,13 +189,8 @@ export default function Launch() {
   }, []);
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Background */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/6" />
-      <div className="pointer-events-none absolute top-0 left-0 w-[700px] h-[700px] rounded-full" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.10) 0%, transparent 70%)" }} />
-      <div className="pointer-events-none absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full" style={{ background: "radial-gradient(circle, rgba(0,220,255,0.07) 0%, transparent 70%)" }} />
-
-      <div className="relative z-10 container mx-auto px-4 py-20">
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-6 lg:px-16 py-20 max-w-4xl">
         <div className="max-w-3xl mx-auto">
 
           {/* Hero */}
@@ -204,14 +199,9 @@ export default function Launch() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-6">
-              <Rocket className="w-3 h-3" /> MASReady Preview Studio
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 leading-[1.1]">
-              Launch a MASReady{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                Preview
-              </span>
+            <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-6">Preview Studio</p>
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-4 leading-[1.1]">
+              Launch a MASReady Preview
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-2xl mx-auto">
               Explore MASReady through a synthetic, industry-shaped Maximo environment. No production data required.
@@ -221,10 +211,10 @@ export default function Launch() {
             <div className="grid sm:grid-cols-2 gap-4 max-w-xl mx-auto mb-10">
               <Link
                 href="/preview-studio"
-                className="flex items-center gap-3 rounded-xl border border-accent/30 bg-gradient-to-br from-accent/10 to-accent/5 p-4 hover:border-accent/50 transition-all hover:-translate-y-0.5 group text-left"
+                className="flex items-center gap-3 border border-border bg-card p-4 hover:bg-muted transition-colors text-left"
               >
-                <div className="p-2.5 rounded-lg bg-accent/15 border border-accent/20 shrink-0">
-                  <Globe className="w-5 h-5 text-accent" />
+                <div className="p-2.5 border border-border bg-background shrink-0">
+                  <Globe className="w-5 h-5 text-primary" />
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-foreground">Open Public Synthetic Preview</div>
@@ -233,9 +223,9 @@ export default function Launch() {
               </Link>
               <button
                 onClick={() => document.getElementById("demo-form")?.scrollIntoView({ behavior: "smooth" })}
-                className="flex items-center gap-3 rounded-xl border border-primary/30 bg-gradient-to-br from-primary/10 to-primary/5 p-4 hover:border-primary/50 transition-all hover:-translate-y-0.5 group text-left w-full"
+                className="flex items-center gap-3 border border-border bg-card p-4 hover:bg-muted transition-colors text-left w-full"
               >
-                <div className="p-2.5 rounded-lg bg-primary/15 border border-primary/20 shrink-0">
+                <div className="p-2.5 border border-border bg-background shrink-0">
                   <Lock className="w-5 h-5 text-primary" />
                 </div>
                 <div>
@@ -252,7 +242,7 @@ export default function Launch() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
-            className="rounded-2xl border border-border bg-card shadow-lg p-8 max-w-[720px] mx-auto"
+            className="border border-border bg-card p-8 max-w-[720px] mx-auto"
           >
             <div className="mb-7">
               <h2 className="text-xl font-bold mb-1">Request a Persisted Private Demo</h2>

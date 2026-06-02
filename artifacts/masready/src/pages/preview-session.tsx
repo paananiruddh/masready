@@ -62,7 +62,7 @@ function SessionBanner({ session, remaining, onPersistedDemo }: {
         </div>
         <button
           onClick={onPersistedDemo}
-          className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-primary/30 bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+          className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 border border-primary/30 bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
         >
           <Lock className="w-3 h-3" /> Request Persisted Demo
         </button>
@@ -85,7 +85,7 @@ function Section({
     }
   }
   return (
-    <div className="rounded-xl border border-border bg-card overflow-hidden">
+    <div className="border border-border bg-card overflow-hidden">
       <button
         onClick={toggle}
         className="w-full flex items-center gap-3 px-5 py-4 hover:bg-muted transition-colors text-left"
@@ -148,7 +148,7 @@ function AuditPanel({ sessionId, session }: { sessionId: string; session: Previe
   }, [open, sessionId]);
 
   return (
-    <div className="rounded-xl border border-border bg-card overflow-hidden">
+    <div className="border border-border bg-card overflow-hidden">
       <button
         onClick={() => setOpen((o) => !o)}
         className="w-full flex items-center gap-3 px-5 py-4 hover:bg-muted transition-colors text-left"
@@ -247,24 +247,24 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
               { label: "Automation Scripts", value: snap.automationScripts },
               { label: "Integrations", value: snap.integrationCount },
             ].map(({ label, value, hi }) => (
-              <div key={label} className="rounded-xl border border-border bg-muted/40 p-3 text-center">
+              <div key={label} className="border border-border bg-muted/40 p-3 text-center">
                 <div className={cn("text-2xl font-bold mb-0.5", hi ? "text-red-600" : "text-foreground")}>{value}</div>
                 <div className="text-xs text-muted-foreground uppercase tracking-wider">{label}</div>
               </div>
             ))}
           </div>
           <div className="mt-4 grid grid-cols-2 gap-3">
-            <div className="rounded-xl border border-primary/20 bg-accent px-4 py-3">
+            <div className="border border-primary/20 bg-accent px-4 py-3">
               <div className="text-xs text-muted-foreground mb-1">Current environment</div>
               <div className="font-mono text-sm text-foreground font-semibold">{displayVersion}</div>
             </div>
-            <div className="rounded-xl border border-primary/30 bg-primary/10 px-4 py-3">
+            <div className="border border-primary/30 bg-primary/10 px-4 py-3">
               <div className="text-xs text-muted-foreground mb-1">Target version</div>
               <div className="font-mono text-sm text-primary font-semibold">{targetVersion}</div>
             </div>
           </div>
           {overlay.mainConcern && (
-            <div className="mt-3 rounded-xl border border-yellow-400/20 bg-yellow-400/5 px-4 py-3 text-sm">
+            <div className="mt-3 border border-yellow-400/20 bg-yellow-400/5 px-4 py-3 text-sm">
               <span className="text-amber-700 font-semibold">Main concern: </span>
               <span className="text-muted-foreground">{overlay.mainConcern}</span>
             </div>
@@ -273,7 +273,7 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
 
         {/* Assets and Locations */}
         <Section id="assets-locations" title="Assets and Locations" icon={FileText} color="text-blue-600" sessionId={sessionId}>
-          <div className="mt-2 rounded-xl border border-border overflow-hidden">
+          <div className="mt-2 border border-border overflow-hidden">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border bg-muted/30">
@@ -302,7 +302,7 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
 
         {/* Work Management */}
         <Section id="work-management" title="Work Management Preview" icon={CheckCircle2} color="text-emerald-600" sessionId={sessionId}>
-          <div className="mt-2 rounded-xl border border-border overflow-hidden">
+          <div className="mt-2 border border-border overflow-hidden">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border bg-muted/30">
@@ -338,7 +338,7 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
               { label: "Active Integrations", value: snap.integrationCount },
               { label: "Cron Tasks (est.)", value: Math.floor(snap.customObjects * 0.4) },
             ].map(({ label, value }) => (
-              <div key={label} className="rounded-xl border border-accent/20 bg-accent/5 p-3 text-center">
+              <div key={label} className="border border-accent/20 bg-accent/5 p-3 text-center">
                 <div className="text-2xl font-bold text-accent mb-0.5">{value}</div>
                 <div className="text-xs text-muted-foreground uppercase tracking-wider">{label}</div>
               </div>
@@ -372,7 +372,7 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
               </div>
             ))}
           </div>
-          <div className="mt-4 rounded-xl border border-orange-400/20 bg-orange-400/5 px-4 py-3 text-xs text-muted-foreground">
+          <div className="mt-4 border border-orange-400/20 bg-orange-400/5 px-4 py-3 text-xs text-muted-foreground">
             <span className="text-orange-700 font-semibold">{snap.driftFindings} drift findings </span>
             detected in this synthetic baseline. Real drift analysis requires environment fingerprint data from your Maximo instance.
           </div>
@@ -386,7 +386,7 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
               { label: "Coverage %", value: snap.regressionCoverage + "%" },
               { label: "Drift-triggered", value: snap.driftFindings },
             ].map(({ label, value }) => (
-              <div key={label} className="rounded-xl border border-violet-400/20 bg-violet-400/5 p-3 text-center">
+              <div key={label} className="border border-violet-400/20 bg-violet-400/5 p-3 text-center">
                 <div className="text-2xl font-bold text-violet-700 mb-0.5">{value}</div>
                 <div className="text-xs text-muted-foreground uppercase tracking-wider">{label}</div>
               </div>
@@ -410,7 +410,7 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
         <Section id="skillpack" title="AI Skill Pack Preview" icon={Brain} color="text-primary" sessionId={sessionId}>
           <div className="mt-2 space-y-4">
             {snap.skillPackQuestions.map((qa, i) => (
-              <div key={i} className="rounded-xl border border-primary/15 bg-primary/5 overflow-hidden">
+              <div key={i} className="border border-primary/15 bg-primary/5 overflow-hidden">
                 <div className="px-4 py-3 border-b border-primary/10">
                   <p className="text-sm font-semibold text-foreground">{qa.q}</p>
                 </div>
@@ -446,23 +446,24 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
         <AuditPanel sessionId={sessionId} session={session} />
 
         {/* Persisted Demo CTA */}
-        <div className="rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 to-accent/5 p-8 text-center">
-          <h3 className="text-xl font-bold mb-2">Ready for a persisted private demo?</h3>
-          <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-xl mx-auto">
+        <div className="border border-border bg-card p-8">
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-3">Enterprise Demo</p>
+          <h3 className="text-xl font-semibold mb-2">Ready for a persisted private demo?</h3>
+          <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-xl">
             Public synthetic previews use fixed baseline data and expire after 2 hours. Persisted private demos are saved, privately hosted, and can include secure customer-specific synthetic data and architecture discussions.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap gap-3">
             <Link
               href="/launch?mode=persisted#demo-form"
               onClick={() => writeAuditEvent("persisted_demo_clicked", sessionId, { section: "bottom-cta", route: "/preview-session/" + sessionId })}
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors"
             >
               <Lock className="w-4 h-4" /> Request Persisted Demo
             </Link>
             <Link
               href="/preview-studio"
               onClick={() => writeAuditEvent("preview_new_session_requested", sessionId, { section: "bottom-cta" })}
-              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 border border-border bg-background px-6 py-3 text-sm font-medium text-foreground hover:bg-muted transition-colors"
             >
               <RefreshCw className="w-4 h-4" /> Start New Preview
             </Link>
@@ -493,10 +494,10 @@ function ExpiredScreen({ sessionId, session }: { sessionId: string; session: Pre
           </p>
         )}
         <div className="flex flex-wrap justify-center gap-3">
-          <Link href="/preview-studio" className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-all hover:-translate-y-0.5">
+          <Link href="/preview-studio" className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors">
             <Zap className="w-4 h-4" /> Start New Preview
           </Link>
-          <Link href="/launch?mode=persisted#demo-form" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all hover:-translate-y-0.5">
+          <Link href="/launch?mode=persisted#demo-form" className="inline-flex items-center gap-2 border border-border bg-card px-6 py-3 text-sm font-medium text-foreground hover:bg-muted transition-colors">
             <Lock className="w-4 h-4" /> Request Persisted Demo
           </Link>
         </div>
@@ -517,10 +518,10 @@ function InvalidScreen() {
           This preview link is invalid, has expired, or was created in a different browser session. MASReady preview sessions are browser-scoped for your privacy.
         </p>
         <div className="flex flex-wrap justify-center gap-3">
-          <Link href="/preview-studio" className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-all hover:-translate-y-0.5">
+          <Link href="/preview-studio" className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors">
             <Zap className="w-4 h-4" /> Start Preview Studio
           </Link>
-          <Link href="/launch?mode=persisted#demo-form" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all hover:-translate-y-0.5">
+          <Link href="/launch?mode=persisted#demo-form" className="inline-flex items-center gap-2 border border-border bg-card px-6 py-3 text-sm font-medium text-foreground hover:bg-muted transition-colors">
             <Lock className="w-4 h-4" /> Request Persisted Demo
           </Link>
         </div>
