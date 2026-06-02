@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -65,50 +65,50 @@
   --elevate-1: rgba(255,255,255, .04);
   --elevate-2: rgba(255,255,255, .09);
 
-  /* Deep navy base — cards now clearly contrast against background */
-  --background: 224 38% 8%;
-  --foreground: 210 50% 97%;
-  --border: 222 24% 24%;
+  /* Near-black base */
+  --background: 240 5% 6%;
+  --foreground: 0 0% 96%;
+  --border: 240 5% 18%;
 
-  --card: 222 30% 16%;
-  --card-foreground: 210 50% 97%;
-  --card-border: 222 24% 26%;
+  --card: 240 4% 11%;
+  --card-foreground: 0 0% 96%;
+  --card-border: 240 5% 20%;
 
-  --popover: 222 30% 16%;
-  --popover-foreground: 210 50% 97%;
-  --popover-border: 222 24% 26%;
+  --popover: 240 4% 11%;
+  --popover-foreground: 0 0% 96%;
+  --popover-border: 240 5% 20%;
 
-  /* Vivid electric blue */
-  --primary: 217 100% 65%;
+  /* Bold orange — agency accent */
+  --primary: 24 95% 50%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 222 24% 28%;
-  --secondary-foreground: 210 50% 97%;
+  --secondary: 240 4% 20%;
+  --secondary-foreground: 0 0% 96%;
 
-  --muted: 222 24% 20%;
-  --muted-foreground: 215 28% 72%;
+  --muted: 240 4% 15%;
+  --muted-foreground: 240 5% 58%;
 
-  /* Bright cyan */
-  --accent: 188 100% 50%;
+  /* Warm amber accent */
+  --accent: 38 92% 52%;
   --accent-foreground: 0 0% 100%;
 
-  /* Amber */
-  --destructive: 38 92% 50%;
+  /* Red */
+  --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
-  --input: 223 30% 20%;
-  --ring: 217 91% 60%;
+  --input: 240 4% 18%;
+  --ring: 24 95% 50%;
 
-  --chart-1: 217 91% 60%;
-  --chart-2: 189 94% 43%;
-  --chart-3: 38 92% 50%;
-  --chart-4: 210 40% 98%;
-  --chart-5: 223 30% 40%;
+  --chart-1: 24 95% 50%;
+  --chart-2: 38 92% 52%;
+  --chart-3: 142 71% 45%;
+  --chart-4: 0 84% 60%;
+  --chart-5: 240 5% 50%;
 
-  --app-font-sans: 'Inter', sans-serif;
+  --app-font-sans: 'Space Grotesk', 'Inter', sans-serif;
   --app-font-serif: Georgia, serif;
   --app-font-mono: Menlo, monospace;
-  --radius: 0.5rem;
+  --radius: 0.25rem;
 
   --shadow-2xs: 0px 2px 0px 0px hsl(223 49% 10% / 0.1);
   --shadow-xs: 0px 2px 0px 0px hsl(223 49% 10% / 0.1);
