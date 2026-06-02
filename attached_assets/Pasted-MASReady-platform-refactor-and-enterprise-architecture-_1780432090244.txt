@@ -1,0 +1,505 @@
+MASReady platform refactor and enterprise architecture alignment.
+
+Important naming rule:
+
+Always use:
+
+```text
+MAS9 / MAS9Power
+```
+
+Do not rename it.
+Do not split it.
+Do not call it “Math Nine Power”.
+
+---
+
+## SECTION 1 — DEMO EXPERIENCE REFACTOR
+
+The current industry demos are incorrect.
+
+Right now they appear as:
+
+* small snapshot cards
+* partial embedded sections
+* visually disconnected pages
+* half-width broken layouts
+* non-standard templates
+
+This must be completely refactored.
+
+We need:
+
+* 1 full MAS9 / MAS9Power demo
+* 10 full standalone industry demo applications
+
+Total:
+
+* 11 full demo experiences
+
+These must behave like real mini applications, not preview cards.
+
+---
+
+## SECTION 2 — FULL DEMO APPLICATION STRUCTURE
+
+Each industry demo must replicate the structure and depth of the existing MAS9 / MAS9Power demo.
+
+Required structure for every demo:
+
+* landing/dashboard page
+* seeded demo data
+* workflow screens
+* detail pages
+* KPI/metric cards
+* realistic operational records
+* personas/roles
+* navigation system
+* modal/detail interactions
+* reset/reseed support if MAS9 / MAS9Power has it
+* responsive behaviour
+* polished empty/loading states
+
+Do not only copy styling.
+Copy the actual application structure and interaction model.
+
+---
+
+## SECTION 3 — DEMO HUB BEHAVIOUR
+
+The main industry gallery should only act as a launcher.
+
+When a user clicks a demo:
+
+* open full standalone experience
+* open in new tab/window
+* do not keep user trapped in small embedded preview mode
+
+Use route pattern such as:
+
+```text
+/demos/industries/:industrySlug
+```
+
+or match existing MAS9 / MAS9Power routing.
+
+Links must use:
+
+```html
+target="_blank"
+rel="noopener noreferrer"
+```
+
+---
+
+## SECTION 4 — PUBLIC DEMO SAFETY
+
+Public visitors must be able to enjoy the demos without setup, arguments, or provisioning.
+
+However public demos must be completely safe.
+
+Implement:
+
+```text
+PUBLIC_DEMO_MODE=true
+```
+
+When enabled:
+
+* no live API execution
+* no Maximo connection testing
+* no API key entry
+* no editable Maximo URLs
+* no live write/update/delete actions
+* no user-provided endpoints
+* no secret exposure
+* seed/demo data only
+* integrations visually visible but disabled
+
+Show disabled controls as:
+
+* visible
+* informative
+* non-interactive
+
+Example labels:
+
+```text
+Demo mode: live integrations disabled
+Available in provisioned enterprise environments
+```
+
+---
+
+## SECTION 5 — DEMO ACCESS SECTION
+
+On:
+
+* `/mas9-power`
+* every `/industry/:slug`
+
+add polished Demo Access sections.
+
+Reference login:
+
+```text
+https://mas9power.masready.com.au
+```
+
+Do not rename MAS9 / MAS9Power.
+
+---
+
+## SECTION 6 — DEMO ACCESS UX
+
+Left side:
+step-by-step instructions.
+
+Required steps:
+
+1. Click any role card below.
+2. MAS9Power opens in a new tab.
+3. Select the “Demo Mode” tab.
+4. Choose a demo role.
+5. No password required in Demo Mode.
+
+Right side:
+clickable role cards.
+
+Each card includes:
+
+* avatar initials
+* persona name
+* role title
+* tenant tag `MAS9_POWER`
+* role description
+* “Start at” recommendation
+* external link indicator
+
+All cards open:
+
+```text
+https://mas9power.masready.com.au
+```
+
+in new tab.
+
+---
+
+## SECTION 7 — DESIGN SYSTEM CONSISTENCY
+
+Audit all persisted/demo pages including:
+
+```text
+/launch?mode=persisted#demo-form
+```
+
+and ensure they fully match the MASReady design system.
+
+Fix:
+
+* half-width layouts
+* ugly spacing
+* raw blocks
+* broken responsive behaviour
+* inconsistent typography
+* inconsistent containers
+* non-standard cards
+* detached forms
+* mismatched footer/header
+
+All persisted/demo pages must use:
+
+* shared app shell
+* shared containers
+* shared cards
+* shared typography
+* shared spacing
+* shared footer
+* shared responsive grid system
+
+No demo page should feel like a separate prototype.
+
+---
+
+## SECTION 8 — TENANT SHELL ARCHITECTURE
+
+Add support for enterprise tenant shells.
+
+Future example:
+
+```text
+Customer: ABC
+Tenant slug: abc
+```
+
+We must be able to create an empty branded workspace.
+
+Example command:
+
+```bash
+npm run create-tenant -- --name "ABC" --slug "abc"
+```
+
+or equivalent.
+
+---
+
+## SECTION 9 — FOUR OPERATING DATA MODELS
+
+The platform must support 4 operating data models.
+
+1. `public_demo`
+2. `empty_shell`
+3. `customer_enriched`
+4. `live_integrated`
+
+---
+
+## SECTION 10 — PUBLIC DEMO DATA MODEL
+
+Purpose:
+safe public demos.
+
+Rules:
+
+* seed data only
+* no customer data
+* integrations disabled
+* no API keys
+* no editable Maximo URLs
+* public-safe only
+
+---
+
+## SECTION 11 — EMPTY CUSTOMER SHELL
+
+Purpose:
+new enterprise onboarding.
+
+Example:
+
+```text
+Tenant: ABC
+Status: Empty Shell
+```
+
+Rules:
+
+* customer-branded
+* no demo data inherited
+* no integrations enabled
+* onboarding checklist visible
+* enrichment options visible
+* empty dashboards/state
+
+---
+
+## SECTION 12 — CUSTOMER ENRICHED MODEL
+
+Purpose:
+customer uploads/imports internal data.
+
+Sources:
+
+* CSV
+* Excel
+* API extracts
+* Maximo exports
+* process documents
+* KPI definitions
+* personas
+* workflows
+
+Rules:
+
+* tenant isolated
+* no cross-tenant leakage
+* enrichment tracking
+* validation required
+
+---
+
+## SECTION 13 — LIVE INTEGRATED MODEL
+
+Purpose:
+fully provisioned enterprise deployment.
+
+Rules:
+
+* approved integrations only
+* secure API storage
+* audit logging
+* environment-aware permissions
+* read-only/read-write controls
+* controlled connection testing
+
+Public demo mode must never use this model.
+
+---
+
+## SECTION 14 — ZERO TRUST DATA MODEL
+
+This is mandatory across ALL four operating data models.
+
+Core rule:
+
+```text
+Never trust, expose, merge, activate, or operationalise data until it is classified, validated, tenant-scoped, and approved.
+```
+
+---
+
+## SECTION 15 — REQUIRED DATA GOVERNANCE FIELDS
+
+Every imported/generated dataset must track:
+
+```text
+tenant_id
+data_model_type
+environment
+source_type
+source_name
+classification_status
+validation_status
+approval_status
+trust_level
+data_lineage_id
+created_by
+created_at
+updated_at
+```
+
+Suggested values:
+
+```text
+classification_status:
+- unclassified
+- classified
+
+validation_status:
+- pending
+- passed
+- failed
+- partial
+
+approval_status:
+- not_approved
+- approved_for_demo
+- approved_for_enrichment
+- approved_for_live
+
+trust_level:
+- untrusted
+- demo_safe
+- customer_supplied
+- verified
+- production_authoritative
+```
+
+---
+
+## SECTION 16 — ZERO TRUST ENFORCEMENT
+
+Rules:
+
+* new uploads start as untrusted
+* no dashboard visibility before classification
+* no enrichment before validation
+* no live integration before approval
+* public demo only uses demo_safe seed data
+* customer enrichment only uses approved tenant data
+* live integration only uses verified/production-authoritative data
+
+---
+
+## SECTION 17 — TENANT ISOLATION
+
+All data access must be scoped by:
+
+```text
+tenant_id
+data_model_type
+environment
+```
+
+No cross-tenant leakage.
+
+ABC must never see:
+
+* MASReady demo data
+* another customer’s data
+* stale enrichment files
+* internal development records
+
+---
+
+## SECTION 18 — MARKETING WEBSITE ALIGNMENT
+
+The marketing site currently does not properly communicate the Zero Trust platform architecture.
+
+Add consistent messaging across:
+
+* homepage
+* MAS9 / MAS9Power pages
+* industry pages
+* architecture sections
+* integration sections
+* onboarding sections
+* security/trust sections
+
+---
+
+## SECTION 19 — REQUIRED MARKETING POSITIONING
+
+Core themes:
+
+```text
+Zero Trust Data Architecture
+Tenant-Isolated by Design
+Demo-Safe Public Experiences
+Controlled Enterprise Provisioning
+Trust-Governed Data Enrichment
+```
+
+Explain clearly:
+
+* public demo mode
+* empty customer shell
+* customer enrichment
+* provisioned live integration
+* tenant isolation
+* governed activation
+
+Use:
+
+* architecture cards
+* governance callouts
+* trust badges
+* expandable sections
+* diagrams if already supported
+
+Avoid:
+
+* walls of compliance text
+* fear/security-heavy marketing tone
+
+---
+
+## SECTION 20 — ACCEPTANCE CRITERIA
+
+Required outcomes:
+
+* 11 full standalone demo experiences exist
+* MAS9 / MAS9Power remains fully working
+* industry demos behave like real apps
+* demo pages fully match MASReady theme
+* no ugly half-width layouts remain
+* public demos are safe
+* no live Maximo/API access in public mode
+* tenant shell architecture exists
+* 4 operating data models exist
+* Zero Trust Data Model enforced
+* tenant isolation enforced
+* marketing site reflects secure enterprise architecture
+* MAS9 / MAS9Power naming remains exact everywhere

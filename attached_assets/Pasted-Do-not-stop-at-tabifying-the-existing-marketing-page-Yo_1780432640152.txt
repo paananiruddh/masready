@@ -1,0 +1,156 @@
+Do not stop at tabifying the existing marketing page.
+
+Your current plan is close, but it risks turning the industry page into a richer brochure instead of a full demo app.
+
+## Required correction
+
+Keep `/industry/:slug` as the marketing / deep-dive page.
+
+Create a separate full demo-app route for each industry.
+
+Example:
+
+```text
+/demos/industries/:industrySlug
+```
+
+or the closest existing route pattern.
+
+The industry marketing page can link to it, but it should not become the full demo app itself.
+
+## Required structure
+
+There should be two different experiences:
+
+### 1. Marketing / deep-dive page
+
+Route:
+
+```text
+/industry/:slug
+```
+
+Purpose:
+
+* explain the industry
+* show environment profile
+* show patch impact
+* show fingerprint
+* show licence planning
+* show Zero Trust / demo safety narrative
+* show Demo Access role cards
+* launch full demo
+
+This page should remain polished and content-rich.
+
+### 2. Full standalone demo app
+
+Route:
+
+```text
+/demos/industries/:industrySlug
+```
+
+Purpose:
+
+A real seeded mini-application experience, comparable to MAS9 / MAS9Power.
+
+This is where the tabbed operational UI belongs.
+
+## Full demo app requirements
+
+Each industry demo app must include:
+
+* app-style shell
+* dashboard
+* work order table
+* asset register
+* PM/compliance view
+* SLA/risk view
+* integrations panel with disabled public-demo controls
+* detail drawer/modal for selected records
+* seeded industry-specific records
+* role/persona context
+* demo mode banner
+* reset/reseed action if applicable
+* no live API calls in public mode
+
+## Suggested demo app tabs
+
+For `/demos/industries/:industrySlug`:
+
+```text
+Dashboard
+Work Orders
+Assets
+PM Compliance
+SLA / Risk
+Integrations
+Demo Access
+```
+
+The existing analytical sections such as fingerprint, patch impact, licence planning can remain on `/industry/:slug`, or appear only as a compact “Upgrade Analysis” tab if needed.
+
+## Data model changes
+
+Extend `industryData.ts` with seeded demo data generators for each industry:
+
+* `WorkOrderRecord`
+* `AssetRecord`
+* `PMRecord`
+* `SLARecord`
+* `IntegrationRecord`
+* `PersonaRecord`
+* `KPIRecord`
+
+Seed data must be deterministic per industry slug so the demo is stable.
+
+## Public demo safety
+
+In `/demos/industries/:industrySlug`, enforce:
+
+```text
+PUBLIC_DEMO_MODE=true
+```
+
+Meaning:
+
+* all API controls disabled
+* Maximo URLs disabled/read-only
+* API key fields absent or disabled
+* connection test buttons disabled
+* write/update/delete actions disabled
+* seed data only
+* visible labels explaining provisioned private demo capability
+
+## Hub behaviour
+
+The industry hub should launch the full demo app, not only `/industry/:slug`.
+
+Cards should have two actions where appropriate:
+
+```text
+View industry brief
+Launch full demo
+```
+
+`Launch full demo` opens:
+
+```text
+/demos/industries/:industrySlug
+```
+
+in a new tab/window.
+
+## Acceptance criteria
+
+* `/industry/:slug` remains a polished marketing/deep-dive page.
+* `/demos/industries/:industrySlug` exists for every one of the 10 industries.
+* Each demo app feels like a real seeded mini-application.
+* Each demo app has operational navigation, not just content sections.
+* Work Orders are filterable.
+* Assets are filterable.
+* Records open in detail drawer/modal.
+* Demo mode is clearly shown.
+* No live Maximo/API connection is possible in public demo mode.
+* MAS9 / MAS9Power remains exact and unchanged.
