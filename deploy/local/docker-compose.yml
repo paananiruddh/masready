@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  masready:
+    build:
+      context: ../..          # repo root
+      dockerfile: deploy/local/Dockerfile
+    image: masready-local:latest
+    container_name: masready
+    ports:
+      - "80:80"               # change left side if port 80 is taken, e.g. "8080:80"
+    restart: unless-stopped
