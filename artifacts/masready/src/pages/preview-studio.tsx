@@ -48,7 +48,7 @@ function SuccessPanel({ result, onStartAnother }: { result: GeneratedResult; onS
         <div>
           <h2 className="text-lg font-bold text-foreground">Your MASReady preview link is ready</h2>
           <p className="text-sm text-muted-foreground mt-0.5">
-            Your 2-hour synthetic preview session has been created. Click below to open it.
+            Your synthetic preview session has been created. Click below to open it.
           </p>
         </div>
       </div>
@@ -56,7 +56,7 @@ function SuccessPanel({ result, onStartAnother }: { result: GeneratedResult; onS
       {/* Visible URL */}
       <div>
         <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-          Your 2-hour preview link
+          Your preview link
         </label>
         <div className="flex items-center gap-2">
           <input
@@ -82,9 +82,7 @@ function SuccessPanel({ result, onStartAnother }: { result: GeneratedResult; onS
       <div className="flex items-center gap-2 text-xs text-muted-foreground">
         <Clock className="w-3.5 h-3.5 text-primary" />
         <span>
-          Expires at{" "}
-          <strong className="text-foreground">{new Date(result.session.expiresAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</strong>
-          {" "}(2 hours from now).
+          Session active.
         </span>
       </div>
 
@@ -210,7 +208,7 @@ export default function PreviewStudio() {
             MASReady Synthetic Preview Studio
           </h1>
           <p className="text-muted-foreground leading-relaxed">
-            Create a time-limited synthetic Maximo preview. Public preview links expire after 2 hours.
+            Create a synthetic Maximo preview personalised to your industry and environment profile.
           </p>
         </motion.div>
 
@@ -225,8 +223,7 @@ export default function PreviewStudio() {
               <div className="flex items-start gap-3 border border-border bg-card px-4 py-3.5 mb-6 text-sm text-muted-foreground">
                 <Info className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                 <span>
-                  Your answers personalise this preview in your browser session only.{" "}
-                  <strong className="text-foreground">Public preview links expire after 2 hours.</strong>{" "}
+                  Your answers personalise this preview in your browser session only.
                   No production data is required or stored.
                 </span>
               </div>
@@ -325,7 +322,7 @@ export default function PreviewStudio() {
                       onClick={handleGenerate}
                       className="w-full flex items-center justify-center gap-2 bg-primary px-6 py-3 text-sm font-medium text-white hover:bg-primary/90 transition-colors"
                     >
-                      <Zap className="w-4 h-4" /> Generate 2-Hour Preview Link
+                      <Zap className="w-4 h-4" /> Generate Preview Link
                     </button>
 
                     <div className="grid grid-cols-2 gap-3">
@@ -348,7 +345,7 @@ export default function PreviewStudio() {
 
               <p className="text-center text-xs text-muted-foreground mt-5 leading-relaxed">
                 Public previews use fixed synthetic baseline data and runtime-only personalisation.
-                Preview links expire after 2 hours. Persisted private demos are available by request.
+                Persisted private demos are available by request.
               </p>
             </motion.div>
           )}
