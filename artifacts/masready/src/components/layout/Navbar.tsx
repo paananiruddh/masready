@@ -19,11 +19,13 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-md shadow-xs">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-          <Shield className="h-6 w-6 text-primary" />
-          <span className="font-bold text-xl tracking-tight text-white">MASReady</span>
+          <div className="w-7 h-7 bg-primary rounded-md flex items-center justify-center">
+            <Shield className="h-4 w-4 text-white" />
+          </div>
+          <span className="font-bold text-xl tracking-tight text-foreground">MASReady</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -44,14 +46,14 @@ export function Navbar() {
 
         <Link
           href="/launch"
-          className="hidden lg:inline-flex text-sm font-semibold px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shrink-0"
+          className="hidden lg:inline-flex text-sm font-semibold px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors shrink-0"
         >
           Get Demo
         </Link>
 
         {/* Mobile Toggle */}
         <button
-          className="lg:hidden p-2 text-muted-foreground hover:text-white"
+          className="lg:hidden p-2 text-muted-foreground hover:text-foreground"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -61,7 +63,7 @@ export function Navbar() {
 
       {/* Mobile Nav */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden border-t border-white/10 bg-background/95 backdrop-blur-md">
+        <div className="lg:hidden border-t border-border bg-background">
           <div className="flex flex-col py-4 px-4 gap-1">
             {NAV_LINKS.map((link) => (
               <Link
@@ -69,18 +71,18 @@ export function Navbar() {
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={cn(
-                  "text-sm font-medium py-2.5 px-3 rounded-lg transition-colors hover:bg-white/5 hover:text-primary",
-                  location === link.href ? "text-primary bg-primary/10" : "text-muted-foreground"
+                  "text-sm font-medium py-2.5 px-3 rounded-lg transition-colors hover:bg-card hover:text-primary",
+                  location === link.href ? "text-primary bg-accent" : "text-muted-foreground"
                 )}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="pt-2 border-t border-white/10 mt-2">
+            <div className="pt-2 border-t border-border mt-2">
               <Link
                 href="/launch"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full text-center text-sm font-semibold px-4 py-2.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                className="block w-full text-center text-sm font-semibold px-4 py-2.5 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors"
               >
                 Get Demo
               </Link>

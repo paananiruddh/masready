@@ -3,13 +3,15 @@ import { Link } from "wouter";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-background py-12 mt-auto">
+    <footer className="border-t border-border bg-card py-12 mt-auto">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="flex items-center gap-2">
-          <Shield className="h-5 w-5 text-primary" />
-          <span className="font-bold tracking-tight text-white text-lg">MASReady</span>
+          <div className="w-6 h-6 bg-primary rounded flex items-center justify-center">
+            <Shield className="h-3.5 w-3.5 text-white" />
+          </div>
+          <span className="font-bold tracking-tight text-foreground text-lg">MASReady</span>
         </div>
-        
+
         <p className="text-sm text-muted-foreground text-center md:text-left">
           The Maximo Delivery Automation Workbench. Designed for IBM MAS 9.
         </p>
@@ -23,8 +25,8 @@ export function Footer() {
           </Link>
         </div>
       </div>
-      <div className="border-t border-white/5 mt-6 pt-4">
-        <p className="text-center text-xs text-muted-foreground/50">
+      <div className="border-t border-border mt-6 pt-4">
+        <p className="text-center text-xs text-muted-foreground/60">
           Powered by{" "}
           <a
             href="https://overpayingforai.com"

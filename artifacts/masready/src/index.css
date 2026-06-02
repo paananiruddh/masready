@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -56,63 +55,63 @@
 }
 
 :root {
-  --button-outline: rgba(255,255,255, .12);
-  --badge-outline: rgba(255,255,255, .08);
-  --opaque-button-border-intensity: 6;
-  --elevate-1: rgba(255,255,255, .05);
-  --elevate-2: rgba(255,255,255, .10);
+  --button-outline: rgba(0,0,0,.08);
+  --badge-outline: rgba(0,0,0,.06);
+  --opaque-button-border-intensity: -6;
+  --elevate-1: rgba(0,0,0,.04);
+  --elevate-2: rgba(0,0,0,.08);
 
-  /* Dark navy base */
-  --background: 222 47% 6%;
-  --foreground: 210 40% 96%;
-  --border: 217 30% 16%;
+  /* Clean white base */
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+  --border: 214 32% 91%;
 
-  --card: 222 44% 9%;
-  --card-foreground: 210 40% 96%;
-  --card-border: 217 30% 18%;
+  --card: 210 40% 98%;
+  --card-foreground: 222 47% 11%;
+  --card-border: 214 32% 91%;
 
-  --popover: 222 44% 9%;
-  --popover-foreground: 210 40% 96%;
-  --popover-border: 217 30% 18%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --popover-border: 214 32% 91%;
 
-  /* Electric blue */
-  --primary: 217 91% 60%;
+  /* Royal blue */
+  --primary: 221 73% 47%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 222 40% 14%;
-  --secondary-foreground: 210 40% 80%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 20%;
 
-  --muted: 222 40% 12%;
-  --muted-foreground: 215 20% 55%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 25% 40%;
 
-  /* Cyan accent */
-  --accent: 188 94% 48%;
-  --accent-foreground: 222 47% 6%;
+  /* Light blue accent */
+  --accent: 214 100% 95%;
+  --accent-foreground: 221 73% 35%;
 
-  --destructive: 0 72% 58%;
+  --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 
-  --input: 217 30% 16%;
-  --ring: 217 91% 60%;
+  --input: 214 32% 91%;
+  --ring: 221 73% 47%;
 
-  --chart-1: 217 91% 60%;
-  --chart-2: 188 94% 48%;
-  --chart-3: 271 91% 65%;
-  --chart-4: 142 71% 45%;
-  --chart-5: 38 92% 58%;
+  --chart-1: 221 73% 47%;
+  --chart-2: 188 94% 43%;
+  --chart-3: 271 91% 55%;
+  --chart-4: 142 71% 38%;
+  --chart-5: 38 92% 50%;
 
   --app-font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --app-font-mono: Menlo, monospace;
   --radius: 0.5rem;
 
-  --shadow-2xs: 0px 1px 3px rgba(0,0,0,.4);
-  --shadow-xs:  0px 2px 6px rgba(0,0,0,.4);
-  --shadow-sm:  0px 4px 12px rgba(0,0,0,.4);
-  --shadow:     0px 8px 24px rgba(0,0,0,.4);
-  --shadow-md:  0px 12px 32px rgba(0,0,0,.5);
-  --shadow-lg:  0px 20px 48px rgba(0,0,0,.5);
-  --shadow-xl:  0px 32px 64px rgba(0,0,0,.6);
-  --shadow-2xl: 0px 48px 80px rgba(0,0,0,.6);
+  --shadow-2xs: 0px 1px 3px rgba(0,0,0,.06);
+  --shadow-xs:  0px 2px 6px rgba(0,0,0,.07);
+  --shadow-sm:  0px 4px 12px rgba(0,0,0,.08);
+  --shadow:     0px 8px 24px rgba(0,0,0,.10);
+  --shadow-md:  0px 12px 32px rgba(0,0,0,.12);
+  --shadow-lg:  0px 20px 48px rgba(0,0,0,.14);
+  --shadow-xl:  0px 32px 64px rgba(0,0,0,.16);
+  --shadow-2xl: 0px 48px 80px rgba(0,0,0,.18);
 
   --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
   --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
@@ -144,24 +143,6 @@
   .no-default-hover-elevate {}
   .no-default-active-elevate {}
 
-  .toggle-elevate::before,
-  .toggle-elevate-2::before {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    inset: 0px;
-    border-radius: inherit;
-    z-index: -1;
-  }
-
-  .toggle-elevate.toggle-elevated::before {
-    background-color: var(--elevate-2);
-  }
-
-  .border.toggle-elevate::before {
-    inset: -1px;
-  }
-
   .hover-elevate:not(.no-default-hover-elevate),
   .active-elevate:not(.no-default-active-elevate),
   .hover-elevate-2:not(.no-default-hover-elevate),
@@ -190,12 +171,5 @@
   .hover-elevate-2:hover:not(.no-default-hover-elevate)::after,
   .active-elevate-2:active:not(.no-default-active-elevate)::after {
     background-color: var(--elevate-2);
-  }
-
-  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
-  .border.active-elevate:not(.no-active-interaction-elevate)::after,
-  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
-  .border.active-elevate-2:not(.no-active-interaction-elevate)::after {
-    inset: -1px;
   }
 }
