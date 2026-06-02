@@ -85,12 +85,12 @@ function Section({
     }
   }
   return (
-    <div className="rounded-xl border border-white/10 bg-card/60 overflow-hidden">
+    <div className="rounded-xl border border-border bg-card overflow-hidden">
       <button
         onClick={toggle}
-        className="w-full flex items-center gap-3 px-5 py-4 hover:bg-white/4 transition-colors text-left"
+        className="w-full flex items-center gap-3 px-5 py-4 hover:bg-muted transition-colors text-left"
       >
-        <div className={cn("p-2 rounded-lg bg-background/60 border border-white/10")}>
+        <div className={cn("p-2 rounded-lg bg-muted border border-border")}>
           <Icon className={cn("w-4 h-4", color)} />
         </div>
         <span className="font-semibold text-sm flex-1">{title}</span>
@@ -105,7 +105,7 @@ function Section({
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="px-5 pb-5 pt-1 border-t border-white/8">{children}</div>
+            <div className="px-5 pb-5 pt-1 border-t border-border">{children}</div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -115,14 +115,14 @@ function Section({
 
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
-    OPERATING: "text-green-400 bg-green-400/10 border-green-400/25",
-    ACTIVE: "text-green-400 bg-green-400/10 border-green-400/25",
-    INPRG: "text-blue-400 bg-blue-400/10 border-blue-400/25",
-    WAPPR: "text-yellow-400 bg-yellow-400/10 border-yellow-400/25",
-    COMP: "text-muted-foreground bg-white/5 border-white/10",
+    OPERATING: "text-emerald-700 bg-emerald-50 border-emerald-200",
+    ACTIVE: "text-emerald-700 bg-emerald-50 border-emerald-200",
+    INPRG: "text-blue-700 bg-blue-50 border-blue-200",
+    WAPPR: "text-amber-700 bg-amber-50 border-amber-200",
+    COMP: "text-slate-500 bg-slate-100 border-slate-200",
   };
   return (
-    <span className={cn("text-xs font-bold px-2 py-0.5 rounded border", map[status] ?? "text-muted-foreground bg-white/5 border-white/10")}>
+    <span className={cn("text-xs font-bold px-2 py-0.5 rounded border", map[status] ?? "text-slate-500 bg-slate-100 border-slate-200")}>
       {status}
     </span>
   );
@@ -131,9 +131,9 @@ function StatusBadge({ status }: { status: string }) {
 function SeverityBadge({ severity }: { severity: "high" | "medium" | "low" }) {
   return (
     <span className={cn("text-xs font-bold px-2 py-0.5 rounded border", {
-      "text-red-400 bg-red-400/10 border-red-400/25": severity === "high",
-      "text-yellow-400 bg-yellow-400/10 border-yellow-400/25": severity === "medium",
-      "text-muted-foreground bg-white/5 border-white/10": severity === "low",
+      "text-red-700 bg-red-50 border-red-200": severity === "high",
+      "text-amber-700 bg-amber-50 border-amber-200": severity === "medium",
+      "text-slate-500 bg-slate-100 border-slate-200": severity === "low",
     })}>
       {severity.toUpperCase()}
     </span>
@@ -148,17 +148,17 @@ function AuditPanel({ sessionId, session }: { sessionId: string; session: Previe
   }, [open, sessionId]);
 
   return (
-    <div className="rounded-xl border border-white/8 bg-card/40 overflow-hidden">
+    <div className="rounded-xl border border-border bg-card overflow-hidden">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="w-full flex items-center gap-3 px-5 py-4 hover:bg-white/4 transition-colors text-left"
+        className="w-full flex items-center gap-3 px-5 py-4 hover:bg-muted transition-colors text-left"
       >
         <ShieldCheck className="w-4 h-4 text-muted-foreground" />
         <span className="text-sm font-medium text-muted-foreground flex-1">Session details & audit trail</span>
         {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
       </button>
       {open && (
-        <div className="px-5 pb-5 pt-2 border-t border-white/8 space-y-4">
+        <div className="px-5 pb-5 pt-2 border-t border-border space-y-4">
           <div className="grid grid-cols-2 gap-3 text-xs">
             {[
               { label: "Session ID", value: sessionId.slice(0, 16) + "…" },
@@ -168,9 +168,9 @@ function AuditPanel({ sessionId, session }: { sessionId: string; session: Previe
               { label: "Source", value: session.source },
               { label: "Events recorded", value: String(events.length) },
             ].map(({ label, value }) => (
-              <div key={label} className="rounded-lg bg-background/40 border border-white/8 px-3 py-2">
+              <div key={label} className="rounded-lg bg-muted border border-border px-3 py-2">
                 <div className="text-muted-foreground mb-0.5">{label}</div>
-                <div className="font-mono text-white/90">{value}</div>
+                <div className="font-mono text-foreground">{value}</div>
               </div>
             ))}
           </div>
@@ -181,8 +181,8 @@ function AuditPanel({ sessionId, session }: { sessionId: string; session: Previe
                 {[...events].reverse().slice(0, 10).map((e) => (
                   <div key={e.eventId} className="flex items-center gap-2 text-xs">
                     <span className="text-muted-foreground font-mono">{new Date(e.timestamp).toLocaleTimeString()}</span>
-                    <span className="text-white/80">{e.eventType.replace(/_/g, " ")}</span>
-                    {e.section && <span className="text-accent">— {e.section}</span>}
+                    <span className="text-foreground/80">{e.eventType.replace(/_/g, " ")}</span>
+                    {e.section && <span className="text-primary">— {e.section}</span>}
                   </div>
                 ))}
               </div>
@@ -191,7 +191,7 @@ function AuditPanel({ sessionId, session }: { sessionId: string; session: Previe
           <div className="flex gap-2 pt-1">
             <button
               onClick={() => exportAuditEvents(sessionId)}
-              className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg border border-white/12 bg-white/5 text-muted-foreground hover:text-white hover:bg-white/10 transition-colors"
+              className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg border border-border bg-background text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
             >
               <Download className="w-3 h-3" /> Export Session Audit
             </button>
@@ -247,49 +247,49 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
               { label: "Automation Scripts", value: snap.automationScripts },
               { label: "Integrations", value: snap.integrationCount },
             ].map(({ label, value, hi }) => (
-              <div key={label} className="rounded-xl border border-white/10 bg-background/40 p-3 text-center">
-                <div className={cn("text-2xl font-bold mb-0.5", hi ? "text-red-400" : "text-white")}>{value}</div>
+              <div key={label} className="rounded-xl border border-border bg-muted/40 p-3 text-center">
+                <div className={cn("text-2xl font-bold mb-0.5", hi ? "text-red-600" : "text-foreground")}>{value}</div>
                 <div className="text-xs text-muted-foreground uppercase tracking-wider">{label}</div>
               </div>
             ))}
           </div>
           <div className="mt-4 grid grid-cols-2 gap-3">
-            <div className="rounded-xl border border-primary/20 bg-primary/5 px-4 py-3">
+            <div className="rounded-xl border border-primary/20 bg-accent px-4 py-3">
               <div className="text-xs text-muted-foreground mb-1">Current environment</div>
-              <div className="font-mono text-sm text-white">{displayVersion}</div>
+              <div className="font-mono text-sm text-foreground font-semibold">{displayVersion}</div>
             </div>
-            <div className="rounded-xl border border-accent/20 bg-accent/5 px-4 py-3">
+            <div className="rounded-xl border border-primary/30 bg-primary/10 px-4 py-3">
               <div className="text-xs text-muted-foreground mb-1">Target version</div>
-              <div className="font-mono text-sm text-accent">{targetVersion}</div>
+              <div className="font-mono text-sm text-primary font-semibold">{targetVersion}</div>
             </div>
           </div>
           {overlay.mainConcern && (
             <div className="mt-3 rounded-xl border border-yellow-400/20 bg-yellow-400/5 px-4 py-3 text-sm">
-              <span className="text-yellow-400 font-semibold">Main concern: </span>
+              <span className="text-amber-700 font-semibold">Main concern: </span>
               <span className="text-muted-foreground">{overlay.mainConcern}</span>
             </div>
           )}
         </Section>
 
         {/* Assets and Locations */}
-        <Section id="assets-locations" title="Assets and Locations" icon={FileText} color="text-blue-400" sessionId={sessionId}>
-          <div className="mt-2 rounded-xl border border-white/8 overflow-hidden">
+        <Section id="assets-locations" title="Assets and Locations" icon={FileText} color="text-blue-600" sessionId={sessionId}>
+          <div className="mt-2 rounded-xl border border-border overflow-hidden">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-white/8 bg-background/30">
+                <tr className="border-b border-border bg-muted/30">
                   {["Asset ID", "Description", "Type", "Status", "Priority"].map((h) => (
                     <th key={h} className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">{h}</th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/5">
+              <tbody className="divide-y divide-border">
                 {snap.sampleAssets.map((a) => (
-                  <tr key={a.id} className="hover:bg-white/3 transition-colors">
+                  <tr key={a.id} className="hover:bg-muted/50 transition-colors">
                     <td className="px-3 py-2 font-mono text-xs text-accent">{a.id}</td>
-                    <td className="px-3 py-2 text-xs text-white">{a.description}</td>
+                    <td className="px-3 py-2 text-xs text-foreground">{a.description}</td>
                     <td className="px-3 py-2 text-xs text-muted-foreground">{a.type}</td>
                     <td className="px-3 py-2"><StatusBadge status={a.status} /></td>
-                    <td className="px-3 py-2 text-center text-xs font-bold text-white">{a.priority}</td>
+                    <td className="px-3 py-2 text-center text-xs font-bold text-foreground">{a.priority}</td>
                   </tr>
                 ))}
               </tbody>
@@ -301,24 +301,24 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
         </Section>
 
         {/* Work Management */}
-        <Section id="work-management" title="Work Management Preview" icon={CheckCircle2} color="text-green-400" sessionId={sessionId}>
-          <div className="mt-2 rounded-xl border border-white/8 overflow-hidden">
+        <Section id="work-management" title="Work Management Preview" icon={CheckCircle2} color="text-emerald-600" sessionId={sessionId}>
+          <div className="mt-2 rounded-xl border border-border overflow-hidden">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-white/8 bg-background/30">
+                <tr className="border-b border-border bg-muted/30">
                   {["WO Number", "Description", "Type", "Status", "Priority"].map((h) => (
                     <th key={h} className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider">{h}</th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/5">
+              <tbody className="divide-y divide-border">
                 {snap.sampleWOs.map((wo) => (
-                  <tr key={wo.woNum} className="hover:bg-white/3 transition-colors">
+                  <tr key={wo.woNum} className="hover:bg-muted/50 transition-colors">
                     <td className="px-3 py-2 font-mono text-xs text-accent">{wo.woNum}</td>
-                    <td className="px-3 py-2 text-xs text-white">{wo.description}</td>
+                    <td className="px-3 py-2 text-xs text-foreground">{wo.description}</td>
                     <td className="px-3 py-2 text-xs text-muted-foreground">{wo.type}</td>
                     <td className="px-3 py-2"><StatusBadge status={wo.status} /></td>
-                    <td className="px-3 py-2 text-center text-xs font-bold text-white">{wo.priority}</td>
+                    <td className="px-3 py-2 text-center text-xs font-bold text-foreground">{wo.priority}</td>
                   </tr>
                 ))}
               </tbody>
@@ -363,23 +363,23 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
         </Section>
 
         {/* Drift Intelligence */}
-        <Section id="drift" title="Drift Intelligence" icon={Activity} color="text-orange-400" sessionId={sessionId}>
+        <Section id="drift" title="Drift Intelligence" icon={Activity} color="text-orange-600" sessionId={sessionId}>
           <div className="mt-2 space-y-2.5">
             {snap.driftItems.map((item, i) => (
-              <div key={i} className="flex items-start gap-3 rounded-lg border border-white/8 bg-background/30 px-3 py-2.5">
+              <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-muted/30 px-3 py-2.5">
                 <SeverityBadge severity={item.severity} />
                 <p className="text-sm text-muted-foreground">{item.description}</p>
               </div>
             ))}
           </div>
           <div className="mt-4 rounded-xl border border-orange-400/20 bg-orange-400/5 px-4 py-3 text-xs text-muted-foreground">
-            <span className="text-orange-400 font-semibold">{snap.driftFindings} drift findings </span>
+            <span className="text-orange-700 font-semibold">{snap.driftFindings} drift findings </span>
             detected in this synthetic baseline. Real drift analysis requires environment fingerprint data from your Maximo instance.
           </div>
         </Section>
 
         {/* Regression Intelligence */}
-        <Section id="regression" title="Regression Intelligence" icon={Code2} color="text-violet-400" sessionId={sessionId}>
+        <Section id="regression" title="Regression Intelligence" icon={Code2} color="text-violet-600" sessionId={sessionId}>
           <div className="mt-2 grid grid-cols-3 gap-3 mb-4">
             {[
               { label: "Scenarios in pack", value: snap.regressionScenarios },
@@ -387,7 +387,7 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
               { label: "Drift-triggered", value: snap.driftFindings },
             ].map(({ label, value }) => (
               <div key={label} className="rounded-xl border border-violet-400/20 bg-violet-400/5 p-3 text-center">
-                <div className="text-2xl font-bold text-violet-400 mb-0.5">{value}</div>
+                <div className="text-2xl font-bold text-violet-700 mb-0.5">{value}</div>
                 <div className="text-xs text-muted-foreground uppercase tracking-wider">{label}</div>
               </div>
             ))}
@@ -395,9 +395,9 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
           <div className="space-y-2">
             {(industry?.workTypes ?? []).map((wt) => (
               <div key={wt} className="flex items-center gap-3 text-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-violet-400 shrink-0" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-violet-600 shrink-0" />
                 <span className="text-muted-foreground">{wt} workflow coverage</span>
-                <span className="ml-auto text-xs text-violet-400 font-mono">{Math.floor(60 + Math.random() * 35)}%</span>
+                <span className="ml-auto text-xs text-violet-700 font-mono">{Math.floor(60 + Math.random() * 35)}%</span>
               </div>
             ))}
           </div>
@@ -412,7 +412,7 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
             {snap.skillPackQuestions.map((qa, i) => (
               <div key={i} className="rounded-xl border border-primary/15 bg-primary/5 overflow-hidden">
                 <div className="px-4 py-3 border-b border-primary/10">
-                  <p className="text-sm font-semibold text-white">{qa.q}</p>
+                  <p className="text-sm font-semibold text-foreground">{qa.q}</p>
                 </div>
                 <div className="px-4 py-3">
                   <p className="text-sm text-muted-foreground leading-relaxed">{qa.a}</p>
@@ -426,18 +426,18 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
         </Section>
 
         {/* Recommendations */}
-        <Section id="recommendations" title="Recommendations" icon={ShieldCheck} color="text-green-400" sessionId={sessionId}>
+        <Section id="recommendations" title="Recommendations" icon={ShieldCheck} color="text-emerald-600" sessionId={sessionId}>
           <div className="mt-2 space-y-2.5">
             {snap.recommendations.map((rec, i) => (
               <div key={i} className="flex items-start gap-3 text-sm">
                 <div className="w-5 h-5 rounded-full border border-green-400/30 bg-green-400/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="text-xs font-bold text-green-400">{i + 1}</span>
+                  <span className="text-xs font-bold text-emerald-700">{i + 1}</span>
                 </div>
                 <p className="text-muted-foreground leading-snug">{rec}</p>
               </div>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground mt-4 border-t border-white/8 pt-3">
+          <p className="text-xs text-muted-foreground mt-4 border-t border-border pt-3">
             Recommendations are generated from the synthetic baseline. A real MASReady assessment produces recommendations from your actual environment fingerprint, drift findings, and AI skill pack gap analysis.
           </p>
         </Section>
@@ -462,7 +462,7 @@ function ValidPreview({ session, sessionId, remaining, onPersistedDemo }: {
             <Link
               href="/preview-studio"
               onClick={() => writeAuditEvent("preview_new_session_requested", sessionId, { section: "bottom-cta" })}
-              className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-all hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all hover:-translate-y-0.5"
             >
               <RefreshCw className="w-4 h-4" /> Start New Preview
             </Link>
@@ -478,7 +478,7 @@ function ExpiredScreen({ sessionId, session }: { sessionId: string; session: Pre
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="max-w-lg w-full text-center">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-orange-400/30 bg-orange-400/10 mb-6">
-          <Clock className="w-8 h-8 text-orange-400" />
+          <Clock className="w-8 h-8 text-orange-600" />
         </div>
         <h1 className="text-2xl font-bold mb-3">This MASReady synthetic preview link has expired.</h1>
         <p className="text-muted-foreground leading-relaxed mb-2">
@@ -496,7 +496,7 @@ function ExpiredScreen({ sessionId, session }: { sessionId: string; session: Pre
           <Link href="/preview-studio" className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-all hover:-translate-y-0.5">
             <Zap className="w-4 h-4" /> Start New Preview
           </Link>
-          <Link href="/launch?mode=persisted#demo-form" className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-all hover:-translate-y-0.5">
+          <Link href="/launch?mode=persisted#demo-form" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all hover:-translate-y-0.5">
             <Lock className="w-4 h-4" /> Request Persisted Demo
           </Link>
         </div>
@@ -520,7 +520,7 @@ function InvalidScreen() {
           <Link href="/preview-studio" className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-all hover:-translate-y-0.5">
             <Zap className="w-4 h-4" /> Start Preview Studio
           </Link>
-          <Link href="/launch?mode=persisted#demo-form" className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-all hover:-translate-y-0.5">
+          <Link href="/launch?mode=persisted#demo-form" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all hover:-translate-y-0.5">
             <Lock className="w-4 h-4" /> Request Persisted Demo
           </Link>
         </div>

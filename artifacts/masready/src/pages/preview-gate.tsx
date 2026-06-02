@@ -40,7 +40,7 @@ export default function PreviewGate() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6">
-              <Link href="/industry-previews" className="hover:text-white transition-colors">Industry Previews</Link>
+              <Link href="/industry-previews" className="hover:text-foreground transition-colors">Industry Previews</Link>
               <span>/</span>
               <span className={industry.color}>{industry.title}</span>
             </div>
@@ -57,7 +57,7 @@ export default function PreviewGate() {
             </p>
 
             {/* Gate explanation */}
-            <div className="rounded-xl border border-white/12 bg-card/70 backdrop-blur p-6 mb-8">
+            <div className="rounded-xl border border-border bg-card p-6 mb-8">
               <h2 className="text-base font-bold mb-2">Start a time-limited MASReady preview</h2>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                 Synthetic previews require a 2-hour preview session so MASReady can keep public demo access controlled and auditable.
@@ -79,7 +79,7 @@ export default function PreviewGate() {
               </Link>
               <Link
                 href="/launch?mode=persisted#demo-form"
-                className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-all hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all hover:-translate-y-0.5"
               >
                 <Lock className="w-4 h-4" /> Request Persisted Demo
               </Link>
@@ -116,7 +116,7 @@ export default function PreviewGate() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.05 }}
-              className="rounded-2xl border border-white/10 bg-card/60 p-6"
+              className="rounded-2xl border border-border bg-card p-6"
             >
               <h3 className="text-sm font-bold uppercase tracking-wider mb-4 text-muted-foreground">Work Types in Preview</h3>
               <ul className="space-y-2">
@@ -135,7 +135,7 @@ export default function PreviewGate() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="rounded-2xl border border-white/10 bg-card/60 p-6"
+              className="rounded-2xl border border-border bg-card p-6"
             >
               <h3 className="text-sm font-bold uppercase tracking-wider mb-4 text-muted-foreground">What the Preview Includes</h3>
               <ul className="space-y-2">
@@ -154,7 +154,7 @@ export default function PreviewGate() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.15 }}
-              className="rounded-2xl border border-white/10 bg-card/60 p-6"
+              className="rounded-2xl border border-border bg-card p-6"
             >
               <h3 className="text-sm font-bold uppercase tracking-wider mb-4 text-muted-foreground">Integration Context</h3>
               <ul className="space-y-2">
@@ -188,7 +188,7 @@ export default function PreviewGate() {
               </Link>
               <Link
                 href="/industry-previews"
-                className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-all hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted transition-all hover:-translate-y-0.5"
               >
                 All Industry Previews
               </Link>
