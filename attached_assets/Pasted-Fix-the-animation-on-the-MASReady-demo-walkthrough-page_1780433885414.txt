@@ -1,0 +1,322 @@
+Fix the animation on the MASReady demo walkthrough page.
+
+Page to review:
+
+```text
+https://masready.com.au/demo-walkthrough
+```
+
+## Main issue
+
+This is not a design preference issue.
+
+The page says/implies animation, but the page does not actually animate.
+
+The animation system is either:
+
+* not wired
+* not firing
+* being blocked
+* too subtle to see
+* broken by layout/CSS
+* broken by client/server rendering
+* broken by scroll container handling
+
+Fix the actual execution problem.
+
+## Required outcome
+
+The page must visibly animate.
+
+Users should clearly see:
+
+* hero entrance animation
+* section reveal animation
+* staggered cards
+* KPI counters/count-up animation
+* walkthrough stages animating as the user scrolls
+* smooth transitions between demo steps
+* tab/stage transitions where relevant
+* dashboard/demo cards feeling alive
+
+This must not be only hover effects or static CSS.
+
+## Audit the current implementation
+
+Inspect all files/components used by:
+
+```text
+/demo-walkthrough
+```
+
+Check:
+
+* route file
+* page component
+* layout wrapper
+* animation utilities
+* shared motion components
+* CSS/Tailwind classes
+* scroll containers
+* any `useEffect` / `useLayoutEffect`
+* Framer Motion usage
+* GSAP usage if present
+* IntersectionObserver usage if present
+* reduced-motion logic
+* lazy-loaded components
+
+## Find why animation is not running
+
+Specifically check for these failure points:
+
+### Framer Motion
+
+Verify:
+
+* `framer-motion` is installed
+* components use `motion.div` or equivalent
+* `initial` values are set
+* `animate` or `whileInView` values are set
+* `transition` values are meaningful
+* `viewport` settings are not preventing triggers
+* components are client-rendered where required
+* no hydration mismatch is disabling animation
+* variants are actually passed into components
+* child components are not plain `div`s when they should be `motion.div`s
+
+Correct pattern example:
+
+```tsx
+<motion.div
+  initial={{ opacity: 0, y: 48 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, amount: 0.2 }}
+  transition={{ duration: 0.65, ease: "easeOut" }}
+>
+  ...
+</motion.div>
+```
+
+### GSAP / ScrollTrigger
+
+If GSAP is used, verify:
+
+```ts
+gsap.registerPlugin(ScrollTrigger)
+```
+
+Also verify:
+
+* ScrollTrigger is imported correctly
+* animations are created after DOM is mounted
+* cleanup is handled
+* refs point to actual DOM nodes
+* ScrollTrigger uses the correct scroll container
+* no route wrapper prevents scroll detection
+* pinned sections are not broken
+* trigger elements exist
+* start/end positions are valid
+
+### CSS / Tailwind blocking
+
+Check for:
+
+* `opacity-0` never removed
+* `transform-none` overriding animated transform
+* `transition-none`
+* `overflow-hidden` clipping animated content
+* parent containers blocking scroll triggers
+* `will-change` problems
+* z-index making animated elements invisible
+* fixed/sticky elements covering content
+* classes fighting Framer/GSAP inline styles
+
+### Reduced motion
+
+Check:
+
+* `prefers-reduced-motion`
+* custom reduced motion hooks
+* browser/system reduced animation settings
+* any global flag disabling animation
+
+Important:
+
+Reduced motion support is fine, but it must not accidentally disable animation for everyone.
+
+### Client-side rendering
+
+If this is Next/Vite/React with SSR-style constraints, check:
+
+* page/component has `"use client"` if needed
+* animation code does not run on server
+* no `window` access before mount
+* no hydration mismatch
+* no dynamic import timing issue
+
+## Temporary debug mode
+
+Add a temporary local debug mode while testing.
+
+Make animations obvious:
+
+* `opacity: 0 -> 1`
+* `y: 80 -> 0`
+* `scale: 0.95 -> 1`
+* stagger delay clearly visible
+* KPI count-up obvious
+* section transitions clearly visible
+
+Once confirmed working, reduce to polished premium motion.
+
+Do not leave broken/static behaviour.
+
+## Required implementation
+
+Implement a reusable animation pattern for this page, for example:
+
+* `Reveal`
+* `StaggerGroup`
+* `AnimatedCounter`
+* `WalkthroughStage`
+* `AnimatedMetricCard`
+
+Use these consistently across the walkthrough page.
+
+## Minimum visible animations required
+
+Implement and verify all of these:
+
+### 1. Hero animation
+
+Hero title, subtitle, CTA buttons, and visual panel should animate on page load.
+
+Required:
+
+* text reveal
+* CTA stagger
+* visual panel slide/fade
+* optional subtle background motion
+
+### 2. KPI / metric animation
+
+Any metrics or numbers should count up.
+
+Required:
+
+* number count-up
+* card stagger
+* status indicator pulse if relevant
+
+### 3. Walkthrough stage animation
+
+Each walkthrough stage should animate when it enters viewport.
+
+Required:
+
+* stage card reveal
+* diagram/panel reveal
+* step indicator progression
+* staggered details
+
+### 4. Section reveal animation
+
+Each major page section should animate into view.
+
+Required:
+
+* fade + vertical movement
+* consistent timing
+* no static hard cuts
+
+### 5. Cards/list animation
+
+Cards must not all appear instantly.
+
+Required:
+
+* staggered reveal
+* visible but not gimmicky
+
+### 6. Tab or step transition animation
+
+If the walkthrough has steps/tabs/stages, changing stage should animate:
+
+* outgoing state
+* incoming state
+* active indicator movement
+
+## Motion quality rules
+
+Do not add childish/gimmicky motion.
+
+Avoid:
+
+* bouncing
+* spinning
+* excessive zooming
+* random movement
+* distracting loops
+* motion that slows usability
+
+Use:
+
+* premium SaaS motion
+* subtle easing
+* clear stagger
+* smooth section reveal
+* operational dashboard-style animation
+
+## Performance rules
+
+* Avoid heavy animation on every frame.
+* Do not animate layout-heavy properties unnecessarily.
+* Prefer transform/opacity.
+* Do not create memory leaks with ScrollTrigger/listeners.
+* Respect reduced motion properly, but do not globally disable animation by mistake.
+
+## QA requirements
+
+After fixing, test:
+
+```text
+/demo-walkthrough
+```
+
+Verify:
+
+* animation works on hard refresh
+* animation works after route navigation
+* animation works on desktop
+* animation works on mobile
+* animation works when scrolling down
+* animation does not leave elements invisible
+* animation does not cause layout jumping
+* reduced motion still shows readable content
+* no console errors
+* no hydration warnings
+* no broken imports
+* no blank page
+
+## Required deliverables
+
+After implementation, report:
+
+1. Root cause of why animation was not running.
+2. Files/components changed.
+3. Which animation approach is now used.
+4. Which page sections now visibly animate.
+5. Any remaining static sections and why.
+6. Confirmation that `/demo-walkthrough` has been tested.
+
+## Acceptance criteria
+
+* `/demo-walkthrough` visibly animates.
+* Animation works without user interaction beyond page load/scroll.
+* Page no longer feels static.
+* KPI/count animations are visible.
+* Walkthrough stages animate progressively.
+* Cards stagger into view.
+* No elements remain stuck invisible.
+* No public demo safety controls are weakened.
+* MAS9 / MAS9Power naming remains exact anywhere referenced.
