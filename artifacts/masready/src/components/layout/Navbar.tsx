@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { href: "/features", label: "Features" },
   { href: "/industry-previews", label: "Industry Previews" },
   { href: "/architecture", label: "Architecture" },
+  { href: "/audit-checklist", label: "Audit" },
   { href: "/mas9-power", label: "Demo" },
   { href: "/contact", label: "Contact" },
 ];
