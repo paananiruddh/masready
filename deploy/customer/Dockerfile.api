@@ -1,0 +1,48 @@
+# API server image
+FROM node:24-alpine AS builder
+
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+WORKDIR /app
+
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml .npmrc ./
+COPY artifacts/api-server/package.json ./artifacts/api-server/
+COPY lib/db/package.json ./lib/db/
+COPY lib/api-zod/package.json ./lib/api-zod/
+COPY lib/api-spec/package.json ./lib/api-spec/
+COPY lib/api-client-react/package.json ./lib/api-client-react/
+COPY artifacts/masready/package.json ./artifacts/masready/
+COPY artifacts/mockup-sandbox/package.json ./artifacts/mockup-sandbox/
+
+RUN pnpm install --frozen-lockfile
+
+COPY tsconfig.base.json tsconfig.json ./
+COPY artifacts/api-server ./artifacts/api-server
+COPY lib ./lib
+
+RUN pnpm --filter @workspace/api-server run build
+
+# Runtime image
+FROM node:24-alpine
+
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+WORKDIR /app
+
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml .npmrc ./
+COPY artifacts/api-server/package.json ./artifacts/api-server/
+COPY lib/db/package.json ./lib/db/
+COPY lib/api-zod/package.json ./lib/api-zod/
+COPY lib/api-spec/package.json ./lib/api-spec/
+COPY lib/api-client-react/package.json ./lib/api-client-react/
+COPY artifacts/masready/package.json ./artifacts/masready/
+COPY artifacts/mockup-sandbox/package.json ./artifacts/mockup-sandbox/
+
+RUN pnpm install --frozen-lockfile --prod
+
+COPY --from=builder /app/artifacts/api-server/dist ./artifacts/api-server/dist
+COPY --from=builder /app/lib/db/dist ./lib/db/dist
+
+EXPOSE 8080
+
+CMD ["node", "artifacts/api-server/dist/index.js"]

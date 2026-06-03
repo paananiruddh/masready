@@ -1,0 +1,64 @@
+version: "3.9"
+
+# Customer live deployment stack
+# Requires: .env file (copy from .env.template and fill in)
+# Usage:    docker compose up --build -d
+
+services:
+
+  # ── React SPA (nginx) ───────────────────────────────────────────────────────
+  # Serves the MASReady frontend and proxies /api/* to the api service.
+  app:
+    build:
+      context: ../..
+      dockerfile: deploy/local/Dockerfile   # reuses the same SPA build
+    image: masready-app:${TENANT_SLUG:-customer}
+    container_name: masready-app
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+
+  # ── Express API server ──────────────────────────────────────────────────────
+  # Connects to the customer's Maximo instance (read-only) and exposes /api/*.
+  api:
+    build:
+      context: ../..
+      dockerfile: deploy/customer/Dockerfile.api
+    image: masready-api:${TENANT_SLUG:-customer}
+    container_name: masready-api
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      PORT: "8080"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/api/healthz"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+
+  # ── PostgreSQL ──────────────────────────────────────────────────────────────
+  # Stores connector run history and cached resource data.
+  db:
+    image: postgres:16-alpine
+    container_name: masready-db
+    env_file: .env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-masready}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  db_data:
