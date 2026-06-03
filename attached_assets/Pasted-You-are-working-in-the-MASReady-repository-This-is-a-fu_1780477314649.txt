@@ -1,0 +1,1041 @@
+You are working in the MASReady repository.
+
+This is a full end-to-end productisation task.
+
+Goal:
+Evolve MASReady from the current working MAS9POWER functional demo company into a repeatable, modular, hydratable, version-aware customer provisioning product.
+
+Definitions:
+
+* MASReady = the overall product/platform.
+* MAS9POWER = the fictional functional company used inside the demo.
+* MAS9POWER contains fictional/demo company data that proves the product works.
+* MAS9POWER is not the product name.
+* MAS9POWER is not a real customer.
+* MAS9POWER is not to be treated as a generic tenant label.
+* ABCD = placeholder example customer name only.
+* Do not use MAS9000 anywhere. If MAS9000 exists in the repo, replace it with MAS9POWER where appropriate.
+
+The productisation idea:
+The existing MAS9POWER demo proves the product works.
+If we strip out MAS9POWER-specific fictional company data, we should be left with a clean MASReady reusable template.
+That reusable template is the IP.
+The modules are sellable capabilities.
+The hydration layer injects either demo data or real customer data.
+The evidence layer proves what was analysed, what was touched, what was not touched, and how reliable the result is.
+
+End-state architecture:
+
+MAS9POWER Functional Demo Company
+→ Identify MAS9POWER-specific demo data
+→ Extract clean MASReady base template
+→ Define module contracts
+→ Define canonical data model
+→ Define hydration model
+→ Create customer profile
+→ Select modules
+→ Hydrate with demo or customer data
+→ Run modules
+→ Generate evidence pack
+→ Provision repeatable customer instance
+
+This is not marketing copy.
+This is not a website feature-card task.
+This is not a generic SaaS control-plane build.
+This is the practical foundation for turning a functional demo into a repeatable customer delivery model.
+
+============================================================
+REPO SAFETY CHECK — REQUIRED FIRST
+==================================
+
+Before modifying files:
+
+1. Confirm current git remote URL.
+2. Confirm current branch.
+3. Confirm repository name.
+4. Confirm this is the MASReady repository.
+5. Confirm no other repository will be modified.
+6. Confirm no live infrastructure will be provisioned.
+7. Confirm no real customer data will be added.
+8. Confirm no real credentials will be added.
+9. Confirm no push will happen unless explicitly instructed.
+10. Search for:
+
+* MAS9000
+* MAS9POWER
+* demo tenant
+* fictional tenant
+* customer tenant
+
+11. Correct naming where appropriate:
+
+* MAS9000 must become MAS9POWER.
+* MAS9POWER must be described as the fictional functional company used in the demo.
+* Do not describe MAS9POWER as the product, tenant, or real customer.
+
+If the repo is not clearly MASReady, stop and report.
+
+============================================================
+CORE PRODUCT DECISIONS TO IMPLEMENT
+===================================
+
+Implement the following product architecture decisions:
+
+1. MASReady has three commercial layers:
+
+   * Template Layer
+   * Module Layer
+   * Hydration Layer
+
+2. MASReady has five technical layers:
+
+   * Base Template
+   * Module Registry
+   * Canonical Data Model
+   * Hydration / Adapter Layer
+   * Evidence / Governance Layer
+
+3. The existing MAS9POWER demo must be treated as:
+
+   * a working functional demo company
+   * a proof that the product works
+   * a source from which reusable template areas can be extracted
+   * a source of demo data patterns
+   * not the reusable template itself
+
+4. The clean reusable template must not contain:
+
+   * MAS9POWER-specific company data
+   * real customer data
+   * hardcoded customer names
+   * hardcoded demo assumptions
+   * credentials
+   * one-off demo-only logic
+
+5. Modules are independently enableable but not necessarily independently hydrated.
+
+6. Modules must not directly call each other.
+
+7. Modules consume:
+
+   * requires.data = canonical facts from hydration
+   * consumes.signals = outputs from other modules
+
+8. Modules produce:
+
+   * outputs
+   * signals
+   * evidence
+   * confidence metadata
+   * completeness metadata
+
+9. The canonical data model is the key contract between hydration and modules.
+
+10. Governance must be enforced through configuration and validation, not just documentation.
+
+11. DEMO and LIVE modes must be separated:
+
+* DEMO mode can use MAS9POWER fictional/synthetic data.
+* DEMO mode must not access live connectors.
+* LIVE mode must reject MAS9POWER fictional/synthetic data.
+* LIVE mode is read-only by default.
+* SQL execution is disabled by default.
+* Maximo/MAS mutation is disabled by default.
+* Write-back is disabled by default.
+
+12. Evidence packs must include:
+
+* provenance
+* source checksums
+* confidence
+* completeness
+* what MASReady touched
+* what MASReady did not touch
+* generated hash/checksum
+
+============================================================
+PHASING INSTRUCTION
+===================
+
+You must phase the work yourself.
+
+Do not ask for clarification unless blocked.
+Do not stop after writing a plan.
+Produce a phase plan, then implement the safe phases in order.
+
+Build incrementally.
+
+Do not overbuild.
+Do not create large empty folder scaffolding.
+Do not create fake claims.
+Do not claim live Maximo integration exists unless implemented.
+Do not implement real live Maximo API access in this run.
+Do not implement write-back to Maximo/MAS in this run.
+Do not create live cloud infrastructure.
+Do not add real secrets.
+Do not add real customer data.
+
+Expected final output:
+
+* phase plan
+* files created
+* files modified
+* commands run
+* validation results
+* generated evidence pack paths
+* assumptions
+* limitations
+* next recommended phase
+
+============================================================
+PHASE 0 — REPO ASSESSMENT AND NAMING CORRECTION
+===============================================
+
+Inspect the repository.
+
+Identify:
+
+1. Current app type:
+
+   * React/Vite/static app/etc.
+   * Node scripts available
+   * build commands
+   * test commands
+
+2. MAS9POWER functional demo company areas:
+
+   * where MAS9POWER demo company data lives
+   * where MAS9POWER company names appear
+   * where MAS9POWER fictional records appear
+   * where MAS9POWER-specific routing/content appears
+   * where MAS9POWER assumptions are hardcoded
+   * where reusable template logic appears to live
+
+3. Existing feature/module logic:
+
+   * licence-related pages/components/data
+   * environment fingerprint pages/components/data
+   * regression/testing features
+   * AI assistant features
+   * audit/evidence concepts
+   * hydration/data loading if any
+
+4. Existing deployment/config:
+
+   * package.json scripts
+   * build tool
+   * environment handling
+   * public/static data files
+
+5. Search and replace:
+
+   * Replace MAS9000 with MAS9POWER where appropriate.
+   * Do not replace MASReady.
+   * Correct wording so MAS9POWER is the fictional functional company used inside the demo.
+
+Deliverable:
+Create or update:
+
+docs/architecture/masready-productisation-assessment.md
+
+Include:
+
+* current repo findings
+* current MAS9POWER functional demo company structure
+* reusable template candidates
+* MAS9POWER demo-data candidates
+* feature/module candidates
+* current risks
+* proposed implementation sequence
+
+============================================================
+PHASE 1 — ARCHITECTURE FOUNDATION
+=================================
+
+Create the core architecture documentation.
+
+Create:
+
+docs/architecture/product-template-module-hydration.md
+docs/architecture/hydration-governance-first.md
+docs/architecture/versioning-strategy.md
+docs/architecture/demo-live-separation.md
+
+Document:
+
+MASReady:
+
+* overall product/platform
+
+MAS9POWER:
+
+* fictional functional company used in the demo
+* contains synthetic/demo data
+* proves the product works
+* should not be confused with the reusable product template
+
+Template Layer:
+
+* clean reusable MASReady baseline
+* no MAS9POWER company data
+* no customer data
+* no customer-specific code
+* no credentials
+
+Module Layer:
+
+* optional sellable capabilities
+* independently enableable
+* capability-based
+* not version-specific by default
+
+Hydration Layer:
+
+* MAS9POWER demo synthetic data
+* customer extract data
+* future live API data
+* future uploaded file data
+
+Canonical Data Model:
+
+* shared model between hydration and modules
+* versioned
+* module-facing contract
+* prevents duplicate extraction and inconsistent module outputs
+
+Adapter Layer:
+
+* translates raw data to canonical model
+* future version-specific logic lives here
+* do not overbuild now
+
+Evidence Layer:
+
+* generated evidence packs
+* provenance
+* confidence
+* completeness
+* hash/checksum
+
+Governance Layer:
+
+* capability manifest
+* DEMO/LIVE separation
+* read-only default
+* no mutation by default
+* no SQL execution by default
+* no write-back by default
+
+Versioning strategy:
+Use:
+
+* base template now
+* future legacy_eam_7x template
+* future mas_x template
+
+Do not create:
+
+* maximo-7 module versions
+* mas-8 module versions
+* mas-9 module versions
+
+Modules stay capability-based.
+
+Version-specific differences should later live in:
+
+* adapters
+* declarative rule packs
+
+Rule packs must remain declarative:
+
+* thresholds
+* weights
+* mappings
+* scoring parameters
+
+Rule packs must not contain procedural business logic.
+
+============================================================
+PHASE 2 — SCHEMAS AND CONTRACTS
+===============================
+
+Create the minimum contracts needed for the product foundation.
+
+Create:
+
+hydration/canonical-data-model.schema.json
+modules/module.schema.json
+provisioning/customer-profile.schema.json
+provisioning/capability-manifest.schema.json
+
+Canonical Data Model v0.1 should support Licence Tracking first.
+
+Entities:
+
+User:
+
+* userId
+* displayName
+* status
+* personId
+* email
+* sourceId
+* asOf
+
+Group:
+
+* groupId
+* description
+* sourceId
+* asOf
+
+GroupMembership:
+
+* userId
+* groupId
+* sourceId
+* asOf
+
+ApplicationAccess:
+
+* userId
+* applicationId
+* accessLevel
+* sourceId
+* asOf
+
+LoginActivity:
+
+* userId
+* lastLoginAt
+* loginCount
+* sourceId
+* asOf
+
+SourceProvenance:
+
+* sourceId
+* sourceType
+* fileName
+* extractedAt
+* recordCount
+* checksum
+
+Module schema must support:
+
+moduleId
+displayName
+description
+canRunStandalone
+requires.data
+consumes.signals
+produces
+confidenceFloor
+confidenceCeiling
+supportedPlatformFamilies
+status
+riskNotes
+
+Customer profile schema must support:
+
+customerId
+customerName
+instanceType
+environmentMode
+demoCompany
+platformFamily
+deploymentMode
+dataSource
+auth
+capabilities
+enabledModules
+
+Capability manifest schema must support:
+
+environmentMode
+syntheticDataAllowed
+liveConnectorAllowed
+readOnly
+sqlExecutionAllowed
+maximoMutationAllowed
+writeBackAllowed
+supportAccess.enabled
+supportAccess.approvalRequired
+supportAccess.timeBoundHours
+
+============================================================
+PHASE 3 — DEMO COMPANY AND CUSTOMER PROFILES
+============================================
+
+Create example profiles.
+
+Create:
+
+provisioning/customers/mas9power-demo-company.customer.json
+provisioning/customers/example-abcd.customer.json
+
+MAS9POWER demo company profile:
+
+{
+"customerId": "mas9power",
+"customerName": "MAS9POWER",
+"instanceType": "functional-demo-company",
+"environmentMode": "DEMO",
+"demoCompany": true,
+"platformFamily": "mas_x",
+"deploymentMode": "masready-demo",
+"dataSource": {
+"type": "synthetic-demo-company-data",
+"syntheticDataAllowed": true,
+"liveConnectorAllowed": false
+},
+"auth": {
+"mode": "demo",
+"configured": true
+},
+"capabilities": {
+"readOnly": true,
+"sqlExecution": false,
+"maximoMutation": false,
+"writeBack": false,
+"supportAccess": false
+},
+"enabledModules": [
+"license-tracking"
+]
+}
+
+ABCD customer extract profile:
+
+{
+"customerId": "abcd",
+"customerName": "ABCD",
+"instanceType": "customer-extract",
+"environmentMode": "LIVE",
+"demoCompany": false,
+"platformFamily": "mas_x",
+"deploymentMode": "customer-managed",
+"dataSource": {
+"type": "csv-or-json-extract",
+"syntheticDataAllowed": false,
+"liveConnectorAllowed": false
+},
+"auth": {
+"mode": "external-sso-required-later",
+"configured": false
+},
+"capabilities": {
+"readOnly": true,
+"sqlExecution": false,
+"maximoMutation": false,
+"writeBack": false,
+"supportAccess": false
+},
+"enabledModules": [
+"license-tracking"
+]
+}
+
+Create capability manifests if useful:
+
+provisioning/capability-manifests/mas9power-demo-company.capabilities.json
+provisioning/capability-manifests/example-abcd.capabilities.json
+
+Validation rules:
+
+* DEMO can use MAS9POWER synthetic company data.
+* DEMO cannot use live connectors.
+* LIVE cannot use MAS9POWER synthetic company data.
+* LIVE is read-only by default.
+* LIVE cannot enable writeBack unless maximoMutationAllowed=true and explicit approval exists.
+* SQL execution is false by default.
+* Maximo/MAS mutation is false by default.
+* Real secrets must never appear in customer profiles.
+* Only future secret references may appear.
+
+============================================================
+PHASE 4 — LICENCE TRACKING MODULE CONTRACT
+==========================================
+
+Create the first vertical-slice module.
+
+Create:
+
+modules/license-tracking/module.json
+
+Use this shape:
+
+{
+"moduleId": "license-tracking",
+"displayName": "Licence Tracking",
+"description": "Analyses user access and login activity to identify potential unused access and access utilisation signals. It does not make definitive IBM licensing compliance claims.",
+"canRunStandalone": true,
+"requires": {
+"data": [
+"users",
+"groups",
+"groupMemberships",
+"applicationAccess",
+"loginActivity"
+]
+},
+"consumes": {
+"signals": []
+},
+"produces": [
+"license-usage-summary",
+"inactive-users",
+"over-assigned-users",
+"unused-access-list"
+],
+"confidenceFloor": 0.6,
+"confidenceCeiling": 0.95,
+"supportedPlatformFamilies": [
+"mas_x",
+"legacy_eam_7x"
+],
+"status": "phase-1-vertical-slice",
+"riskNotes": [
+"This module produces access utilisation indicators and review candidates only.",
+"It must not claim final IBM licensing compliance or entitlement position.",
+"It depends on freshness and completeness of login and access data."
+]
+}
+
+Create documentation:
+
+modules/license-tracking/README.md
+
+Explain:
+
+* what it does
+* what it does not do
+* required canonical data
+* produced outputs
+* confidence/completeness rules
+* why it avoids definitive IBM licensing claims
+
+Use careful wording:
+
+* licence usage signal
+* access utilisation indicator
+* potential unused access
+* review candidates
+
+Avoid:
+
+* definitive licence compliance claim
+* legal/commercial entitlement interpretation
+* exact IBM licensing conclusion
+
+============================================================
+PHASE 5 — HYDRATION SAMPLE DATA
+===============================
+
+Create MAS9POWER demo company data and ABCD extract-shaped sample data.
+
+Create:
+
+hydration/demo/mas9power-license-tracking-demo-data.json
+hydration/examples/abcd-license-extract.sample.json
+
+The sample data must be fake and safe.
+
+It should map to the canonical model v0.1.
+
+Include:
+
+* users
+* groups
+* group memberships
+* application access
+* login activity
+* source provenance
+
+Rules:
+
+* MAS9POWER sample is fictional demo company data.
+* ABCD sample should look like a customer extract but must still be fake.
+* Do not use real customer names.
+* Do not use real email addresses.
+* Use example domains only, such as example.com.
+* Do not add real credentials.
+* Do not add live connector URLs.
+
+============================================================
+PHASE 6 — VALIDATION SCRIPT
+===========================
+
+Create:
+
+provisioning/validate-customer-profile.mjs
+
+The script must:
+
+1. Load a customer profile JSON file.
+
+2. Validate required fields.
+
+3. Validate environmentMode:
+
+   * DEMO
+   * LIVE
+
+4. Validate instanceType:
+
+   * functional-demo-company
+   * customer-extract
+   * customer-managed-live
+   * masready-managed-single-tenant
+
+5. Validate enabled modules exist.
+
+6. Validate capability safety.
+
+7. Reject DEMO profile with liveConnectorAllowed=true.
+
+8. Reject LIVE profile with syntheticDataAllowed=true.
+
+9. Reject LIVE profile that tries to use MAS9POWER demo company data.
+
+10. Reject writeBack=true unless maximoMutation=true and explicit approval exists.
+
+11. Reject sqlExecution=true unless explicit approval exists.
+
+12. Reject real-looking credentials or secret values in profile.
+
+13. Confirm no field contains obvious API keys, passwords, tokens, or private keys.
+
+14. Print clear PASS/FAIL output.
+
+15. Exit non-zero on failure.
+
+16. Produce generated validation JSON output:
+
+provisioning/generated/{customerId}.validation-report.json
+
+Add package script if package.json exists:
+
+"provision:validate": "node provisioning/validate-customer-profile.mjs"
+
+Do not break existing scripts.
+
+============================================================
+PHASE 7 — LICENCE TRACKING RUNNER
+=================================
+
+Create a simple runner that proves the vertical slice.
+
+Create:
+
+modules/license-tracking/run-license-tracking.mjs
+
+Input:
+
+* customer profile path
+* hydration sample path
+
+Output:
+
+* provisioning/generated/{customerId}.license-tracking.output.json
+
+The runner should:
+
+1. Load customer profile.
+
+2. Load hydration sample data.
+
+3. Validate basic canonical data shape.
+
+4. Enforce DEMO/LIVE rules:
+
+   * DEMO can run against MAS9POWER demo company data.
+   * LIVE must not run against MAS9POWER demo company data.
+   * LIVE must not run against syntheticDataAllowed=true.
+
+5. Apply licence tracking logic.
+
+6. Calculate:
+
+   * total users
+   * active users
+   * inactive users
+   * users with access but no recent login
+   * users by group
+   * users by application access
+   * completeness score
+   * confidence score
+
+7. Inactive threshold:
+
+   * default 90 days
+   * configurable inside script or sample config
+
+8. Include provenance:
+
+   * sourceId
+   * source file
+   * asOf
+   * generatedAt
+   * checksum
+
+9. Do not claim final IBM licence compliance.
+
+10. Output review candidates only.
+
+Add package script if package.json exists:
+
+"module:license-tracking": "node modules/license-tracking/run-license-tracking.mjs"
+
+============================================================
+PHASE 8 — EVIDENCE PACK GENERATOR
+=================================
+
+Create:
+
+provisioning/generate-evidence-pack.mjs
+
+Input:
+
+* customer profile path
+* module output path
+
+Output:
+
+* provisioning/generated/{customerId}.license-tracking.evidence-pack.md
+* provisioning/generated/{customerId}.license-tracking.evidence-pack.json
+
+The evidence pack must include:
+
+1. Customer/company summary
+2. Whether this is MAS9POWER demo company data or customer extract data
+3. Environment mode
+4. Module summary
+5. Generated timestamp
+6. Input sources
+7. Source checksums
+8. Canonical model summary
+9. Licence tracking output summary
+10. Provenance envelope
+11. Completeness score
+12. Confidence score
+13. What MASReady touched
+14. What MASReady did not touch
+15. Read-only confirmation
+16. DEMO/LIVE mode confirmation
+17. MAS9POWER demo data separation confirmation
+18. Governance checks
+19. Known limitations
+20. Customer review checklist
+21. Evidence pack content hash/checksum
+
+The evidence pack must clearly state:
+
+MASReady did not:
+
+* mutate Maximo/MAS data
+* execute SQL
+* write back to Maximo/MAS
+* store real credentials
+* use live connectors in DEMO mode
+* use MAS9POWER fictional demo data in LIVE mode
+
+Add package script if package.json exists:
+
+"provision:evidence": "node provisioning/generate-evidence-pack.mjs"
+
+============================================================
+PHASE 9 — TEMPLATE POLLUTION GUARD
+==================================
+
+Create a simple guard script:
+
+provisioning/check-template-pollution.mjs
+
+It should scan likely template/source directories for banned or suspicious terms.
+
+Banned or suspicious examples:
+
+* MAS9000
+* demo tenant
+* fictional tenant
+* password
+* api_key
+* secret
+* private_key
+* bearer token
+* hardcoded customer domains except example.com or MASReady demo domains
+
+MAS9POWER is allowed only where the context is clearly:
+
+* fictional functional demo company
+* MAS9POWER demo data
+* MAS9POWER showcase/demo content
+
+MAS9POWER should not appear in:
+
+* base template files
+* generic customer provisioning files unless it is the MAS9POWER example profile
+* reusable module logic unless it is testing/demo data
+
+The script should:
+
+* report findings clearly
+* exit non-zero for MAS9000 or obvious credentials
+* warn for suspicious terms
+* not be overly destructive
+
+Add package script if package.json exists:
+
+"provision:check-template": "node provisioning/check-template-pollution.mjs"
+
+============================================================
+PHASE 10 — DEMO/LIVE GOVERNANCE TESTS
+=====================================
+
+Create simple test fixtures:
+
+provisioning/test-fixtures/invalid-live-with-mas9power-demo-data.customer.json
+provisioning/test-fixtures/invalid-live-with-synthetic.customer.json
+provisioning/test-fixtures/invalid-demo-with-live-connector.customer.json
+provisioning/test-fixtures/invalid-writeback-without-mutation.customer.json
+
+Run validation and confirm each invalid fixture fails.
+
+Document results in:
+
+provisioning/generated/governance-validation-results.md
+
+============================================================
+PHASE 11 — OPTIONAL UI INTEGRATION
+==================================
+
+Only if the repo structure makes it straightforward and low-risk:
+
+Add a developer/internal page or documentation route that shows:
+
+* MASReady Productisation Foundation
+* MAS9POWER fictional functional demo company
+* ABCD customer extract example
+* Licence Tracking vertical slice
+* DEMO vs LIVE governance
+* evidence pack path/examples
+
+Do not add sales fluff.
+Do not turn this into a marketing landing page.
+Do not break existing UI.
+
+If UI integration is not straightforward, skip and report why.
+
+============================================================
+PHASE 12 — BUILD AND TEST
+=========================
+
+Run the available commands.
+
+Inspect package.json.
+
+Run if available:
+
+* npm run build
+* npm run lint
+* npm test
+* npm run provision:validate
+* npm run provision:evidence
+* npm run provision:check-template
+* npm run module:license-tracking
+
+Also run explicit commands:
+
+node provisioning/validate-customer-profile.mjs provisioning/customers/mas9power-demo-company.customer.json
+
+node provisioning/validate-customer-profile.mjs provisioning/customers/example-abcd.customer.json
+
+node modules/license-tracking/run-license-tracking.mjs provisioning/customers/mas9power-demo-company.customer.json hydration/demo/mas9power-license-tracking-demo-data.json
+
+node modules/license-tracking/run-license-tracking.mjs provisioning/customers/example-abcd.customer.json hydration/examples/abcd-license-extract.sample.json
+
+node provisioning/generate-evidence-pack.mjs provisioning/customers/mas9power-demo-company.customer.json provisioning/generated/mas9power.license-tracking.output.json
+
+node provisioning/generate-evidence-pack.mjs provisioning/customers/example-abcd.customer.json provisioning/generated/abcd.license-tracking.output.json
+
+node provisioning/check-template-pollution.mjs
+
+For invalid fixtures:
+
+* Run validation against each invalid fixture.
+* Confirm validation fails.
+* Record results.
+
+============================================================
+FINAL RESPONSE REQUIRED
+=======================
+
+Return:
+
+1. Repo Safety Check result
+
+* remote URL
+* branch
+* repo name
+* safety confirmation
+
+2. Phase plan actually followed
+
+3. Files created
+
+4. Files modified
+
+5. Naming corrections made
+
+* MAS9000 replacements
+* incorrect MAS9POWER wording corrected
+
+6. Architecture summary
+
+7. Validation results
+
+8. Licence Tracking runner results
+
+9. Evidence pack paths
+
+10. Evidence pack checksums
+
+11. Governance test results
+
+12. Build/test command results
+
+13. Assumptions
+
+14. Limitations
+
+15. Recommended next phase
+
+============================================================
+ABSOLUTE CONSTRAINTS
+====================
+
+Do not:
+
+* use MAS9000
+* describe MAS9POWER as a tenant
+* describe MAS9POWER as the product
+* use real customer names
+* use real credentials
+* create live infrastructure
+* implement live Maximo API access
+* implement Maximo write-back
+* claim IBM licence compliance
+* create empty broad scaffolding
+* break existing app routes/build
+* push to git unless explicitly told
+
+Do:
+
+* treat MAS9POWER as the fictional functional company used in the demo
+* extract reusable MASReady product structure
+* prove one vertical slice
+* prioritise hydration and governance
+* create evidence packs
+* enforce DEMO/LIVE separation
+* keep the implementation practical
