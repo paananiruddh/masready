@@ -13,6 +13,26 @@ import {
 
 const serif = { fontFamily: "'Playfair Display', Georgia, serif" };
 
+const WEB3FORMS_KEY = "e3f95161-8759-43a2-90a6-707479beed4b";
+
+function submitIntake(answers: IntakeAnswers): void {
+  const summary = buildSummaryText(answers);
+  const name = answers.name || "Unknown";
+  const org = answers.org || "Unknown org";
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      access_key: WEB3FORMS_KEY,
+      subject: `MASReady Intake — ${name} / ${org}`,
+      from_name: "MASReady Intake Bot",
+      email: "noreply@masready.com.au",
+      message: summary,
+      botcheck: "",
+    }),
+  }).catch(() => {});
+}
+
 const TOTAL_QUESTIONS = STEPS.filter(
   (s) => s.type !== "welcome" && s.type !== "summary"
 ).length;
@@ -182,7 +202,13 @@ export function ChatWidget() {
     setTextValues({});
     setMultiSelect([]);
     setTextareaValue("");
-    setStepIndex((i) => i + 1);
+    setStepIndex((i) => {
+      const next = i + 1;
+      if (STEPS[next]?.type === "summary") {
+        submitIntake(newAnswers);
+      }
+      return next;
+    });
   }
 
   function goBack() {
