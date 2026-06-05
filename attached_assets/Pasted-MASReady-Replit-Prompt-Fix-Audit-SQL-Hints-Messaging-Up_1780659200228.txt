@@ -1,0 +1,78 @@
+MASReady Replit Prompt: Fix Audit SQL Hints + Messaging Update
+Problem 1: SQL hints not expanding on masready.com.au/audit-checklist
+Root cause: The deployed GitHub Pages build is stale. The compiled JS bundle (/assets/index-*.js) does not include the latest audit-checklist.tsx changes. The page loads but framer-motion's AnimatePresence expansion panel either isn't firing or the built bundle predates the SQL hint rendering code.
+
+Fix — rebuild and redeploy
+cd artifacts/masready
+pnpm run build
+After build succeeds:
+
+Confirm dist/public/audit-checklist/index.html exists
+Copy the entire dist/public/ output to the repo root for GitHub Pages:
+cp -r dist/public/audit-checklist ../../audit-checklist
+cp dist/public/assets/* ../../assets/
+cp dist/public/index.html ../../index.html
+Commit and push ALL changed files:
+git add audit-checklist/ assets/ index.html
+git commit -m "deploy: rebuild audit checklist with SQL hint expansion fix"
+git push origin main
+Verify after deploy
+Go to masready.com.au/audit-checklist (via the Audit nav link — NOT direct URL, which may still 404)
+Click "New Audit Session", enter any name
+Click the > chevron on any check that has a blue "SQL hint" badge
+Confirm: the panel expands, shows the check description, the blue SQL hint block with the query, and the remediation section
+Test at least 3 different checks with SQL hints across different sections
+Problem 2: Messaging too focused on 7.6.1.x → MAS 9 upgrade path
+The current site copy leans heavily on "Maximo 7.6.x to MAS 9 Power" upgrade language. The feedback is: not that many customers are still on 7.6.x doing a fresh upgrade — the more relevant audience is teams already running MAS 9 who need delivery governance, environment validation, and operational confidence.
+
+Pages to update
+artifacts/masready/src/pages/audit-checklist.tsx
+
+Change the subtitle (around line 540–560) from:
+
+53 structured checks across 7 domains. Assess your Maximo 7.6.x environment's readiness for MAS Manage 9 — fully owned and operated by MASReady.
+To:
+
+53 structured checks across 7 domains. Validate your MAS environment delivery readiness — from pre-migration assessment to ongoing operational governance.
+Change the stats bar label from:
+
+Environment audit checks
+Keep as-is (this is fine).
+
+artifacts/masready/src/pages/home.tsx or index hero section
+
+Find any copy that says "Maximo 7.6.x to MAS 9" or "upgrade from 7.6" and soften to:
+
+"MAS environment readiness"
+"MAS delivery governance"
+"Maximo and MAS environments"
+The hero already says "Understand your Maximo. Deliver with certainty." — that's perfect, keep it. The subtitle "MASReady helps delivery teams understand, validate, and govern Maximo and MAS environments — using evidence, not estimates." is also good.
+
+artifacts/masready/src/lib/auditChecklist.ts
+
+The first check in Delivery Intelligence reads:
+
+label: "Maximo source version confirmed (7.6.1.2 or 7.6.1.3)"
+Update to:
+
+label: "Maximo / MAS source version confirmed and documented"
+And update the sqlHint to be version-agnostic:
+
+SELECT MAXVALUE FROM MAXVARS WHERE VARNAME IN ('MAXUPG','MAXIMO_VERSION','RELEASE')
+artifacts/masready/src/components/DemoBanner.tsx (variant="planning")
+
+If the banner text mentions "7.6" or "upgrade to MAS 9" specifically, soften it to planning/governance language.
+
+Summary of what to ship in this PR
+✅ Rebuild artifacts/masready and deploy pre-rendered routes to GitHub Pages root
+✅ Fix SQL hint expansion (resolved by fresh build with correct bundle)
+✅ Update audit subtitle from "7.6.x readiness for MAS 9" → "MAS environment delivery readiness"
+✅ Update first audit check label to be version-agnostic
+✅ Audit any homepage/features copy that hard-codes "7.6.x → MAS 9" and soften to broader MAS governance language
+Commit message:
+
+fix: SQL hint expansion + broaden messaging from 7.6→MAS9 to MAS governance
+
+- Rebuild and redeploy audit-checklist with working expansion panels
+- Soften version-specific copy to cover MAS governance beyond upgrades
+- Update first check label to be version-agnostic
