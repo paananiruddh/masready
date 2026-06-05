@@ -1,0 +1,37 @@
+Starting Quick Count Scan...
+
+Using Maximo URL: https://main.manage.masdev.pfm-np.touchstone.world/maximo
+2026-06-05 14:48:38,549 INFO    PFM Maximo Discovery  |  mode=counts  |  timeout=60s  |  call_pause=0.5s  |  site_pause=2.0s
+2026-06-05 14:48:38,549 INFO    PHASE 1: API health
+2026-06-05 14:48:40,031 INFO      -> 01_api_health.json
+2026-06-05 14:48:40,031 INFO    ORGID from config: PFM
+2026-06-05 14:48:40,031 INFO    PHASE 0: Trying MXAPISITE  (orgid=PFM)
+2026-06-05 14:48:40,031 INFO    PHASE 0:   -> GET https://main.manage.masdev.pfm-np.touchstone.world/maximo/api/os/MXAPISITE?_format=json&oslc.pageSize=200&oslc.where=orgid%3D%22PFM%22
+2026-06-05 14:48:41,089 INFO    PHASE 0:   <- HTTP 404  (0.55s)
+2026-06-05 14:48:41,089 WARNING PHASE 0: MXAPISITE HTTP 404 â€” {"oslc:Error":{"oslc:statusCode":"404","spi:reasonCode":"BMXAA4216E","oslc:message":"BMXAA4216E - Unknown Object named M
+2026-06-05 14:48:41,089 INFO    PHASE 0: Trying MXAPILOCATION  (orgid=PFM)
+2026-06-05 14:48:41,090 INFO    PHASE 0:   -> GET https://main.manage.masdev.pfm-np.touchstone.world/maximo/api/os/MXAPILOCATION?_format=json&oslc.pageSize=200&oslc.where=orgid%3D%22PFM%22
+2026-06-05 14:48:42,806 INFO    PHASE 0:   <- HTTP 200  (1.22s)
+2026-06-05 14:48:42,806 WARNING PHASE 0: MXAPILOCATION returned 0 sites
+2026-06-05 14:48:42,806 INFO    PHASE 0: Trying MXAPILOCATION  (no filter)
+2026-06-05 14:48:42,806 INFO    PHASE 0:   -> GET https://main.manage.masdev.pfm-np.touchstone.world/maximo/api/os/MXAPILOCATION?_format=json&oslc.pageSize=200
+2026-06-05 14:48:44,639 INFO    PHASE 0:   <- HTTP 200  (1.33s)
+2026-06-05 14:48:44,639 WARNING PHASE 0: MXAPILOCATION returned 0 sites
+2026-06-05 14:48:44,639 WARNING PHASE 0: All site-discovery OS failed â€” using fallback ['APAM001', 'WATC007', 'SQWT001']
+2026-06-05 14:48:44,639 WARNING PHASE 0: Set MAXIMO_SITES in Admin â†’ Configuration to override this.
+2026-06-05 14:48:44,639 INFO    Sites: ['APAM001', 'WATC007', 'SQWT001']  |  Objects: 44
+2026-06-05 14:48:44,639 INFO    == QUICK COUNT SCAN ==
+2026-06-05 14:48:44,639 INFO    Reference site: APAM001  |  ORGID: PFM  |  Objects: 44  |  Timeout: 60s  |  Pause: 0.5s/call
+2026-06-05 14:48:44,644 INFO      Count MXAPIORGANIZATION
+2026-06-05 14:49:18,012 INFO        -> HTTP 200 | count=1 | 30.84s (very_slow)
+2026-06-05 14:49:18,012 INFO      Count MXAPILOCATIONS
+2026-06-05 14:49:19,899 INFO        -> HTTP 200 | count=1 | 1.12s (fast)
+2026-06-05 14:49:19,899 INFO      Count MXAPILOCATION
+2026-06-05 14:49:21,259 INFO        -> HTTP 200 | count=1 | 0.85s (fast)
+2026-06-05 14:49:21,259 INFO      Count MXAPIASSET
+2026-06-05 14:49:23,418 INFO        -> HTTP 200 | count=1 | 1.65s (fast)
+2026-06-05 14:49:23,420 INFO      Count MXAPIJOBPLAN
+2026-06-05 14:49:24,811 INFO        -> HTTP 200 | count=1 | 0.89s (fast)
+2026-06-05 14:49:24,811 INFO      Count MXAPISERVITEM
+2026-06-05 14:49:26,275 INFO        -> HTTP 400 | count=ERROR | 0.96s (fast)
+2026-06-05 14:49:26,277 INFO      Count MXAPIWODETAIL
