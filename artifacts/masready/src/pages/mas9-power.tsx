@@ -35,37 +35,37 @@ const SITES = [
 
 const ROLES = [
   {
-    name: "Alex Chen", role: "Platform Administrator", badge: "PLATFORM ADMIN",
+    name: "Alex Chen", role: "Platform Administrator", badge: "Platform administrator",
     desc: "Full platform access — configure integrations, manage platform settings, review the Trust Centre, and access all MASReady modules.",
     startAt: "Delivery Intelligence dashboard → Trust Centre → Integrations",
   },
   {
-    name: "Priya Nair", role: "Customer Admin", badge: "CUSTOMER ADMIN",
+    name: "Priya Nair", role: "Customer Admin", badge: "Customer administrator",
     desc: "Customer environment management — view the delivery programme, environment health, organisational settings, and user access.",
     startAt: "Home dashboard → Environment Profile → Licence Planning",
   },
   {
-    name: "Ethan Brooks", role: "Solution Architect", badge: "SOLUTION ARCHITECT",
+    name: "Ethan Brooks", role: "Solution Architect", badge: "Solution architect",
     desc: "Upgrade architecture view — review the customisation inventory, patch impacts, integration design, and technical upgrade path.",
     startAt: "Maximo Fingerprint → Patch Impact Analysis → Architecture",
   },
   {
-    name: "Maya Kelly", role: "Maximo Developer", badge: "DEVELOPER",
+    name: "Maya Kelly", role: "Maximo Developer", badge: "Maximo developer",
     desc: "Developer deep-dive — inspect automation scripts, custom objects, screen changes, and the full environment fingerprint detail.",
     startAt: "Maximo Inventory → Skill Packs → Automation Script detail",
   },
   {
-    name: "Oliver Grant", role: "Release Manager", badge: "RELEASE MANAGER",
+    name: "Oliver Grant", role: "Release Manager", badge: "Release manager",
     desc: "Delivery oversight — track the delivery confidence score, patch remediation progress, regression coverage, and release readiness gates.",
     startAt: "Delivery Intelligence → Patch Impact → Adaptive Regression",
   },
   {
-    name: "Sofia Rivera", role: "Work Requester", badge: "REQUESTER",
+    name: "Sofia Rivera", role: "Work Requester", badge: "Work requester",
     desc: "End-user perspective — raise work requests, view asset records, and access operational dashboards with limited module scope.",
     startAt: "Home dashboard → Work Order view → Asset records",
   },
   {
-    name: "Hannah Wright", role: "Viewer / Auditor", badge: "VIEWER / AUDITOR",
+    name: "Hannah Wright", role: "Viewer / Auditor", badge: "Viewer / auditor",
     desc: "Governance read-only — review audit trails, trust boundary reports, compliance evidence, and delivery assurance across all modules.",
     startAt: "Trust Centre → Audit Log → Delivery Intelligence (read-only)",
   },
@@ -110,7 +110,7 @@ export default function MAS9Power() {
           <DemoBanner variant="seed-data" />
           <div className="mt-8 grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-7">
-              <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-6">Demo Tenant · Fictional Scenario</p>
+              <p className="text-xs font-medium tracking-wide text-primary mb-6">Demo tenant · Fictional scenario</p>
               <h1 className="text-5xl lg:text-6xl font-semibold leading-[1.05] mb-6" style={serif}>
                 MAS9 Power
               </h1>
@@ -548,7 +548,7 @@ export default function MAS9Power() {
                         <span className="text-sm font-semibold leading-snug">{r.name} — MAS9 Power {r.role}</span>
                       </div>
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xs font-semibold uppercase tracking-widest text-primary">{r.badge}</span>
+                        <span className="text-xs font-medium text-primary">{r.badge}</span>
                         <span className="text-xs text-muted-foreground">·</span>
                         <span className="text-xs font-mono text-muted-foreground">MAS9_POWER</span>
                       </div>
