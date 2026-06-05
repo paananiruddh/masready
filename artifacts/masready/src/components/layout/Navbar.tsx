@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Shield, Menu, X } from "lucide-react";
+import { Bot, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -22,11 +22,14 @@ export function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-md shadow-xs">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-          <div className="w-7 h-7 bg-primary rounded-md flex items-center justify-center">
-            <Shield className="h-4 w-4 text-white" />
+        <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-80">
+          <div className="w-7 h-7 rounded-lg bg-primary/15 border border-primary/25 flex items-center justify-center flex-shrink-0">
+            <Bot className="h-4 w-4 text-primary" />
           </div>
-          <span className="font-bold text-xl tracking-tight text-foreground">MASReady</span>
+          <div className="flex flex-col min-w-0">
+            <span className="font-semibold text-sm text-foreground leading-none">MASReady</span>
+            <span className="text-[10px] text-primary/80 leading-none mt-0.5">Maximo Dev Bot</span>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
