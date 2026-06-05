@@ -218,6 +218,77 @@ function renderArticleHtml(article) {
 </article>`;
 }
 
+// Generates a completely standalone pure HTML document — zero JavaScript,
+// zero external scripts — for use with importers like Medium that need clean HTML.
+function renderPureArticleDocument(article, baseUrl) {
+  const blocks = article.content.map((block) => {
+    switch (block.type) {
+      case "paragraph":
+        return `      <p>${esc(block.text)}</p>`;
+      case "heading":
+        return `      <h2>${esc(block.text)}</h2>`;
+      case "hr":
+        return `      <hr>`;
+      case "callout":
+        return `      <blockquote><p>${esc(block.text)}</p></blockquote>`;
+      case "list":
+        return `      <ul>\n${block.items.map((i) => `        <li>${esc(i)}</li>`).join("\n")}\n      </ul>`;
+      case "image": {
+        const imgSrc = block.src.startsWith("/")
+          ? `${baseUrl}${block.src}`
+          : block.src;
+        return `      <figure>\n        <img src="${esc(imgSrc)}" alt="${esc(block.alt)}" style="max-width:100%;height:auto;" />\n${block.caption ? `        <figcaption>${esc(block.caption)}</figcaption>\n` : ""}      </figure>`;
+      }
+      default:
+        return "";
+    }
+  }).join("\n");
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${esc(article.title)}</title>
+  <meta name="description" content="${esc(article.summary)}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="${esc(article.title)}" />
+  <meta property="og:description" content="${esc(article.summary)}" />
+  <meta property="og:url" content="${baseUrl}/news/${article.slug}/" />
+  <meta property="article:published_time" content="${article.date}" />
+  <style>
+    body { font-family: Georgia, serif; max-width: 740px; margin: 0 auto; padding: 2rem 1.5rem; color: #1a1a1a; line-height: 1.7; }
+    h1 { font-size: 2rem; line-height: 1.25; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.35rem; margin-top: 2rem; margin-bottom: 0.5rem; }
+    p { margin: 0.75rem 0; }
+    blockquote { border-left: 4px solid #1d4ed8; margin: 1.5rem 0; padding: 0.75rem 1.25rem; background: #eff6ff; font-style: italic; }
+    blockquote p { margin: 0; }
+    ul { padding-left: 1.5rem; }
+    li { margin: 0.4rem 0; }
+    figure { margin: 2rem 0; }
+    figure img { max-width: 100%; height: auto; border: 1px solid #e5e7eb; display: block; }
+    figcaption { font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem; font-style: italic; }
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 2rem 0; }
+    .meta { font-size: 0.875rem; color: #6b7280; margin-bottom: 1.5rem; }
+    .subtitle { font-size: 1.15rem; color: #374151; margin-bottom: 2rem; font-style: italic; }
+    .back { font-size: 0.875rem; margin-bottom: 2rem; }
+    .back a { color: #1d4ed8; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <p class="back"><a href="${baseUrl}/news/">← MASReady News</a></p>
+  <article>
+    <header>
+      <p class="meta">${esc(article.category)} &middot; ${esc(article.displayDate)} &middot; ${esc(article.readTime)}</p>
+      <h1>${esc(article.title)}</h1>
+      <p class="subtitle">${esc(article.subtitle)}</p>
+    </header>
+${blocks}
+  </article>
+</body>
+</html>`;
+}
+
 // ─── Pre-render each route ────────────────────────────────────────────────────
 
 console.log(`\nPre-rendering ${ALL_ROUTES.length} routes → dist/public/\n`);
@@ -284,6 +355,19 @@ for (const route of ALL_ROUTES) {
     writeFileSync(resolve(outDir, "index.html"), html, "utf-8");
     written++;
     console.log(`  ✓  ${route}`);
+
+    // For news article routes, also write a zero-JS pure HTML version at
+    // /news/:slug/raw/index.html — useful for importers like Medium.
+    if (articleSlugMatch) {
+      const article = newsArticles.find((a) => a.slug === articleSlugMatch[1]);
+      if (article) {
+        const rawDir = resolve(outDir, "raw");
+        mkdirSync(rawDir, { recursive: true });
+        const pureHtml = renderPureArticleDocument(article, "https://masready.com.au");
+        writeFileSync(resolve(rawDir, "index.html"), pureHtml, "utf-8");
+        console.log(`  ✓  ${route}/raw (pure HTML)`);
+      }
+    }
   } catch (err) {
     console.error(`  ✗  ${route}  →  ${err.message}`);
     failed++;
