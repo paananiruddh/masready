@@ -20,6 +20,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
+import { newsArticles } from "./news-prerender-data.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -180,6 +181,43 @@ if (!existsSync(templatePath)) {
 
 const template = readFileSync(templatePath, "utf-8");
 
+// ─── Article HTML renderer ────────────────────────────────────────────────────
+// Renders a full article as semantic HTML for injection into <div id="root">.
+// Medium's importer (and search crawlers) read this directly without executing JS.
+
+function renderBlock(block) {
+  switch (block.type) {
+    case "paragraph":
+      return `<p>${esc(block.text)}</p>`;
+    case "heading":
+      return `<h2>${esc(block.text)}</h2>`;
+    case "hr":
+      return `<hr>`;
+    case "callout":
+      return `<blockquote><p>${esc(block.text)}</p></blockquote>`;
+    case "list":
+      return `<ul>${block.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`;
+    case "image":
+      return `<figure><img src="${esc(block.src)}" alt="${esc(block.alt)}" />${
+        block.caption ? `<figcaption>${esc(block.caption)}</figcaption>` : ""
+      }</figure>`;
+    default:
+      return "";
+  }
+}
+
+function renderArticleHtml(article) {
+  const blocks = article.content.map(renderBlock).join("\n");
+  return `<article>
+  <header>
+    <p>${esc(article.category)} &middot; ${esc(article.displayDate)} &middot; ${esc(article.readTime)}</p>
+    <h1>${esc(article.title)}</h1>
+    <p>${esc(article.subtitle)}</p>
+  </header>
+  ${blocks}
+</article>`;
+}
+
 // ─── Pre-render each route ────────────────────────────────────────────────────
 
 console.log(`\nPre-rendering ${ALL_ROUTES.length} routes → dist/public/\n`);
@@ -203,11 +241,38 @@ for (const route of ALL_ROUTES) {
       `<meta name="description" content="${esc(meta.description)}" />`
     );
   } else {
-    // Insert after <title> if not present
     html = html.replace(
       /(<title>[^<]*<\/title>)/,
       `$1\n    <meta name="description" content="${esc(meta.description)}" />`
     );
+  }
+
+  // Add Open Graph tags for news article routes so importers (Medium, etc.)
+  // get structured metadata in addition to the full body HTML.
+  const articleSlugMatch = route.match(/^\/news\/(.+)$/);
+  if (articleSlugMatch) {
+    const article = newsArticles.find((a) => a.slug === articleSlugMatch[1]);
+    if (article) {
+      const ogTags = [
+        `<meta property="og:type" content="article" />`,
+        `<meta property="og:title" content="${esc(meta.title)}" />`,
+        `<meta property="og:description" content="${esc(meta.description)}" />`,
+        `<meta property="og:url" content="https://masready.com.au${route}/" />`,
+        `<meta property="article:published_time" content="${article.date}" />`,
+        `<meta name="twitter:card" content="summary_large_image" />`,
+        `<meta name="twitter:title" content="${esc(meta.title)}" />`,
+        `<meta name="twitter:description" content="${esc(meta.description)}" />`,
+      ].join("\n    ");
+      html = html.replace("</head>", `    ${ogTags}\n  </head>`);
+
+      // Inject full article HTML into <div id="root"> so crawlers and importers
+      // see the complete article text without executing JavaScript.
+      const articleHtml = renderArticleHtml(article);
+      html = html.replace(
+        `<div id="root"></div>`,
+        `<div id="root">${articleHtml}</div>`
+      );
+    }
   }
 
   // Determine output directory
