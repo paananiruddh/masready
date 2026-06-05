@@ -1,0 +1,337 @@
+You are working on the MASReady website.
+
+Goal: Add a reusable News / Articles section to the website and publish the first full article:
+
+**From Group Sprawl to Role Clarity: How MASReady Is Rethinking Maximo Security for MAS 9**
+
+This must be implemented as a reusable website feature, not as a one-off static page.
+
+## Repo safety check first
+
+Before making changes:
+
+1. Confirm the current git remote URL.
+2. Confirm the current branch.
+3. Use branch: `newdev`.
+4. Confirm this is the MASReady website repository.
+5. Do not modify any unrelated repositories.
+6. Do not remove existing MASReady pages or features.
+7. Do not change existing routing unless required to add the News section.
+
+If not on `newdev`, switch to `newdev` before editing.
+
+## Required new structure
+
+Create a reusable News / Articles structure:
+
+```text
+src/
+  content/
+    newsArticles.ts
+  components/
+    NewsCard.tsx
+    ArticleLayout.tsx
+  pages/
+    News.tsx
+    NewsArticle.tsx
+```
+
+If the project uses a different existing structure, adapt to the existing conventions, but keep the same concept:
+
+* one content/data file for articles
+* one reusable news listing page
+* one reusable article layout
+* one dynamic or route-based article detail page
+
+## Required routes
+
+Add these routes:
+
+```text
+/news
+/news/maximo-security-profiles-mas-9
+```
+
+## Navigation
+
+Add a **News** link to the main site navigation and footer if appropriate.
+
+Do not overcrowd the nav. If the site already has a Resources or Insights section, add News in the most natural place.
+
+## News listing page
+
+Create `/news` as a clean article listing page.
+
+It should include:
+
+* Page title: `MASReady News`
+* Intro copy:
+
+```text
+Product updates, upgrade insights, and practical Maximo/MAS 9 readiness notes from MASReady.
+```
+
+* Article cards showing:
+
+  * article title
+  * short summary
+  * category
+  * date
+  * estimated reading time
+  * “Read article” link
+
+The first article card should link to:
+
+```text
+/news/maximo-security-profiles-mas-9
+```
+
+## Article content model
+
+In `src/content/newsArticles.ts`, create a structure similar to:
+
+```ts
+export const newsArticles = [
+  {
+    slug: "maximo-security-profiles-mas-9",
+    title: "From Group Sprawl to Role Clarity: How MASReady Is Rethinking Maximo Security for MAS 9",
+    subtitle: "A read-only way to understand Maximo security groups, baseline roles, and MAS 9 access complexity before it becomes upgrade risk.",
+    date: "2026-06-05",
+    category: "Product Update",
+    readTime: "4 min read",
+    summary: "MASReady is adding Security Profiles to help teams review Maximo security groups, baseline roles, overlap, and read-only what-if scenarios before moving deeper into MAS 9.",
+    heroImage: null,
+    seoTitle: "MASReady Security Profiles for Maximo and MAS 9",
+    seoDescription: "MASReady is adding a read-only Security Profiles capability to help Maximo teams understand group sprawl, baseline roles, and MAS 9 access complexity.",
+    content: [...]
+  }
+]
+```
+
+Use whatever format fits the project best. If markdown rendering already exists, use markdown. If not, use typed content sections/components.
+
+## First article page
+
+Create the full article page at:
+
+```text
+/news/maximo-security-profiles-mas-9
+```
+
+Use this title:
+
+```text
+From Group Sprawl to Role Clarity: How MASReady Is Rethinking Maximo Security for MAS 9
+```
+
+Use this subtitle:
+
+```text
+A read-only way to understand Maximo security groups, baseline roles, and MAS 9 access complexity before it becomes upgrade risk.
+```
+
+Use article date:
+
+```text
+5 June 2026
+```
+
+Use category:
+
+```text
+Product Update
+```
+
+Use reading time:
+
+```text
+4 min read
+```
+
+## Article body
+
+Publish the article using this cleaned version.
+
+Do not include internal notes such as “Graphic 1 goes here” or “The images do not exist yet” in the final public article.
+
+Where images are not available, use polished visual placeholder cards that can later be replaced with real graphics.
+
+### Article starts below
+
+If you ask most IBM Maximo administrators where their time goes, it is rarely on the fun part.
+
+It goes into untangling overlapping security groups, onboarding users into profiles that no longer make sense, and explaining why licensing feels more expensive than it should.
+
+That becomes even harder when the conversation shifts to MAS 9.
+
+## Why this matters
+
+In many Maximo environments, security groups have grown over time through projects, urgent fixes, and temporary exceptions that never really disappeared.
+
+The result is familiar:
+
+* Too many groups
+* Too much overlap
+* Harder onboarding
+* Harder audits
+* Harder licensing conversations
+
+This is exactly the problem MASReady is targeting next.
+
+## What MASReady is adding
+
+MASReady is adding a read-only capability called **Security Profiles**.
+
+The goal is simple: help teams understand how their Maximo access model is shaped today, without changing anything in production.
+
+It focuses on three things:
+
+1. Baseline roles
+2. Group sprawl and overlap
+3. What-if scenario planning
+
+## Baseline roles and group sprawl
+
+Most environments have plenty of security groups, but very little role clarity.
+
+Security Profiles is designed to surface friendlier baseline roles such as:
+
+* Planner / Scheduler
+* Supervisor
+* Mobile Technician
+* Report-only User
+* Integration Operator
+* Admin / Configuration
+
+These are not new groups. They are a clearer way to describe the access patterns already present in the environment.
+
+At the same time, the feature helps teams see where complexity lives:
+
+* Groups that look very similar
+* Groups with broad access but few users
+* Environments that have drifted into unnecessary complexity
+
+## What-if, without the risk
+
+Most teams already know the kinds of questions they want to ask:
+
+* What if these groups were combined?
+* What if this cohort moved to a leaner role?
+* What if admin-style access was split out into a smaller overlay?
+
+Security Profiles is being built as a read-only planning surface for exactly that reason.
+
+The output is a review pack, not a change script. It is meant to support governance, design workshops, and licensing conversations without touching production security.
+
+## What this is not
+
+This is not an automation engine.
+
+It will not rewrite Maximo security, make hidden API changes, or ask customers to trust a black box.
+
+It is intended to be an evidence-backed, read-only way to make security design easier to understand before complexity carries forward into MAS 9.
+
+## What comes next
+
+The first iteration inside MASReady will focus on four surfaces:
+
+* Security Profiles Overview
+* Baseline Roles
+* Group Sprawl
+* Read-only What-if Scenarios
+
+The aim is straightforward: help teams move from group sprawl to role clarity before they take the next step into MAS 9.
+
+## Visual placeholders
+
+Add three professional visual placeholder cards in the article layout:
+
+1. Near the top, under the subtitle:
+
+   * Title: `From Group Sprawl to Baseline Roles`
+   * Description: `Messy Maximo security groups become clearer baseline role patterns.`
+
+2. After the “Baseline roles and group sprawl” section:
+
+   * Title: `Security Profiles Overview`
+   * Description: `A read-only view of users, groups, overlap, and role patterns.`
+
+3. Before the “What-if, without the risk” section:
+
+   * Title: `What-if Scenario Summary`
+   * Description: `Planning scenarios without changing production security.`
+
+These should look like designed cards, not broken image placeholders.
+
+## Design requirements
+
+Make the News section look consistent with MASReady.
+
+Use:
+
+* clean enterprise SaaS styling
+* readable article width
+* strong typography
+* responsive mobile layout
+* clear breadcrumb back to News
+* article metadata row
+* call-to-action at the bottom
+
+Bottom CTA:
+
+```text
+Planning your move to MAS 9?
+
+MASReady helps teams understand upgrade readiness, security complexity, licensing implications, and environment risk before the move becomes expensive.
+
+[Explore MASReady]
+```
+
+Link the CTA to the most appropriate existing MASReady page, likely `/` or `/features`.
+
+## SEO requirements
+
+For `/news`:
+
+* title: `MASReady News | Maximo and MAS 9 Readiness Insights`
+* description: `Product updates, upgrade insights, and practical Maximo/MAS 9 readiness notes from MASReady.`
+
+For `/news/maximo-security-profiles-mas-9`:
+
+* title: `From Group Sprawl to Role Clarity | MASReady Security Profiles`
+* description: `MASReady is adding Security Profiles to help Maximo teams review security groups, baseline roles, overlap, and read-only what-if scenarios before MAS 9.`
+
+Add Open Graph metadata if the site already supports it.
+
+## Future article support
+
+Make it easy to add more articles later by adding a new object to `newsArticles.ts`.
+
+Do not require creating a new React page for every future article unless the project routing makes that unavoidable.
+
+## Testing
+
+After implementation:
+
+1. Run the existing build command.
+2. Fix all build errors.
+3. Test `/news`.
+4. Test `/news/maximo-security-profiles-mas-9`.
+5. Test mobile layout.
+6. Confirm the News link works from navigation.
+7. Confirm existing pages still work.
+8. Provide a summary of files changed.
+9. Provide the final local/test URLs.
+
+## Git
+
+After successful build:
+
+1. Show `git status`.
+2. Commit with message:
+
+```text
+Add reusable news section and Security Profiles article
+```
+
+3. Push to branch `newdev`.
