@@ -31,13 +31,13 @@ export const AUDIT_SECTIONS: CheckSection[] = [
     items: [
       {
         key: "di_version_confirmed",
-        label: "Maximo source version confirmed (7.6.1.2 or 7.6.1.3)",
-        description: "Only 7.6.1.2 and 7.6.1.3 are practical upgrade source levels for MAS 9. Versions below this require an interim upgrade step.",
+        label: "Maximo / MAS source version confirmed and documented",
+        description: "The current platform version must be confirmed and recorded before any readiness assessment or migration planning begins. For 7.6.x environments targeting MAS, versions below 7.6.1.2 require an interim upgrade step first.",
         severity: "critical",
         autoCheck: "sql",
-        sqlHint: "SELECT MAXVALUE FROM MAXVARS WHERE VARNAME = 'MAXUPG'",
-        remediation: "Perform an interim upgrade to 7.6.1.2 minimum before planning MAS 9 transition.",
-        masRef: "IBM Community: IBM Maximo 7.6 to MAS 9 Upgrade Checklist (2026-05-30)"
+        sqlHint: "SELECT MAXVALUE FROM MAXVARS WHERE VARNAME IN ('MAXUPG','MAXIMO_VERSION','RELEASE')",
+        remediation: "Confirm the installed platform version. For 7.6.x environments below 7.6.1.2, plan an interim upgrade before MAS migration. For MAS environments, confirm the MAS and Manage version from the admin console.",
+        masRef: "IBM Docs: Maximo / MAS version confirmation"
       },
       {
         key: "di_automation_scripts",

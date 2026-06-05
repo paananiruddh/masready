@@ -303,7 +303,7 @@ function NewAuditModal({ onClose, onCreate }: {
 }) {
   const [name, setName] = useState("");
   const [customer, setCustomer] = useState("");
-  const [version, setVersion] = useState("7.6.1.3");
+  const [version, setVersion] = useState("MAS 9");
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -321,7 +321,7 @@ function NewAuditModal({ onClose, onCreate }: {
         onClick={e => e.stopPropagation()}
       >
         <h2 className="text-lg font-bold text-foreground mb-1">New Environment Audit</h2>
-        <p className="text-sm text-muted-foreground mb-5">Start a new MASReady audit session for a Maximo 7.6.x environment.</p>
+        <p className="text-sm text-muted-foreground mb-5">Start a new MASReady audit session for your Maximo or MAS environment.</p>
 
         <form onSubmit={submit} className="space-y-4">
           <div>
@@ -351,11 +351,13 @@ function NewAuditModal({ onClose, onCreate }: {
               onChange={e => setVersion(e.target.value)}
               className="w-full text-sm rounded-lg border border-border bg-background px-3 py-2.5 text-foreground focus:outline-none focus:ring-1 focus:ring-primary/50"
             >
-              <option value="7.6.1.3">7.6.1.3</option>
-              <option value="7.6.1.2">7.6.1.2</option>
-              <option value="7.6.1.1">7.6.1.1 (interim step needed)</option>
-              <option value="7.6.1.0">7.6.1.0 (interim step needed)</option>
-              <option value="7.6.0.x">7.6.0.x (interim step needed)</option>
+              <option value="MAS 9">MAS 9</option>
+              <option value="MAS 8">MAS 8</option>
+              <option value="7.6.1.3">Maximo 7.6.1.3</option>
+              <option value="7.6.1.2">Maximo 7.6.1.2</option>
+              <option value="7.6.1.1">Maximo 7.6.1.1 (interim step needed)</option>
+              <option value="7.6.1.0">Maximo 7.6.1.0 (interim step needed)</option>
+              <option value="7.6.0.x">Maximo 7.6.0.x (interim step needed)</option>
             </select>
           </div>
 
@@ -475,14 +477,13 @@ export default function AuditChecklist() {
             className="max-w-3xl mx-auto text-center mb-12"
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium mb-5">
-              <ClipboardCheck className="w-3 h-3" /> MAS 9 · Environment Audit
+              <ClipboardCheck className="w-3 h-3" /> MAS · Environment Audit
             </div>
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-5 text-foreground">
               MASReady<br /><span className="text-accent">Environment Audit</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              {TOTAL_CHECKS} structured checks across {AUDIT_SECTIONS.length} domains. Assess your Maximo 7.6.x environment's
-              readiness for MAS Manage 9 — fully owned and operated by MASReady.
+              {TOTAL_CHECKS} structured checks across {AUDIT_SECTIONS.length} domains. Validate your MAS environment delivery readiness — from pre-migration assessment to ongoing operational governance.
             </p>
             <button
               onClick={() => setShowNewModal(true)}

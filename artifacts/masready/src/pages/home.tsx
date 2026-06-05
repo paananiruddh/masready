@@ -35,8 +35,8 @@ const FEATURES = [
   },
   {
     icon: "🚀",
-    title: "MAS 9 Readiness",
-    desc: "52 checks across 7 domains — from patch impact and customisation fingerprinting through to AppPoints planning and post-migration validation.",
+    title: "MAS Readiness",
+    desc: "53 checks across 7 domains — from patch impact and customisation fingerprinting through to AppPoints planning and post-migration validation.",
     href: "/audit-checklist",
   },
 ];
@@ -66,8 +66,8 @@ const ROLES = [
   },
   {
     role: "Solution Architect",
-    question: "Where are the integration gaps between our current Maximo and MAS 9?",
-    answer: "MASReady's layered skill-pack model cross-references your as-is configuration against the upgrade target, surfacing gaps the bot has evidence for.",
+    question: "Where are the integration gaps in our MAS environment?",
+    answer: "MASReady's layered skill-pack model cross-references your as-is configuration against the target state, surfacing gaps the bot has evidence for.",
     href: "/features",
   },
   {
@@ -84,7 +84,7 @@ const ROLES = [
   },
   {
     role: "IT Asset Manager",
-    question: "What is our licence exposure going into the MAS 9 upgrade?",
+    question: "What is our licence exposure going into the MAS upgrade or governance programme?",
     answer: "MASReady's licence planning view surfaces Maximo licence consumption patterns from available evidence — for planning, not IBM-certified advice.",
     href: "/mas9-power",
   },
@@ -101,7 +101,7 @@ export default function Home() {
           <div className="inline-flex items-center gap-2 bg-accent border border-accent-foreground/20 rounded-full px-4 py-1.5 mb-10">
             <div className="w-1.5 h-1.5 bg-primary rounded-full" />
             <span className="text-xs font-700 text-primary uppercase tracking-widest font-semibold">
-              IBM Maximo · MAS 9 Delivery Intelligence
+              IBM Maximo · MAS Delivery Intelligence
             </span>
           </div>
 
@@ -118,7 +118,7 @@ export default function Home() {
             {/* Copy + CTAs */}
             <div className="lg:col-span-5 pb-2">
               <p className="text-base text-muted-foreground leading-relaxed mb-8">
-                MASReady helps delivery teams understand, validate, and govern Maximo and MAS environments — using evidence, not estimates. Purpose-built for MAS 9 upgrades and complex enterprise programmes.
+                MASReady helps delivery teams understand, validate, and govern Maximo and MAS environments — using evidence, not estimates. From pre-migration readiness to ongoing operational governance.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-8">
                 <Link
@@ -219,7 +219,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-12 gap-16 items-start">
 
             <div className="lg:col-span-5">
-              <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">MAS 9 Readiness</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">MAS Environment Readiness</p>
               <h2 className="text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight mb-8">
                 52 checks.<br />
                 7 domains.<br />
