@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { href: "/architecture", label: "Architecture" },
   { href: "/audit-checklist", label: "Audit" },
   { href: "/demo-walkthrough", label: "Walkthrough" },
+  { href: "/news", label: "News" },
   { href: "/contact", label: "Contact" },
 ];
 

@@ -12,6 +12,9 @@
  *
  * Industry slugs come from src/lib/industryData.ts INDUSTRIES array.
  * If you add a new industry, also add its slug to INDUSTRY_SLUGS below.
+ *
+ * News articles come from src/lib/newsArticles.ts.
+ * Add new article slugs to NEWS_ARTICLES below — keep in sync with that file.
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
@@ -133,6 +136,29 @@ for (const slug of INDUSTRY_SLUGS) {
     title: `${name} Demo Environment | MASReady`,
     description: `Full MASReady demo for ${name.toLowerCase()} environments. Dashboard, work orders, assets, PM compliance, SLA monitoring, and integrations.`,
   };
+}
+
+// ─── News routes ──────────────────────────────────────────────────────────────
+// Keep in sync with src/lib/newsArticles.ts.
+// Add a new entry here whenever a new article is published.
+
+ROUTE_META["/news"] = {
+  title: "News & Insights | MASReady",
+  description:
+    "Product updates, upgrade insights, and practical Maximo / MAS 9 readiness notes from the MASReady team.",
+};
+
+/** @type {Record<string, { title: string; description: string }>} */
+const NEWS_ARTICLES = {
+  "maximo-security-profiles-mas-9": {
+    title: "Your Maximo Security Groups Are Lying to You | MASReady",
+    description:
+      "MASReady Security Profiles: a read-only governance module that turns raw Maximo security group data into role-based clarity before the complexity carries into MAS 9.",
+  },
+};
+
+for (const [slug, meta] of Object.entries(NEWS_ARTICLES)) {
+  ROUTE_META[`/news/${slug}`] = meta;
 }
 
 const ALL_ROUTES = Object.keys(ROUTE_META);

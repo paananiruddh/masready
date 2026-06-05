@@ -56,6 +56,8 @@ import PreviewStudio from "@/pages/preview-studio";
 import PreviewSession from "@/pages/preview-session";
 import PreviewGate from "@/pages/preview-gate";
 import IndustryDemoApp from "@/pages/industry-demo";
+import News from "@/pages/news";
+import NewsArticlePage from "@/pages/news-article";
 
 const queryClient = new QueryClient();
 
@@ -127,6 +129,8 @@ function Design1Router() {
         <Route path="/preview-session/:sessionId" component={PreviewSession} />
         <Route path="/preview/:industry" component={PreviewGate} />
         <Route path="/demos/industries/:industrySlug" component={IndustryDemoApp} />
+        <Route path="/news" component={News} />
+        <Route path="/news/:slug" component={NewsArticlePage} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

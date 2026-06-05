@@ -39,6 +39,9 @@ export function Footer() {
         </p>
 
         <div className="flex gap-4">
+          <Link href="/news" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            News
+          </Link>
           <Link href="/trust" className="text-sm text-muted-foreground hover:text-primary transition-colors">
             Trust Center
           </Link>
