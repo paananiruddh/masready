@@ -8,5 +8,219 @@
 <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Demo Walkthrough | MAS9 Power"/><meta name="twitter:description" content="A 12-scene MAS9 Power demo walkthrough covering delivery intelligence, trust center, patch impact, license planning, skill coverage, audit, and help."/><meta name="twitter:image" content="https://masready.com.au/assets/og/masready-og.svg"/>
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"/><link rel="manifest" href="manifest.webmanifest"/>
 <link rel="stylesheet" href="assets/css/site.css"/>
+<style>
+/* === Walkthrough animation layer === */
+.wt-hero{padding:100px 0 40px;position:relative;overflow:hidden}
+.wt-hero .container{position:relative;z-index:2}
+.wt-orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;z-index:1;animation:wt-float 14s ease-in-out infinite}
+.wt-orb.a{width:340px;height:340px;background:radial-gradient(circle,rgba(84,224,255,.55),transparent 70%);top:-80px;left:-60px}
+.wt-orb.b{width:380px;height:380px;background:radial-gradient(circle,rgba(139,92,246,.5),transparent 70%);top:-40px;right:-80px;animation-delay:-5s}
+@keyframes wt-float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,30px) scale(1.08)}}
+@media(prefers-reduced-motion:reduce){.wt-orb{animation:none}}
+
+.wt-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid rgba(84,224,255,.35);border-radius:999px;background:rgba(84,224,255,.08);color:#baf4ff;font-weight:800;font-size:13px;letter-spacing:.02em}
+.wt-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--brand);box-shadow:0 0 12px var(--brand);animation:wt-pulse 2s ease-in-out infinite}
+@keyframes wt-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+/* progress rail */
+.wt-progress-wrap{position:sticky;top:64px;z-index:40;padding:14px 0;background:linear-gradient(180deg,rgba(7,17,31,.92),rgba(7,17,31,.6));backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+.wt-progress{height:4px;width:100%;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden}
+.wt-progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--brand),var(--brand2));border-radius:999px;transition:width .25s ease-out;box-shadow:0 0 16px rgba(84,224,255,.5)}
+.wt-progress-meta{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+.wt-progress-meta b{color:var(--brand)}
+
+/* timeline + scenes */
+.wt-timeline{position:relative;padding:48px 0 24px}
+.wt-line{position:absolute;left:46px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.12) 8%,rgba(255,255,255,.12) 92%,transparent)}
+.wt-line-fill{position:absolute;left:46px;top:0;width:2px;height:0%;background:linear-gradient(180deg,var(--brand),var(--brand2));box-shadow:0 0 14px rgba(84,224,255,.6);transition:height .3s ease-out;z-index:1}
+@media(max-width:720px){.wt-line,.wt-line-fill{left:22px}}
+
+.wt-scene{position:relative;display:grid;grid-template-columns:96px 1fr;gap:24px;padding:18px 0;opacity:0;transform:translateY(28px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+.wt-scene.in{opacity:1;transform:translateY(0)}
+@media(max-width:720px){.wt-scene{grid-template-columns:48px 1fr;gap:14px}}
+
+.wt-node{position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:center;padding-top:6px}
+.wt-num{display:flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:16px;background:rgba(10,25,44,.9);border:1px solid rgba(84,224,255,.3);color:var(--brand);font-weight:900;font-size:15px;letter-spacing:-.02em;transition:.4s;box-shadow:0 8px 28px rgba(0,0,0,.35)}
+.wt-scene.in .wt-num{border-color:var(--brand);box-shadow:0 0 0 4px rgba(84,224,255,.1),0 8px 28px rgba(0,0,0,.35)}
+.wt-scene.active .wt-num{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#04111f;transform:scale(1.08);box-shadow:0 0 0 6px rgba(84,224,255,.16),0 0 30px rgba(84,224,255,.5)}
+@media(max-width:720px){.wt-num{width:40px;height:40px;border-radius:12px;font-size:12px}}
+
+.wt-card{background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:22px 24px;box-shadow:0 16px 48px rgba(0,0,0,.2);transition:.35s}
+.wt-scene.in:hover .wt-card{border-color:rgba(84,224,255,.35);transform:translateY(-3px);box-shadow:0 24px 60px rgba(0,0,0,.32)}
+.wt-scene.active .wt-card{border-color:rgba(84,224,255,.5)}
+.wt-card-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.wt-card-title{font-weight:900;font-size:20px;letter-spacing:-.02em;margin:0}
+.wt-time{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--brand);background:rgba(84,224,255,.1);border:1px solid rgba(84,224,255,.22);padding:5px 11px;border-radius:999px;white-space:nowrap}
+.wt-tags{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 12px}
+.wt-tag{font-size:12px;font-weight:800;letter-spacing:.01em;padding:5px 11px;border-radius:999px;color:#c8f7ff;background:rgba(84,224,255,.08);border:1px solid rgba(84,224,255,.2)}
+.wt-tag.role{color:#dcd2ff;background:rgba(139,92,246,.12);border-color:rgba(139,92,246,.3)}
+.wt-tag.blocked{color:#ffb4b4;background:rgba(255,107,107,.1);border-color:rgba(255,107,107,.3)}
+.wt-desc{color:var(--muted);margin:0;font-size:15.5px;line-height:1.55}
+
+/* controls */
+.wt-controls{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 6px}
+.wt-btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:800;font-size:15px;cursor:pointer;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:var(--text);transition:.2s;font-family:inherit}
+.wt-btn:hover{transform:translateY(-2px);border-color:rgba(84,224,255,.5)}
+.wt-btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#04111f;border:0}
+.wt-btn.primary:hover{box-shadow:0 12px 36px rgba(84,224,255,.4)}
+.wt-icon{width:18px;height:18px;display:inline-block}
+.wt-totalbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px;color:var(--muted);font-size:14px}
+.wt-chip{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font-weight:700}
+.wt-chip b{color:var(--text)}
+
+/* completion banner */
+.wt-done{margin:34px 0 0;padding:28px;border-radius:24px;text-align:center;background:linear-gradient(135deg,rgba(84,224,255,.12),rgba(139,92,246,.12));border:1px solid rgba(84,224,255,.3);opacity:0;transform:scale(.96);transition:.5s;display:none}
+.wt-done.show{display:block;opacity:1;transform:scale(1)}
+.wt-done h3{margin:0 0 8px;font-size:26px;letter-spacing:-.03em}
+.wt-done p{margin:0 0 18px;color:var(--muted)}
+</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "MASReady", "url": "https://masready.com.au", "sameAs": ["https://masready.com.au"]}, {"@type": "SoftwareApplication", "name": "Maximo Delivery Automation Workbench", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "Evidence-backed IBM Maximo delivery automation for MAS 9 teams \u2014 delivery intelligence, patch impact, environment fingerprinting, license usage planning, trust boundaries, and offline skill packs.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "WebPage", "name": "Demo Walkthrough | MAS9 Power", "description": "A 12-scene MAS9 Power demo walkthrough covering delivery intelligence, trust center, patch impact, license planning, skill coverage, audit, and help.", "url": "https://masready.com.au/demo-walkthrough.html", "isPartOf": {"@type": "WebSite", "name": "Maximo Delivery Automation Workbench", "url": "https://masready.com.au"}}]}</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2G0P43096"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-T2G0P43096');</script></head><body><a class="skip" href="#main">Skip to content</a><header class="nav"><div class="nav-inner"><a class="brand" href="index.html"><span class="logo">M</span><span>Maximo Delivery<br/><span class="muted" style="font-weight:650;font-size:12px">Automation Workbench</span></span></a><button class="mobile-toggle" data-mobile-toggle aria-label="Toggle navigation">Menu</button><nav class="nav-links" aria-label="Main navigation"><a href="index.html" class="">Home</a><a href="mas9-power.html" class="">MAS9 Power</a><a href="features.html" class="">Features</a><a href="adaptive-regression.html" class="">Adaptive Regression</a><a href="data-modes.html" class="">Data Modes</a><a href="trust.html" class="">Trust</a><a href="architecture.html" class="">Architecture</a><a href="media.html" class="">Media</a><a href="demo-walkthrough.html" class="active">Walkthrough</a><a href="launch.html" class="">Launch</a><a href="contact.html" class="">Contact</a></nav></div></header><main id="main"><section class="hero"><div class="container"><span class="eyebrow">12-minute walkthrough</span><h1 class="h1">A demo path for executives and delivery teams.</h1><p class="lead">Each scene maps to a product route, role, duration, and value statement.</p></div></section><section class="section"><div class="container timeline"><div class="scene"><div class="scene-num">S01</div><div class="card"><div class="feed-top"><strong>Login + Customer Switch</strong><span>45s</span></div><p><span class="tag">Platform Admin</span> <span class="tag">/dashboard</span></p><p>Open the story with tenant status and customer context.</p></div></div><div class="scene"><div class="scene-num">S02</div><div class="card"><div class="feed-top"><strong>Delivery Intelligence</strong><span>90s</span></div><p><span class="tag">Platform Admin</span> <span class="tag">/delivery-intelligence</span></p><p>Show evidence-backed dashboard metrics and readiness posture.</p></div></div><div class="scene"><div class="scene-num">S03</div><div class="card"><div class="feed-top"><strong>Trust Center</strong><span>60s</span></div><p><span class="tag">Customer Admin</span> <span class="tag">/trust-center</span></p><p>Explain data mode, retention, review-only boundaries, and safety.</p></div></div><div class="scene"><div class="scene-num">S04</div><div class="card"><div class="feed-top"><strong>Integration Settings</strong><span>45s</span></div><p><span class="tag">Customer Admin</span> <span class="tag">/integration-settings</span></p><p>Show Jira-only, read-only integration posture.</p></div></div><div class="scene"><div class="scene-num">S05</div><div class="card"><div class="feed-top"><strong>Requirement Uploads</strong><span>60s</span></div><p><span class="tag">Solution Architect</span> <span class="tag">/req-uploads</span></p><p>Demonstrate document intake and evidence preparation.</p></div></div><div class="scene"><div class="scene-num">S06</div><div class="card"><div class="feed-top"><strong>Maximo Fingerprint</strong><span>60s</span></div><p><span class="tag">Solution Architect</span> <span class="tag">/maximo-inventory</span></p><p>Show environment discovery without mutation.</p></div></div><div class="scene"><div class="scene-num">S07</div><div class="card"><div class="feed-top"><strong>Patch Impact</strong><span>90s</span></div><p><span class="tag">Solution Architect</span> <span class="tag">/patch-impact</span></p><p>Walk through MAS Manage 9.1.2 impact analysis.</p></div></div><div class="scene"><div class="scene-num">S08</div><div class="card"><div class="feed-top"><strong>License Usage Planning</strong><span>90s</span></div><p><span class="tag">Customer Admin</span> <span class="tag">/license-report</span></p><p>Show AppPoint planning, inactive users, and optimisation recommendations.</p></div></div><div class="scene"><div class="scene-num">S09</div><div class="card"><div class="feed-top"><strong>Skill Coverage</strong><span>60s</span></div><p><span class="tag">Solution Architect</span> <span class="tag">/skills</span></p><p>Show local skill-pack readiness and feature gates.</p></div></div><div class="scene"><div class="scene-num">S10</div><div class="card"><div class="feed-top"><strong>No Contract Mobilisation</strong><span>30s</span></div><p><span class="tag">Customer Admin</span> <span class="tag">blocked</span></p><p>Demonstrate customer-specific feature controls.</p></div></div><div class="scene"><div class="scene-num">S11</div><div class="card"><div class="feed-top"><strong>Audit Log</strong><span>45s</span></div><p><span class="tag">Platform Admin</span> <span class="tag">/audit</span></p><p>Show auditability for actions and blocked flows.</p></div></div><div class="scene"><div class="scene-num">S12</div><div class="card"><div class="feed-top"><strong>Help Center</strong><span>45s</span></div><p><span class="tag">Developer</span> <span class="tag">/help</span></p><p>End with role-friendly guidance and enablement.</p></div></div></div></section></main><footer class="footer"><div class="container"><div><div class="brand"><span class="logo">M</span><span>Maximo Delivery Automation Workbench</span></div><p class="muted">Evidence-backed IBM Maximo delivery automation. MAS9 Power is a fictional demo tenant built from seeded data.</p><p class="muted">© <span data-year></span> MASReady — Maximo Delivery Automation Workbench.</p></div><div><div class="footer-links"><a href="index.html">Home</a><a href="mas9-power.html">MAS9 Power</a><a href="features.html">Features</a><a href="adaptive-regression.html">Adaptive Regression</a><a href="data-modes.html">Data Modes</a><a href="trust.html">Trust</a><a href="architecture.html">Architecture</a><a href="media.html">Media</a><a href="demo-walkthrough.html">Walkthrough</a><a href="launch.html">Launch</a><a href="contact.html">Contact</a><a href="sitemap.xml">Sitemap</a><a href="robots.txt">Robots</a></div><p class="disclaimer" style="margin-top:18px">License usage planning is for visibility only. It is not legal, contractual, IBM-certified, or compliance advice.</p></div></div></footer><script src="assets/js/site.js"></script></body></html>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2G0P43096"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-T2G0P43096');</script></head><body><a class="skip" href="#main">Skip to content</a><header class="nav"><div class="nav-inner"><a class="brand" href="index.html"><span class="logo">M</span><span>Maximo Delivery<br/><span class="muted" style="font-weight:650;font-size:12px">Automation Workbench</span></span></a><button class="mobile-toggle" data-mobile-toggle aria-label="Toggle navigation">Menu</button><nav class="nav-links" aria-label="Main navigation"><a href="index.html" class="">Home</a><a href="mas9-power.html" class="">MAS9 Power</a><a href="features.html" class="">Features</a><a href="adaptive-regression.html" class="">Adaptive Regression</a><a href="data-modes.html" class="">Data Modes</a><a href="trust.html" class="">Trust</a><a href="architecture.html" class="">Architecture</a><a href="media.html" class="">Media</a><a href="demo-walkthrough.html" class="active">Walkthrough</a><a href="launch.html" class="">Launch</a><a href="contact.html" class="">Contact</a></nav></div></header>
+
+<main id="main">
+<section class="wt-hero">
+  <div class="wt-orb a" aria-hidden="true"></div>
+  <div class="wt-orb b" aria-hidden="true"></div>
+  <div class="container">
+    <span class="wt-eyebrow"><span class="dot" aria-hidden="true"></span>12-minute guided walkthrough</span>
+    <h1 class="h1" style="margin-top:18px">A demo path for executives<br/>and delivery teams.</h1>
+    <p class="lead">Each scene maps to a product route, role, duration, and value statement — so every stakeholder sees exactly what they need.</p>
+    <div class="wt-controls">
+      <button class="wt-btn primary" id="wt-play"><svg class="wt-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg><span id="wt-play-label">Play walkthrough</span></button>
+      <a class="wt-btn" href="launch.html">Request a live demo</a>
+    </div>
+    <div class="wt-totalbar">
+      <span class="wt-chip"><b>12</b> scenes</span>
+      <span class="wt-chip"><b>~12 min</b> total</span>
+      <span class="wt-chip"><b>5</b> roles covered</span>
+    </div>
+  </div>
+</section>
+
+<div class="wt-progress-wrap">
+  <div class="container">
+    <div class="wt-progress"><div class="wt-progress-bar" id="wt-bar"></div></div>
+    <div class="wt-progress-meta"><span>Scene <b id="wt-cur">0</b> / 12</span><span id="wt-pct">0%</span></div>
+  </div>
+</div>
+
+<section class="section" style="padding-top:8px">
+  <div class="container" style="position:relative">
+    <div class="wt-timeline" id="wt-timeline">
+      <div class="wt-line" aria-hidden="true"></div>
+      <div class="wt-line-fill" id="wt-linefill" aria-hidden="true"></div>
+
+      <article class="wt-scene" data-time="45"><div class="wt-node"><div class="wt-num">S01</div></div><div class="wt-card"><div class="wt-card-top"><h3 class="wt-card-title">Login + Customer Switch</h3><span class="wt-time">45s</span></div><div class="wt-tags"><span class="wt-tag role">Platform Admin</span><span class="wt-tag">/dashboard</span></div><p class="wt-desc">Open the story with tenant status and customer context.</p></div></article>
+
+      <article class="wt-scene" data-time="90"><div class="wt-node"><div class="wt-num">S02</div></div><div class="wt-card"><div class="wt-card-top"><h3 class="wt-card-title">Delivery Intelligence</h3><span class="wt-time">90s</span></div><div class="wt-tags"><span class="wt-tag role">Platform Admin</span><span class="wt-tag">/delivery-intelligence</span></div><p class="wt-desc">Show evidence-backed dashboard metrics and readiness posture.</p></div></article>
+
+      <article class="wt-scene" data-time="60"><div class="wt-node"><div class="wt-num">S03</div></div><div class="wt-card"><div class="wt-card-top"><h3 class="wt-card-title">Trust Center</h3><span class="wt-time">60s</span></div><div class="wt-tags"><span class="wt-tag role">Customer Admin</span><span class="wt-tag">/trust-center</span></div><p class="wt-desc">Explain data mode, retention, review-only boundaries, and safety.</p></div></article>
+
+      <article class="wt-scene" data-time="45"><div class="wt-node"><div class="wt-num">S04</div></div><div class="wt-card"><div class="wt-card-top"><h3 class="wt-card-title">Integration Settings</h3><span class="wt-time">45s</span></div><div class="wt-tags"><span class="wt-tag role">Customer Admin</span><span class="wt-tag">/integration-settings</span></div><p class="wt-desc">Show Jira-only, read-only integration posture.</p></div></article>
+
+      <article class="wt-scene" data-time="60"><div class="wt-node"><div class="wt-num">S05</div></div><div class="wt-card"><div class="wt-card-top"><h3 class="wt-card-title">Requirement Uploads</h3><span class="wt-time">60s</span></div><div class="wt-tags"><span class="wt-tag role">Solution Architect</span><span class="wt-tag">/req-uploads</span></div><p class="wt-desc">Demonstrate document intake and evidence preparation.</p></div></article>
+
+      <article class="wt-scene" data-time="60"><div class="wt-node"><div class="wt-num">S06</div></div><div class="wt-card"><div class="wt-card-top"><h3 class="wt-card-title">Maximo Fingerprint</h3><span class="wt-time">60s</span></div><div class="wt-tags"><span class="wt-tag role">Solution Architect</span><span class="wt-tag">/maximo-inventory</span></div><p class="wt-desc">Show environment discovery without mutation.</p></div></article>
+
+      <article class="wt-scene" data-time="90"><div class="wt-node"><div class="wt-num">S07</div></div><div class="wt-card"><div class="wt-card-top"><h3 class="wt-card-title">Patch Impact</h3><span class="wt-time">90s</span></div><div class="wt-tags"><span class="wt-tag role">Solution Architect</span><span class="wt-tag">/patch-impact</span></div><p class="wt-desc">Walk through MAS Manage 9.1.2 impact analysis.</p></div></article>
+
+      <article class="wt-scene" data-time="90"><div class="wt-node"><div class="wt-num">S08</div></div><div class="wt-card"><div class="wt-card-top"><h3 class="wt-card-title">License Usage Planning</h3><span class="wt-time">90s</span></div><div class="wt-tags"><span class="wt-tag role">Customer Admin</span><span class="wt-tag">/license-report</span></div><p class="wt-desc">Show AppPoint planning, inactive users, and optimisation recommendations.</p></div></article>
+
+      <article class="wt-scene" data-time="60"><div class="wt-node"><div class="wt-num">S09</div></div><div class="wt-card"><div class="wt-card-top"><h3 class="wt-card-title">Skill Coverage</h3><span class="wt-time">60s</span></div><div class="wt-tags"><span class="wt-tag role">Solution Architect</span><span class="wt-tag">/skills</span></div><p class="wt-desc">Show local skill-pack readiness and feature gates.</p></div></article>
+
+      <article class="wt-scene" data-time="30"><div class="wt-node"><div class="wt-num">S10</div></div><div class="wt-card"><div class="wt-card-top"><h3 class="wt-card-title">No Contract Mobilisation</h3><span class="wt-time">30s</span></div><div class="wt-tags"><span class="wt-tag role">Customer Admin</span><span class="wt-tag blocked">blocked</span></div><p class="wt-desc">Demonstrate customer-specific feature controls.</p></div></article>
+
+      <article class="wt-scene" data-time="45"><div class="wt-node"><div class="wt-num">S11</div></div><div class="wt-card"><div class="wt-card-top"><h3 class="wt-card-title">Audit Log</h3><span class="wt-time">45s</span></div><div class="wt-tags"><span class="wt-tag role">Platform Admin</span><span class="wt-tag">/audit</span></div><p class="wt-desc">Show auditability for actions and blocked flows.</p></div></article>
+
+      <article class="wt-scene" data-time="45"><div class="wt-node"><div class="wt-num">S12</div></div><div class="wt-card"><div class="wt-card-top"><h3 class="wt-card-title">Help Center</h3><span class="wt-time">45s</span></div><div class="wt-tags"><span class="wt-tag role">Developer</span><span class="wt-tag">/help</span></div><p class="wt-desc">End with role-friendly guidance and enablement.</p></div></article>
+    </div>
+
+    <div class="wt-done" id="wt-done">
+      <h3>That's the full path.</h3>
+      <p>Twelve scenes, every role, evidence at each step. Ready to see it on your own environment?</p>
+      <a class="wt-btn primary" href="launch.html" style="text-decoration:none">Request a live demo</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer"><div class="container"><div><div class="brand"><span class="logo">M</span><span>Maximo Delivery Automation Workbench</span></div><p class="muted">Evidence-backed IBM Maximo delivery automation. MAS9 Power is a fictional demo tenant built from seeded data.</p><p class="muted">© <span data-year></span> MASReady — Maximo Delivery Automation Workbench.</p></div><div><div class="footer-links"><a href="index.html">Home</a><a href="mas9-power.html">MAS9 Power</a><a href="features.html">Features</a><a href="adaptive-regression.html">Adaptive Regression</a><a href="data-modes.html">Data Modes</a><a href="trust.html">Trust</a><a href="architecture.html">Architecture</a><a href="media.html">Media</a><a href="demo-walkthrough.html">Walkthrough</a><a href="launch.html">Launch</a><a href="contact.html">Contact</a><a href="sitemap.xml">Sitemap</a><a href="robots.txt">Robots</a></div><p class="disclaimer" style="margin-top:18px">License usage planning is for visibility only. It is not legal, contractual, IBM-certified, or compliance advice.</p></div></div></footer>
+
+<script src="assets/js/site.js"></script>
+<script>
+(function(){
+  "use strict";
+  var scenes=[].slice.call(document.querySelectorAll(".wt-scene"));
+  var bar=document.getElementById("wt-bar");
+  var lineFill=document.getElementById("wt-linefill");
+  var curEl=document.getElementById("wt-cur");
+  var pctEl=document.getElementById("wt-pct");
+  var done=document.getElementById("wt-done");
+  var playBtn=document.getElementById("wt-play");
+  var playLabel=document.getElementById("wt-play-label");
+  var total=scenes.length, revealed=0, playing=false, playTimer=null, playIdx=0;
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function setProgress(n){
+    var pct=Math.round((n/total)*100);
+    bar.style.width=pct+"%";
+    lineFill.style.height=pct+"%";
+    curEl.textContent=n;
+    pctEl.textContent=pct+"%";
+    if(n>=total){done.classList.add("show");}
+  }
+
+  // Scroll-reveal via IntersectionObserver
+  if("IntersectionObserver" in window && !reduce){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting && !e.target.classList.contains("in")){
+          e.target.classList.add("in");
+          revealed++;
+          setProgress(revealed);
+        }
+      });
+    },{threshold:.35,rootMargin:"0px 0px -10% 0px"});
+    scenes.forEach(function(s){io.observe(s);});
+  } else {
+    // reduced motion / no IO: show everything immediately
+    scenes.forEach(function(s){s.classList.add("in");});
+    setProgress(total);
+  }
+
+  // Play: auto-scroll scene by scene, highlighting active
+  function stopPlay(){
+    playing=false; clearTimeout(playTimer);
+    scenes.forEach(function(s){s.classList.remove("active");});
+    playLabel.textContent="Play walkthrough";
+    playBtn.querySelector("svg").innerHTML='<polygon points="5 3 19 12 5 21 5 3"></polygon>';
+  }
+  function step(){
+    if(!playing||playIdx>=total){stopPlay();return;}
+    scenes.forEach(function(s){s.classList.remove("active");});
+    var sc=scenes[playIdx];
+    sc.classList.add("in","active");
+    sc.scrollIntoView({behavior:"smooth",block:"center"});
+    revealed=Math.max(revealed,playIdx+1);
+    setProgress(revealed);
+    // pace ~ scaled scene duration (compress real seconds → demo pace, min 1.6s)
+    var secs=parseInt(sc.getAttribute("data-time"),10)||45;
+    var pace=Math.max(1600, Math.min(3200, secs*32));
+    playIdx++;
+    playTimer=setTimeout(step,pace);
+  }
+  playBtn.addEventListener("click",function(){
+    if(playing){stopPlay();return;}
+    playing=true; playIdx=0;
+    playLabel.textContent="Pause";
+    playBtn.querySelector("svg").innerHTML='<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
+    gtag&&gtag("event","walkthrough_play",{event_category:"engagement"});
+    step();
+  });
+  // stop autoplay if user scrolls manually
+  var userScrolled=false;
+  window.addEventListener("wheel",function(){if(playing){stopPlay();}},{passive:true});
+  window.addEventListener("touchmove",function(){if(playing){stopPlay();}},{passive:true});
+})();
+</script>
+</body></html>
