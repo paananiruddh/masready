@@ -4,6 +4,10 @@
 
   // Mobile nav toggle
   document.addEventListener("DOMContentLoaded", function () {
+    // Fill footer year
+    var yearSpans = document.querySelectorAll("[data-year]");
+    var year = new Date().getFullYear();
+    yearSpans.forEach(function (el) { el.textContent = year; });
     var toggle = document.querySelector("[data-mobile-toggle]");
     var nav = document.querySelector(".nav-links");
     if (toggle && nav) {
